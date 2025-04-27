@@ -13,6 +13,11 @@ Data\Gossips.lua
 # Functions used throughout the addon.
 Common.lua
 
+Locale.lua
+
+# Buttons
+Buttons\Gossip.lua
+
 Map.lua
 
 #Modules\Containers.lua
