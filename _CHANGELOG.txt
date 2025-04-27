@@ -1,7 +1,26 @@
-----------------------------------------------
-LightskyUniversal V1.0.3 Update - 27/04/2025
-----------------------------------------------
-
 + Represents something new or added in the release.
 - Represents something removed in the release.
 * Represents something that changed in the release.
+
+----------------------------------------------
+LightskyUniversal V0.0.3 Update - 27/04/2025
+----------------------------------------------
+
++ Cinematics module
++ QUEST_ACTIVE condition support
+
+----------------------------------------------
+LightskyUniversal V0.0.2 Update - 26/04/2025
+----------------------------------------------
+
++ Condition infrastructure
++ Gossip support
++ Container (openables) support
++ Get gossip info button on the GossipFrame
++ Map module
+
+----------------------------------------------
+LightskyUniversal V0.0.1 Update - 25/04/2025
+----------------------------------------------
+
++ Initial setup

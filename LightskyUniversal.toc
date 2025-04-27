@@ -1,11 +1,12 @@
 ## Interface: 110105
 ## Title: LightskyUniversal
-## Version: 1.0.2
+## Version: 0.0.3
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
 ## Category-enUS: Quests
 
+Data\Cinematics.lua
 #Data\Containers.lua
 Data\Properties.lua
 Data\Gossips.lua
@@ -21,6 +22,7 @@ Buttons\Gossip.lua
 Map.lua
 
 Modules\ChromieTime.lua
+Modules\Cinematics.lua
 #Modules\Containers.lua
 Modules\Gossip.lua
 

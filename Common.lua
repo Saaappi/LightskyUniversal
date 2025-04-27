@@ -73,6 +73,11 @@ LSU.EvaluateConditions = function(conditions)
                         end
                     end
                 end
+            elseif conditionType == "QUEST_ACTIVE" then
+                local questID = LSU.Split(condition, ";", 2)
+                if C_QuestLog.IsOnQuest(questID) then
+                    numConditions = numConditions - 1
+                end
             end
         end
         if numConditions == 0 then
