@@ -48,6 +48,12 @@ LSU.Split = function(str, delimiter, nth)
 end
 
 LSU.EvaluateConditions = function(conditions)
+    -- Keep the gossips as clean as possible, only using
+    -- a conditions table if needed. As such, if there isn't
+    -- a conditions table, then simply return true.
+    if conditions == nil then
+        return true
+    end
     local numConditions = #conditions
     if numConditions and numConditions > 0 then
         for _, condition in ipairs(conditions) do
