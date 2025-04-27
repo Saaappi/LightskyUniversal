@@ -1,0 +1,7 @@
+----------------------------------------------
+LightskyUniversal V1.0.3 Update - 27/04/2025
+----------------------------------------------
+
++ Represents something new or added in the release.
+- Represents something removed in the release.
+* Represents something that changed in the release.
