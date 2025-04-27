@@ -130,6 +130,11 @@ local Gossips = {
                 optionID = 55314
             }
         },
+        [186280] = { -- Kalecgos
+            {
+                optionID = 54829
+            }
+        },
     }
 }
 LSU.Gossips = Gossips
