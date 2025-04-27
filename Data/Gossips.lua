@@ -16,6 +16,36 @@ local Gossips = {
             {
                 optionID = 55418
             }
+        },
+        [190225] = { -- Babunituk
+            {
+                optionID = 55419
+            }
+        },
+        [376767] = { -- Lingering Image (Mosaic)
+            {
+                optionID = 54980
+            }
+        },
+        [376971] = { -- Lingering Image (Tower)
+            {
+                optionID = 55182
+            }
+        },
+        [376972] = { -- Lingering Image (Workshop)
+            {
+                optionID = 55183
+            }
+        },
+        [376974] = { -- Lingering Image (Pavilion)
+            {
+                optionID = 55184
+            }
+        },
+        [183543] = { -- Noriko the All-Remembering
+            {
+                optionID = 54965
+            }
         }
     }
 }
