@@ -17,20 +17,6 @@ end
 --
 -- If * is provided for the nth value, then the entire
 -- split string is returned.
---[[LSU.Split = function(str, delimiter, nth)
-    local strings = {}
-    local pattern = ("([^%s]+)"):format(delimiter)
-    for string in str:gmatch(pattern) do
-        table.insert(strings, string)
-    end
-
-    if tonumber(strings[nth]) then
-        return tonumber(strings[nth])
-    elseif nth == "*" then
-        return unpack(strings)
-    end
-    return strings[nth]
-end]]
 LSU.Split = function(str, delimiter, nth)
     local strings = {}
     local pattern = ("([^%s]+)"):format(delimiter)
