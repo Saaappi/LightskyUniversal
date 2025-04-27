@@ -1,0 +1,19 @@
+## Interface: 110105
+## Title: LightskyUniversal
+## Version: 1.0.0
+## Author: LightskyGG
+## SavedVariables: LSUDB
+## IconTexture: 136243
+## Category-enUS: Quests
+
+#Data\Containers.lua
+Data\Properties.lua
+Data\Gossips.lua
+
+# Functions used throughout the addon.
+Common.lua
+
+#Modules\Containers.lua
+Modules\Gossip.lua
+
+Main.lua
