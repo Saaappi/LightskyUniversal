@@ -2,8 +2,8 @@ local addonName, LSU = ...
 local eventFrame = CreateFrame("Frame")
 
 local function IsValidGossipNPC(id)
-    if LSU.Gossips[id] then
-        return true, LSU.Gossips[id]
+    if LSU.Gossips[LSU.mapID][id] then
+        return true, LSU.Gossips[LSU.mapID][id]
     end
     return false
 end
@@ -18,11 +18,11 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                 local id = LSU.Split(guid, "-", 6)
                 if id then
                     local isValid, gossips = IsValidGossipNPC(id)
-                    if isValid then
+                    if isValid and gossips then
                         for _, gossip in ipairs(gossips) do
                             --local isAllowed = LSTools.EvaluateConditions(gossip.conditions)
                             --if isAllowed then
-                                C_GossipInfo.SelectOption(gossip.id)
+                                C_GossipInfo.SelectOption(gossip.optionID)
                                 --if gossip.canConfirm then
                                     C_Timer.After(.2, function()
                                         StaticPopup1Button1:Click("LeftButton")
