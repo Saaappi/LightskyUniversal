@@ -44,7 +44,10 @@ local Gossips = {
         },
         [183543] = { -- Noriko the All-Remembering
             {
-                optionID = 54965
+                optionID = 54965,
+                conditions = {
+                    "OBJECTIVE_INCOMPLETE;66503;1"
+                }
             }
         }
     }

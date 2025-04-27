@@ -17,7 +17,7 @@ end
 --
 -- If * is provided for the nth value, then the entire
 -- split string is returned.
-LSU.Split = function(str, delimiter, nth)
+--[[LSU.Split = function(str, delimiter, nth)
     local strings = {}
     local pattern = ("([^%s]+)"):format(delimiter)
     for string in str:gmatch(pattern) do
@@ -30,4 +30,57 @@ LSU.Split = function(str, delimiter, nth)
         return unpack(strings)
     end
     return strings[nth]
+end]]
+LSU.Split = function(str, delimiter, nth)
+    local strings = {}
+    local pattern = ("([^%s]+)"):format(delimiter)
+    for string in str:gmatch(pattern) do
+        table.insert(strings, string)
+    end
+
+    if nth == "*" then
+        return unpack(strings)
+    end
+
+    if type(nth) == "string" and nth:match("^(%d+)%*$") then
+        local startIndex = tonumber(nth:match("^(%d+)%*$"))
+        local results = {}
+        for i = startIndex, #strings do
+            if tonumber(strings[i]) then
+                strings[i] = tonumber(strings[i])
+            end
+            table.insert(results, strings[i])
+        end
+        return unpack(results)
+    end
+
+    if tonumber(strings[nth]) then
+        return tonumber(strings[nth])
+    end
+
+    return strings[nth]
+end
+
+LSU.EvaluateConditions = function(conditions)
+    local numConditions = #conditions
+    if numConditions and numConditions > 0 then
+        for _, condition in ipairs(conditions) do
+            local conditionType = LSU.Split(condition, ";", 1)
+            if conditionType == "OBJECTIVE_INCOMPLETE" then
+                local questID, objectiveIndex = LSU.Split(condition, ";", "2*")
+                if C_QuestLog.IsOnQuest(questID) and objectiveIndex then
+                    local objectives = C_QuestLog.GetQuestObjectives(questID)
+                    if objectives and objectives[objectiveIndex] then
+                        if not objectives[objectiveIndex].finished then
+                            numConditions = numConditions - 1
+                        end
+                    end
+                end
+            end
+        end
+        if numConditions == 0 then
+            return true
+        end
+        return false
+    end
 end

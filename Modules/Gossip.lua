@@ -20,15 +20,15 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     local isValid, gossips = IsValidGossipNPC(id)
                     if isValid and gossips then
                         for _, gossip in ipairs(gossips) do
-                            --local isAllowed = LSTools.EvaluateConditions(gossip.conditions)
-                            --if isAllowed then
+                            local isAllowed = LSU.EvaluateConditions(gossip.conditions)
+                            if isAllowed then
                                 C_GossipInfo.SelectOption(gossip.optionID)
                                 --if gossip.canConfirm then
                                     C_Timer.After(.2, function()
                                         StaticPopup1Button1:Click("LeftButton")
                                     end)
                                 --end
-                            --end
+                            end
                         end
                     end
                 end
