@@ -58,7 +58,12 @@ LSU.EvaluateConditions = function(conditions)
     if numConditions and numConditions > 0 then
         for _, condition in ipairs(conditions) do
             local conditionType = LSU.Split(condition, ";", 1)
-            if conditionType == "OBJECTIVE_INCOMPLETE" then
+            if conditionType == "!CT_EXPANSION" then
+                local expansionID = LSU.Split(condition, ";", 2)
+                if UnitChromieTimeID("player") ~= expansionID and UnitLevel("player") < (GetMaxLevelForPlayerExpansion() - 10) then
+                    numConditions = numConditions - 1
+                end
+            elseif conditionType == "OBJECTIVE_INCOMPLETE" then
                 local questID, objectiveIndex = LSU.Split(condition, ";", "2*")
                 if C_QuestLog.IsOnQuest(questID) and objectiveIndex then
                     local objectives = C_QuestLog.GetQuestObjectives(questID)

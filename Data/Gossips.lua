@@ -1,6 +1,16 @@
 local addonName, LSU = ...
 
 local Gossips = {
+    [13] = { -- Eastern Kingdoms
+        [167032] = { -- Chromie
+            {
+                optionID = 51901,
+                conditions = {
+                    "!CT_EXPANSION;10"
+                }
+            }
+        }
+    },
     [1978] = { -- Dragon Isles
         [186187] = { -- Kalecgos
             {
