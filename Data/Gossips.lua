@@ -49,7 +49,87 @@ local Gossips = {
                     "OBJECTIVE_INCOMPLETE;66503;1"
                 }
             }
-        }
+        },
+        [186224] = { -- Brena
+            {
+                optionID = 54825
+            }
+        },
+        [187730] = { -- Akiun
+            {
+                optionID = 55220
+            }
+        },
+        [190136] = { -- Tuskarr Fisherman
+            {
+                optionID = 55691
+            }
+        },
+        [190142] = { -- Tuskarr Hunter
+            {
+                optionID = 55692
+            }
+        },
+        [190143] = { -- Tuskarr Craftsman
+            {
+                optionID = 55693
+            }
+        },
+        [190074] = { -- Festering Gnoll
+            {
+                optionID = 55694
+            }
+        },
+        [196837] = { -- Instructional Crystal
+            {
+                optionID = 107039
+            }
+        },
+        [377551] = { -- Rotting Root (North)
+            {
+                optionID = 55350
+            }
+        },
+        [377555] = { -- Rotting Root (South)
+            {
+                optionID = 54967
+            }
+        },
+        [377556] = { -- Rotting Root (West)
+            {
+                optionID = 54968
+            }
+        },
+        [187873] = { -- Kalecgos
+            {
+                optionID = 55002
+            }
+        },
+        [186448] = { -- Elder Poa
+            {
+                optionID = 55010
+            },
+            {
+                optionID = 55011
+            },
+            {
+                optionID = 55014
+            },
+            {
+                optionID = 55017
+            },
+            {
+                optionID = 55020
+            },
+            {
+                optionID = 55022
+            },
+        },
+        [186480] = { -- Brena
+            {
+                optionID = 55314
+            }
+        },
     }
 }
 LSU.Gossips = Gossips
