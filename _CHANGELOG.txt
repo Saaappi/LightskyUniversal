@@ -8,6 +8,8 @@ LightskyUniversal V0.0.3 Update - 27/04/2025
 
 + Cinematics module
 + QUEST_ACTIVE condition support
++ Felwood gossips
++ Gossip confirmation support
 
 ----------------------------------------------
 LightskyUniversal V0.0.2 Update - 26/04/2025

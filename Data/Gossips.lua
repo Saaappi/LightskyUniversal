@@ -1,6 +1,28 @@
 local addonName, LSU = ...
 
 local Gossips = {
+    [12] = { -- Kalimdor
+        [206831] = { -- Portal to Wildheart Point
+            {
+                optionID = 39709
+            }
+        },
+        [47923] = { -- Feronas Sindweller
+            {
+                optionID = 39076
+            }
+        },
+        [47842] = { -- Archdruid Navarax
+            {
+                optionID = 39447
+            }
+        },
+        [213620] = { -- Thrall
+            {
+                optionID = 123176
+            }
+        }
+    },
     [13] = { -- Eastern Kingdoms
         [167032] = { -- Chromie
             {

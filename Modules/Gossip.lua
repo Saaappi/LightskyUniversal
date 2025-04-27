@@ -25,11 +25,9 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                             local isAllowed = LSU.EvaluateConditions(gossip.conditions)
                             if isAllowed then
                                 C_GossipInfo.SelectOption(gossip.optionID)
-                                --[[if gossip.canConfirm then
-                                    C_Timer.After(.2, function()
-                                        StaticPopup1Button1:Click("LeftButton")
-                                    end)
-                                end]]
+                                C_Timer.After(.2, function()
+                                    StaticPopup1Button1:Click("LeftButton")
+                                end)
                             end
                         end
                     end
