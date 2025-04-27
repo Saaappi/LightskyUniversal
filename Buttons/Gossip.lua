@@ -15,9 +15,10 @@ getGossipInfoButton:SetScript("OnClick", function()
     local options = C_GossipInfo.GetOptions()
     if options and options ~= {} then
         local guid = UnitGUID("npc")
-        if guid then
+        local name = UnitName("npc")
+        if guid and name then
             local id = LSU.Split(guid, "-", 6)
-            print(id)
+            print(id .. " - |cff45BA5F" .. name .. "|r")
             for _, option in ipairs(options) do
                 print("  " .. "|cffBA45A0" .. option.gossipOptionID .. "|r")
                 print("    " .. option.name)

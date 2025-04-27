@@ -6,6 +6,16 @@ local Gossips = {
             {
                 optionID = 54821
             }
+        },
+        [190229] = { -- Korrikunit the Whalebringer
+            {
+                optionID = 55417
+            }
+        },
+        [190226] = { -- Jokomuupat
+            {
+                optionID = 55418
+            }
         }
     }
 }
