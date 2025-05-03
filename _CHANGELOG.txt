@@ -9,6 +9,7 @@ LightskyUniversal V0.6 Update - 03/05/2025
 * Basic buttons now include a header and it's always set to Lightsky Universal
 * Player collector now harvests class color
 * The tooltip for the New Character module now colors the player's name in their class color
+* Cinematic automation can be ignored by holding the shift key down before the cinematic plays
 
 ----------------------------------------------
 LightskyUniversal V0.5 Update - 03/05/2025
