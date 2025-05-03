@@ -3,6 +3,14 @@
 * Represents something that changed in the release.
 
 ----------------------------------------------
+LightskyUniversal V0.5 Update - 03/05/2025
+----------------------------------------------
+
++ Collector for player-related information (name, level, etc.)
+* Moved Map.lua to MapCollector.lua
+* MapCollector now stores the parent map ID and its name in the table
+
+----------------------------------------------
 LightskyUniversal V0.4 Update - 02/05/2025
 ----------------------------------------------
 

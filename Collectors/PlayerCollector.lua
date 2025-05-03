@@ -1,0 +1,25 @@
+local addonName, LSU = ...
+local eventFrame = CreateFrame("Frame")
+
+eventFrame:RegisterEvent("PLAYER_LEVEL_UP")
+eventFrame:RegisterEvent("PLAYER_LOGIN")
+eventFrame:SetScript("OnEvent", function(_, event, ...)
+    if event == "PLAYER_LEVEL_UP" then
+        local newLevel = ...
+        LSU.Character.Level = newLevel
+    end
+    if event == "PLAYER_LOGIN" then
+        if not LSU.Character then
+            LSU.Character = {}
+        end
+
+        local name = UnitName("player")
+        local className = UnitClass("player")
+        local level = UnitLevel("player")
+
+        LSU.Character.Name = name
+        LSU.Character.ClassName = className
+        LSU.Character.Level = level
+        eventFrame:UnregisterEvent(event)
+    end
+end)

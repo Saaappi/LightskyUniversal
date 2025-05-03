@@ -2,9 +2,9 @@ local addonName, LSU = ...
 local eventFrame = CreateFrame("Frame")
 
 local function IsValidGossipNPC(id)
-    if LSU.Gossips[LSU.mapID] then
-        if LSU.Gossips[LSU.mapID][id] then
-            return true, LSU.Gossips[LSU.mapID][id]
+    if LSU.Gossips[LSU.Map.ID] then
+        if LSU.Gossips[LSU.Map.ID][id] then
+            return true, LSU.Gossips[LSU.Map.ID][id]
         end
     end
     return false
