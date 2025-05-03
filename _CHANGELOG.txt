@@ -3,7 +3,14 @@
 * Represents something that changed in the release.
 
 ----------------------------------------------
-LightskyUniversal V0.0.3 Update - 27/04/2025
+LightskyUniversal V0.4 Update - 02/05/2025
+----------------------------------------------
+
++ Button constructor for making buttons (only support for basic buttons)
++ New character module
+
+----------------------------------------------
+LightskyUniversal V0.3 Update - 27/04/2025
 ----------------------------------------------
 
 + Cinematics module
@@ -12,7 +19,7 @@ LightskyUniversal V0.0.3 Update - 27/04/2025
 + Gossip confirmation support
 
 ----------------------------------------------
-LightskyUniversal V0.0.2 Update - 26/04/2025
+LightskyUniversal V0.2 Update - 26/04/2025
 ----------------------------------------------
 
 + Condition infrastructure
@@ -22,7 +29,7 @@ LightskyUniversal V0.0.2 Update - 26/04/2025
 + Map module
 
 ----------------------------------------------
-LightskyUniversal V0.0.1 Update - 25/04/2025
+LightskyUniversal V0.1 Update - 25/04/2025
 ----------------------------------------------
 
 + Initial setup

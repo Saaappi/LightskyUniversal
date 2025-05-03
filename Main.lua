@@ -10,6 +10,10 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
             if LSUDB == nil then
                 LSUDB = {}
                 LSUDB.AccountProperties = {}
+                LSUDB.Characters = {}
+            end
+            if not LSUDB.Characters then
+                LSUDB.Characters = {}
             end
             if not LSUDB.AccountProperties.AccountName and not LSUDB.AccountProperties.DoNotNameAccount then
                 StaticPopupDialogs["LSU_GetAccountName"] = {
