@@ -12,9 +12,6 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                 LSUDB.AccountProperties = {}
                 LSUDB.Characters = {}
             end
-            if not LSUDB.Characters then
-                LSUDB.Characters = {}
-            end
             if not LSUDB.AccountProperties.AccountName and not LSUDB.AccountProperties.DoNotNameAccount then
                 StaticPopupDialogs["LSU_GetAccountName"] = {
                     text = "Hi! This account is new to me. What should I call you?",
