@@ -11,9 +11,9 @@ local button = {
     relativeTo = UIParent,
     relativePoint = "CENTER",
     xOffset = 0,
-    yOffset = 0,
-    tooltipText = string.format("Click to configure new character settings for %s.", UnitName("player"))
+    yOffset = 0
 }
+
 local consoleVariables = {
     {
         name = "alwaysCompareItems",
@@ -215,6 +215,8 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         C_Timer.After(3, function()
             local guid = UnitGUID("player")
             if not LSUDB.Characters[guid] then
+                -- This must be added after the Player Collector has a chance to harvest its data.
+                button.tooltipText = string.format("Click to configure new character settings for |c%s%s|r.", LSU.Character.ClassColor:GenerateHexColor(), UnitName("player"))
                 newCharacterSetupButton = LSU.CreateButton(button)
                 if newCharacterSetupButton then
                     newCharacterSetupButton:SetScript("OnClick", function()
@@ -236,7 +238,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                         end
 
                         StaticPopupDialogs["LSU_NewCharacterConfigurationCompleted"] = {
-                            text = "New character configuration completed. Would you like to reload now?",
+                            text = "Configuration completed. Would you like to reload now?",
                             button1 = YES,
                             button2 = NO,
                             explicitAcknowledge = true,
