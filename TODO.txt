@@ -1,0 +1,2 @@
+- Assign mounts for the remaining classes.
+- Add support for mounting the Grizzly Hills Packmaster when the player's bags are 99% full.
