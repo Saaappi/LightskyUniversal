@@ -13,6 +13,7 @@ LightskyUniversal V0.6 Update - 03/05/2025
 * The tooltip for the New Character module now colors the player's name in their class color
 * Cinematic automation can be ignored by holding the shift key down before the cinematic plays
 * The classname for Death Knight and Demon Hunter now have the space removed
+* Changed the format of the console variables in the New Character module
 
 ----------------------------------------------
 LightskyUniversal V0.5 Update - 03/05/2025
