@@ -22,8 +22,8 @@ local consoleVariables = {
     { name = "autoInteract", value = "1" },
     { name = "autoLootDefault", value = "1" },
     { name = "AutoPushSpellToActionBar", value = "0" },
-    --[[{ name = "autoQuestProgress", value = "0" },
-    { name = "autoQuestWatch", value = "0" },]]
+    --{ name = "autoQuestProgress", value = "0" },
+    --{ name = "autoQuestWatch", value = "0" },
     { name = "bankConfirmTabCleanUp", value = "0" },
     { name = "cameraIndirectVisibility", value = "0" },
     { name = "cameraIndirectOffset", value = "10" },
