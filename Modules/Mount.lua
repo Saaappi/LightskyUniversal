@@ -1,4 +1,7 @@
 local addonName, LSU = ...
+local secureMountButton = CreateFrame("Button", "LSUSecureMountButton", UIParent, "SecureActionButtonTemplate")
+secureMountButton:SetSize(1, 1)
+secureMountButton:RegisterForClicks("AnyUp", "AnyDown")
 
 LSU.Mount = function()
     if InCombatLockdown() and (not IsMounted()) then return end
@@ -18,30 +21,67 @@ LSU.Mount = function()
 
     -- Aquatic mount for characters that are submerged.
     if IsSubmerged("player") then
-        C_MountJournal.SummonByID(800)
+        C_MountJournal.SummonByID(800) -- Brinedeep Bottom-Feeder
     end
 
     -- Player is in Ahn'Qiraj
     local ahnQiraj = { 319, 320, 321 }
     local mapID = C_Map.GetBestMapForUnit("player")
-    if LSU.Contains(ahnQiraj, mapID) then
-        C_MountJournal.SummonByID(936)
+    if mapID and LSU.Contains(ahnQiraj, mapID) then
+        C_MountJournal.SummonByID(936) -- Red Qiraji Battle Tank
     end
 
+    -- Check player's inventory and if their bags are full, then mount a vendor mount.
+    local function GetAvailableInventorySpace()
+        local numSlots = 0
+        local numFreeSlots = 0
+        for i = 0, NUM_BAG_SLOTS do
+            numSlots = numSlots + C_Container.GetContainerNumSlots(i)
+            numFreeSlots = numFreeSlots + C_Container.GetContainerNumFreeSlots(i)
+        end
+
+        local availableSpace = (numFreeSlots / numSlots) * 100
+        if availableSpace <= 5 then
+            LSU.Print(LSU.Locale.STDOUT_LOW_INVENTORY_SPACE)
+            C_MountJournal.SummonByID(2237) -- Grizzly Hills Packmaster
+        end
+    end
+    GetAvailableInventorySpace()
+
     local classMounts = {
-        { classID = 1, mountID = 0 },
-        { classID = 2, mountID = 893 }, -- Highlord's Vigilant Charger
-        { classID = 3, mountID = 0 },
-        { classID = 4, mountID = 0 },
-        { classID = 5, mountID = 0 },
-        { classID = 6, mountID = 0 },
-        { classID = 7, mountID = 0 },
-        { classID = 8, mountID = 0 },
-        { classID = 9, mountID = 930 }, -- Netherlord's Brimstone Wrathsteed
-        { classID = 10, mountID = 0 },
-        { classID = 11, mountID = 0 },
-        { classID = 12, mountID = 0 },
-        { classID = 13, mountID = 0 },
+        { mountID = 867 },      -- Warrior, Battlelord's Bloodthirsty War Wyrm
+        { mountID = 893 },      -- Paladin, Highlord's Vigilant Charger
+        { mountID = 865 },      -- Hunter, Huntmaster's Loyal Wolfhawk
+        { mountID = 884 },      -- Rogue, Shadowblade's Murderous Omen
+        { mountID = 861 },      -- Priest, High Priest's Lightsworn Seeker
+        { mountID = 236 },      -- Death Knight, Winged Steed of the Ebon Blade
+        { mountID = 888 },      -- Shaman, Farseer's Raging Tempest
+        { mountID = 860 },      -- Mage, Archmage's Prismatic Disc
+        { mountID = 930 },      -- Warlock, Netherlord's Brimstone Wrathsteed
+        { mountID = 864 },      -- Monk, Ban-Lu, Grandmaster's Companion
+        --{ mountID = 0 },      -- Druid, Travel Form
+        { mountID = 868 },      -- Demon Hunter, Slayer's Felbroken Shrieker
+        --{ mountID = 0 },      -- Evoker, Soar
     }
-    C_MountJournal.SummonByID(classMounts[LSU.Character.ClassID].mountID)
+
+    if LSU.Character.ClassID == 11 then -- Druid
+        SetOverrideBindingClick(secureMountButton, true, GetBindingKey("LSU_MOUNTUP"), "LSUSecureMountButton", nil)
+        local travelFormIndex = 0
+        local numShapeshiftForms = GetNumShapeshiftForms()
+        for i = 1, numShapeshiftForms do
+            local icon = GetShapeshiftFormInfo(i)
+            if icon == 132144 then
+                travelFormIndex = i
+                break
+            end
+        end
+        secureMountButton:SetAttribute("type", "macro")
+        secureMountButton:SetAttribute("macrotext", string.format("/cast [nostance] Travel Form; [stance:%d] !Travel Form", travelFormIndex))
+    elseif LSU.Character.ClassID == 13 then -- Evoker
+        SetOverrideBindingClick(secureMountButton, true, GetBindingKey("LSU_MOUNTUP"), "LSUSecureMountButton", nil)
+        secureMountButton:SetAttribute("type", "macro")
+        secureMountButton:SetAttribute("macrotext", "/cast Soar")
+    else
+        C_MountJournal.SummonByID(classMounts[LSU.Character.ClassID].mountID)
+    end
 end

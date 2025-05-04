@@ -6,8 +6,9 @@
 LightskyUniversal V0.7 Update - 03/05/2025
 ----------------------------------------------
 
-+ Mount module for easy mounting
++ Mount module for easy mounting (including Druid and Evoker)
 + Keybind support
++ Three print functions (Standard, Warning, Error)
 * The iContains function has been adjusted to be agnostic of the table sort
 * Player collector now harvests class ID
 

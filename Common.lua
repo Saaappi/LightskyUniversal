@@ -1,5 +1,11 @@
 local addonName, LSU = ...
 
+--[[
+    Checks if a value is present in a table.
+
+    @param tbl table: The table to check.
+    @param value [number|string]: The value to check for in the table.
+]]
 LSU.Contains = function(tbl, value)
     if tbl then
         for _, v in pairs(tbl) do
@@ -8,6 +14,42 @@ LSU.Contains = function(tbl, value)
             end
         end
         return false
+    end
+end
+
+--[[
+    Sends a message as stdout to the chat frame.
+
+    @param str [string]: The text to send to the chat frame.
+]]
+LSU.Print = function(str)
+    local name = C_AddOns.GetAddOnMetadata(addonName, "Title")
+    if str and str ~= "" then
+        str = string.format("|cff00CCFF[%s]|r : %s", name, str)
+    end
+end
+
+--[[
+    Sends a warning message as stdout to the chat frame.
+
+    @param str [string]: The text to send to the chat frame.
+]]
+LSU.PrintWarning = function(str)
+    local name = C_AddOns.GetAddOnMetadata(addonName, "Title")
+    if str and str ~= "" then
+        str = string.format("|cffFF8000[%s]|r : %s", name, str)
+    end
+end
+
+--[[
+    Sends an error message as stderr to the chat frame.
+
+    @param str [string]: The text to send to the chat frame.
+]]
+LSU.PrintError = function(str)
+    local name = C_AddOns.GetAddOnMetadata(addonName, "Title")
+    if str and str ~= "" then
+        str = string.format("|cffFF474C[%s]|r : %s", name, str)
     end
 end
 
