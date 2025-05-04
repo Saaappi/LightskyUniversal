@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 0.7
+## Version: 0.8
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
@@ -29,9 +29,11 @@ Buttons\Gossip.lua
 Modules\ChromieTime.lua
 Modules\Cinematics.lua
 #Modules\Containers.lua
+Modules\Gossip.lua
 Modules\Mount.lua
 Modules\NewCharacter.lua
-Modules\Gossip.lua
+Modules\Quest\Accept.lua
+Modules\Quest\Complete.lua
 
 KeybindHandler.lua
 Main.lua

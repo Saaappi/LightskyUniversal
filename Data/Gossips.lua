@@ -33,6 +33,18 @@ local Gossips = {
             }
         }
     },
+    [572] = { -- Draenor
+        [78556] = { -- Ariok
+            {
+                optionID = 43152
+            }
+        },
+        [78568] = { -- Thaelin Darkanvil
+            {
+                optionID = 42452
+            }
+        },
+    },
     [1978] = { -- Dragon Isles
         [186187] = { -- Kalecgos
             {
