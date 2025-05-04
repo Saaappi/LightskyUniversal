@@ -235,7 +235,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                             false,
                             false
                         )
-                        SetCurrentTitle(629) -- Esteemed
+                        SetCurrentTitle(379) -- Esteemed
                         for _, consoleVariable in ipairs(consoleVariables) do
                             if C_CVar.GetCVar(consoleVariable.name) ~= consoleVariable.value then
                                 C_CVar.SetCVar(consoleVariable.name, consoleVariable.value)
