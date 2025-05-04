@@ -6,6 +6,7 @@
 LightskyUniversal V0.6 Update - 03/05/2025
 ----------------------------------------------
 
++ Cooldown Manager is now enabled with the new character setup button
 * Basic buttons now include a header and it's always set to Lightsky Universal
 * Player collector now harvests class color
 * The tooltip for the New Character module now colors the player's name in their class color

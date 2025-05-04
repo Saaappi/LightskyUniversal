@@ -72,6 +72,10 @@ local consoleVariables = {
         value = "0"
     },
     {
+        name = "cooldownViewerEnabled",
+        value = "1"
+    },
+    {
         name = "countdownForCooldowns",
         value = "1"
     },
