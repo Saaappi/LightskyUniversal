@@ -15,202 +15,55 @@ local button = {
 }
 
 local consoleVariables = {
-    {
-        name = "alwaysCompareItems",
-        value = "0"
-    },
-    {
-        name = "alwaysShowActionBars",
-        value = "1"
-    },
-    {
-        name = "arachnophobiaMode",
-        value = "1"
-    },
-    {
-        name = "autoDismountFlying",
-        value = "0"
-    },
-    {
-        name = "autoInteract",
-        value = "1"
-    },
-    {
-        name = "autoLootDefault",
-        value = "1"
-    },
-    {
-        name = "AutoPushSpellToActionBar",
-        value = "0"
-    },
-    --[[{
-        name = "autoQuestProgress",
-        value = "0"
-    },
-    {
-        name = "autoQuestWatch",
-        value = "0"
-    },]]
-    {
-        name = "bankConfirmTabCleanUp",
-        value = "0"
-    },
-    {
-        name = "cameraIndirectVisibility",
-        value = "0"
-    },
-    {
-        name = "cameraIndirectOffset",
-        value = "10"
-    },
-    {
-        name = "calendarShowLockouts",
-        value = "0"
-    },
-    {
-        name = "chatBubblesParty",
-        value = "0"
-    },
-    {
-        name = "cooldownViewerEnabled",
-        value = "1"
-    },
-    {
-        name = "countdownForCooldowns",
-        value = "1"
-    },
-    {
-        name = "DisableAdvancedFlyingFullScreenEffects",
-        value = "1"
-    },
-    {
-        name = "DisableAdvancedFlyingVelocityVFX",
-        value = "1"
-    },
-    {
-        name = "disableUserAddonsByDefault",
-        value = "1"
-    },
-    {
-        name = "enableFloatingCombatText",
-        value = "1"
-    },
-    {
-        name = "findYourselfAnywhereOnlyInCombat",
-        value = "1"
-    },
-    {
-        name = "FootstepSounds",
-        value = "0"
-    },
-    {
-        name = "graphicsDepthEffects",
-        value = "2"
-    },
-    {
-        name = "graphicsEnvironmentDetail",
-        value = "7"
-    },
-    {
-        name = "graphicsGroundClutter",
-        value = "3"
-    },
-    {
-        name = "graphicsParticleDensity",
-        value = "3"
-    },
-    {
-        name = "graphicsShadowQuality",
-        value = "1"
-    },
-    {
-        name = "graphicsSpellDensity",
-        value = "2"
-    },
-    {
-        name = "lootUnderMouse",
-        value = "1"
-    },
-    {
-        name = "mountJournalShowPlayer",
-        value = "1"
-    },
-    {
-        name = "movieSubtitleBackgroundAlpha",
-        value = "85"
-    },
-    {
-        name = "nameplateShowSelf",
-        value = "0"
-    },
-    {
-        name = "occludedSilhouettePlayer",
-        value = "1"
-    },
-    {
-        name = "profanityFilter",
-        value = "0"
-    },
-    {
-        name = "pvpFramesDisplayClassColor",
-        value = "1"
-    },
-    {
-        name = "questTextContrast",
-        value = "1"
-    },
-    {
-        name = "raidFramesDisplayClassColor",
-        value = "1"
-    },
-    {
-        name = "ReplaceMyPlayerPortrait",
-        value = "1"
-    },
-    {
-        name = "ReplaceOtherPlayerPortraits",
-        value = "1"
-    },
-    {
-        name = "screenshotQuality",
-        value = "6"
-    },
-    {
-        name = "scriptErrors",
-        value = "1"
-    },
-    {
-        name = "scrollToLogQuest",
-        value = "1"
-    },
-    {
-        name = "showTargetOfTarget",
-        value = "1"
-    },
-    {
-        name = "showTutorials",
-        value = "0"
-    },
-    {
-        name = "SoftTargetEnemy",
-        value = "2"
-    },
-    {
-        name = "SoftTargetEnemyArc",
-        value = "1"
-    },
-    {
-        name = "SoftTargetIconEnemy",
-        value = "1"
-    },
-    {
-        name = "spellBookHidePassives",
-        value = "1"
-    },
-    {
-        name = "whisperMode",
-        value = "inline"
-    },
+    { name = "alwaysCompareItems", value = "0" },
+    { name = "alwaysShowActionBars", value = "1" },
+    { name = "arachnophobiaMode", value = "1" },
+    { name = "autoDismountFlying", value = "0" },
+    { name = "autoInteract", value = "1" },
+    { name = "autoLootDefault", value = "1" },
+    { name = "AutoPushSpellToActionBar", value = "0" },
+    --[[{ name = "autoQuestProgress", value = "0" },
+    { name = "autoQuestWatch", value = "0" },]]
+    { name = "bankConfirmTabCleanUp", value = "0" },
+    { name = "cameraIndirectVisibility", value = "0" },
+    { name = "cameraIndirectOffset", value = "10" },
+    { name = "calendarShowLockouts", value = "0" },
+    { name = "chatBubblesParty", value = "0" },
+    { name = "cooldownViewerEnabled", value = "1" },
+    { name = "countdownForCooldowns", value = "1" },
+    { name = "DisableAdvancedFlyingFullScreenEffects", value = "1" },
+    { name = "DisableAdvancedFlyingVelocityVFX", value = "1" },
+    { name = "disableUserAddonsByDefault", value = "1" },
+    { name = "enableFloatingCombatText", value = "1" },
+    { name = "findYourselfAnywhereOnlyInCombat", value = "1" },
+    { name = "FootstepSounds", value = "0" },
+    { name = "graphicsDepthEffects", value = "2" },
+    { name = "graphicsEnvironmentDetail", value = "7" },
+    { name = "graphicsGroundClutter", value = "3" },
+    { name = "graphicsParticleDensity", value = "3" },
+    { name = "graphicsShadowQuality", value = "1" },
+    { name = "graphicsSpellDensity", value = "2" },
+    { name = "lootUnderMouse", value = "1" },
+    { name = "mountJournalShowPlayer", value = "1" },
+    { name = "movieSubtitleBackgroundAlpha", value = "85" },
+    { name = "nameplateShowSelf", value = "0" },
+    { name = "occludedSilhouettePlayer", value = "1" },
+    { name = "profanityFilter", value = "0" },
+    { name = "pvpFramesDisplayClassColor", value = "1" },
+    { name = "questTextContrast", value = "1" },
+    { name = "raidFramesDisplayClassColor", value = "1" },
+    { name = "ReplaceMyPlayerPortrait", value = "1" },
+    { name = "ReplaceOtherPlayerPortraits", value = "1" },
+    { name = "screenshotQuality", value = "6" },
+    { name = "scriptErrors", value = "1" },
+    { name = "scrollToLogQuest", value = "1" },
+    { name = "showTargetOfTarget", value = "1" },
+    { name = "showTutorials", value = "0" },
+    { name = "SoftTargetEnemy", value = "2" },
+    { name = "SoftTargetEnemyArc", value = "1" },
+    { name = "SoftTargetIconEnemy", value = "1" },
+    { name = "spellBookHidePassives", value = "1" },
+    { name = "whisperMode", value = "inline" },
 }
 
 eventFrame:RegisterEvent("PLAYER_LOGIN")
