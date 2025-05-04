@@ -14,7 +14,7 @@ eventFrame:RegisterEvent("GOSSIP_SHOW")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "GOSSIP_SHOW" then
         local options = C_GossipInfo.GetOptions()
-        if options then
+        if options and (#options > 1) then
             local guid = UnitGUID("npc")
             if guid then
                 local id = LSU.Split(guid, "-", 6)
@@ -32,6 +32,10 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                         end
                     end
                 end
+            end
+        elseif options and (#options == 1) then
+            if options[1].icon == 132060 then -- The only option is "Show me your wares" or some other variant, so just pick it automatically
+                C_GossipInfo.SelectOption(options[1].gossipOptionID)
             end
         end
     end
