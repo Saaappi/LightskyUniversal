@@ -14,7 +14,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         end
 
         local name = UnitName("player")
-        local className = UnitClass("player")
+        local className = UnitClass("player"); className = className:gsub("%s+", "")
         local level = UnitLevel("player")
         local color = C_ClassColor.GetClassColor(className)
 
