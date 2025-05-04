@@ -3,6 +3,15 @@
 * Represents something that changed in the release.
 
 ----------------------------------------------
+LightskyUniversal V0.7 Update - 03/05/2025
+----------------------------------------------
+
++ Mount module for easy mounting
++ Keybind support
+* The iContains function has been adjusted to be agnostic of the table sort
+* Player collector now harvests class ID
+
+----------------------------------------------
 LightskyUniversal V0.6 Update - 03/05/2025
 ----------------------------------------------
 

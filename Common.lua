@@ -1,8 +1,8 @@
 local addonName, LSU = ...
 
-LSU.iContains = function(tbl, value)
+LSU.Contains = function(tbl, value)
     if tbl then
-        for _, v in ipairs(tbl) do
+        for _, v in pairs(tbl) do
             if v == value then
                 return true
             end

@@ -15,7 +15,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     for slotID = C_Container.GetContainerNumSlots(bagID), 1, -1 do
                         local item = C_Container.GetContainerItemInfo(bagID, slotID)
                         if item then
-                            if LSU.iContains(LSU.Containers, item.itemID) then
+                            if LSU.Contains(LSU.Containers, item.itemID) then
                                 lsuSecureOpenButton:SetItemButtonTexture(item.iconFileID)
                                 lsuSecureOpenButton:SetItemButtonQuality(item.quality, item.hyperlink, false, item.isBound)
                                 lsuSecureOpenButton:SetAttribute("item", bagID .. " " .. slotID)
