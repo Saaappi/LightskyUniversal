@@ -9,6 +9,7 @@ LightskyUniversal V0.8 Update - 04/05/2025
 + Quest module with support for accepting and completing quests
   - Only quests with one or fewer rewards are completed
 + Draenor introduction gossips (Alliance)
+* Fixed an issue with the Map collector not searching beyond one parent
 
 ----------------------------------------------
 LightskyUniversal V0.7 Update - 03/05/2025

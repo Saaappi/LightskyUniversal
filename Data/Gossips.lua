@@ -44,6 +44,11 @@ local Gossips = {
                 optionID = 42452
             }
         },
+        [79243] = { -- Baros Alexston
+            {
+                optionID = 43035
+            }
+        },
     },
     [1978] = { -- Dragon Isles
         [186187] = { -- Kalecgos

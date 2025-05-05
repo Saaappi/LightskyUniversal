@@ -1,13 +1,16 @@
 local addonName, LSU = ...
 local eventFrame = CreateFrame("Frame")
 
-local function GetParentMapID(mapID)
+local function GetContinentMapID(mapID)
+    local recheckMapTypes = { 3, 4, 5, 6 }
     local mapInfo = C_Map.GetMapInfo(mapID)
     if mapInfo then
-        if mapInfo.mapType == 3 or mapInfo.mapType == 4 or mapInfo.mapType == 5 then
-            GetParentMapID(mapInfo.parentMapID)
+        if LSU.Contains(recheckMapTypes, mapInfo.mapType) then
+            GetContinentMapID(mapInfo.parentMapID)
+        else
+            LSU.Map.ContinentMapID = mapInfo.mapID
+            LSU.Map.ContinentMapName = mapInfo.name
         end
-        return mapInfo.parentMapID, mapInfo.name
     end
 end
 
@@ -22,22 +25,14 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         C_Timer.After(3, function()
             local mapID = C_Map.GetBestMapForUnit("player")
             if mapID then
-                local parentMapID, name = GetParentMapID(mapID)
-                if parentMapID then
-                    LSU.Map.ID = parentMapID
-                    LSU.Map.Name = name
-                end
+                GetContinentMapID(mapID)
             end
         end)
     end
     if event == "ZONE_CHANGED" or event == "ZONE_CHANGED_NEW_AREA" then
         local mapID = C_Map.GetBestMapForUnit("player")
         if mapID then
-            local parentMapID, name = GetParentMapID(mapID)
-            if parentMapID then
-                LSU.Map.ID = parentMapID
-                LSU.Map.Name = name
-            end
+            GetContinentMapID(mapID)
         end
     end
 end)
