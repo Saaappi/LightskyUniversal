@@ -31,6 +31,14 @@ local Gossips = {
                     "!CT_EXPANSION;10"
                 }
             }
+        },
+        [107934] = { -- Recruiter Lee
+            {
+                optionID = 47484,
+                conditions = {
+                    "QUEST_ACTIVE;42782"
+                }
+            }
         }
     },
     [572] = { -- Draenor
