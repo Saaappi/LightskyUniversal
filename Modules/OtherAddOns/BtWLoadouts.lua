@@ -23,7 +23,7 @@ eventFrame:RegisterEvent("PLAYER_LOGIN")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "PLAYER_LOGIN" then
         C_Timer.After(5, function()
-            local className = UnitClass("player")
+            local className = LSU.Character.ClassName
             className = className:gsub("%s+", "")
             if C_AddOns.IsAddOnLoaded("BtWLoadouts") and LSU.Between(LSU.Character.Level, 10, 70) then
                 if loadouts[className] then
