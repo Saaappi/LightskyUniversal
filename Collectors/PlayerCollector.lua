@@ -15,14 +15,17 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
 
         local name = UnitName("player")
         local className, _, classID = UnitClass("player"); className = className:gsub("%s+", "")
+        local specID = PlayerUtil.GetCurrentSpecID()
         local level = UnitLevel("player")
         local color = C_ClassColor.GetClassColor(className)
 
         LSU.Character.Name = name
         LSU.Character.ClassName = className
         LSU.Character.ClassID = classID
+        LSU.Character.SpecID = specID
         LSU.Character.Level = level
         LSU.Character.ClassColor = color
+
         eventFrame:UnregisterEvent(event)
     end
 end)
