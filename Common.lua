@@ -89,8 +89,15 @@ LSU.Split = function(str, delimiter, nth)
     return strings[nth]
 end
 
-LSU.Between = function(value, min, max)
-    if value >= min and value <= max then
+--[[
+    Checks if a number is between two other numbers.
+
+    @param num [number]: The number to check.
+    @param min [number]: The minimum number in the range. (i.e. 10)
+    @param max [number]: The maximum number in the range. (i.e. 70)
+]]
+LSU.Between = function(num, min, max)
+    if num >= min and num <= max then
         return true
     end
     return false
