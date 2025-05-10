@@ -2,18 +2,18 @@ local addonName, LSU = ...
 local eventFrame = CreateFrame("Frame")
 local className = ""
 local loadouts = {
-    DeathKnight =   { specID = 252, loadoutName = "Leveling - Unholy Death Knight"    },
-    DemonHunter =   { specID = 581, loadoutName = "Leveling - Vengeance Demon Hunter" },
-    Druid =         { specID = 104, loadoutName = "Leveling - Guardian Druid"         },
-    Hunter =        { specID = 254, loadoutName = "Leveling - Marksmanship Hunter"    },
-    Mage =          { specID = 62,  loadoutName = "Leveling - Arcane Mage"            },
-    Monk =          { specID = 268, loadoutName = "Leveling - Brewmaster Monk"        },
-    Paladin =       { specID = 66,  loadoutName = "Leveling - Protection Paladin"     },
-    Priest =        { specID = 258, loadoutName = "Leveling - Shadow Priest"          },
-    Rogue =         { specID = 261, loadoutName = "Leveling - Subtlety Rogue"         },
-    Shaman =        { specID = 263, loadoutName = "Leveling - Enhancement Shaman"     },
-    Warlock =       { specID = 267, loadoutName = "Leveling - Destruction Warlock"    },
-    Warrior =       { specID = 72,  loadoutName = "Leveling - Fury Warrior"           },
+    DeathKnight     = { specID = 252, loadoutName = "Leveling - Unholy Death Knight"    },
+    DemonHunter     = { specID = 581, loadoutName = "Leveling - Vengeance Demon Hunter" },
+    Druid           = { specID = 104, loadoutName = "Leveling - Guardian Druid"         },
+    Hunter          = { specID = 254, loadoutName = "Leveling - Marksmanship Hunter"    },
+    Mage            = { specID = 62,  loadoutName = "Leveling - Arcane Mage"            },
+    Monk            = { specID = 268, loadoutName = "Leveling - Brewmaster Monk"        },
+    Paladin         = { specID = 66,  loadoutName = "Leveling - Protection Paladin"     },
+    Priest          = { specID = 258, loadoutName = "Leveling - Shadow Priest"          },
+    Rogue           = { specID = 261, loadoutName = "Leveling - Subtlety Rogue"         },
+    Shaman          = { specID = 263, loadoutName = "Leveling - Enhancement Shaman"     },
+    Warlock         = { specID = 267, loadoutName = "Leveling - Destruction Warlock"    },
+    Warrior         = { specID = 72,  loadoutName = "Leveling - Fury Warrior"           },
 }
 
 local function ActivateLoadoutByName(name)
