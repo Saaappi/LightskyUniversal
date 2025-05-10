@@ -103,6 +103,19 @@ LSU.Between = function(num, min, max)
     return false
 end
 
+--[[
+    Checks if a quest is ignored and related automations should be halted against it.
+
+    @param questID [number]: The ID of the quest to check.
+]]
+LSU.IsQuestIgnored = function(questID)
+    local quest = LSU.Blacklist.Quests[questID]
+    if quest and quest.isIgnored then
+        return quest.isIgnored, quest.response
+    end
+    return false
+end
+
 LSU.EvaluateConditions = function(conditions)
     -- Keep the gossips as clean as possible, only using
     -- a conditions table if needed. As such, if there isn't

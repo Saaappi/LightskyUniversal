@@ -1,5 +1,6 @@
 local addonName, LSU = ...
 local eventFrame = CreateFrame("Frame")
+local questButtonMixin = CreateFromMixins(GossipSharedQuestButtonMixin)
 
 local function IsValidGossipNPC(id)
     if LSU.Gossips[LSU.Map.ContinentMapID] then
@@ -29,8 +30,16 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                 local availableQuests = C_GossipInfo.GetAvailableQuests()
                 for i = 1, numAvailableQuests do
                     local quest = availableQuests[i]
-                    if not C_QuestLog.IsOnQuest(quest.questID) then
+                    local isIgnored, response = LSU.IsQuestIgnored(quest.questID)
+                    if not isIgnored and not C_QuestLog.IsOnQuest(quest.questID) then
                         C_GossipInfo.SelectAvailableQuest(quest.questID)
+                    else
+                        if response then
+                            local func = loadstring(response)
+                            if func then
+                                func()
+                            end
+                        end
                     end
                 end
             end

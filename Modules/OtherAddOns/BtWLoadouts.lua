@@ -24,9 +24,10 @@ eventFrame:RegisterEvent("PLAYER_LEVEL_UP")
 eventFrame:RegisterEvent("PLAYER_LOGIN")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "PLAYER_LEVEL_UP" then
-        if LSU.Between(LSU.Character.Level, 10, 70) then
-            ActivateLoadoutByName(loadouts[className].loadoutName)
-        end
+        --[[if LSU.Between(LSU.Character.Level, 10, 70) then
+            C_Timer.After(1, function()  end)
+        end]]
+        ActivateLoadoutByName(loadouts[className].loadoutName)
     end
     if event == "PLAYER_LOGIN" then
         C_Timer.After(5, function()

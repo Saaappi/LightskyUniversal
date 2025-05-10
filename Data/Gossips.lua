@@ -58,6 +58,13 @@ local Gossips = {
             }
         },
     },
+    [619] = { -- Broken Isles
+        [91462] = { -- Malfurion Stormrage
+            {
+                optionID = 44675
+            }
+        }
+    },
     [1978] = { -- Dragon Isles
         [186187] = { -- Kalecgos
             {
