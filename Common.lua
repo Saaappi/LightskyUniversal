@@ -89,6 +89,13 @@ LSU.Split = function(str, delimiter, nth)
     return strings[nth]
 end
 
+LSU.Between = function(value, min, max)
+    if value >= min and value <= max then
+        return true
+    end
+    return false
+end
+
 LSU.EvaluateConditions = function(conditions)
     -- Keep the gossips as clean as possible, only using
     -- a conditions table if needed. As such, if there isn't

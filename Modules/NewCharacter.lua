@@ -77,6 +77,8 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                 newCharacterSetupButton = LSU.CreateButton(button)
                 if newCharacterSetupButton then
                     newCharacterSetupButton:SetScript("OnClick", function()
+                        newCharacterSetupButton:Hide()
+
                         C_Minimap.ClearAllTracking()
                         C_EditMode.SetActiveLayout(3)
                         SetActionBarToggles(
@@ -88,7 +90,9 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                             false,
                             false
                         )
+
                         SetCurrentTitle(379) -- Esteemed
+
                         for _, consoleVariable in ipairs(consoleVariables) do
                             if C_CVar.GetCVar(consoleVariable.name) ~= consoleVariable.value then
                                 C_CVar.SetCVar(consoleVariable.name, consoleVariable.value)
@@ -104,9 +108,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                                 LSUDB.Characters[guid] = UnitName("player")
                                 C_UI.Reload()
                             end,
-                            OnCancel = function()
-                                newCharacterSetupButton:Hide()
-                            end,
+                            OnCancel = function() end,
                             preferredIndex = 3
                         }
                         StaticPopup_Show("LSU_NewCharacterConfigurationCompleted")

@@ -25,7 +25,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         C_Timer.After(5, function()
             local className = UnitClass("player")
             className = className:gsub("%s+", "")
-            if C_AddOns.IsAddOnLoaded("BtWLoadouts") then
+            if C_AddOns.IsAddOnLoaded("BtWLoadouts") and LSU.Between(LSU.Character.Level, 10, 70) then
                 if loadouts[className] then
                     ActivateLoadoutByID(loadouts[className])
                     C_Timer.After(5.5, function()
