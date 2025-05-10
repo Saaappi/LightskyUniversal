@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 0.8
+## Version: 0.9
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
@@ -34,6 +34,7 @@ Modules\Mount.lua
 Modules\NewCharacter.lua
 Modules\Quest\Accept.lua
 Modules\Quest\Complete.lua
+Modules\OtherAddOns\BtWLoadouts.lua
 
 KeybindHandler.lua
 Main.lua

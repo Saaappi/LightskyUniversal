@@ -3,6 +3,12 @@
 * Represents something that changed in the release.
 
 ----------------------------------------------
+LightskyUniversal V0.9 Update - 09/05/2025
+----------------------------------------------
+
++ BtWLoadouts module to automatically activate loadouts on login
+
+----------------------------------------------
 LightskyUniversal V0.8 Update - 04/05/2025
 ----------------------------------------------
 
