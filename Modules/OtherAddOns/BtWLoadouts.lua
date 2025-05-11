@@ -1,4 +1,4 @@
-local addonName, LSU = ...
+--[[local addonName, LSU = ...
 local eventFrame = CreateFrame("Frame")
 local className = ""
 local loadouts = {
@@ -51,4 +51,4 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
             eventFrame:UnregisterEvent(event)
         end)
     end
-end)
+end)]]

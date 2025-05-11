@@ -35,7 +35,7 @@ Modules\Mount.lua
 Modules\NewCharacter.lua
 Modules\Quest\Accept.lua
 Modules\Quest\Complete.lua
-Modules\OtherAddOns\BtWLoadouts.lua
+#Modules\OtherAddOns\BtWLoadouts.lua
 
 KeybindHandler.lua
 Main.lua
