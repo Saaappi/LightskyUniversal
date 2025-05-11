@@ -26,7 +26,7 @@ eventFrame:RegisterEvent("PLAYER_LOGIN")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "PLAYER_LEVEL_UP" then
         if not LSU.IsPlayerInCombat() then
-            ActivateLoadoutByName(loadouts[className].loadoutName)
+            --ActivateLoadoutByName(loadouts[className].loadoutName)
         end
     end
     if event == "PLAYER_LOGIN" then
