@@ -26,6 +26,7 @@ LSU.Print = function(str)
     local name = C_AddOns.GetAddOnMetadata(addonName, "Title")
     if str and str ~= "" then
         str = string.format("|cff00CCFF[%s]|r : %s", name, str)
+        print(str)
     end
 end
 
@@ -38,6 +39,7 @@ LSU.PrintWarning = function(str)
     local name = C_AddOns.GetAddOnMetadata(addonName, "Title")
     if str and str ~= "" then
         str = string.format("|cffFF8000[%s]|r : %s", name, str)
+        print(str)
     end
 end
 
@@ -50,6 +52,7 @@ LSU.PrintError = function(str)
     local name = C_AddOns.GetAddOnMetadata(addonName, "Title")
     if str and str ~= "" then
         str = string.format("|cffFF474C[%s]|r : %s", name, str)
+        print(str)
     end
 end
 
@@ -114,6 +117,14 @@ LSU.IsQuestIgnored = function(questID)
         return quest.isIgnored, quest.response
     end
     return false
+end
+
+LSU.IsPlayerInCombat = function()
+    if InCombatLockdown() then
+        C_Timer.After(1, LSU.IsPlayerInCombat)
+    else
+        return false
+    end
 end
 
 LSU.EvaluateConditions = function(conditions)

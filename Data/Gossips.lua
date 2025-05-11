@@ -63,6 +63,11 @@ local Gossips = {
             {
                 optionID = 44675
             }
+        },
+        [108642] = { -- Keeper Remulos
+            {
+                optionID = 45772
+            }
         }
     },
     [1978] = { -- Dragon Isles

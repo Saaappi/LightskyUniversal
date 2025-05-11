@@ -3,6 +3,13 @@
 * Represents something that changed in the release.
 
 ----------------------------------------------
+LightskyUniversal V0.10.1 Update - 10/05/2025
+----------------------------------------------
+
++ Quests that offer non-weapon rewards are now automated
+* All three print functions now...well...print
+
+----------------------------------------------
 LightskyUniversal V0.10 Update - 10/05/2025
 ----------------------------------------------
 
