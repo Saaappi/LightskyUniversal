@@ -65,18 +65,20 @@ LSU.Mount = function()
     }
 
     if LSU.Character.ClassID == 11 then -- Druid
-        SetOverrideBindingClick(secureMountButton, true, GetBindingKey("LSU_MOUNTUP"), "LSUSecureMountButton", nil)
-        local travelFormIndex = 0
-        local numShapeshiftForms = GetNumShapeshiftForms()
-        for i = 1, numShapeshiftForms do
-            local icon = GetShapeshiftFormInfo(i)
-            if icon == 132144 then
-                travelFormIndex = i
-                break
+        if LSU.Character.Level >= 10 then
+            SetOverrideBindingClick(secureMountButton, true, GetBindingKey("LSU_MOUNTUP"), "LSUSecureMountButton", nil)
+            local travelFormIndex = 0
+            local numShapeshiftForms = GetNumShapeshiftForms()
+            for i = 1, numShapeshiftForms do
+                local icon = GetShapeshiftFormInfo(i)
+                if icon == 132144 then
+                    travelFormIndex = i
+                    break
+                end
             end
+            secureMountButton:SetAttribute("type", "macro")
+            secureMountButton:SetAttribute("macrotext", string.format("/cast [nostance] Travel Form; [stance:%d] !Travel Form", travelFormIndex))
         end
-        secureMountButton:SetAttribute("type", "macro")
-        secureMountButton:SetAttribute("macrotext", string.format("/cast [nostance] Travel Form; [stance:%d] !Travel Form", travelFormIndex))
     elseif LSU.Character.ClassID == 13 then -- Evoker
         SetOverrideBindingClick(secureMountButton, true, GetBindingKey("LSU_MOUNTUP"), "LSUSecureMountButton", nil)
         secureMountButton:SetAttribute("type", "macro")
