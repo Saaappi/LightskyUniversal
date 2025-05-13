@@ -2,3 +2,4 @@
 - The Container button should adopt Syndicator as its brain.
 - Remove BtWLoadouts module.
 - Implement talent logic - builds should pull from Icy Veins or maybe MaxRoll?
+- Implement support for quest popups.
