@@ -1,2 +1,4 @@
-- Assign mounts for the remaining classes.
-- Add support for mounting the Grizzly Hills Packmaster when the player's bags are 99% full.
+- Repeatable quests should be ignored.
+- The Container button should adopt Syndicator as its brain.
+- Remove BtWLoadouts module.
+- Implement talent logic - builds should pull from Icy Veins or maybe MaxRoll?
