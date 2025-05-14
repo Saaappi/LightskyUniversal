@@ -1,3 +1,2 @@
-- Repeatable quests should be ignored.
 - The Container button should adopt Syndicator as its brain.
 - Implement talent logic - builds should pull from Icy Veins or maybe MaxRoll?

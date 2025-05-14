@@ -8,6 +8,7 @@ LightskyUniversal V0.11 Update - 13/05/2025
 
 + Quest popups are now automated
 + Adventure maps are now automated
++ Repeatable quests should no longer be accepted
 - BtWLoadouts module
 
 ----------------------------------------------
