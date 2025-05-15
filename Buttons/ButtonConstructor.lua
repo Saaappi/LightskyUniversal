@@ -8,12 +8,10 @@ local addonName, LSU = ...
 LSU.CreateButton = function(button)
     local newButton
     if button.type == "BasicButton" then
-        newButton = CreateFrame("Button", button.name, UIParent, "UIPanelButtonTemplate")
+        newButton = CreateFrame("Button", button.name, button.parent, "UIPanelButtonTemplate")
         newButton:SetSize(button.width, button.height)
         newButton:RegisterForClicks("LeftButtonUp")
         newButton:SetText(button.text)
-        newButton:ClearAllPoints()
-        newButton:SetPoint(button.point, button.relativeTo, button.relativePoint, button.xOffset, button.yOffset)
         newButton:SetScript("OnEnter", function(self)
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
             GameTooltip:SetText(C_AddOns.GetAddOnMetadata(addonName, "Title"), nil, nil, nil, 1, true)

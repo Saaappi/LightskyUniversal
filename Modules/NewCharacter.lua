@@ -8,10 +8,7 @@ local button = {
     height = 25,
     text = "Configure New Character",
     point = "CENTER",
-    relativeTo = UIParent,
-    relativePoint = "CENTER",
-    xOffset = 0,
-    yOffset = 0
+    parent = UIParent
 }
 
 local consoleVariables = {
@@ -76,6 +73,8 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                 button.tooltipText = string.format("Click to configure new character settings for |c%s%s|r.", LSU.Character.ClassColor:GenerateHexColor(), UnitName("player"))
                 newCharacterSetupButton = LSU.CreateButton(button)
                 if newCharacterSetupButton then
+                    newCharacterSetupButton:ClearAllPoints()
+                    newCharacterSetupButton:SetPoint("CENTER", newCharacterSetupButton:GetParent(), "CENTER", 0, 0)
                     newCharacterSetupButton:SetScript("OnClick", function()
                         newCharacterSetupButton:Hide()
 

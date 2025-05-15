@@ -3,6 +3,12 @@
 * Represents something that changed in the release.
 
 ----------------------------------------------
+LightskyUniversal V0.12 Update - 13/05/2025
+----------------------------------------------
+
+* ButtonConstructor is no longer responsible for placing buttons it creates
+
+----------------------------------------------
 LightskyUniversal V0.11 Update - 13/05/2025
 ----------------------------------------------
 
