@@ -3,45 +3,8 @@ local applyTalentsButton
 
 -- Last Updated: 11.1.5
 local talents = {
-    {   -- Warrior (Fury)
-        [72] = "CgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0YgZZmZYsMmZmFmZmxMYYmttZGzM2GmxYGzMjFbzwMjBAAACDsBLLGNmBwsAjF"
-    },
-    {   -- Paladin (Protection)
-        [66] = "CIEAAAAAAAAAAAAAAAAAAAAAAsNzMDz2YhZMzM2mZmZmxYYAAAGAAAAAAASmZYYmhxMmt2AgxAGAD2GAAgZm2mlZbGAgNDMAMzwwYA"
-    },
-    {   -- Hunter (Marksmanship)
-        [254] = "C4PAAAAAAAAAAAAAAAAAAAAAAwADsMGNWGAzG2AAAAAAAAAAAAAAYGzYGzMDzoZGjhZGGDzsMG2GjZxsMMjZmZWmZGGzMz2yYw2A"
-    },
-    {   -- Rogue (Subtlety)
-        [261] = "CUQAAAAAAAAAAAAAAAAAAAAAAAAM2mBAAAAAgZbMWmGzYmxMGjZYmZmhxsNLGjttZmxMzMGMWmlBAAAgZwAYMbGGYgZhFaxGM"
-    },
-    {   -- Priest (Shadow)
-        [258] = "CIQAAAAAAAAAAAAAAAAAAAAAAMgZGAAAAAAAAAAAAMmZxMmhtZbmZmZmtxMLDmNmZmZMbMLYwMmFz2UzMAMAmZzywsZAIjxCAA"
-    },
-    {   -- Death Knight (Unholy)
-        [252] = "CwPAAAAAAAAAAAAAAAAAAAAAAAgZGzMjZYYGmZmpZMjZGzYAAAAAAAAAMMzYGjZmZAAbgZxYmZmxMzA2MLGGYgZhhGLYAmBA"
-    },
-    {   -- Shaman (Enhancement)
-        [263] = "CcQAAAAAAAAAAAAAAAAAAAAAAMzMzCYmx2MzMzMzyMjtxAAAAAAAAAAAwiZMsBbwMM0gFAMLTmBzyiZmZYmZmZBLmZCWGLjZGAgBA"
-    },
-    {   -- Mage (Arcane)
-        [62] = "C4DAAAAAAAAAAAAAAAAAAAAAAMjhxsgZmZMLmBjZMmmHYMDAAAAAADAYmZaZ2WmBAwGAAAAAALAsMGmZWmlhZwMjZmZmZmxMGD"
-    },
-    {   -- Warlock (Destruction)
-        [267] = "CsQAAAAAAAAAAAAAAAAAAAAAAAmZmZmZEzihxsZmZYWmNjZmxsY2YbxMDAAAAMzMsNzsMjFYgZxoxMAmNshBAAAAAAwYmxsAA"
-    },
-    {   -- Monk (Brewmaster)
-        [268] = "CwQAAAAAAAAAAAAAAAAAAAAAAAAAAAzMGzgxyMz2YmZAAAAAAAYZBEzMwMMYGsMzMDzyYmx2sMTLbWsNmxMbAAwGAAAwsNbNzMzCzwG"
-    },
-    {   -- Druid (Guardian)
-        [104] = "CgGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzYMzMzyMMmZMGLMMzsYZALGGNRzMzyMbzMzyYGAAAAAAwwMDYZbmNMmlBwEAAAwGMAsZmhB"
-    },
-    {   -- Demon Hunter (Vengeance)
-        [581] = "CUkAAAAAAAAAAAAAAAAAAAAAAAAGjZmZMmZkZmxMDzMLjBjtZMjZMzwY2mZmtZmhZwAAAAAsMLmxwsx0AzMwG"
-    },
-    {   -- Evoker (Devastation)
-        [1467] = "CsbBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmZmBzsZGmBMYMTzYmJz2YZYmZmZMz2MgZMzGzMbzMDMwYwCsMGN2GAzAwGG"
-    }
+    lastUpdated="",
+    [1]={specs={[72]="CgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0YgZZmZYsMmZmFmZmxMYYmttZGzM2GmxYGzMjFbzwMjBAAACDsBLLGNmBwsAjF"}},[2]={specs={[66]="CIEAAAAAAAAAAAAAAAAAAAAAAsNzMDz2YhZMzM2mZmZmxYYAAAGAAAAAAASmZYYmhxMmt2AgxAGAD2GAAgZm2mlZbGAgNDMAMzwwYA"}},[3]={specs={[254]="C4PAAAAAAAAAAAAAAAAAAAAAAwADsMGNWGAzG2AAAAAAAAAAAAAAYGzYGzMDzoZGjhZGGDzsMG2GjZxsMMjZmZWmZGGzMz2yYw2A"}},[4]={specs={[261]="CUQAAAAAAAAAAAAAAAAAAAAAAAAM2mBAAAAAgZbMWmGzYmxMGjZYmZmhxsNLGjttZmxMzMGMWmlBAAAgZwAYMbGGYgZhFaxGM"}},[5]={specs={[258]="CIQAAAAAAAAAAAAAAAAAAAAAAMgZGAAAAAAAAAAAAMmZxMmhtZbmZmZmtxMLDmNmZmZMbMLYwMmFz2UzMAMAmZzywsZAIjxCAA"}},[6]={specs={[252]="CwPAAAAAAAAAAAAAAAAAAAAAAAgZGzMjZYYGmZmpZMjZGzYAAAAAAAAAMMzYGjZmZAAbgZxYmZmxMzA2MLGGYgZhhGLYAmBA"}},[7]={specs={[263]="CcQAAAAAAAAAAAAAAAAAAAAAAMzMzCYmx2MzMzMzyMjtxAAAAAAAAAAAwiZMsBbwMM0gFAMLTmBzyiZmZYmZmZBLmZCWGLjZGAgBA"}},[8]={specs={[62]="C4DAAAAAAAAAAAAAAAAAAAAAAMjhxsgZmZMLmBjZMmmHYMDAAAAAADAYmZaZ2WmBAwGAAAAAALAsMGmZWmlhZwMjZmZmZmxMGD"}},[9]={specs={[267]="CsQAAAAAAAAAAAAAAAAAAAAAAAmZmZmZEzihxsZmZYWmNjZmxsY2YbxMDAAAAMzMsNzsMjFYgZxoxMAmNshBAAAAAAwYmxsAA"}},[10]={specs={[268]="CwQAAAAAAAAAAAAAAAAAAAAAAAAAAAzMGzgxyMz2YmZAAAAAAAYZBEzMwMMYGsMzMDzyYmx2sMTLbWsNmxMbAAwGAAAwsNbNzMzCzwG"}},[11]={specs={[104]="CgGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzYMzMzyMMmZMGLMMzsYZALGGNRzMzyMbzMzyYGAAAAAAwwMDYZbmNMmlBwEAAAwGMAsZmhB"}},[12]={specs={[581]="CUkAAAAAAAAAAAAAAAAAAAAAAAAGjZmZMmZkZmxMDzMLjBjtZMjZMzwY2mZmtZmhZwAAAAAsMLmxwsx0AzMwG"}},[13]={specs={[1467]="CsbBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmZmBzsZGmBMYMTzYmJz2YZYmZmZMz2MgZMzGzMbzMDMwYwCsMGN2GAzAwGG"}}
 }
 
 EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
@@ -287,9 +250,9 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
     applyTalentsButton:SetScript("OnClick", function()
         C_Timer.After(0, function()
             if talents[LSU.Character.ClassID] then
-                local class = talents[LSU.Character.ClassID]
-                if class[LSU.Character.SpecID] then
-                    ImportText(class[LSU.Character.SpecID])
+                local specs = talents[LSU.Character.ClassID].specs
+                if specs[LSU.Character.SpecID] then
+                    ImportText(specs[LSU.Character.SpecID])
                 end
             end
         end)
