@@ -6,6 +6,7 @@
 LightskyUniversal V0.12 Update - 13/05/2025
 ----------------------------------------------
 
++ Talent module 
 * ButtonConstructor is no longer responsible for placing buttons it creates
 
 ----------------------------------------------
