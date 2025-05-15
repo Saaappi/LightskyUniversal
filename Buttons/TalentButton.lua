@@ -3,21 +3,45 @@ local applyTalentsButton
 
 -- Last Updated: 11.1.5
 local talents = {
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {},
-    {   -- Druid
-        [104] = "CgGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzYMzMzyMMmZMGLMMzsYZALGGNRzMzyMbzMzyYGAAAAAAwwMDYZbmNMmlBwEAAAwGMAsZmhB", -- Guardian
+    {   -- Warrior (Fury)
+        [72] = "CgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0YgZZmZYsMmZmFmZmxMYYmttZGzM2GmxYGzMjFbzwMjBAAACDsBLLGNmBwsAjF"
     },
-    {},
-    {},
+    {   -- Paladin (Protection)
+        [66] = "CIEAAAAAAAAAAAAAAAAAAAAAAsNzMDz2YhZMzM2mZmZmxYYAAAGAAAAAAASmZYYmhxMmt2AgxAGAD2GAAgZm2mlZbGAgNDMAMzwwYA"
+    },
+    {   -- Hunter (Marksmanship)
+        [254] = "C4PAAAAAAAAAAAAAAAAAAAAAAwADsMGNWGAzG2AAAAAAAAAAAAAAYGzYGzMDzoZGjhZGGDzsMG2GjZxsMMjZmZWmZGGzMz2yYw2A"
+    },
+    {   -- Rogue (Subtlety)
+        [261] = "CUQAAAAAAAAAAAAAAAAAAAAAAAAM2mBAAAAAgZbMWmGzYmxMGjZYmZmhxsNLGjttZmxMzMGMWmlBAAAgZwAYMbGGYgZhFaxGM"
+    },
+    {   -- Priest (Shadow)
+        [258] = "CIQAAAAAAAAAAAAAAAAAAAAAAMgZGAAAAAAAAAAAAMmZxMmhtZbmZmZmtxMLDmNmZmZMbMLYwMmFz2UzMAMAmZzywsZAIjxCAA"
+    },
+    {   -- Death Knight (Unholy)
+        [252] = "CwPAAAAAAAAAAAAAAAAAAAAAAAgZGzMjZYYGmZmpZMjZGzYAAAAAAAAAMMzYGjZmZAAbgZxYmZmxMzA2MLGGYgZhhGLYAmBA"
+    },
+    {   -- Shaman (Enhancement)
+        [263] = "CcQAAAAAAAAAAAAAAAAAAAAAAMzMzCYmx2MzMzMzyMjtxAAAAAAAAAAAwiZMsBbwMM0gFAMLTmBzyiZmZYmZmZBLmZCWGLjZGAgBA"
+    },
+    {   -- Mage (Arcane)
+        [62] = "C4DAAAAAAAAAAAAAAAAAAAAAAMjhxsgZmZMLmBjZMmmHYMDAAAAAADAYmZaZ2WmBAwGAAAAAALAsMGmZWmlhZwMjZmZmZmxMGD"
+    },
+    {   -- Warlock (Destruction)
+        [267] = "CsQAAAAAAAAAAAAAAAAAAAAAAAmZmZmZEzihxsZmZYWmNjZmxsY2YbxMDAAAAMzMsNzsMjFYgZxoxMAmNshBAAAAAAwYmxsAA"
+    },
+    {   -- Monk (Brewmaster)
+        [268] = "CwQAAAAAAAAAAAAAAAAAAAAAAAAAAAzMGzgxyMz2YmZAAAAAAAYZBEzMwMMYGsMzMDzyYmx2sMTLbWsNmxMbAAwGAAAwsNbNzMzCzwG"
+    },
+    {   -- Druid (Guardian)
+        [104] = "CgGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzYMzMzyMMmZMGLMMzsYZALGGNRzMzyMbzMzyYGAAAAAAwwMDYZbmNMmlBwEAAAwGMAsZmhB"
+    },
+    {   -- Demon Hunter (Vengeance)
+        [581] = "CUkAAAAAAAAAAAAAAAAAAAAAAAAGjZmZMmZkZmxMDzMLjBjtZMjZMzwY2mZmtZmhZwAAAAAsMLmxwsx0AzMwG"
+    },
+    {   -- Evoker (Devastation)
+        [1467] = "CsbBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmZmBzsZGmBMYMTzYmJz2YZYmZmZMz2MgZMzGzMbzMDMwYwCsMGN2GAzAwGG"
+    }
 }
 
 EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
