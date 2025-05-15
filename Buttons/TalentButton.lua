@@ -187,23 +187,6 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
             return false
         end
 
-        --[[if C_ClassTalents.GetStarterBuildActive() then
-            local eventName = "TRAIT_CONFIG_UPDATED";
-            starterBuildDeactiveFrame:RegisterEvent(eventName);
-            starterBuildDeactiveFrame:SetScript(
-                "OnEvent",
-                function(_, event, ...)
-                    if event == eventName and (...) == configID then
-                        starterBuildDeactiveFrame:UnregisterAllEvents();
-                        Addon:ImportTextAsync(importText);
-                    end
-                end
-            );
-
-            C_ClassTalents.SetStarterBuildActive(false);
-            return false;
-        end]]
-
         local success, loadoutContent = pcall(talentsFrame.ReadLoadoutContent, talentsFrame, importStream, treeID)
         if not success then
             return false
