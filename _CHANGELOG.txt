@@ -3,6 +3,13 @@
 * Represents something that changed in the release.
 
 ----------------------------------------------
+LightskyUniversal V0.14 Update - 17/05/2025
+----------------------------------------------
+
++ SecureItemActionButton is now a supported button type
+* Containers module now uses Syndicator for its logic
+
+----------------------------------------------
 LightskyUniversal V0.13.1 Update - 17/05/2025
 ----------------------------------------------
 

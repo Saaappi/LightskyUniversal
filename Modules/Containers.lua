@@ -1,44 +1,54 @@
---[[local addonName, LSU = ...
+local LSU = select(2, ...)
 local eventFrame = CreateFrame("Frame")
-local lsuSecureOpenButton = CreateFrame("ItemButton", "LSUSecureOpenButton", UIParent, "SecureActionButtonTemplate")
-lsuSecureOpenButton:SetScale(1.25, 1.25)
+local openContainersButton
+local button = {
+    type        = "SecureItemActionButton",
+    name        = "LSUOpenContainersButton",
+    parent      = Baganator_SingleViewBackpackViewFrameblizzard,
+    scale       = 0.65,
+    texture     = 132595,
+    tooltipText = LSU.Locale.BUTTON_DESCRIPTION_CONTAINERS
+}
 
-eventFrame:RegisterEvent("BAG_UPDATE")
-eventFrame:RegisterEvent("PLAYER_LOGIN")
+eventFrame:RegisterEvent("ADDON_LOADED")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
-    if event == "BAG_UPDATE" then
-        lsuSecureOpenButton:SetAttribute("type", "item")
-        lsuSecureOpenButton:SetAttribute("item", nil)
-        local autoLootState = C_CVar.GetCVar("autoLootDefault")
-            if autoLootState == "1" then
-                for bagID = NUM_BAG_SLOTS, 0, -1 do
-                    for slotID = C_Container.GetContainerNumSlots(bagID), 1, -1 do
-                        local item = C_Container.GetContainerItemInfo(bagID, slotID)
-                        if item then
-                            if LSU.Contains(LSU.Containers, item.itemID) then
-                                lsuSecureOpenButton:SetItemButtonTexture(item.iconFileID)
-                                lsuSecureOpenButton:SetItemButtonQuality(item.quality, item.hyperlink, false, item.isBound)
-                                lsuSecureOpenButton:SetAttribute("item", bagID .. " " .. slotID)
-                                lsuSecureOpenButton:SetScript("OnEnter", function(self)
-                                    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-                                    GameTooltip:SetItemByID(item.itemID)
-                                end)
-                            end
-                        end
+    if event == "ADDON_LOADED" then
+        if C_AddOns.IsAddOnLoaded("Baganator") then
+            C_Timer.After(1, function()
+                local characterFullName = Syndicator.API.GetCurrentCharacter()
+                Baganator_SingleViewBackpackViewFrameblizzard:HookScript("OnShow", function()
+                    if not openContainersButton then
+                        openContainersButton = LSU.CreateButton(button)
                     end
-                end
-            end
-    elseif event == "PLAYER_LOGIN" then
-        lsuSecureOpenButton:RegisterForClicks("AnyUp", "AnyDown")
 
-        lsuSecureOpenButton:ClearAllPoints()
-        lsuSecureOpenButton:SetPoint("TOP", UIParent, "TOP", 0, -75)
-
-        eventFrame:UnregisterEvent(event)
+                    if openContainersButton then
+                        openContainersButton:ClearAllPoints()
+                        openContainersButton:SetPoint("TOPRIGHT", Baganator_SingleViewBackpackViewFrameblizzard, "TOPLEFT", -5, -55)
+                        openContainersButton:SetScript("PostClick", function()
+                            openContainersButton:SetAttribute("type", "item")
+                            openContainersButton:SetAttribute("item", nil)
+                            if not InCombatLockdown() then
+                                local character = Syndicator.API.GetByCharacterFullName(characterFullName)
+                                for index, bag in pairs(character.bags) do
+                                    for slotID, item in pairs(bag) do
+                                        if item and item.itemLink and item.hasLoot then
+                                            local bagID = Syndicator.Constants.AllBagIndexes[index]
+                                            openContainersButton:SetAttribute("item", bagID .. " " .. slotID)
+                                        end
+                                    end
+                                end
+                            end
+                        end)
+                        openContainersButton:Show()
+                    end
+                end)
+                Baganator_SingleViewBackpackViewFrameblizzard:HookScript("OnHide", function()
+                    if openContainersButton then
+                        openContainersButton:Hide()
+                    end
+                end)
+            end)
+            eventFrame:UnregisterEvent(event)
+        end
     end
 end)
-
-lsuSecureOpenButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
-lsuSecureOpenButton:SetItemButtonTexture(236997)
-SetOverrideBindingClick(lsuSecureOpenButton, true, "F1", "LSUSecureOpenButton", nil)
-]]
