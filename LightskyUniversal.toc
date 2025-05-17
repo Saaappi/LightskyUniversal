@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 0.12
+## Version: 0.13
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
@@ -38,6 +38,7 @@ Modules\Quest\Accept.lua
 Modules\Quest\AdventureMap.lua
 Modules\Quest\Complete.lua
 Modules\Quest\Popup.lua
+Modules\Transmogrification.lua
 
 KeybindHandler.lua
 Main.lua
