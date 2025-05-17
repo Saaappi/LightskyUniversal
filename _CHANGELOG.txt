@@ -3,6 +3,13 @@
 * Represents something that changed in the release.
 
 ----------------------------------------------
+LightskyUniversal V0.13.1 Update - 17/05/2025
+----------------------------------------------
+
++ Lost in the Floods (Durotar) is now a protected cinematic
+* Fixed a bug with cinematic conditions and throwing a Lua error
+
+----------------------------------------------
 LightskyUniversal V0.13 Update - 16/05/2025
 ----------------------------------------------
 
