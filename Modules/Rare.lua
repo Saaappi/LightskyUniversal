@@ -1,18 +1,6 @@
 local LSU = select(2, ...)
 local eventFrame = CreateFrame("Frame")
 local seen = {}
-local Enum = {
-    RaidTargets = {
-        [1] = "{STAR}",
-        [2] = "{CIRCLE}",
-        [3] = "{DIAMOND}",
-        [4] = "{TRIANGLE}",
-        [5] = "{MOON}",
-        [6] = "{SQUARE}",
-        [7] = "{CROSS}",
-        [8] = "{SKULL}",
-    }
-}
 
 eventFrame:RegisterEvent("NAME_PLATE_UNIT_ADDED")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
@@ -27,7 +15,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     local targetIndex = math.random(1, 8)
                     PlaySound(17318, "Master")
                     SetRaidTarget(unitToken, targetIndex)
-                    LSU.Print("|cffFFD700" .. unitName .. "|r has been spotted! " .. Enum.RaidTargets[targetIndex])
+                    LSU.Print("|cffFFD700" .. unitName .. "|r has been spotted!")
                     seen[unitGuid] = true
                 end
             end
