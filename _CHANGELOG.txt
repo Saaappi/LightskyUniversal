@@ -3,6 +3,14 @@
 * Represents something that changed in the release.
 
 ----------------------------------------------
+LightskyUniversal V0.15 Update - 18/05/2025
+----------------------------------------------
+
++ Rare module
+* Adjusted the size of the transmogrification button
+* The secure item button template is now the insecure item button template
+
+----------------------------------------------
 LightskyUniversal V0.14 Update - 17/05/2025
 ----------------------------------------------
 

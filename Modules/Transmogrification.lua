@@ -5,7 +5,7 @@ local button = {
     type        = "ActionButton",
     name        = "LSUTransmogrificationButton",
     parent      = Baganator_SingleViewBackpackViewFrameblizzard,
-    scale       = 0.65,
+    scale       = 0.50,
     texture     = 1723993,
     tooltipText = LSU.Locale.BUTTON_DESCRIPTION_TRANSMOGRIFICATION
 }
@@ -55,7 +55,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                                                         if StaticPopup1:IsVisible() then
                                                             local text = StaticPopup1Text:GetText()
                                                             if text == CONVERT_TO_BIND_TO_ACCOUNT_CONFIRM then
-                                                                StaticPopup1Button2:Click("LeftButton")
+                                                                StaticPopup1Button1:Click("LeftButton")
                                                                 ClearCursor()
                                                             else
                                                                 StaticPopup1Button1:Click("LeftButton")

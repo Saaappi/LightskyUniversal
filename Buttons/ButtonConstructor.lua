@@ -21,7 +21,8 @@ LSU.CreateButton = function(button)
         newButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
     elseif button.type == "ActionButton" then
         newButton = CreateFrame("Button", button.name, button.parent, "ActionButtonTemplate")
-        newButton:SetScale(button.scale)
+        --newButton:SetScale(button.scale)
+        newButton:SetScale(0.57)
 
         if type(button.texture) == "string" then
             newButton.icon = newButton:CreateTexture(string.format("%sIcon", newButton:GetName()), "OVERLAY")
@@ -43,8 +44,8 @@ LSU.CreateButton = function(button)
             GameTooltip:Show()
         end)
         newButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
-    elseif button.type == "SecureItemActionButton" then
-        newButton = CreateFrame("ItemButton", button.name, button.parent, "SecureActionButtonTemplate")
+    elseif button.type == "InsecureItemActionButton" then
+        newButton = CreateFrame("ItemButton", button.name, button.parent, "InsecureActionButtonTemplate")
         newButton:SetScale(button.scale)
         newButton:RegisterForClicks("AnyUp", "AnyDown")
 

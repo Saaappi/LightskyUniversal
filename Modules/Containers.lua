@@ -2,7 +2,7 @@ local LSU = select(2, ...)
 local eventFrame = CreateFrame("Frame")
 local openContainersButton
 local button = {
-    type        = "SecureItemActionButton",
+    type        = "InsecureItemActionButton",
     name        = "LSUOpenContainersButton",
     parent      = Baganator_SingleViewBackpackViewFrameblizzard,
     scale       = 0.65,
