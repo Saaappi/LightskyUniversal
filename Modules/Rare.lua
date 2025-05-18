@@ -27,7 +27,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     local targetIndex = math.random(1, 8)
                     PlaySound(17318, "Master")
                     SetRaidTarget(unitToken, targetIndex)
-                    LSU.Print("|cffFFD700" .. unitName .. "|r has been spotted! {" .. Enum.RaidTargets[targetIndex] .. "}")
+                    LSU.Print("|cffFFD700" .. unitName .. "|r has been spotted! " .. Enum.RaidTargets[targetIndex])
                     seen[unitGuid] = true
                 end
             end
