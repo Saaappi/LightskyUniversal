@@ -1,6 +1,18 @@
 local LSU = select(2, ...)
 local eventFrame = CreateFrame("Frame")
 local seen = {}
+local Enum = {
+    RaidTargets = {
+        [1] = "{STAR}",
+        [2] = "{CIRCLE}",
+        [3] = "{DIAMOND}",
+        [4] = "{TRIANGLE}",
+        [5] = "{MOON}",
+        [6] = "{SQUARE}",
+        [7] = "{CROSS}",
+        [8] = "{SKULL}",
+    }
+}
 
 eventFrame:RegisterEvent("NAME_PLATE_UNIT_ADDED")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
@@ -12,10 +24,10 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
             if classification == "rare" or classification == "rareelite" then
                 if not seen[unitGuid] then
                     local unitName = UnitName(unitToken)
-                    local raidTarget = math.random(1, 8)
+                    local targetIndex = math.random(1, 8)
                     PlaySound(17318, "Master")
-                    SetRaidTarget(unitToken, raidTarget)
-                    LSU.Print("|cffFFD700" .. unitName .. "|r has been spotted! " .. raidTarget)
+                    SetRaidTarget(unitToken, targetIndex)
+                    LSU.Print("|cffFFD700" .. unitName .. "|r has been spotted! {" .. Enum.RaidTargets[targetIndex] .. "}")
                     seen[unitGuid] = true
                 end
             end
