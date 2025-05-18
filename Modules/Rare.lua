@@ -15,7 +15,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     local raidTarget = math.random(1, 8)
                     PlaySound(17318, "Master")
                     SetRaidTarget(unitToken, raidTarget)
-                    LSU.Print(unitName .. " has been spotted! " .. raidTarget)
+                    LSU.Print("|cffFFD700" .. unitName .. "|r has been spotted! " .. raidTarget)
                     seen[unitGuid] = true
                 end
             end
