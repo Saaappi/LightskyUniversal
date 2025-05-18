@@ -29,13 +29,17 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                             openContainersButton:SetAttribute("item", nil)
                             if not InCombatLockdown() then
                                 local character = Syndicator.API.GetByCharacterFullName(characterFullName)
-                                for index, bag in pairs(character.bags) do
-                                    for slotID, item in pairs(bag) do
-                                        if item and item.itemLink and item.hasLoot then
-                                            local bagID = Syndicator.Constants.AllBagIndexes[index]
-                                            openContainersButton:SetAttribute("item", bagID .. " " .. slotID)
+                                if character then
+                                    for index, bag in pairs(character.bags) do
+                                        for slotID, item in pairs(bag) do
+                                            if item and item.itemLink and item.hasLoot then
+                                                local bagID = Syndicator.Constants.AllBagIndexes[index]
+                                                openContainersButton:SetAttribute("item", bagID .. " " .. slotID)
+                                            end
                                         end
                                     end
+                                else
+                                    LSU.PrintWarning("The {character} variable is nil. Please reload.")
                                 end
                             end
                         end)

@@ -11,8 +11,11 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
             local classification = UnitClassification(unitToken)
             if classification == "rare" or classification == "rareelite" then
                 if not seen[unitGuid] then
+                    local unitName = UnitName(unitToken)
+                    local raidTarget = math.random(1, 8)
                     PlaySound(17318, "Master")
-                    SetRaidTarget(unitToken, math.random(1, 8))
+                    SetRaidTarget(unitToken, raidTarget)
+                    LSU.Print(unitName .. " has been spotted! " .. raidTarget)
                     seen[unitGuid] = true
                 end
             end
