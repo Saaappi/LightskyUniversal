@@ -1,12 +1,16 @@
-local addonName, LSU = ...
+local LSU = select(2, ...)
 local eventFrame = CreateFrame("Frame")
 local bestRewardIndices = {}
 local bestRewardIndex, bestItemLevelDifference = 0, 0
 local slots = {
-    INVTYPE_HEAD    = 1,
-    INVTYPE_CHEST   = 5,
-    INVTYPE_LEGS    = 7,
-    INVTYPE_FEET    = 8
+    INVTYPE_HEAD        = 1,
+    INVTYPE_NECK        = 2,
+    INVTYPE_SHOULDER    = 3,
+    INVTYPE_CHEST       = 5,
+    INVTYPE_WAIST       = 6,
+    INVTYPE_LEGS        = 7,
+    INVTYPE_FEET        = 8,
+    INVTYPE_CLOAK       = 16
 }
 
 local function IsWeapon(itemLink)

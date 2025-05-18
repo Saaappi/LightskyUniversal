@@ -3,6 +3,12 @@
 * Represents something that changed in the release.
 
 ----------------------------------------------
+LightskyUniversal V0.15.1 Update - 18/05/2025
+----------------------------------------------
+
++ Added some additional inventory types to the Quest module
+
+----------------------------------------------
 LightskyUniversal V0.15 Update - 18/05/2025
 ----------------------------------------------
 
