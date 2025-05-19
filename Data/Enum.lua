@@ -23,6 +23,7 @@ LSU.Enum = {
         37091,  -- Scroll of Intellect VII
         37093,  -- Scroll of Stamina VII
         43463,  -- Scroll of Agility VII
+        43465,  -- Scroll of Strength VII
         43467,  -- Scroll of Protection VII
     },
     Quests = {}
