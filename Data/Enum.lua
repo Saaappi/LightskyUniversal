@@ -4,10 +4,13 @@ LSU.Enum = {
     Cinematics = {},
     Containers = {},
     Junk = {
+        13444,  -- Major Mana Potion
         13446,  -- Major Healing Potion
         22829,  -- Super Healing Potion
+        22832,  -- Super Mana Potion
         27854,  -- Smoked Talbuk Venison
         27855,  -- Mag'har Grainbread
+        27860,  -- Purified Draenic Water
         28399,  -- Filtered Draenic Water
         29449,  -- Bladespire Bagel
         29451,  -- Clefthoof Ribs
