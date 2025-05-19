@@ -21,8 +21,7 @@ LSU.CreateButton = function(button)
         newButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
     elseif button.type == "ActionButton" then
         newButton = CreateFrame("Button", button.name, button.parent, "ActionButtonTemplate")
-        --newButton:SetScale(button.scale)
-        newButton:SetScale(0.57)
+        newButton:SetScale(button.scale)
 
         if type(button.texture) == "string" then
             newButton.icon = newButton:CreateTexture(string.format("%sIcon", newButton:GetName()), "OVERLAY")

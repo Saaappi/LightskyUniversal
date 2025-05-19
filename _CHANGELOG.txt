@@ -3,6 +3,14 @@
 * Represents something that changed in the release.
 
 ----------------------------------------------
+LightskyUniversal V0.16 Update - 18/05/2025
+----------------------------------------------
+
++ Merchant module for selling "junk"
++ Enum data file that will hold EVERYTHING (not really an Enum)
++ Binding to get item information to feed the Junk Enum (F11)
+
+----------------------------------------------
 LightskyUniversal V0.15.1 Update - 18/05/2025
 ----------------------------------------------
 

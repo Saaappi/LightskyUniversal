@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 0.15.2
+## Version: 0.16
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
@@ -10,6 +10,7 @@
 Data\Blacklist.lua
 Data\Cinematics.lua
 #Data\Containers.lua
+Data\Enum.lua
 Data\Properties.lua
 Data\Gossips.lua
 
@@ -32,6 +33,7 @@ Modules\ChromieTime.lua
 Modules\Cinematics.lua
 Modules\Containers.lua
 Modules\Gossip.lua
+Modules\Merchant.lua
 Modules\Mount.lua
 Modules\NewCharacter.lua
 Modules\Quest\Accept.lua
