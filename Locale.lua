@@ -7,5 +7,6 @@ LSU.Locale = {
     BUTTON_DESCRIPTION_SELLJUNK = "Click to sell \"junk\" items from your inventory.",
     BUTTON_DESCRIPTION_TRANSMOGRIFICATION = "Click to learn transmogrification appearances from the inventory.",
     STDOUT_QUEST_REWARD_SAME_DIFF = "All quest rewards offered the same item level difference. Choosing a random reward...",
-    STDOUT_LOW_INVENTORY_SPACE = "Inventory space is 5% or less. Summoning a vendor mount..."
+    STDOUT_LOW_INVENTORY_SPACE = "Inventory space is 5% or less. Summoning a vendor mount...",
+    TOOLTIP_TEXT_ISJUNK = "|cffFFFFFFThis item is junk!|r"
 }

@@ -1,4 +1,4 @@
-local LSU = select(2, ...)
+local addonName, LSU = ...
 local sellJunkButton
 local button = {
     type        = "ActionButton",
@@ -8,6 +8,33 @@ local button = {
     texture     = 133785,
     tooltipText = LSU.Locale.BUTTON_DESCRIPTION_SELLJUNK
 }
+
+local function AddTextToTooltip(tooltip)
+	local frame, text
+	for i = 1, 30 do
+		frame = _G[tooltip:GetName() .. "TextLeft" .. i]
+		if frame then text = frame:GetText() end
+		if text and string.find(text, addonName) then return end
+	end
+
+	tooltip:AddLine("\n")
+	tooltip:AddLine(CreateAtlasMarkup("auctionhouse-icon-coin-gold") .. " " .. LSU.Locale.TOOLTIP_TEXT_ISJUNK)
+	tooltip:Show()
+end
+
+local function OnTooltipSetItem(tooltip)
+	if tooltip then
+		local _, _, itemID = TooltipUtil.GetDisplayedItem(tooltip)
+		if not itemID then return end
+
+        for _, id in ipairs(LSU.Enum.Junk) do
+            if id == itemID then
+                AddTextToTooltip(tooltip)
+                return
+            end
+        end
+	end
+end
 
 local function IsJunk(itemID)
     for _, id in ipairs(LSU.Enum.Junk) do
@@ -49,3 +76,5 @@ end)
 MerchantFrame:HookScript("OnHide", function()
     sellJunkButton:Hide()
 end)
+
+TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, OnTooltipSetItem)

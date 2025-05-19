@@ -3,6 +3,12 @@
 * Represents something that changed in the release.
 
 ----------------------------------------------
+LightskyUniversal V0.16.1 Update - 18/05/2025
+----------------------------------------------
+
++ The tooltip of items will now reflect if an item is classified as junk
+
+----------------------------------------------
 LightskyUniversal V0.16 Update - 18/05/2025
 ----------------------------------------------
 
