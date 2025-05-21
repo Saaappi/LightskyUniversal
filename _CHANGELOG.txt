@@ -3,6 +3,12 @@
 * Represents something that changed in the release.
 
 ----------------------------------------------
+LightskyUniversal V1 Update - 20/05/2025
+----------------------------------------------
+
++ Chat Icons module
+
+----------------------------------------------
 LightskyUniversal V0.16.1 Update - 18/05/2025
 ----------------------------------------------
 
