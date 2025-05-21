@@ -59,7 +59,30 @@ local function Main(_, _, msg, ...)
         end
         return string.format("\124T%s:12\124t %s", texture, itemLink)
     end
-    msg = msg:gsub("(|H([^:|]+):([^|]-)|h(.-)|h)", GetItemIcon)
+
+    local function GetAchievementIcon(achievementLink)
+        local achievementID = string.match(achievementLink, "|Hachievement:(%d+):"); achievementID = tonumber(achievementID)
+        local icon = select(10, GetAchievementInfo(achievementID))
+        if icon then
+            return string.format("\124T%s:12\124t %s", icon, achievementLink)
+        end
+    end
+
+    local function GetSpellIcon(spellLink)
+        local spellID = string.match(spellLink, "|Hspell:(%d+):"); spellID = tonumber(spellID)
+        local icon = (C_Spell.GetSpellInfo(spellID)).iconID
+        if icon then
+            return string.format("\124T%s:12\124t %s", icon, spellLink)
+        end
+    end
+
+    if string.find(msg, "achievement") then
+        msg = msg:gsub("(|H([^:|]+):([^|]-)|h(.-)|h)", GetAchievementIcon)
+    elseif string.find(msg, "item") then
+        msg = msg:gsub("(|H([^:|]+):([^|]-)|h(.-)|h)", GetItemIcon)
+    elseif string.find(msg, "spell") then
+        msg = msg:gsub("(|H([^:|]+):([^|]-)|h(.-)|h)", GetSpellIcon)
+    end
     return false, msg, ...
 end
 
