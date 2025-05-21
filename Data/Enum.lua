@@ -3,6 +3,25 @@ local LSU = select(2, ...)
 LSU.Enum = {
     Cinematics = {},
     Containers = {},
+    Gossips = {
+        [1550] = { -- Shadowlands
+            [159650] = { -- Elena
+                {
+                    optionID = 49559
+                },
+            },
+            [159652] = { -- Florin
+                {
+                    optionID = 49558
+                }
+            },
+            [159651] = { -- Dumitra
+                {
+                    optionID = 49557
+                }
+            },
+        },
+    },
     Junk = {
         13444,  -- Major Mana Potion
         13446,  -- Major Healing Potion

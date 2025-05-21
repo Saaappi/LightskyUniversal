@@ -3,6 +3,12 @@
 * Represents something that changed in the release.
 
 ----------------------------------------------
+LightskyUniversal V2 Update - 20/05/2025
+----------------------------------------------
+
+* Moved gossip data to the LSU.Enum table and added support for Shadowlands
+
+----------------------------------------------
 LightskyUniversal V1 Update - 20/05/2025
 ----------------------------------------------
 

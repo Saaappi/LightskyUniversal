@@ -1,11 +1,10 @@
 local addonName, LSU = ...
 local eventFrame = CreateFrame("Frame")
-local questButtonMixin = CreateFromMixins(GossipSharedQuestButtonMixin)
 
 local function IsValidGossipNPC(id)
-    if LSU.Gossips[LSU.Map.ContinentMapID] then
-        if LSU.Gossips[LSU.Map.ContinentMapID][id] then
-            return true, LSU.Gossips[LSU.Map.ContinentMapID][id]
+    if LSU.Enum.Gossips[LSU.Map.ContinentMapID] then
+        if LSU.Enum.Gossips[LSU.Map.ContinentMapID][id] then
+            return true, LSU.Enum.Gossips[LSU.Map.ContinentMapID][id]
         end
     end
     return false
@@ -14,7 +13,7 @@ end
 eventFrame:RegisterEvent("GOSSIP_SHOW")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "GOSSIP_SHOW" then
-        C_Timer.After(0.5, function()
+        C_Timer.After(0.35, function()
             local numActiveQuests = C_GossipInfo.GetNumActiveQuests()
             local numAvailableQuests = C_GossipInfo.GetNumAvailableQuests()
             if numActiveQuests > 0 then
