@@ -12,7 +12,6 @@ Data\Cinematics.lua
 #Data\Containers.lua
 Data\Enum.lua
 Data\Properties.lua
-Data\Gossips.lua
 
 # In-memory data collectors.
 Collectors\MapCollector.lua
