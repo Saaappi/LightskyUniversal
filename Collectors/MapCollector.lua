@@ -25,6 +25,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         C_Timer.After(3, function()
             local mapID = C_Map.GetBestMapForUnit("player")
             if mapID then
+                LSU.Map.CurrentMapID = mapID
                 GetContinentMapID(mapID)
             end
         end)
@@ -32,6 +33,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "ZONE_CHANGED" or event == "ZONE_CHANGED_NEW_AREA" then
         local mapID = C_Map.GetBestMapForUnit("player")
         if mapID then
+            LSU.Map.CurrentMapID = mapID
             GetContinentMapID(mapID)
         end
     end
