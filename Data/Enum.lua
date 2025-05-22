@@ -24,6 +24,11 @@ LSU.Enum = {
                 {
                     optionID = 123176
                 }
+            },
+            [4311] = { -- Holgar Stormaxe
+                {
+                    optionID = 47485
+                }
             }
         },
         [13] = { -- Eastern Kingdoms
@@ -70,6 +75,13 @@ LSU.Enum = {
             [108642] = { -- Keeper Remulos
                 {
                     optionID = 45772
+                }
+            }
+        },
+        [875] = { -- Zandalar
+            [135440] = { -- Princess Talanji
+                {
+                    optionID = 47851
                 }
             }
         },

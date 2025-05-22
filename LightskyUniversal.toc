@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 3
+## Version: 4
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
