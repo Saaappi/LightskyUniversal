@@ -1,59 +1,31 @@
 local addonName = ...
 local iconPath = string.format("Interface\\AddOns\\%s\\Data\\Icons", addonName)
 
-local function IsAppearanceCollected(visualID)
-    local sources = C_TransmogCollection.GetAppearanceSources(visualID)
-    if sources then
-        for _, source in next, sources do
-            if source.isCollected then
-                return true
-            end
-        end
-    end
-    return false
-end
-
 local function Main(_, _, msg, ...)
-    local function GetCollectedStatusIcon(bindType, isCollected, canCollect, path)
+    local function GetCollectedStatusIcon(isCollected, path)
         if isCollected then
             return string.format("%s\\KNOWN", path)
         end
-
-        if bindType == 1 then
-            if canCollect then
-                return string.format("%s\\UNKNOWN", path)
-            else
-                return string.format("%s\\UNKNOWABLE_SOULBOUND", path)
-            end
-        elseif bindType == 2 then
-            if canCollect then
-                return string.format("%s\\UNKNOWN", path)
-            else
-                return string.format("%s\\UNKNOWABLE_BY_CHARACTER", path)
-            end
-        end
+        return string.format("%s\\UNKNOWN", path)
     end
 
     local function GetAppearanceAndCollectedInfoByItemLink(itemLink)
         local sourceID = select(2, C_TransmogCollection.GetItemInfo(itemLink))
         if not sourceID then return false end
 
-        local visualID = select(2, C_TransmogCollection.GetAppearanceSourceInfo(sourceID))
-        if not visualID then return false end
+        local isCollected = select(5, C_TransmogCollection.GetAppearanceSourceInfo(sourceID))
+        if not isCollected then return false end
 
-        local isCollected = IsAppearanceCollected(visualID)
-        local canCollectAppearance = select(2, C_TransmogCollection.PlayerCanCollectSource(sourceID))
-
-        return isCollected, canCollectAppearance
+        return isCollected
     end
 
     local function GetItemIcon(itemLink)
         local texture = C_Item.GetItemIconByID(itemLink)
-        local itemType, _, _, _, _, _, _, _, bindType = select(6, C_Item.GetItemInfo(itemLink))
+        local itemType = select(6, C_Item.GetItemInfo(itemLink))
         if texture and (itemType == "Armor" or itemType == "Weapon") then
-            local isCollected, canCollectAppearance = GetAppearanceAndCollectedInfoByItemLink(itemLink)
+            local isCollected = GetAppearanceAndCollectedInfoByItemLink(itemLink)
             if isCollected ~= nil then
-                local collectedTexture = GetCollectedStatusIcon(bindType, isCollected, canCollectAppearance, iconPath)
+                local collectedTexture = GetCollectedStatusIcon(isCollected, iconPath)
                 return string.format("\124T%s:12\124t %s \124T%s:12\124t", texture, itemLink, collectedTexture)
             end
         end
