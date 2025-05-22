@@ -29,6 +29,11 @@ LSU.Enum = {
                 {
                     optionID = 47485
                 }
+            },
+            [171791] = { -- Nazgrim
+                {
+                    optionID = 52728
+                }
             }
         },
         [13] = { -- Eastern Kingdoms
@@ -86,6 +91,39 @@ LSU.Enum = {
             }
         },
         [1550] = { -- Shadowlands
+            [168252] = { -- Protector Captain
+                {
+                    optionID = 53754
+                }
+            },
+            [167425] = { -- Overseer Kah-Delen
+                {
+                    optionID = 131497
+                }
+            },
+            [159478] = { -- Tal-Inara
+                {
+                    optionID = 53554
+                }
+            },
+            [171934] = { -- Prince Renathal
+                {
+                    optionID = 52436
+                }
+            },
+            [164079] = { -- Highlord Bolvar Fordragon
+                {
+                    optionID = 52983
+                },
+                {
+                    optionID = 52984
+                }
+            },
+            [177136] = { -- Polemarch Adrestes
+                {
+                    optionID = 51968
+                }
+            },
             [159650] = { -- Elena
                 {
                     optionID = 49559
@@ -100,7 +138,7 @@ LSU.Enum = {
                 {
                     optionID = 49557
                 }
-            },
+            }
         },
         [1978] = { -- Dragon Isles
             [186187] = { -- Kalecgos
