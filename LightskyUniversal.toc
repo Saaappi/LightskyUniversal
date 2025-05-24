@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 2505.5
+## Version: 2505.6
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
@@ -23,7 +23,7 @@ Locale.lua
 Common.lua
 
 # Buttons
-Buttons\ButtonConstructor.lua
+Buttons\Button.lua
 Buttons\Gossip.lua
 Buttons\TalentButton.lua
 

@@ -4,8 +4,8 @@ local openContainersButton
 local button = {
     type        = "InsecureItemActionButton",
     name        = "LSUOpenContainersButton",
-    parent      = Baganator_SingleViewBackpackViewFrameblizzard,
-    scale       = 0.65,
+    parent      = UIParent,
+    scale       = 1,
     texture     = 132595,
     tooltipText = LSU.Locale.BUTTON_DESCRIPTION_CONTAINERS
 }

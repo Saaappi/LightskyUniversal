@@ -4,8 +4,8 @@ local transmogrificationButton
 local button = {
     type        = "ActionButton",
     name        = "LSUTransmogrificationButton",
-    parent      = Baganator_SingleViewBackpackViewFrameblizzard,
-    scale       = 0.57,
+    parent      = UIParent,
+    scale       = 0.9,
     texture     = 1723993,
     tooltipText = LSU.Locale.BUTTON_DESCRIPTION_TRANSMOGRIFICATION
 }
