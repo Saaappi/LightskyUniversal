@@ -1,17 +1,21 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 5
+## Version: 6
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
 ## Category-enUS: Quests
 
+# Harvest map and player information to use throughout the addon.
+Harvesters\MapHarvester.lua
+Harvesters\PlayerHarvester.lua
+
 # Where all "static" addon data is stored.
+Data\Enum.lua
 Data\Blacklist.lua
 Data\Cinematics.lua
-#Data\Containers.lua
-Data\Enum.lua
-Data\Properties.lua
+Data\Gossips.lua
+#Data\Properties.lua
 
 # In-memory data collectors.
 Collectors\MapCollector.lua

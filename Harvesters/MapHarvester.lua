@@ -1,4 +1,4 @@
-local addonName, LSU = ...
+local LSU = select(2, ...)
 local eventFrame = CreateFrame("Frame")
 
 local function GetContinentMapID(mapID)
@@ -29,6 +29,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                 GetContinentMapID(mapID)
             end
         end)
+        eventFrame:UnregisterEvent(event)
     end
     if event == "ZONE_CHANGED" or event == "ZONE_CHANGED_NEW_AREA" then
         local mapID = C_Map.GetBestMapForUnit("player")

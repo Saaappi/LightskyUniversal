@@ -112,7 +112,7 @@ end
     @param questID [number]: The ID of the quest to check.
 ]]
 LSU.IsQuestIgnored = function(questID)
-    local quest = LSU.Blacklist.Quests[questID]
+    local quest = LSU.Enum.Blacklisted.Quests[questID]
     if quest and quest.isIgnored then
         return quest.isIgnored, quest.response
     end
