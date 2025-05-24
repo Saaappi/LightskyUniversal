@@ -128,41 +128,36 @@ LSU.IsPlayerInCombat = function()
 end
 
 LSU.EvaluateConditions = function(conditions)
-    -- Keep the gossips as clean as possible, only using
-    -- a conditions table if needed. As such, if there isn't
-    -- a conditions table, then simply return true.
-    if conditions == nil then
+    if not conditions or #conditions == 0 then
         return true
     end
-    local numConditions = #conditions
-    if numConditions and numConditions > 0 then
-        for _, condition in ipairs(conditions) do
-            local conditionType = LSU.Split(condition, ";", 1)
-            if conditionType == "!CT_EXPANSION" then
-                local expansionID = LSU.Split(condition, ";", 2)
-                if UnitChromieTimeID("player") ~= expansionID and UnitLevel("player") < (GetMaxLevelForPlayerExpansion() - 10) then
-                    numConditions = numConditions - 1
-                end
-            elseif conditionType == "OBJECTIVE_INCOMPLETE" then
-                local questID, objectiveIndex = LSU.Split(condition, ";", "2*")
-                if C_QuestLog.IsOnQuest(questID) and objectiveIndex then
+
+    for _, condition in ipairs(conditions) do
+        local parts = { strsplit(";", condition) }
+        local conditionType = parts[1]
+
+        if conditionType == "!CT_EXPANSION" then
+            local expansionID = tonumber(parts[2])
+            if LSU.Character.ChromieTimeExpansionID == expansionID or LSU.Character.Level >= (GetMaxLevelForPlayerExpansion() - 10) then
+                return false
+            end
+        elseif conditionType == "OBJECTIVE_INCOMPLETE" then
+            local questID = tonumber(parts[2])
+            local objectiveIndex = tonumber(parts[3])
+            if questID and objectiveIndex then
+                if C_QuestLog.IsOnQuest(questID) then
                     local objectives = C_QuestLog.GetQuestObjectives(questID)
-                    if objectives and objectives[objectiveIndex] then
-                        if not objectives[objectiveIndex].finished then
-                            numConditions = numConditions - 1
-                        end
+                    if objectives and objectives[objectiveIndex] and objectives[objectiveIndex].finished then
+                        return false
                     end
                 end
-            elseif conditionType == "QUEST_ACTIVE" then
-                local questID = LSU.Split(condition, ";", 2)
-                if C_QuestLog.IsOnQuest(questID) then
-                    numConditions = numConditions - 1
-                end
+            end
+        elseif conditionType == "QUEST_ACTIVE" then
+            local questID = tonumber(parts[2])
+            if not (questID and C_QuestLog.IsOnQuest(questID)) then
+                return false
             end
         end
-        if numConditions == 0 then
-            return true
-        end
-        return false
+        return true
     end
 end

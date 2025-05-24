@@ -21,6 +21,9 @@ local function OnPlayerEnteringWorld()
     local color = C_ClassColor.GetClassColor(className)
     character.ClassColor = color or { r=1, g=1, b=1, colorStr="ffffffff" }
 
+    local chromieTimeExpansionID = UnitChromieTimeID("player")
+    character.chromieTimeExpansionID = chromieTimeExpansionID
+
     eventFrame:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end
 

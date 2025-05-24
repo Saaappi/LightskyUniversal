@@ -24,7 +24,10 @@ LSU.Enum.Gossips = {
         },
         [4311] = { -- Holgar Stormaxe
             {
-                optionID = 47485
+                optionID = 47485,
+                conditions = {
+                    "QUEST_ACTIVE;44281"
+                }
             }
         },
         [171791] = { -- Nazgrim
