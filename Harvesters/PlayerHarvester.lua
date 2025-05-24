@@ -1,31 +1,42 @@
-local addonName, LSU = ...
+local LSU = select(2, ...)
 local eventFrame = CreateFrame("Frame")
 
-eventFrame:RegisterEvent("PLAYER_LEVEL_UP")
-eventFrame:RegisterEvent("PLAYER_LOGIN")
-eventFrame:SetScript("OnEvent", function(_, event, ...)
-    if event == "PLAYER_LEVEL_UP" then
-        local newLevel = ...
+local function OnPlayerEnteringWorld()
+    if not LSU.Character then LSU.Character = {} end
+    local character = LSU.Character
+
+    character.Name = UnitName("player")
+    local className, classID = select(2, UnitClass("player"))
+    character.ClassName = className
+    character.ClassID = classID
+
+    if PlayerUtil and PlayerUtil.GetCurrentSpecID then
+        character.SpecID = PlayerUtil.GetCurrentSpecID()
+    else
+        character.SpecID = 0
+    end
+
+    character.Level = UnitLevel("player")
+
+    local color = C_ClassColor.GetClassColor(className)
+    character.ClassColor = color or { r=1, g=1, b=1, colorStr="ffffffff" }
+
+    eventFrame:UnregisterEvent("PLAYER_ENTERING_WORLD")
+end
+
+local function OnPlayerLevelUp(newLevel)
+    if LSU.Character then
         LSU.Character.Level = newLevel
     end
-    if event == "PLAYER_LOGIN" then
-        if not LSU.Character then
-            LSU.Character = {}
-        end
+end
 
-        local name = UnitName("player")
-        local className, _, classID = UnitClass("player"); className = className:gsub("%s+", "")
-        local specID = PlayerUtil.GetCurrentSpecID()
-        local level = UnitLevel("player")
-        local color = C_ClassColor.GetClassColor(className)
-
-        LSU.Character.Name = name
-        LSU.Character.ClassName = className
-        LSU.Character.ClassID = classID
-        LSU.Character.SpecID = specID
-        LSU.Character.Level = level
-        LSU.Character.ClassColor = color
-
-        eventFrame:UnregisterEvent(event)
+eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+eventFrame:RegisterEvent("PLAYER_LEVEL_UP")
+eventFrame:SetScript("OnEvent", function(_, event, ...)
+    if event == "PLAYER_ENTERING_WORLD" then
+        OnPlayerEnteringWorld()
+    elseif event == "PLAYER_LEVEL_UP" then
+        local newLevel = ...
+        OnPlayerLevelUp(newLevel)
     end
 end)
