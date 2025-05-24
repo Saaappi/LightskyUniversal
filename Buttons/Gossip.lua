@@ -1,10 +1,11 @@
-local addonName, LSU = ...
+local LSU = select(2, ...)
 local getGossipInfoButton = CreateFrame("Button", "LSUGetGossipInfoButton", GossipFrame, "ActionButtonTemplate")
 getGossipInfoButton:SetScale(1.05)
 
 getGossipInfoButton:ClearAllPoints()
 getGossipInfoButton:SetPoint("TOPLEFT", GossipFrame, "TOPRIGHT", 5, 0)
-getGossipInfoButton.icon:SetTexture(136243)
+getGossipInfoButton.icon:SetTexture(4549145)
+getGossipInfoButton:Hide()
 
 getGossipInfoButton:SetScript("OnEnter", function(self)
     GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
@@ -13,7 +14,7 @@ end)
 getGossipInfoButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
 getGossipInfoButton:SetScript("OnClick", function()
     local options = C_GossipInfo.GetOptions()
-    if options and options ~= {} then
+    if options and #options > 0 then
         local guid = UnitGUID("npc")
         local name = UnitName("npc")
         if guid and name then
@@ -23,7 +24,11 @@ getGossipInfoButton:SetScript("OnClick", function()
                 print("  " .. "|cffBA45A0" .. option.gossipOptionID .. "|r")
                 print("    " .. option.name)
             end
+        else
+            LSU.PrintWarning("Could not retrieve NPC information.")
         end
+    else
+        LSU.PrintWarning("No gossip options available.")
     end
 end)
 
