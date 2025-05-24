@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 2505.3
+## Version: 2505.4
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
@@ -14,7 +14,7 @@ Harvesters\PlayerHarvester.lua
 Data\Enum.lua
 Data\Blacklist.lua
 Data\Gossips.lua
-#Data\Properties.lua
+Data\Junk.lua
 
 # Locale
 Locale.lua
