@@ -18,8 +18,8 @@ Data\Gossips.lua
 #Data\Properties.lua
 
 # In-memory data collectors.
-Collectors\MapCollector.lua
-Collectors\PlayerCollector.lua
+Collectors\MapHarvester.lua
+Collectors\PlayerHarvester.lua
 
 # Locale
 Locale.lua
