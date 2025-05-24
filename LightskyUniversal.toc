@@ -13,13 +13,8 @@ Harvesters\PlayerHarvester.lua
 # Where all "static" addon data is stored.
 Data\Enum.lua
 Data\Blacklist.lua
-Data\Cinematics.lua
 Data\Gossips.lua
 #Data\Properties.lua
-
-# In-memory data collectors.
-Collectors\MapHarvester.lua
-Collectors\PlayerHarvester.lua
 
 # Locale
 Locale.lua
