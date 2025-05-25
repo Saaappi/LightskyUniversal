@@ -51,16 +51,18 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     local rewardLink = GetQuestItemLink("choice", i)
                     if rewardLink and not IsWeapon(rewardLink) then
                         local rewardLevel = C_Item.GetDetailedItemLevelInfo(rewardLink)
-                        local _, _, _, _, _, _, _, _, equipLoc = C_Item.GetItemInfo(rewardLink)
+                        local equipLoc = select(9, C_Item.GetItemInfo(rewardLink))
 
-                        local equippedLevel = GetEquippedItemLevel(equipLoc)
-                        if rewardLevel > equippedLevel then
-                            local diff = rewardLevel - equippedLevel
-                            if diff > bestItemLevelDifference then
-                                bestItemLevelDifference = diff
-                                table.insert(bestRewardIndices, i)
-                            elseif diff == bestItemLevelDifference then
-                                table.insert(bestRewardIndices, i)
+                        if equipLoc ~= "INVTYPE_NON_EQUIP_IGNORE" then
+                            local equippedLevel = GetEquippedItemLevel(equipLoc)
+                            if rewardLevel > equippedLevel then
+                                local diff = rewardLevel - equippedLevel
+                                if diff > bestItemLevelDifference then
+                                    bestItemLevelDifference = diff
+                                    table.insert(bestRewardIndices, i)
+                                elseif diff == bestItemLevelDifference then
+                                    table.insert(bestRewardIndices, i)
+                                end
                             end
                         end
                     end
