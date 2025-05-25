@@ -21,8 +21,8 @@ local function Main(_, _, msg, ...)
 
     local function GetItemIcon(itemLink)
         local texture = C_Item.GetItemIconByID(itemLink)
-        local itemType = select(6, C_Item.GetItemInfo(itemLink))
-        if texture and (itemType == "Armor" or itemType == "Weapon") then
+        local itemType, _, _, equipLoc = select(6, C_Item.GetItemInfo(itemLink))
+        if texture and (itemType == "Armor" or itemType == "Weapon") and (equipLoc ~= "INVTYPE_FINGER" and equipLoc ~= "INVTYPE_NECK" and equipLoc ~= "INVTYPE_TRINKET") then
             local isCollected = GetAppearanceAndCollectedInfoByItemLink(itemLink)
             if isCollected ~= nil then
                 local collectedTexture = GetCollectedStatusIcon(isCollected, iconPath)
