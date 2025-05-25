@@ -16,6 +16,7 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
             width = 120,
             height = 25,
             text = "Apply Talents",
+            tooltipText = LSU.Locale.BUTTON_DESCRIPTION_APPLYTALENTS,
             point = "LEFT",
             parent = talentsFrame.SearchBox
         }
@@ -24,13 +25,6 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
     applyTalentsButton:ClearAllPoints()
     applyTalentsButton:SetPoint("LEFT", applyTalentsButton:GetParent(), "RIGHT", 2.5, 0)
     applyTalentsButton:Show()
-
-    applyTalentsButton:SetScript("OnEnter", function(self)
-        GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:SetText(LSU.Locale.BUTTON_DESCRIPTION_APPLYTALENTS, 1, 1, 1, 1, true)
-    end)
-
-    applyTalentsButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
     local version = C_Traits.GetLoadoutSerializationVersion and C_Traits.GetLoadoutSerializationVersion() or 1
     local function GetValidationError(treeID, importStream, isTryRead)
