@@ -3,6 +3,17 @@ local secureMountButton = CreateFrame("Button", "LSUSecureMountButton", UIParent
 secureMountButton:SetSize(1, 1)
 secureMountButton:RegisterForClicks("AnyUp", "AnyDown")
 
+local function IsPlayerUnderwater()
+    local timerName, _, maxBreath = GetMirrorTimerInfo(2)
+    if timerName and timerName ~= "UNKNOWN" then
+        local currentBreath = GetMirrorTimerProgress(timerName)
+        if currentBreath < maxBreath then
+            return true
+        end
+    end
+    return false
+end
+
 LSU.Mount = function()
     if InCombatLockdown() and (not IsMounted()) then return end
     if IsFlying() then return end
@@ -20,7 +31,7 @@ LSU.Mount = function()
     end
 
     -- Aquatic mount for characters that are submerged.
-    if IsSubmerged("player") then
+    if IsPlayerUnderwater() then
         C_MountJournal.SummonByID(800) -- Brinedeep Bottom-Feeder
     end
 
