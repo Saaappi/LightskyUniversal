@@ -10,6 +10,8 @@ local slots = {
     INVTYPE_WAIST       = 6,
     INVTYPE_LEGS        = 7,
     INVTYPE_FEET        = 8,
+    INVTYPE_HAND        = 10,
+    INVTYPE_SHIELD      = 14,
     INVTYPE_CLOAK       = 16
 }
 
