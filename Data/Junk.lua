@@ -1,6 +1,10 @@
 local LSU = select(2, ...)
 
 LSU.Enum.Junk = {
+    767,    -- Long Bo Staff
+    1288,   -- Large Venom Sac
+    3190,   -- Beatstick
+    5465,   -- Small Spider Leg
     13444,  -- Major Mana Potion
     13446,  -- Major Healing Potion
     22829,  -- Super Healing Potion
