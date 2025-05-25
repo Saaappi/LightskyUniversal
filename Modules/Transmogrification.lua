@@ -21,7 +21,6 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "ADDON_LOADED" then
         if C_AddOns.IsAddOnLoaded("Baganator") then
             C_Timer.After(1, function()
-                local characterFullName = Syndicator.API.GetCurrentCharacter()
                 Baganator_SingleViewBackpackViewFrameblizzard:HookScript("OnShow", function()
                     if not transmogrificationButton then
                         transmogrificationButton = LSU.CreateButton(button)
@@ -32,7 +31,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                         transmogrificationButton:SetPoint("TOPRIGHT", Baganator_SingleViewBackpackViewFrameblizzard, "TOPLEFT", -5, 0)
                         transmogrificationButton:SetScript("OnClick", function()
                             if not InCombatLockdown() then
-                                local character = Syndicator.API.GetByCharacterFullName(characterFullName)
+                                local character = Syndicator.API.GetByCharacterFullName(LSU.Character.FullName)
                                 local equippedItems = {}
                                 for _, equippedItem in pairs(character.equipped) do
                                     if equippedItem and equippedItem.itemLink then

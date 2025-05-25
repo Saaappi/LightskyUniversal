@@ -6,6 +6,7 @@ local function OnPlayerEnteringWorld()
     local character = LSU.Character
 
     character.Name = UnitName("player")
+    character.Realm = GetRealmName()
     local className, classID = select(2, UnitClass("player"))
     character.ClassName = className
     character.ClassID = classID
@@ -23,6 +24,9 @@ local function OnPlayerEnteringWorld()
 
     local chromieTimeExpansionID = UnitChromieTimeID("player")
     character.chromieTimeExpansionID = chromieTimeExpansionID
+
+    local characterFullName = character.Name .. "-" .. character.Realm
+    character.FullName = characterFullName
 
     eventFrame:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end
