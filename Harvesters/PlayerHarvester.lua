@@ -1,9 +1,17 @@
 local LSU = select(2, ...)
 local eventFrame = CreateFrame("Frame")
+local character
+
+local function GetPlayerSpecializationID()
+    if PlayerUtil and PlayerUtil.GetCurrentSpecID then
+        return PlayerUtil.GetCurrentSpecID()
+    end
+    return 0
+end
 
 local function OnPlayerEnteringWorld()
     if not LSU.Character then LSU.Character = {} end
-    local character = LSU.Character
+    character = LSU.Character
 
     character.Name = UnitName("player")
     character.Realm = GetRealmName()
@@ -11,11 +19,8 @@ local function OnPlayerEnteringWorld()
     character.ClassName = className
     character.ClassID = classID
 
-    if PlayerUtil and PlayerUtil.GetCurrentSpecID then
-        character.SpecID = PlayerUtil.GetCurrentSpecID()
-    else
-        character.SpecID = 0
-    end
+    local specID = GetPlayerSpecializationID()
+    character.SpecID = specID
 
     character.Level = UnitLevel("player")
 
@@ -37,13 +42,21 @@ local function OnPlayerLevelUp(newLevel)
     end
 end
 
+local function OnSpecializationChanged()
+    local specID = GetPlayerSpecializationID()
+    character.SpecID = specID
+end
+
 eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 eventFrame:RegisterEvent("PLAYER_LEVEL_UP")
+eventFrame:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "PLAYER_ENTERING_WORLD" then
         OnPlayerEnteringWorld()
     elseif event == "PLAYER_LEVEL_UP" then
         local newLevel = ...
         OnPlayerLevelUp(newLevel)
+    elseif event == "PLAYER_SPECIALIZATION_CHANGED" then
+        OnSpecializationChanged()
     end
 end)
