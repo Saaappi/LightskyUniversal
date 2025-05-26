@@ -7,7 +7,15 @@ LSU.Enum.Blacklisted.Cinematics = {
     }
 }
 LSU.Enum.Blacklisted.Quests = {
-    [59583] = {
+    [9217] = { -- More Rotting Hearts
+        isIgnored = true,
+        response = ""
+    },
+    [9219] = { -- More Spinal Dust
+        isIgnored = true,
+        response = ""
+    },
+    [59583] = { -- Welcome to Stormwind
         isIgnored = true,
         response = ""
     }
