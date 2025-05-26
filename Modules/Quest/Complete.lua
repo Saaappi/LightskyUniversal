@@ -13,7 +13,8 @@ local slots = {
     INVTYPE_HAND        = 10,
     INVTYPE_FINGER      = 11,
     INVTYPE_SHIELD      = 14,
-    INVTYPE_CLOAK       = 16
+    INVTYPE_CLOAK       = 16,
+    INVTYPE_HOLDABLE    = 23,
 }
 
 local function IsWeapon(itemLink)
