@@ -36,7 +36,7 @@ local function GetEquippedItemLevel(equipLoc)
         end
         return itemLevels]]
     else
-        local equippedLink = GetInventoryItemLink("player", slot)
+        local equippedLink = GetInventoryItemLink("player", slot) or ""
         return C_Item.GetDetailedItemLevelInfo(equippedLink) or 0
     end
 end
