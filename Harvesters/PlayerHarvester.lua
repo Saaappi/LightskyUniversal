@@ -14,7 +14,7 @@ local function OnPlayerEnteringWorld()
     character = LSU.Character
 
     character.Name = UnitName("player")
-    character.Realm = GetRealmName()
+    character.Realm = GetRealmName(); character.Realm = character.Realm:gsub(" ", "")
     local className, classID = select(2, UnitClass("player"))
     character.ClassName = className
     character.ClassID = classID
