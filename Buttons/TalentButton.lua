@@ -236,9 +236,9 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
     end
 
     applyTalentsButton:SetScript("OnClick", function()
-        local talents = LSU.Enum.PlayerTalents[LSU.Character.ClassID]["specs"][LSU.Character.SpecID]
+        local talents = LSUDB.PlayerTalents[LSU.Character.ClassID][LSU.Character.SpecID]
         if talents then
-            ImportText(talents)
+            ImportText(talents.importString)
         end
     end)
 end)
