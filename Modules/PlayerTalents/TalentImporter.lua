@@ -279,6 +279,13 @@ local specEditBoxes = {
     },
 }
 
+local defaults = {
+    FRAME_BASE_WIDTH = 230,
+    FRAME_BASE_HEIGHT = 300,
+    FRAME_EXTENDED_WIDTH = 315,
+    FRAME_EXTENDED_HEIGHT = 275,
+}
+
 local state = {
     frame = nil,
     backButton = nil,
@@ -329,6 +336,8 @@ local function HideClassButtons()
     for _, button in ipairs(state.classButtons) do
         if button:IsShown() then
             button:Hide()
+        else
+            button:Show()
         end
     end
 end
@@ -338,13 +347,20 @@ local function HideEditBoxes()
     HideAndWipe(state.editBoxes)
 end
 
+-- Hide the class name text
+local function HideClassNameText()
+    if state.frame.classNameText:IsVisible() then
+        state.frame.classNameText:Hide()
+    end
+end
+
 local function GetOrCreateFrame()
     if not state.frame then
         state.frame = LSU.CreateFrame("Portrait", {
             name = "LSUTalentImporterFrame",
             parent = UIParent,
-            height = 300,
-            width = 230,
+            height = defaults.FRAME_BASE_HEIGHT,
+            width = defaults.FRAME_BASE_WIDTH,
             movable = true
         })
         state.frame:SetTitle("Talent Importer") -- LOCALIZE!
@@ -371,8 +387,8 @@ local function CreateClassButtons(frame)
         button.icon:SetAtlas(btn.atlas)
 
         button:SetScript("OnClick", function(self)
-            frame:SetWidth(315)
-            frame:SetHeight(275)
+            frame:SetWidth(defaults.FRAME_EXTENDED_WIDTH)
+            frame:SetHeight(defaults.FRAME_EXTENDED_HEIGHT)
             HideClassButtons()
             HideEditBoxes()
 
@@ -404,6 +420,29 @@ local function CreateClassButtons(frame)
             frame.classNameText:SetText(("|cff%02x%02x%02x%s|r"):format(
                 btn.classColor.r*255, btn.classColor.g*255, btn.classColor.b*255, btn.className
             ))
+            frame.classNameText:Show()
+
+            if not state.backButton then
+                state.backButton = LSU.CreateButton({
+                    type = "BasicButton",
+                    name = "LSUTalentImporterBackButton",
+                    parent = frame,
+                    width = 80,
+                    height = 25,
+                    text = "Back",
+                    tooltipText = "Return to class selection." -- LOCALIZE!
+                })
+                state.backButton:SetPoint("BOTTOM", frame, "BOTTOM", 0, 7)
+                state.backButton:SetScript("OnClick", function()
+                    frame:SetWidth(defaults.FRAME_BASE_WIDTH)
+                    frame:SetHeight(defaults.FRAME_BASE_HEIGHT)
+                    HideEditBoxes()
+                    HideClassButtons()
+                    HideClassNameText()
+                    state.backButton:Hide()
+                end)
+            end
+            state.backButton:Show()
         end)
         button:SetScript("OnEnter", function(self)
             GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
