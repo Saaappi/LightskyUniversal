@@ -1,9 +1,30 @@
 local addonName, LSU = ...
+local importerButton
 local applyTalentsButton
 
 EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
     local parentFrame = PlayerSpellsFrame
     local talentsFrame = parentFrame.TalentsTab or PlayerSpellsFrame.TalentsFrame
+    if not importerButton then
+        local button = {
+            type = "ActionButton",
+            name = "LSUOpenImporterButton",
+            parent = talentsFrame.SearchBox,
+            scale = 0.5,
+            texture = 132222,
+            tooltipText = "Open the talent importer utility. |cffFF8000This will close the talent frame.|r" -- LOCALIZE!
+        }
+        importerButton = LSU.CreateButton(button)
+
+        importerButton:SetScript("OnClick", function()
+            HideUIPanel(PlayerSpellsFrame)
+            LSUOpenTalentImporter()
+        end)
+    end
+    importerButton:ClearAllPoints()
+    importerButton:SetPoint("LEFT", talentsFrame.SearchBox, "RIGHT", 2.5, 0)
+    importerButton:Show()
+
     if not applyTalentsButton then
         local button = {
             type = "BasicButton",
@@ -18,7 +39,7 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
         applyTalentsButton = LSU.CreateButton(button)
     end
     applyTalentsButton:ClearAllPoints()
-    applyTalentsButton:SetPoint("LEFT", applyTalentsButton:GetParent(), "RIGHT", 2.5, 0)
+    applyTalentsButton:SetPoint("LEFT", applyTalentsButton:GetParent(), "RIGHT", 27.5, 0)
     applyTalentsButton:Show()
 
     local version = C_Traits.GetLoadoutSerializationVersion and C_Traits.GetLoadoutSerializationVersion() or 1

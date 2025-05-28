@@ -519,5 +519,3 @@ function LSUOpenTalentImporter()
 
     frame:Show()
 end
-
-LSUOpenTalentImporter()
