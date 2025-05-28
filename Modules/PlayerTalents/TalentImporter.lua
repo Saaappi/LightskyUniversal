@@ -349,6 +349,11 @@ local function GetOrCreateFrame()
         })
         state.frame:SetTitle("Talent Importer") -- LOCALIZE!
         state.frame:SetPortraitToAsset(132222)
+
+        state.frame.classNameText = state.frame:CreateFontString(nil, "OVERLAY")
+        state.frame.classNameText:SetFont("Fonts\\MORPHEUS.TTF", 24)
+        state.frame.classNameText:SetPoint("TOP", state.frame, "TOP", 0, -35)
+        state.frame.classNameText:SetText("")
     end
     return state.frame
 end
@@ -395,6 +400,10 @@ local function CreateClassButtons(frame)
 
             -- Editbox position
             LayoutGridVertical(state.editBoxes, frame, 50, 80, 20)
+
+            frame.classNameText:SetText(("|cff%02x%02x%02x%s|r"):format(
+                btn.classColor.r*255, btn.classColor.g*255, btn.classColor.b*255, btn.className
+            ))
         end)
         button:SetScript("OnEnter", function(self)
             GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
