@@ -419,6 +419,47 @@ local function CreateClassButtons(frame)
                 border:SetPoint("CENTER", specTexture, "CENTER", 0, 0)
                 border:SetSize(28, 28)
                 border:SetAtlas("Artifacts-PerkRing-Final", false)
+
+                -- Save on enter
+                editBox:SetScript("OnEnterPressed", function(self)
+                    self:ClearFocus()
+                    local text = self:GetText()
+                    local classTable = LSUDB.PlayerTalents[btn.classID]
+                    local db = classTable and classTable[spec.id] or nil
+                    if not db or not next(db) then
+                        LSUDB.PlayerTalents[btn.classID] = {}
+                        LSUDB.PlayerTalents[btn.classID][spec.id] = {}
+                        db = LSUDB.PlayerTalents[btn.classID][spec.id]
+                    end
+                    if text == "" then
+                        db.importString, db.date, db.patch = "", "", ""
+                    else
+                        db.importString = text
+                        db.date = date("%m/%d/%Y")
+                        db.patch = (GetBuildInfo())
+                    end
+                end)
+
+                -- Editbox tooltip
+                editBox:SetScript("OnEnter", function(self)
+                    GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
+                    local talents = LSUDB and LSUDB.PlayerTalents
+                    local classID = btn and btn.classID
+                    local specID = spec and spec.id
+                    local db
+
+                    if talents and classID and specID then
+                        db = talents[classID] and talents[classID][specID] or nil
+                    end
+
+                    if not db or not next(db) then
+                        GameTooltip:SetText("Last Updated: -") -- LOCALIZE!
+                    else
+                        GameTooltip:SetText(string.format("Last Updated: %s (%s)", db.date or "-", db.patch or "-")) -- LOCALIZE!
+                    end
+                    GameTooltip:Show()
+                end)
+                editBox:SetScript("OnLeave", function() GameTooltip:Hide() end)
             end
 
             -- Editbox position
