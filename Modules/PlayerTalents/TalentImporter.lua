@@ -380,10 +380,17 @@ local function CreateClassButtons(frame)
                 editBox:SetHeight(20)
                 editBox:SetFontObject("ChatFontNormal")
 
+                -- Spec icon
                 local specTexture = editBox:CreateTexture(nil, "BACKGROUND")
                 specTexture:SetPoint("CENTER", editBox, "LEFT", -specTexture:GetWidth()/2 - 20, 0)
-                specTexture:SetSize(20, 20)
+                specTexture:SetSize(24, 24)
                 SetPortraitToTexture(specTexture, select(4, GetSpecializationInfoByID(spec.id)))
+
+                -- Border for the spec icons
+                local border = editBox:CreateTexture(nil, "BORDER")
+                border:SetPoint("CENTER", specTexture, "CENTER", 0, 0)
+                border:SetSize(28, 28)
+                border:SetAtlas("Artifacts-PerkRing-Final", false)
             end
 
             -- Editbox position
