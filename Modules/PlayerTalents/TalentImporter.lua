@@ -355,6 +355,13 @@ local function CreateClassButtons(frame)
             button:SetPoint("TOPLEFT", frame, "TOPLEFT", 10, -60)
         end
 
+        button:SetScript("OnEnter", function(self)
+            GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
+            GameTooltip:SetText(btn.className, btn.classColor.r, btn.classColor.g, btn.classColor.b)
+            GameTooltip:Show()
+        end)
+        button:SetScript("OnLeave", function() GameTooltip:Hide() end)
+
         state.classButtons[index] = button
     end
 
