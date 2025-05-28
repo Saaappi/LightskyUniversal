@@ -293,6 +293,13 @@ local state = {
     classButtons = {}
 }
 
+local function EnsureTalentDB(classID, specID)
+    LSUDB.PlayerTalents = LSUDB.PlayerTalents or {}
+    LSUDB.PlayerTalents[classID] = LSUDB.PlayerTalents[classID] or {}
+    LSUDB.PlayerTalents[classID][specID] = LSUDB.PlayerTalents[classID][specID] or {}
+    return LSUDB.PlayerTalents[classID][specID]
+end
+
 -- Hide all the elements in the table and wipe it
 local function HideAndWipe(tbl)
     for i, v in ipairs(tbl) do
@@ -421,10 +428,7 @@ local function CreateClassButtons(frame)
                 border:SetAtlas("Artifacts-PerkRing-Final", false)
 
                 -- On load, set the text of the editboxes
-                local talents = LSUDB and LSUDB.PlayerTalents
-                local classID = btn and btn.classID
-                local specID = spec and spec.id
-                local db = talents[classID] and talents[classID][specID] or nil
+                local db = EnsureTalentDB(btn.classID, spec.id)
                 if db and db.importString then
                     editBox:SetText(db.importString)
                 end
@@ -433,13 +437,7 @@ local function CreateClassButtons(frame)
                 editBox:SetScript("OnEnterPressed", function(self)
                     self:ClearFocus()
                     local text = self:GetText()
-                    local classTable = LSUDB.PlayerTalents[btn.classID]
-                    --local db = classTable and classTable[spec.id] or nil
-                    if not db or not next(db) then
-                        LSUDB.PlayerTalents[btn.classID] = {}
-                        LSUDB.PlayerTalents[btn.classID][spec.id] = {}
-                        db = LSUDB.PlayerTalents[btn.classID][spec.id]
-                    end
+
                     if text == "" then
                         db.importString, db.date, db.patch = "", "", ""
                     else
