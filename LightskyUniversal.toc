@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 2505.20
+## Version: 2505.21
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
@@ -23,8 +23,11 @@ Locale.lua
 # Functions used throughout the addon.
 Common.lua
 
+# Frames
+FrameFactory.lua
+
 # Buttons
-Buttons\Button.lua
+Button.lua
 Buttons\Gossip.lua
 Buttons\TalentButton.lua
 
@@ -41,6 +44,7 @@ Modules\Quest\AdventureMap.lua
 Modules\Quest\Complete.lua
 Modules\Quest\Popup.lua
 Modules\Rare.lua
+Modules\PlayerTalents\TalentImporter.lua
 Modules\Transmogrification.lua
 
 KeybindHandler.lua
