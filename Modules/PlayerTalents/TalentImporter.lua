@@ -379,6 +379,11 @@ local function CreateClassButtons(frame)
                 editBox:SetWidth(250)
                 editBox:SetHeight(20)
                 editBox:SetFontObject("ChatFontNormal")
+
+                local specTexture = editBox:CreateTexture(nil, "BACKGROUND")
+                specTexture:SetPoint("CENTER", editBox, "LEFT", -specTexture:GetWidth()/2 - 20, 0)
+                specTexture:SetSize(20, 20)
+                SetPortraitToTexture(specTexture, select(4, GetSpecializationInfoByID(spec.id)))
             end
 
             -- Editbox position
