@@ -94,9 +94,7 @@ local classButtons = {
     },
 }
 
--- Table that holds all the configuration information for the
--- individual spec edit boxes.
---[[HelpMePlay.specEditBoxes = {
+local specEditBoxes = {
     { -- Death Knight
         {
             ["id"] = 250,
@@ -279,7 +277,7 @@ local classButtons = {
             ["name"] = "Protection",
         },
     },
-}]]
+}
 
 local state = {
     frame = nil,
@@ -296,6 +294,13 @@ local function HideAndWipe(tbl)
     end
 end
 
+-- Lays out the class buttons in a grid inside the frame.
+-- Params:
+--   buttons: table of button frames
+--   frame: parent frame
+--   cols: number of columns in the grid
+--   xPadding, yPadding: space between buttons
+--   left, top: offset from frame's TOPLEFT corner
 local function LayoutGrid(buttons, frame, cols, xPadding, yPadding, left, top)
     for index, button in ipairs(buttons) do
         local col = (index - 1) % cols
@@ -308,13 +313,22 @@ local function LayoutGrid(buttons, frame, cols, xPadding, yPadding, left, top)
     end
 end
 
+local function LayoutGridVertical(widgets, parent, xOffset, yOffset, spacing)
+    for index, widget in ipairs(widgets) do
+        widget:ClearAllPoints()
+        if index == 1 then
+            widget:SetPoint("TOPLEFT", parent, "TOPLEFT", xOffset, -yOffset)
+        else
+            widget:SetPoint("TOPLEFT", widgets[index-1], "BOTTOMLEFT", 0, -spacing)
+        end
+    end
+end
+
 -- Hide the class buttons on the frame
 local function HideClassButtons()
     for _, button in ipairs(state.classButtons) do
         if button:IsShown() then
             button:Hide()
-        --[[else
-            button:Show()]]
         end
     end
 end
@@ -351,10 +365,25 @@ local function CreateClassButtons(frame)
         button.classID = btn.classID
         button.icon:SetAtlas(btn.atlas)
 
-        if index == 1 then
-            button:SetPoint("TOPLEFT", frame, "TOPLEFT", 10, -60)
-        end
+        button:SetScript("OnClick", function(self)
+            frame:SetWidth(315)
+            frame:SetHeight(275)
+            HideClassButtons()
+            HideEditBoxes()
 
+            for i, spec in ipairs(specEditBoxes[self.ID]) do
+                local editBoxName = "LSUSpecEditBox" .. i
+                local editBox = CreateFrame("EditBox", editBoxName, frame, "InputBoxTemplate")
+                table.insert(state.editBoxes, editBox)
+                editBox:SetAutoFocus(false)
+                editBox:SetWidth(250)
+                editBox:SetHeight(20)
+                editBox:SetFontObject("ChatFontNormal")
+            end
+
+            -- Editbox position
+            LayoutGridVertical(state.editBoxes, frame, 50, 80, 20)
+        end)
         button:SetScript("OnEnter", function(self)
             GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
             GameTooltip:SetText(btn.className, btn.classColor.r, btn.classColor.g, btn.classColor.b)
