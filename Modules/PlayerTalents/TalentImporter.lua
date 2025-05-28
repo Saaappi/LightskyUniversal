@@ -420,12 +420,21 @@ local function CreateClassButtons(frame)
                 border:SetSize(28, 28)
                 border:SetAtlas("Artifacts-PerkRing-Final", false)
 
+                -- On load, set the text of the editboxes
+                local talents = LSUDB and LSUDB.PlayerTalents
+                local classID = btn and btn.classID
+                local specID = spec and spec.id
+                local db = talents[classID] and talents[classID][specID] or nil
+                if db and db.importString then
+                    editBox:SetText(db.importString)
+                end
+
                 -- Save on enter
                 editBox:SetScript("OnEnterPressed", function(self)
                     self:ClearFocus()
                     local text = self:GetText()
                     local classTable = LSUDB.PlayerTalents[btn.classID]
-                    local db = classTable and classTable[spec.id] or nil
+                    --local db = classTable and classTable[spec.id] or nil
                     if not db or not next(db) then
                         LSUDB.PlayerTalents[btn.classID] = {}
                         LSUDB.PlayerTalents[btn.classID][spec.id] = {}
@@ -443,15 +452,6 @@ local function CreateClassButtons(frame)
                 -- Editbox tooltip
                 editBox:SetScript("OnEnter", function(self)
                     GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
-                    local talents = LSUDB and LSUDB.PlayerTalents
-                    local classID = btn and btn.classID
-                    local specID = spec and spec.id
-                    local db
-
-                    if talents and classID and specID then
-                        db = talents[classID] and talents[classID][specID] or nil
-                    end
-
                     if not db or not next(db) then
                         GameTooltip:SetText("Last Updated: -") -- LOCALIZE!
                     else
