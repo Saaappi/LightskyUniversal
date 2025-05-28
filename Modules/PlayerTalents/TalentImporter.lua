@@ -405,6 +405,13 @@ local function CreateClassButtons(frame)
                 local specTexture = editBox:CreateTexture(nil, "BACKGROUND")
                 specTexture:SetPoint("CENTER", editBox, "LEFT", -specTexture:GetWidth()/2 - 20, 0)
                 specTexture:SetSize(24, 24)
+                specTexture:EnableMouse(true)
+                specTexture:SetScript("OnEnter", function(self)
+                    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                    GameTooltip:SetText(spec.name, btn.classColor.r, btn.classColor.g, btn.classColor.b)
+                    GameTooltip:Show()
+                end)
+                specTexture:SetScript("OnLeave", function() GameTooltip:Hide() end)
                 SetPortraitToTexture(specTexture, select(4, GetSpecializationInfoByID(spec.id)))
 
                 -- Border for the spec icons
