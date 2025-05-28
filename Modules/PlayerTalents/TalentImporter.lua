@@ -98,6 +98,16 @@ local function GetOrCreateFrame()
         state.frame.classNameText:SetFont("Fonts\\MORPHEUS.TTF", 24)
         state.frame.classNameText:SetPoint("TOP", state.frame, "TOP", 0, -35)
         state.frame.classNameText:SetText("")
+
+        state.frame:SetScript("OnShow", function(self)
+            PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN)
+        end)
+
+        state.frame:SetScript("OnHide", function(self)
+            PlaySound(SOUNDKIT.IG_CHARACTER_INFO_CLOSE)
+        end)
+
+        table.insert(UISpecialFrames, state.frame:GetName())
     end
     return state.frame
 end
