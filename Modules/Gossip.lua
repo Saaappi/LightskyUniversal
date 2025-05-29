@@ -155,80 +155,88 @@ function LSUOpenGossipsFrame()
     gossipFrame:SetTitle("Gossips") -- LOCALIZE!
     gossipFrame:SetPortraitToAsset(2056011)
 
-    local scrollFrame = CreateFrame("ScrollFrame", nil, gossipFrame, "UIPanelScrollFrameTemplate")
-    scrollFrame:SetWidth(590)
-    scrollFrame:SetHeight(400)
+    if not gossipFrame.childrenCreated then
+        local scrollFrame = CreateFrame("ScrollFrame", nil, gossipFrame, "UIPanelScrollFrameTemplate")
+        scrollFrame:SetWidth(590)
+        scrollFrame:SetHeight(400)
 
-    scrollFrame:ClearAllPoints()
-    scrollFrame:SetPoint("TOPLEFT", gossipFrame, "TOPLEFT", 20, -60)
-    scrollFrame:SetPoint("BOTTOMRIGHT", gossipFrame, "BOTTOMRIGHT", -40, 40)
+        scrollFrame:ClearAllPoints()
+        scrollFrame:SetPoint("TOPLEFT", gossipFrame, "TOPLEFT", 20, -60)
+        scrollFrame:SetPoint("BOTTOMRIGHT", gossipFrame, "BOTTOMRIGHT", -40, 40)
 
-    scrollFrame:EnableMouseWheel(true)
-    scrollFrame:SetScript("OnMouseWheel", function(self, delta)
-        local min, max = self.ScrollBar:GetMinMaxValues()
-        local curr = self.ScrollBar:GetValue()
-        if delta < 0 and curr < max then
-            self.ScrollBar:SetValue(curr + 20)
-        elseif delta > 0 and curr > min then
-            self.ScrollBar:SetValue(curr - 20)
-        end
-    end)
-
-    local font = CreateFont("MyEditBoxFont")
-    font:SetFont("Fonts\\ARIALN.TTF", 14, "")
-    font:SetSpacing(7.5)
-
-    local editBox = CreateFrame("EditBox", nil, scrollFrame)
-    editBox:SetMultiLine(true)
-    editBox:SetFontObject(font)
-    editBox:SetWidth(scrollFrame:GetWidth() - 30)
-    editBox:SetHeight(scrollFrame:GetHeight() -30)
-    editBox:SetAutoFocus(false)
-    editBox:EnableMouse(true)
-    editBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
-    editBox:SetText(GossipsToText())
-
-    scrollFrame:SetScrollChild(editBox)
-
-    local submitButton = LSU.CreateButton({
-        type = "BasicButton",
-        name = "LSUGossipSubmitButton",
-        parent = gossipFrame,
-        width = 80,
-        height = 25,
-        text = SUBMIT,
-        tooltipText = "test!" -- LOCALIZE!
-    })
-    submitButton:SetPoint("BOTTOM", gossipFrame, "BOTTOM", 0, 10)
-    submitButton:SetScript("OnClick", function()
-        local text = editBox:GetText()
-        local isValid, errors = ValidateGossipEntries(text)
-        if isValid then
-            SyncGossipsFromText(text)
-        else
-            for _, error in ipairs(errors) do
-                print(error)
+        scrollFrame:EnableMouseWheel(true)
+        scrollFrame:SetScript("OnMouseWheel", function(self, delta)
+            local min, max = self.ScrollBar:GetMinMaxValues()
+            local curr = self.ScrollBar:GetValue()
+            if delta < 0 and curr < max then
+                self.ScrollBar:SetValue(curr + 20)
+            elseif delta > 0 and curr > min then
+                self.ScrollBar:SetValue(curr - 20)
             end
-        end
-    end)
+        end)
 
-    local helpIcon = gossipFrame:CreateTexture(nil, "OVERLAY")
-    helpIcon:SetTexture("Interface\\COMMON\\help-i")
-    helpIcon:SetSize(32, 32)
-    helpIcon:SetPoint("TOPRIGHT", gossipFrame, "TOPRIGHT", -6, -25)
+        local font = CreateFont("MyEditBoxFont")
+        font:SetFont("Fonts\\ARIALN.TTF", 14, "")
+        font:SetSpacing(7.5)
 
-    helpIcon:EnableMouse(true)
-    helpIcon:SetScript("OnEnter", function(self) -- LOCALIZE
-        GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
-        GameTooltip:SetText("How to Enter Data", 1, 1, 1)
-        GameTooltip:AddLine("• Each line is: npcID,gossipOptionID[,\"CONDITION;VALUE,CONDITION2;VALUE,...\"]", 1,1,1, true)
-        GameTooltip:AddLine("• Simply remove a line from the table and select Submit to remove them from your gossips.", 1,1,1, true)
-        GameTooltip:AddLine("• Use commas to separate entries. Conditions are optional.", 1,1,1, true)
-        GameTooltip:Show()
-    end)
-    helpIcon:SetScript("OnLeave", function()
-        GameTooltip:Hide()
-    end)
+        local editBox = CreateFrame("EditBox", nil, scrollFrame)
+        editBox:SetMultiLine(true)
+        editBox:SetFontObject(font)
+        editBox:SetWidth(scrollFrame:GetWidth() - 30)
+        editBox:SetHeight(scrollFrame:GetHeight() -30)
+        editBox:SetAutoFocus(false)
+        editBox:EnableMouse(true)
+        editBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+        --editBox:SetText(GossipsToText())
+
+        scrollFrame:SetScrollChild(editBox)
+
+        local submitButton = LSU.CreateButton({
+            type = "BasicButton",
+            name = "LSUGossipSubmitButton",
+            parent = gossipFrame,
+            width = 80,
+            height = 25,
+            text = SUBMIT,
+            tooltipText = "Submit the contents of the edit box for processing. If valid, the addon will automate the gossips when appropriate." -- LOCALIZE!
+        })
+        submitButton:SetPoint("BOTTOM", gossipFrame, "BOTTOM", 0, 10)
+        submitButton:SetScript("OnClick", function()
+            local text = editBox:GetText()
+            local isValid, errors = ValidateGossipEntries(text)
+            if isValid then
+                PlaySound(SOUNDKIT.GS_TITLE_OPTION_OK, "Master")
+                SyncGossipsFromText(text)
+            else
+                for _, error in ipairs(errors) do
+                    print(error)
+                end
+            end
+        end)
+
+        local helpIcon = gossipFrame:CreateTexture(nil, "OVERLAY")
+        helpIcon:SetTexture("Interface\\COMMON\\help-i")
+        helpIcon:SetSize(32, 32)
+        helpIcon:SetPoint("TOPRIGHT", gossipFrame, "TOPRIGHT", -6, -25)
+
+        helpIcon:EnableMouse(true)
+        helpIcon:SetScript("OnEnter", function(self) -- LOCALIZE
+            GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
+            GameTooltip:SetText("How to Enter Data", 1, 1, 1)
+            GameTooltip:AddLine("• Each line is: npcID,gossipOptionID[,\"CONDITION;VALUE,CONDITION2;VALUE,...\"]", 1,1,1, true)
+            GameTooltip:AddLine("• Simply remove a line from the table and select Submit to remove them from your gossips.", 1,1,1, true)
+            GameTooltip:AddLine("• Use commas to separate entries. Conditions are optional.", 1,1,1, true)
+            GameTooltip:Show()
+        end)
+        helpIcon:SetScript("OnLeave", function()
+            GameTooltip:Hide()
+        end)
+
+        gossipFrame.editBox = editBox
+        gossipFrame.childrenCreated = true
+    end
+
+    gossipFrame.editBox:SetText(GossipsToText())
 
     gossipFrame:ClearAllPoints()
     gossipFrame:SetPoint("CENTER", UIParent, "CENTER")

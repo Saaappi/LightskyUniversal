@@ -20,10 +20,10 @@ LSU.CreateFrame = function(frameType, frameData)
 
     -- Give the frame sound when being opened and closed
     frame:SetScript("OnShow", function()
-        PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN)
+        PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN, "Master")
     end)
     frame:SetScript("OnHide", function()
-        PlaySound(SOUNDKIT.IG_CHARACTER_INFO_CLOSE)
+        PlaySound(SOUNDKIT.IG_CHARACTER_INFO_CLOSE, "Master")
     end)
 
     if frameData.movable then
