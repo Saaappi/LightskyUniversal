@@ -174,9 +174,13 @@ function LSUOpenGossipsFrame()
         end
     end)
 
+    local font = CreateFont("MyEditBoxFont")
+    font:SetFont("Fonts\\ARIALN.TTF", 14, "")
+    font:SetSpacing(7.5)
+
     local editBox = CreateFrame("EditBox", nil, scrollFrame)
     editBox:SetMultiLine(true)
-    editBox:SetFontObject(ChatFontNormal)
+    editBox:SetFontObject(font)
     editBox:SetWidth(scrollFrame:GetWidth() - 30)
     editBox:SetHeight(scrollFrame:GetHeight() -30)
     editBox:SetAutoFocus(false)
