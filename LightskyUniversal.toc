@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 2505.27
+## Version: 2505.28
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
@@ -32,6 +32,7 @@ Buttons\Gossip.lua
 Buttons\TalentButton.lua
 
 Modules\ChatIcons.lua
+Modules\Checks.lua
 Modules\ChromieTime.lua
 Modules\Cinematics.lua
 Modules\Containers.lua
