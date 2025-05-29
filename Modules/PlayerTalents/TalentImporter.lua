@@ -1,4 +1,5 @@
 local LSU = select(2, ...)
+local L = LSU.L
 
 local defaults = {
     FRAME_BASE_WIDTH = 230,
@@ -91,7 +92,7 @@ local function GetOrCreateFrame()
             width = defaults.FRAME_BASE_WIDTH,
             movable = true
         })
-        state.frame:SetTitle("Talent Importer") -- LOCALIZE!
+        state.frame:SetTitle(L.LABEL_TALENT_IMPORTER)
         state.frame:SetPortraitToAsset(132222)
 
         state.frame.classNameText = state.frame:CreateFontString(nil, "OVERLAY")
@@ -182,9 +183,9 @@ local function CreateClassButtons(frame)
                 editBox:SetScript("OnEnter", function(self)
                     GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
                     if not db or not next(db) then
-                        GameTooltip:SetText("Last Updated: -") -- LOCALIZE!
+                        GameTooltip:SetText(L.TEXT_LAST_UPDATED .. ": -")
                     else
-                        GameTooltip:SetText(string.format("Last Updated: %s (%s)", db.date or "-", db.patch or "-")) -- LOCALIZE!
+                        GameTooltip:SetText(string.format("%s: %s (%s)", L.TEXT_LAST_UPDATED, db.date or "-", db.patch or "-"))
                     end
                     GameTooltip:Show()
                 end)
@@ -195,7 +196,7 @@ local function CreateClassButtons(frame)
             LayoutGridVertical(state.editBoxes, frame, 50, 80, 20)
 
             frame.classNameText:SetText(("|cff%02x%02x%02x%s|r"):format(
-                btn.classColor.r*255, btn.classColor.g*255, btn.classColor.b*255, btn.className
+                btn.classColor.r * 255, btn.classColor.g * 255, btn.classColor.b * 255, btn.className
             ))
             frame.classNameText:Show()
 
@@ -207,7 +208,7 @@ local function CreateClassButtons(frame)
                     width = 80,
                     height = 25,
                     text = "Back",
-                    tooltipText = "Return to class selection." -- LOCALIZE!
+                    tooltipText = L.TALENT_IMPORTER_BACKBUTTON_DESCRIPTION
                 })
                 state.backButton:SetPoint("BOTTOM", frame, "BOTTOM", 0, 7)
                 state.backButton:SetScript("OnClick", function()

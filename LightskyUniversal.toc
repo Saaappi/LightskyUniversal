@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 2505.21
+## Version: 2505.22
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
@@ -18,7 +18,8 @@ Data\Junk.lua
 Data\Talents.lua
 
 # Locale
-Locale.lua
+Locales\enUS.lua
+Locales\Locale.lua
 
 # Functions used throughout the addon.
 Common.lua
