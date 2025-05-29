@@ -18,5 +18,9 @@ LSU.Enum.Blacklisted.Quests = {
     [59583] = { -- Welcome to Stormwind
         isIgnored = true,
         response = ""
+    },
+    [60343] = { -- Welcome to Orgrimmar
+        isIgnored = true,
+        response = ""
     }
 }
