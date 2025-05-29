@@ -47,7 +47,6 @@ Modules\Quest\AdventureMap.lua
 Modules\Quest\Complete.lua
 Modules\Quest\Popup.lua
 Modules\Rare.lua
-Modules\Trainer.lua
 Modules\Transmogrification.lua
 
 KeybindHandler.lua
