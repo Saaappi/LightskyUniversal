@@ -28,6 +28,33 @@ local function ValidateGossipEntries(text)
     return isValid, errors
 end
 
+local function InsertGossipsToDB(text)
+    for lineNum, line in ipairs({strsplit("\n", text)}) do
+        line = strtrim(line)
+        if line ~= "" then
+            local npcID, gossipOptionID, conditionsText = line:match("^(%d+),(%d+),?%s*(.*)$")
+            if npcID and gossipOptionID then
+                npcID = tonumber(npcID)
+                gossipOptionID = tonumber(gossipOptionID)
+                local entry = { gossipOptionID = gossipOptionID }
+                if conditionsText and conditionsText ~= "" then
+                    -- Remove enclosing quotes if present
+                    local raw = conditionsText:match('^"(.*)"$')
+                    if raw then
+                        entry.conditions = {}
+                        -- Split on commas, trim the spaces
+                        for condition in string.gmatch(raw, '[^,]+') do
+                            table.insert(entry.conditions, strtrim(condition))
+                        end
+                    end
+                end
+                LSUDB.Gossips[npcID] = LSUDB.Gossips[npcID] or {}
+                table.insert(LSUDB.Gossips[npcID], entry)
+            end
+        end
+    end
+end
+
 gossipFrame:SetTitle("Gossips") -- LOCALIZE!
 gossipFrame:SetPortraitToAsset(2056011)
 
@@ -75,7 +102,7 @@ submitButton:SetScript("OnClick", function()
     local text = editBox:GetText()
     local isValid, errors = ValidateGossipEntries(text)
     if isValid then
-        LSU.Print("All entries are valid!")
+        InsertGossipsToDB(text)
     else
         for _, error in ipairs(errors) do
             print(error)
@@ -88,10 +115,8 @@ gossipFrame:SetPoint("CENTER", UIParent, "CENTER")
 gossipFrame:Show()
 
 local function IsValidGossipNPC(id)
-    if LSU.Enum.Gossips[LSU.Map.ContinentMapID] then
-        if LSU.Enum.Gossips[LSU.Map.ContinentMapID][id] then
-            return true, LSU.Enum.Gossips[LSU.Map.ContinentMapID][id]
-        end
+    if LSUDB.Gossips[id] then
+        return true, LSUDB.Gossips[id]
     end
     return false
 end
@@ -143,7 +168,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                                 for _, gossip in ipairs(gossips) do
                                     local isAllowed = LSU.EvaluateConditions(gossip.conditions)
                                     if isAllowed then
-                                        C_GossipInfo.SelectOption(gossip.optionID)
+                                        C_GossipInfo.SelectOption(gossip.gossipOptionID)
                                         C_Timer.After(.2, function()
                                             StaticPopup1Button1:Click("LeftButton")
                                         end)
