@@ -127,6 +127,15 @@ LSU.IsPlayerInCombat = function()
     end
 end
 
+LSU.IsJunk = function(itemID)
+    for id in pairs(LSUDB.Junk) do
+        if id == itemID then
+            return true
+        end
+    end
+    return false
+end
+
 LSU.EvaluateConditions = function(conditions)
     if not conditions or #conditions == 0 then
         return true

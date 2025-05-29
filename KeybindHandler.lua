@@ -1,4 +1,4 @@
-local addonName, LSU = ...
+local LSU = select(2, ...)
 
 BINDING_HEADER_LIGHTSKY_UNIVERSAL = "Lightsky Universal"
 BINDING_NAME_LSU_MOUNTUP = "Mount Up"
@@ -12,7 +12,11 @@ function LSUKeybindHandler(key)
         if itemName and itemLink then
             local itemID = C_Item.GetItemInfoInstant(itemLink)
             if itemID then
-                print(itemID .. ", -- " .. itemName)
+                if LSU.IsJunk(itemID) then
+                    LSUDB.Junk[itemID] = nil
+                else
+                    LSUDB.Junk[itemID] = true
+                end
             end
         end
     end

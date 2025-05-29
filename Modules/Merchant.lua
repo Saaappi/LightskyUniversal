@@ -28,22 +28,11 @@ local function OnTooltipSetItem(tooltip)
 		local _, _, itemID = TooltipUtil.GetDisplayedItem(tooltip)
 		if not itemID then return end
 
-        for _, id in ipairs(LSU.Enum.Junk) do
-            if id == itemID then
-                AddTextToTooltip(tooltip)
-                return
-            end
+        if LSU.IsJunk(itemID) then
+            AddTextToTooltip(tooltip)
+            return
         end
 	end
-end
-
-local function IsJunk(itemID)
-    for _, id in ipairs(LSU.Enum.Junk) do
-        if id == itemID then
-            return true
-        end
-    end
-    return false
 end
 
 MerchantFrame:HookScript("OnShow", function()
@@ -59,7 +48,7 @@ MerchantFrame:HookScript("OnShow", function()
                         for slotID, item in pairs(bag) do
                             if item and item.itemLink then
                                 local bagID = Syndicator.Constants.AllBagIndexes[index]
-                                if IsJunk(item.itemID) then
+                                if LSU.IsJunk(item.itemID) then
                                     C_Container.UseContainerItem(bagID, slotID)
                                 end
                             end
