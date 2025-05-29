@@ -10,7 +10,3 @@ if L_locale then
 end
 
 LSU.L = L
-
-LSU.Locale = {
-    STDOUT_QUEST_REWARD_SAME_DIFF = "All quest rewards offered the same item level difference. Choosing a random reward...",
-}

@@ -74,7 +74,6 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
 
                 local numBetterRewards = #bestRewardIndices
                 if numBetterRewards > 0 then
-                    LSU.Print(LSU.Locale.STDOUT_QUEST_REWARD_SAME_DIFF)
                     local chosenIndex = bestRewardIndices[math.random(1, numBetterRewards)]
                     GetQuestReward(chosenIndex)
                 else
