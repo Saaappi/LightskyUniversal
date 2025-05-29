@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 2505.26
+## Version: 2505.27
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
@@ -36,16 +36,18 @@ Modules\ChromieTime.lua
 Modules\Cinematics.lua
 Modules\Containers.lua
 Modules\Gossip.lua
-Modules\Merchant.lua
+Modules\Merchants\Merchant.lua
+Modules\Merchants\Trainer.lua
 Modules\Mount.lua
 Modules\NewCharacter.lua
+Modules\PlayerTalents\PlayerTalents.lua
+Modules\PlayerTalents\TalentImporter.lua
 Modules\Quest\Accept.lua
 Modules\Quest\AdventureMap.lua
 Modules\Quest\Complete.lua
 Modules\Quest\Popup.lua
 Modules\Rare.lua
-Modules\PlayerTalents\PlayerTalents.lua
-Modules\PlayerTalents\TalentImporter.lua
+Modules\Trainer.lua
 Modules\Transmogrification.lua
 
 KeybindHandler.lua
