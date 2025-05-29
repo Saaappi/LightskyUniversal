@@ -26,8 +26,7 @@ GossipFrame:HookScript("OnShow", function()
                 local id = LSU.Split(guid, "-", 6)
                 print(id .. " - |cff45BA5F" .. name .. "|r")
                 for _, option in ipairs(options) do
-                    print("  " .. "|cffBA45A0" .. option.gossipOptionID .. "|r")
-                    print("    " .. option.name)
+                    print(string.format("|cffBA45A0%s|r - %s", option.gossipOptionID, option.name))
                 end
             else
                 LSU.PrintWarning(L.TEXT_COULD_NOT_RETRIEVE_NPC_INFO)
