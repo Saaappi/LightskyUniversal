@@ -107,22 +107,19 @@ function LSUOpenGossipsFrame()
                     npcID = tonumber(npcID)
                     gossipOptionID = tonumber(gossipOptionID)
                     local newConditions = nil
-                    --local entry = { gossipOptionID = gossipOptionID }
                     if conditionsText and conditionsText ~= "" then
                         -- Remove enclosing quotes if present
                         local raw = conditionsText:match('^"(.*)"$')
                         if raw then
                             newConditions = {}
-                            --entry.conditions = {}
                             -- Split on commas, trim the spaces
                             for condition in string.gmatch(raw, '[^,]+') do
-                                --table.insert(entry.conditions, strtrim(condition))
                                 table.insert(newConditions, strtrim(condition))
                             end
                         end
                     end
+
                     LSUDB.Gossips[npcID] = LSUDB.Gossips[npcID] or {}
-                    --table.insert(LSUDB.Gossips[npcID], entry)
                     local found = false
                     for _, entry in ipairs(LSUDB.Gossips[npcID]) do
                         if entry.gossipOptionID == gossipOptionID then
@@ -150,8 +147,15 @@ function LSUOpenGossipsFrame()
     local function GossipsToText()
         local lines = {}
         if LSUDB and LSUDB.Gossips then
-            for npcID, entries in pairs(LSUDB.Gossips) do
-                for _, entry in ipairs(entries) do
+            local npcIDs = {}
+            for npcID in pairs(LSUDB.Gossips) do
+                table.insert(npcIDs, npcID)
+            end
+            table.sort(npcIDs, function(a, b) return tonumber(a) < tonumber(b) end)
+
+            -- Output the gossips in order
+            for _, npcID in ipairs(npcIDs) do
+                for _, entry in ipairs(LSUDB.Gossips[npcID]) do
                     local line = tostring(npcID) .. "," .. tostring(entry.gossipOptionID)
                     if entry.conditions and #entry.conditions > 0 then
                         line = line .. ',\"' .. table.concat(entry.conditions, ",") .. '\"'
