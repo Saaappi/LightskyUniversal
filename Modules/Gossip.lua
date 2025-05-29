@@ -212,6 +212,24 @@ function LSUOpenGossipsFrame()
         end
     end)
 
+    local helpIcon = gossipFrame:CreateTexture(nil, "OVERLAY")
+    helpIcon:SetTexture("Interface\\COMMON\\help-i")
+    helpIcon:SetSize(32, 32)
+    helpIcon:SetPoint("TOPRIGHT", gossipFrame, "TOPRIGHT", -6, -25)
+
+    helpIcon:EnableMouse(true)
+    helpIcon:SetScript("OnEnter", function(self) -- LOCALIZE
+        GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
+        GameTooltip:SetText("How to Enter Data", 1, 1, 1)
+        GameTooltip:AddLine("• Each line is: npcID,gossipOptionID[,\"CONDITION;VALUE,CONDITION2;VALUE,...\"]", 1,1,1, true)
+        GameTooltip:AddLine("• Simply remove a line from the table and select Submit to remove them from your gossips.", 1,1,1, true)
+        GameTooltip:AddLine("• Use commas to separate entries. Conditions are optional.", 1,1,1, true)
+        GameTooltip:Show()
+    end)
+    helpIcon:SetScript("OnLeave", function()
+        GameTooltip:Hide()
+    end)
+
     gossipFrame:ClearAllPoints()
     gossipFrame:SetPoint("CENTER", UIParent, "CENTER")
     gossipFrame:Show()
