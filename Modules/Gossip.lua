@@ -98,7 +98,7 @@ function LSUOpenGossipsFrame()
         return isValid, errors
     end
 
-    local function InsertGossipsToDB(text)
+    local function InsertOrUpdateGossipsToDB(text)
         for lineNum, line in ipairs({strsplit("\n", text)}) do
             line = strtrim(line)
             if line ~= "" then
@@ -106,20 +106,42 @@ function LSUOpenGossipsFrame()
                 if npcID and gossipOptionID then
                     npcID = tonumber(npcID)
                     gossipOptionID = tonumber(gossipOptionID)
-                    local entry = { gossipOptionID = gossipOptionID }
+                    local newConditions = nil
+                    --local entry = { gossipOptionID = gossipOptionID }
                     if conditionsText and conditionsText ~= "" then
                         -- Remove enclosing quotes if present
                         local raw = conditionsText:match('^"(.*)"$')
                         if raw then
-                            entry.conditions = {}
+                            newConditions = {}
+                            --entry.conditions = {}
                             -- Split on commas, trim the spaces
                             for condition in string.gmatch(raw, '[^,]+') do
-                                table.insert(entry.conditions, strtrim(condition))
+                                --table.insert(entry.conditions, strtrim(condition))
+                                table.insert(newConditions, strtrim(condition))
                             end
                         end
                     end
                     LSUDB.Gossips[npcID] = LSUDB.Gossips[npcID] or {}
-                    table.insert(LSUDB.Gossips[npcID], entry)
+                    --table.insert(LSUDB.Gossips[npcID], entry)
+                    local found = false
+                    for _, entry in ipairs(LSUDB.Gossips[npcID]) do
+                        if entry.gossipOptionID == gossipOptionID then
+                            found = true
+                            -- Only update if there are new conditions
+                            if newConditions then
+                                entry.conditions = newConditions
+                            end
+                            break
+                        end
+                    end
+                    -- If not found, add a new entry
+                    if not found then
+                        local newEntry = { gossipOptionID = gossipOptionID }
+                        if newConditions then
+                            newEntry.conditions = newConditions
+                        end
+                        table.insert(LSUDB.Gossips[npcID], newEntry)
+                    end
                 end
             end
         end
@@ -189,7 +211,7 @@ function LSUOpenGossipsFrame()
         local text = editBox:GetText()
         local isValid, errors = ValidateGossipEntries(text)
         if isValid then
-            InsertGossipsToDB(text)
+            InsertOrUpdateGossipsToDB(text)
         else
             for _, error in ipairs(errors) do
                 print(error)
