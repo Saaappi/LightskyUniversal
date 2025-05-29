@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 2505.22
+## Version: 2505.23
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
@@ -45,6 +45,7 @@ Modules\Quest\AdventureMap.lua
 Modules\Quest\Complete.lua
 Modules\Quest\Popup.lua
 Modules\Rare.lua
+Modules\PlayerTalents\PlayerTalents.lua
 Modules\PlayerTalents\TalentImporter.lua
 Modules\Transmogrification.lua
 
