@@ -187,7 +187,6 @@ function LSUOpenGossipsFrame()
         editBox:SetAutoFocus(false)
         editBox:EnableMouse(true)
         editBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
-        --editBox:SetText(GossipsToText())
 
         scrollFrame:SetScrollChild(editBox)
 
