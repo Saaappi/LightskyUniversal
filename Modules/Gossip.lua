@@ -1,5 +1,91 @@
-local addonName, LSU = ...
+local LSU = select(2, ...)
 local eventFrame = CreateFrame("Frame")
+local gossipFrame = LSU.CreateFrame("Portrait", {
+    name = "LSUGossipFrame",
+    parent = UIParent,
+    width = 500,
+    height = 400,
+    movable = true
+})
+
+local function ValidateGossipEntries(text)
+    local isValid = true
+    local errors = {}
+
+    for lineNum, line in ipairs({strsplit("\n", text)}) do
+        line = strtrim(line)
+        if line ~= "" then
+            local npcID, gossipOptionID, conditions = line:match("^(%d+),(%d+),?%s*(.*)$")
+            if not npcID or not gossipOptionID then
+                table.insert(errors, ("Line %d: Invalid format. Expected: <npcID>,<gossipOptionID>,[,\"CONDITION;VALUE,...\"]"):format(lineNum))
+                isValid = false
+            elseif conditions ~= "" and not conditions:match('^".*"$') then
+                table.insert(errors, ("Line %d: If conditions are present, they must be in quotes."):format(lineNum))
+                isValid = false
+            end
+        end
+    end
+    return isValid, errors
+end
+
+gossipFrame:SetTitle("Gossips") -- LOCALIZE!
+gossipFrame:SetPortraitToAsset(2056011)
+
+local scrollFrame = CreateFrame("ScrollFrame", nil, gossipFrame, "UIPanelScrollFrameTemplate")
+scrollFrame:SetWidth(440)
+scrollFrame:SetHeight(300)
+
+scrollFrame:ClearAllPoints()
+scrollFrame:SetPoint("TOPLEFT", gossipFrame, "TOPLEFT", 20, -60)
+scrollFrame:SetPoint("BOTTOMRIGHT", gossipFrame, "BOTTOMRIGHT", -40, 40)
+
+scrollFrame:EnableMouseWheel(true)
+scrollFrame:SetScript("OnMouseWheel", function(self, delta)
+    local min, max = self.ScrollBar:GetMinMaxValues()
+    local curr = self.ScrollBar:GetValue()
+    if delta < 0 and curr < max then
+        self.ScrollBar:SetValue(curr + 20)
+    elseif delta > 0 and curr > min then
+        self.ScrollBar:SetValue(curr - 20)
+    end
+end)
+
+local editBox = CreateFrame("EditBox", nil, scrollFrame)
+editBox:SetMultiLine(true)
+editBox:SetFontObject(GameTooltipTextSmall)
+editBox:SetWidth(scrollFrame:GetWidth() - 30)
+editBox:SetHeight(scrollFrame:GetHeight() -30)
+editBox:SetAutoFocus(false)
+editBox:EnableMouse(true)
+editBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+
+scrollFrame:SetScrollChild(editBox)
+
+local submitButton = LSU.CreateButton({
+    type = "BasicButton",
+    name = "LSUGossipSubmitButton",
+    parent = gossipFrame,
+    width = 80,
+    height = 25,
+    text = "Submit", -- LOCALIZE!
+    tooltipText = "test!" -- LOCALIZE!
+})
+submitButton:SetPoint("BOTTOM", gossipFrame, "BOTTOM", 0, 10)
+submitButton:SetScript("OnClick", function()
+    local text = editBox:GetText()
+    local isValid, errors = ValidateGossipEntries(text)
+    if isValid then
+        LSU.Print("All entries are valid!")
+    else
+        for _, error in ipairs(errors) do
+            print(error)
+        end
+    end
+end)
+
+gossipFrame:ClearAllPoints()
+gossipFrame:SetPoint("CENTER", UIParent, "CENTER")
+gossipFrame:Show()
 
 local function IsValidGossipNPC(id)
     if LSU.Enum.Gossips[LSU.Map.ContinentMapID] then

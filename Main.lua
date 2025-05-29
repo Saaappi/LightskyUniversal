@@ -9,6 +9,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
             if LSUDB == nil then
                 LSUDB = {}
                 LSUDB.Characters = {}
+                LSUDB.Gossips = {}
                 LSUDB.Junk = {}
                 LSUDB.PlayerTalents = {}
             end
