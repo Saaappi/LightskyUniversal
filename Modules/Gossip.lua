@@ -3,8 +3,8 @@ local eventFrame = CreateFrame("Frame")
 local gossipFrame = LSU.CreateFrame("Portrait", {
     name = "LSUGossipFrame",
     parent = UIParent,
-    width = 500,
-    height = 400,
+    width = 650,
+    height = 500,
     movable = true
 })
 
@@ -98,50 +98,35 @@ function LSUOpenGossipsFrame()
         return isValid, errors
     end
 
-    local function InsertOrUpdateGossipsToDB(text)
+    local function SyncGossipsFromText(text)
+        local newGossips = {}
+
+        -- Parse each line and build the new table
         for lineNum, line in ipairs({strsplit("\n", text)}) do
             line = strtrim(line)
             if line ~= "" then
-                local npcID, gossipOptionID, conditionsText = line:match("^(%d+),(%d+),?%s*(.*)$")
+                local npcID, gossipOptionID, conditionsText = line:match('^(%d+),(%d+),?%s*(.*)$')
                 if npcID and gossipOptionID then
                     npcID = tonumber(npcID)
                     gossipOptionID = tonumber(gossipOptionID)
-                    local newConditions = nil
+                    local entry = { gossipOptionID = gossipOptionID }
                     if conditionsText and conditionsText ~= "" then
-                        -- Remove enclosing quotes if present
                         local raw = conditionsText:match('^"(.*)"$')
                         if raw then
-                            newConditions = {}
-                            -- Split on commas, trim the spaces
-                            for condition in string.gmatch(raw, '[^,]+') do
-                                table.insert(newConditions, strtrim(condition))
+                            entry.conditions = {}
+                            for cond in string.gmatch(raw, '[^,]+') do
+                                table.insert(entry.conditions, strtrim(cond))
                             end
                         end
                     end
-
-                    LSUDB.Gossips[npcID] = LSUDB.Gossips[npcID] or {}
-                    local found = false
-                    for _, entry in ipairs(LSUDB.Gossips[npcID]) do
-                        if entry.gossipOptionID == gossipOptionID then
-                            found = true
-                            -- Only update if there are new conditions
-                            if newConditions then
-                                entry.conditions = newConditions
-                            end
-                            break
-                        end
-                    end
-                    -- If not found, add a new entry
-                    if not found then
-                        local newEntry = { gossipOptionID = gossipOptionID }
-                        if newConditions then
-                            newEntry.conditions = newConditions
-                        end
-                        table.insert(LSUDB.Gossips[npcID], newEntry)
-                    end
+                    newGossips[npcID] = newGossips[npcID] or {}
+                    table.insert(newGossips[npcID], entry)
                 end
             end
         end
+
+        -- Overwrite the DB with the new table
+        LSUDB.Gossips = newGossips
     end
 
     local function GossipsToText()
@@ -171,8 +156,8 @@ function LSUOpenGossipsFrame()
     gossipFrame:SetPortraitToAsset(2056011)
 
     local scrollFrame = CreateFrame("ScrollFrame", nil, gossipFrame, "UIPanelScrollFrameTemplate")
-    scrollFrame:SetWidth(440)
-    scrollFrame:SetHeight(300)
+    scrollFrame:SetWidth(590)
+    scrollFrame:SetHeight(400)
 
     scrollFrame:ClearAllPoints()
     scrollFrame:SetPoint("TOPLEFT", gossipFrame, "TOPLEFT", 20, -60)
@@ -215,7 +200,7 @@ function LSUOpenGossipsFrame()
         local text = editBox:GetText()
         local isValid, errors = ValidateGossipEntries(text)
         if isValid then
-            InsertOrUpdateGossipsToDB(text)
+            SyncGossipsFromText(text)
         else
             for _, error in ipairs(errors) do
                 print(error)
