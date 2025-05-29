@@ -1,4 +1,5 @@
-local addonName, LSU = ...
+local LSU = select(2, ...)
+local L = LSU.L
 local eventFrame = CreateFrame("Frame")
 local newCharacterSetupButton
 local button = {
@@ -6,7 +7,7 @@ local button = {
     name = "LSUNewCharacterSetupButton",
     width = 170,
     height = 25,
-    text = "Configure New Character",
+    text = L.LABEL_NEW_CHARACTER_BUTTON,
     point = "CENTER",
     parent = UIParent
 }
@@ -70,7 +71,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
             local guid = UnitGUID("player")
             if not LSUDB.Characters[guid] then
                 -- This must be added after the Player Collector has a chance to harvest its data.
-                button.tooltipText = string.format("Click to configure new character settings for |c%s%s|r.", LSU.Character.ClassColor:GenerateHexColor(), UnitName("player"))
+                button.tooltipText = string.format("%s |c%s%s|r.", L.NEW_CHARACTER_BUTTON_TOOLTIP, LSU.Character.ClassColor:GenerateHexColor(), LSU.Character.Name)
                 newCharacterSetupButton = LSU.CreateButton(button)
                 if newCharacterSetupButton then
                     newCharacterSetupButton:ClearAllPoints()
@@ -99,12 +100,12 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                         end
 
                         StaticPopupDialogs["LSU_NewCharacterConfigurationCompleted"] = {
-                            text = "Configuration completed. Would you like to reload now?",
+                            text = L.TEXT_CONFIGURATION_COMPLETE,
                             button1 = YES,
                             button2 = NO,
                             explicitAcknowledge = true,
                             OnAccept = function()
-                                LSUDB.Characters[guid] = UnitName("player")
+                                LSUDB.Characters[guid] = LSU.Character.Name
                                 C_UI.Reload()
                             end,
                             OnCancel = function() end,
@@ -113,7 +114,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                         StaticPopup_Show("LSU_NewCharacterConfigurationCompleted")
                     end)
                 else
-                    print("Button failed to create: " .. button.name)
+                    LSU.PrintError(string.format("%s: %s", L.TEXT_BUTTON_CREATION_FAILED, button.name))
                 end
             end
         end)

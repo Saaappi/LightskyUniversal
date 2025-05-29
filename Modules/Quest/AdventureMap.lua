@@ -1,4 +1,3 @@
-local addonName, LSU = ...
 local eventFrame = CreateFrame("Frame")
 
 local maps = {

@@ -1,4 +1,5 @@
 local LSU = select(2, ...)
+local L = LSU.L
 local getGossipInfoButton
 local button = {
     type        = "ActionButton",
@@ -6,7 +7,7 @@ local button = {
     parent      = UIParent,
     scale       = 1.05,
     texture     = 4549145,
-    tooltipText = LSU.Locale.BUTTON_DESCRIPTION_GOSSIPINFO
+    tooltipText = L.GOSSIP_INFO_BUTTON_TOOLTIP
 }
 
 GossipFrame:HookScript("OnShow", function()
@@ -29,10 +30,10 @@ GossipFrame:HookScript("OnShow", function()
                     print("    " .. option.name)
                 end
             else
-                LSU.PrintWarning("Could not retrieve NPC information.")
+                LSU.PrintWarning(L.TEXT_COULD_NOT_RETRIEVE_NPC_INFO)
             end
         else
-            LSU.PrintWarning("No gossip options available.")
+            LSU.PrintWarning(L.TEXT_NO_GOSSIP_OPTIONS_AVAILABLE)
         end
     end)
 

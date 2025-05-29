@@ -1,4 +1,5 @@
-local addonName, LSU = ...
+local LSU = select(2, ...)
+local L = LSU.L
 local importerButton
 local applyTalentsButton
 
@@ -12,7 +13,7 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
             parent = talentsFrame.SearchBox,
             scale = 0.5,
             texture = 132222,
-            tooltipText = "Open the talent importer utility. |cffFF8000This will close the talent frame.|r" -- LOCALIZE!
+            tooltipText = L.TALENT_IMPORTER_BUTTON_TOOLTIP
         }
         importerButton = LSU.CreateButton(button)
 
@@ -32,7 +33,7 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
             width = 120,
             height = 25,
             text = "Apply Talents",
-            tooltipText = LSU.Locale.BUTTON_DESCRIPTION_APPLYTALENTS,
+            tooltipText = L.APPLY_TALENTS_BUTTON_TOOLTIP,
             point = "LEFT",
             parent = talentsFrame.SearchBox
         }
@@ -146,7 +147,7 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
         local specID = PlayerUtil.GetCurrentSpecID()
         local treeID = C_ClassTalents.GetTraitTreeForSpec(specID)
         if not treeID then
-            LSU.PrintError("treeID is nil!")
+            LSU.PrintError(L.TEXT.TREEID_IS_NIL)
         end
 
         local importStream = ExportUtil.MakeImportDataStream(importText)
@@ -176,14 +177,14 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
     local function ResetTree()
         local configID = C_ClassTalents.GetActiveConfigID()
         if not configID then
-            LSU.PrintError("configID is nil!")
+            LSU.PrintError(L.TEXT_CONFIG_IS_NIL)
             return false
         end
 
         local specID = PlayerUtil.GetCurrentSpecID()
         local treeID = C_ClassTalents.GetTraitTreeForSpec(specID)
         if not treeID then
-            LSU.PrintError("treeID is nil!")
+            LSU.PrintError(L.TEXT_TREEID_IS_NIL)
             return false
         end
 
@@ -194,7 +195,7 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
     local function ImportText(importText)
         local configID = C_ClassTalents.GetActiveConfigID()
         if not configID then
-            LSU.PrintError("configID is nil!")
+            LSU.PrintError(L.TEXT_CONFIG_IS_NIL)
             return
         end
 
@@ -238,7 +239,7 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
                     end
 
                     if not name then
-                        LSU.PrintError("This is a bad loadout! Try importing a new one.")
+                        LSU.PrintError(L.TEXT_BAD_LOADOUT)
                         DevTools_Dump(entry)
                         break
                     elseif errorRank and entry.ranksPurchased > 1 then

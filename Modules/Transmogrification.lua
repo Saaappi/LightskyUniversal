@@ -1,4 +1,5 @@
 local LSU = select(2, ...)
+local L = LSU.L
 local eventFrame = CreateFrame("Frame")
 local transmogrificationButton
 local button = {
@@ -7,7 +8,7 @@ local button = {
     parent      = UIParent,
     scale       = 0.9,
     texture     = 1723993,
-    tooltipText = LSU.Locale.BUTTON_DESCRIPTION_TRANSMOGRIFICATION
+    tooltipText = L.TRANSMOG_BUTTON_TOOLTIP
 }
 
 MerchantFrame:HookScript("OnShow", function()

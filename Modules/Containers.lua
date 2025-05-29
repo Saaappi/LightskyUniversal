@@ -1,4 +1,5 @@
 local LSU = select(2, ...)
+local L = LSU.L
 local eventFrame = CreateFrame("Frame")
 local openContainersButton
 local button = {
@@ -7,7 +8,7 @@ local button = {
     parent      = UIParent,
     scale       = 1,
     texture     = 132595,
-    tooltipText = LSU.Locale.BUTTON_DESCRIPTION_CONTAINERS
+    tooltipText = L.CONTAINERS_BUTTON_TOOLTIP
 }
 
 eventFrame:RegisterEvent("ADDON_LOADED")
@@ -39,7 +40,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                                         end
                                     end
                                 else
-                                    LSU.PrintWarning("The {character} variable is nil. Please reload.")
+                                    LSU.PrintWarning(L.TEXT_CHARACTER_VARIABLE_NIL)
                                 end
                             end
                         end)

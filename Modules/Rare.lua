@@ -1,4 +1,5 @@
 local LSU = select(2, ...)
+local L = LSU.L
 local eventFrame = CreateFrame("Frame")
 local seen = {}
 
@@ -15,7 +16,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     local targetIndex = math.random(1, 8)
                     PlaySound(17318, "Master")
                     SetRaidTarget(unitToken, targetIndex)
-                    LSU.Print("|cffFFD700" .. unitName .. "|r has been spotted!")
+                    LSU.Print(string.format("|cffFFD700%s|r %s!", unitName, L.TEXT_RARE_SPOTTED))
                     seen[unitGuid] = true
                 end
             end

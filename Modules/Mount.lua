@@ -1,4 +1,5 @@
-local addonName, LSU = ...
+local LSU = select(2, ...)
+local L = LSU.L
 local secureMountButton = CreateFrame("Button", "LSUSecureMountButton", UIParent, "SecureActionButtonTemplate")
 secureMountButton:SetSize(1, 1)
 secureMountButton:RegisterForClicks("AnyUp", "AnyDown")
@@ -53,7 +54,7 @@ LSU.Mount = function()
 
         local availableSpace = (numFreeSlots / numSlots) * 100
         if availableSpace <= 5 then
-            LSU.Print(LSU.Locale.STDOUT_LOW_INVENTORY_SPACE)
+            LSU.Print(L.TEXT_LOW_INVENTORY_SPACE)
             C_MountJournal.SummonByID(2237) -- Grizzly Hills Packmaster
         end
     end

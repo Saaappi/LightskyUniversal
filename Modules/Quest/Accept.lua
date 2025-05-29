@@ -1,4 +1,4 @@
-local addonName, LSU = ...
+local LSU = select(2, ...)
 local eventFrame = CreateFrame("Frame")
 
 eventFrame:RegisterEvent("QUEST_DETAIL")

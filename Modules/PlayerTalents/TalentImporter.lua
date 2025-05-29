@@ -207,8 +207,8 @@ local function CreateClassButtons(frame)
                     parent = frame,
                     width = 80,
                     height = 25,
-                    text = "Back",
-                    tooltipText = L.TALENT_IMPORTER_BACKBUTTON_DESCRIPTION
+                    text = L.LABEL_TALENT_IMPORTER_BUTTON_BACK,
+                    tooltipText = L.TALENT_IMPORTER_BUTTON_BACK_TOOLTIP
                 })
                 state.backButton:SetPoint("BOTTOM", frame, "BOTTOM", 0, 7)
                 state.backButton:SetScript("OnClick", function()

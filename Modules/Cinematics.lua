@@ -1,4 +1,4 @@
-local addonName, LSU = ...
+local LSU = select(2, ...)
 
 local function IsCutsceneProtected()
     local currentMapID = C_Map.GetBestMapForUnit("player")

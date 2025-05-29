@@ -1,4 +1,5 @@
 local addonName, LSU = ...
+local L = LSU.L
 local sellJunkButton
 local button = {
     type        = "ActionButton",
@@ -6,7 +7,7 @@ local button = {
     parent      = MerchantFrame,
     scale       = 0.75,
     texture     = 133785,
-    tooltipText = LSU.Locale.BUTTON_DESCRIPTION_SELLJUNK
+    tooltipText = L.SELL_JUNK_BUTTON_TOOLTIP
 }
 
 local function AddTextToTooltip(tooltip)
@@ -18,7 +19,7 @@ local function AddTextToTooltip(tooltip)
 	end
 
 	tooltip:AddLine("\n")
-	tooltip:AddLine(CreateAtlasMarkup("auctionhouse-icon-coin-gold") .. " " .. LSU.Locale.TOOLTIP_TEXT_ISJUNK)
+	tooltip:AddLine(CreateAtlasMarkup("auctionhouse-icon-coin-gold") .. " " .. L.SELL_JUNK_TOOLTIP)
 	tooltip:Show()
 end
 
