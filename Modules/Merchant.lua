@@ -36,6 +36,15 @@ local function OnTooltipSetItem(tooltip)
 end
 
 MerchantFrame:HookScript("OnShow", function()
+    if CanMerchantRepair() then
+        local cost = GetRepairAllCost()
+        local money = GetMoney()
+        local reservePercent = 0.33 -- Keep at least 33% of money
+        if cost > 0 and (money - cost) > (money * reservePercent) then
+            RepairAllItems(false)
+        end
+    end
+
     if not sellJunkButton then
         sellJunkButton = LSU.CreateButton(button)
         if sellJunkButton then
