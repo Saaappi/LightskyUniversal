@@ -164,6 +164,10 @@ function LSUOpenGossipsFrame()
         scrollFrame:SetPoint("TOPLEFT", gossipFrame, "TOPLEFT", 20, -60)
         scrollFrame:SetPoint("BOTTOMRIGHT", gossipFrame, "BOTTOMRIGHT", -40, 40)
 
+        local scrollBG = scrollFrame:CreateTexture(nil, "BACKGROUND")
+        scrollBG:SetAllPoints(scrollFrame)
+        scrollBG:SetColorTexture(0.1, 0.1, 0.1, 0.3)
+
         scrollFrame:EnableMouseWheel(true)
         scrollFrame:SetScript("OnMouseWheel", function(self, delta)
             local min, max = self.ScrollBar:GetMinMaxValues()
@@ -187,6 +191,13 @@ function LSUOpenGossipsFrame()
         editBox:SetAutoFocus(false)
         editBox:EnableMouse(true)
         editBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+        editBox:SetScript("OnTextChanged", function(self, userInput)
+            if not userInput then -- Only auto-scroll when programmatically changed (e.g., paste)
+                local sf = self:GetParent()
+                local _, max = sf.ScrollBar:GetMinMaxValues()
+                sf:SetVerticalScroll(max)
+            end
+        end)
 
         scrollFrame:SetScrollChild(editBox)
 
