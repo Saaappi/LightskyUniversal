@@ -249,6 +249,6 @@ function LSUOpenGossipsFrame()
     gossipFrame.editBox:SetText(GossipsToText())
 
     gossipFrame:ClearAllPoints()
-    gossipFrame:SetPoint("CENTER", UIParent, "CENTER")
+    gossipFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 160)
     gossipFrame:Show()
 end
