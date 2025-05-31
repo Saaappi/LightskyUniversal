@@ -187,7 +187,7 @@ function LSUOpenGossipsFrame()
         editBox:SetMultiLine(true)
         editBox:SetFontObject(font)
         editBox:SetWidth(scrollFrame:GetWidth() - 30)
-        editBox:SetHeight(scrollFrame:GetHeight() -30)
+        editBox:SetHeight(scrollFrame:GetHeight() - 30)
         editBox:SetAutoFocus(false)
         editBox:EnableMouse(true)
         editBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
@@ -196,6 +196,13 @@ function LSUOpenGossipsFrame()
                 local sf = self:GetParent()
                 local _, max = sf.ScrollBar:GetMinMaxValues()
                 sf:SetVerticalScroll(max)
+            end
+        end)
+
+        scrollFrame:EnableMouse(true)
+        scrollFrame:SetScript("OnMouseDown", function(self, button)
+            if gossipFrame.editBox then
+                gossipFrame.editBox:SetFocus()
             end
         end)
 
