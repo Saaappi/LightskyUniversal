@@ -78,6 +78,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
     end
 end)
 
+local allGossipTextCache = "" -- Holds the full, unfiltered text for merge logic
 LSU.OpenGossipFrame = function()
     local function ValidateGossipEntries(text)
         local isValid = true
@@ -171,8 +172,8 @@ LSU.OpenGossipFrame = function()
         return table.concat(lines, "\n")
     end
 
-    local function FilteredGossipsToText(filter)
-        local allText = GossipsToText()
+    local function FilteredGossipsToText(filter, sourceText)
+        local allText = sourceText or GossipsToText()
         if not filter or filter == "" then
             return allText
         end
@@ -266,7 +267,7 @@ LSU.OpenGossipFrame = function()
         searchBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
         searchBox:SetScript("OnTextChanged", function(self)
             local filter = self:GetText()
-            gossipFrame.editBox:SetText(FilteredGossipsToText(filter))
+            gossipFrame.editBox:SetText(FilteredGossipsToText(filter, allGossipTextCache))
         end)
 
         local submitButton = LSU.CreateButton({
@@ -280,15 +281,47 @@ LSU.OpenGossipFrame = function()
         })
         submitButton:SetPoint("TOPRIGHT", scrollFrame, "BOTTOMRIGHT", 0, -5)
         submitButton:SetScript("OnClick", function()
-            local text = editBox:GetText()
-            local isValid, errors = ValidateGossipEntries(text)
-            if isValid then
-                PlaySound(SOUNDKIT.GS_TITLE_OPTION_OK, "Master")
-                SyncGossipsFromText(text)
-            else
+            local filter = searchBox:GetText() or ""
+            local editedText = editBox:GetText()
+            local isValid, errors = ValidateGossipEntries(editedText)
+            if not isValid then
                 for _, error in ipairs(errors) do
                     print(error)
                 end
+                return
+            end
+            --[[if isValid then
+                PlaySound(SOUNDKIT.GS_TITLE_OPTION_OK, "Master")
+                SyncGossipsFromText(text)
+            end]]
+            if filter ~= "" then
+                local fullLines = {}
+                for line in allGossipTextCache:gmatch("[^\r\n]+") do
+                    table.insert(fullLines, line)
+                end
+                local filteredSet = {}
+                for line in editedText:gmatch("[^\r\n]+") do
+                    filteredSet[line] = true
+                end
+
+                local mergedLines = {}
+                for _, line in ipairs(fullLines) do
+                    if line:lower():find(filter:lower(), 1, true) then
+                        if filteredSet[line] then
+                            table.insert(mergedLines, line) -- line wasn't deleted, else line was deleted; don't keep it
+                        end
+                    else
+                        table.insert(mergedLines, line) -- line wasn't filtered, so keep as is
+                    end
+                end
+                SyncGossipsFromText(table.concat(mergedLines, "\n"))
+                -- refresh the cache and editbox
+                allGossipTextCache = GossipsToText()
+                gossipFrame.editBox:SetText(FilteredGossipsToText(filter, allGossipTextCache))
+            else
+                SyncGossipsFromText(editedText)
+                allGossipTextCache = GossipsToText()
+                gossipFrame.editBox:SetText(FilteredGossipsToText(filter, allGossipTextCache))
             end
         end)
 
@@ -314,7 +347,10 @@ LSU.OpenGossipFrame = function()
         gossipFrame.childrenCreated = true
     end
 
-    gossipFrame.editBox:SetText(GossipsToText())
+    -- On show: always refresh the cache and show the filtered text for the current filter
+    allGossipTextCache = GossipsToText()
+    local filter = gossipFrame.searchBox and gossipFrame.searchBox:GetText() or ""
+    gossipFrame.editBox:SetText(FilteredGossipsToText(filter, allGossipTextCache))
 
     gossipFrame:ClearAllPoints()
     gossipFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 160)
