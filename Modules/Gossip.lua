@@ -330,16 +330,12 @@ LSU.OpenGossipFrame = function()
 
         helpIcon:EnableMouse(true)
         helpIcon:SetScript("OnEnter", function(self) -- LOCALIZE
-            GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
-            GameTooltip:SetText("How to Enter Data", 1, 1, 1)
-            GameTooltip:AddLine("• Each line is: npcID,gossipOptionID[,\"CONDITION;VALUE,CONDITION2;VALUE,...\"]", 1,1,1, true)
-            GameTooltip:AddLine("• Simply remove a line from the table and select Submit to remove them from your gossips.", 1,1,1, true)
-            GameTooltip:AddLine("• Use commas to separate entries. Conditions are optional.", 1,1,1, true)
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+            GameTooltip:SetText(C_AddOns.GetAddOnMetadata(addonName, "Title"), nil, nil, nil, 1, true)
+            GameTooltip:AddLine(L.TOOLTIP_GOSSIPS_HELP_BUTTON, 1,1,1, true)
             GameTooltip:Show()
         end)
-        helpIcon:SetScript("OnLeave", function()
-            GameTooltip:Hide()
-        end)
+        helpIcon:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
         gossipFrame.editBox = editBox
         gossipFrame.childrenCreated = true
