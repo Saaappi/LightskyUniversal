@@ -39,7 +39,8 @@ L.TOOLTIP_GOSSIPS_SEARCHBOX = "Enter a search query here to filter the above edi
 "|cffFF474CNOTE|r: Your search query can be no more than 30 characters."
 L.TOOLTIP_GOSSIPS_SUBMIT_BUTTON = "Submit the contents of the edit box for processing. If valid, the addon will add them to your Gossips table and automate their selection going forward.\n\n" ..
 "If you submit gossips that are available in the active Gossip Frame, then they will be selected without the need to close and reopen the frame."
-L.TOOLTIP_GOSSIPS_HELP_BUTTON = "Entering data requires the ID of the NPC/GameObject, the ID of the desired gossip option, and optionally a list of conditions.\n\n" ..
+L.TOOLTIP_GOSSIPS_HELP_BUTTON = "|cffFF474CThere is a rough cap on the number of gossips you can store. The exact number will depend on the format of your gossips, but the range is anywhere from 250-275,000.|r\n\n" ..
+"Entering data requires the ID of the NPC/GameObject, the ID of the desired gossip option, and optionally a list of conditions.\n\n" ..
 "The |cff00CCFF<ID>|r for the NPC or GameObject can be found at the top of the GossipFrame when interacting with the target. It prefixes the name within [].\n\n" ..
 "The |cff00CCFF<GossipOptionID>|r can be found before the text of the option within []. It's the number in the |cffBA45A0mulberry|r color.\n\n" ..
 "Conditions are slightly more complicated and can be daisy chained together. Condition types are case sensitive and should always be CAPITALIZED! Condition types and their values should always be separated by a semicolon. Supported conditions and how to format them can be seen below:\n\n" ..
