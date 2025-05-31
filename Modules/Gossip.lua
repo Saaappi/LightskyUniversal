@@ -127,6 +127,24 @@ LSU.OpenGossipFrame = function()
 
         -- Overwrite the DB with the new table
         LSUDB.Gossips = newGossips
+
+        -- Quality of life: The GossipFrame is likely open, so process the new options immediately
+        if GossipFrame and GossipFrame:IsShown() then
+            local guid = UnitGUID("npc")
+            local id = LSU.Split(guid, "-", 6)
+            if id and LSUDB.Gossips[id] then
+                local gossips = LSUDB.Gossips[id]
+                local options = C_GossipInfo.GetOptions()
+                for _, entry in ipairs(gossips) do
+                    for _, option in ipairs(options) do
+                        if option.gossipOptionID == entry.gossipOptionID then
+                            C_GossipInfo.SelectOption(option.gossipOptionID)
+                            return
+                        end
+                    end
+                end
+            end
+        end
     end
 
     local function GossipsToText()
