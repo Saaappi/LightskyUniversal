@@ -224,18 +224,18 @@ LSU.OpenGossipFrame = function()
         paddingFrame:SetWidth(scrollFrame:GetWidth())
         paddingFrame:SetHeight(scrollFrame:GetHeight())
 
-        local editBox = CreateFrame("EditBox", nil, paddingFrame)
-        editBox:SetMultiLine(true)
-        editBox:SetFontObject(font)
-        editBox:SetWidth(scrollFrame:GetWidth() - 30)
-        editBox:SetHeight(scrollFrame:GetHeight() - 30)
+        local editBox = LSU.CreateFrame("EditBox", {
+            parent = paddingFrame,
+            width = scrollFrame:GetWidth() - 30,
+            height = scrollFrame:GetHeight() - 30,
+            isMultiLine = true,
+            font = font,
+            template = ""
+        })
         editBox:SetPoint("TOPLEFT", paddingFrame, "TOPLEFT", paddingX, -paddingY)
         editBox:SetPoint("BOTTOMRIGHT", paddingFrame, "BOTTOMRIGHT", -paddingX, paddingY)
-        editBox:SetAutoFocus(false)
-        editBox:EnableMouse(true)
-        editBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
         editBox:SetScript("OnTextChanged", function(self, userInput)
-            if not userInput then -- Only auto-scroll when programmatically changed (e.g., paste)
+            if not userInput then -- Only auto-scroll when changed
                 local sf = scrollFrame
                 local _, max = sf.ScrollBar:GetMinMaxValues()
                 sf:SetVerticalScroll(max)
@@ -252,19 +252,14 @@ LSU.OpenGossipFrame = function()
         scrollFrame:SetScrollChild(paddingFrame)
 
         -- Search/filter box
-        local searchBox = CreateFrame("EditBox", nil, gossipFrame, "InputBoxTemplate")
-        searchBox:SetSize(200, 25)
+        local searchBox = LSU.CreateFrame("EditBox", {
+            parent = scrollFrame,
+            width = 200,
+            height = 25,
+            maxLetters = 30,
+            tooltipText = L.TOOLTIP_GOSSIPS_SEARCHBOX
+        })
         searchBox:SetPoint("TOPLEFT", scrollFrame, "BOTTOMLEFT", 5, -5)
-        searchBox:SetAutoFocus(false)
-        searchBox:SetMaxLetters(30)
-        searchBox:SetScript("OnEnter", function(self)
-            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-            GameTooltip:SetText(C_AddOns.GetAddOnMetadata(addonName, "Title"), nil, nil, nil, 1, true)
-            GameTooltip:AddLine(L.TOOLTIP_GOSSIPS_SEARCHBOX, 1, 1, 1, true)
-            GameTooltip:Show()
-        end)
-        searchBox:SetScript("OnLeave", function() GameTooltip:Hide() end)
-        searchBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
         searchBox:SetScript("OnTextChanged", function(self)
             local filter = self:GetText()
             gossipFrame.editBox:SetText(FilteredGossipsToText(filter, allGossipTextCache))
