@@ -183,17 +183,25 @@ function LSUOpenGossipsFrame()
         font:SetFont("Fonts\\ARIALN.TTF", 14, "")
         font:SetSpacing(7.5)
 
-        local editBox = CreateFrame("EditBox", nil, scrollFrame)
+        local paddingX = 5
+        local paddingY = 5
+        local paddingFrame = CreateFrame("Frame", nil, scrollFrame)
+        paddingFrame:SetWidth(scrollFrame:GetWidth())
+        paddingFrame:SetHeight(scrollFrame:GetHeight())
+
+        local editBox = CreateFrame("EditBox", nil, paddingFrame)
         editBox:SetMultiLine(true)
         editBox:SetFontObject(font)
         editBox:SetWidth(scrollFrame:GetWidth() - 30)
         editBox:SetHeight(scrollFrame:GetHeight() - 30)
+        editBox:SetPoint("TOPLEFT", paddingFrame, "TOPLEFT", paddingX, -paddingY)
+        editBox:SetPoint("BOTTOMRIGHT", paddingFrame, "BOTTOMRIGHT", -paddingX, paddingY)
         editBox:SetAutoFocus(false)
         editBox:EnableMouse(true)
         editBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
         editBox:SetScript("OnTextChanged", function(self, userInput)
             if not userInput then -- Only auto-scroll when programmatically changed (e.g., paste)
-                local sf = self:GetParent()
+                local sf = scrollFrame
                 local _, max = sf.ScrollBar:GetMinMaxValues()
                 sf:SetVerticalScroll(max)
             end
@@ -206,7 +214,7 @@ function LSUOpenGossipsFrame()
             end
         end)
 
-        scrollFrame:SetScrollChild(editBox)
+        scrollFrame:SetScrollChild(paddingFrame)
 
         local submitButton = LSU.CreateButton({
             type = "BasicButton",
