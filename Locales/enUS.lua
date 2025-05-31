@@ -25,7 +25,7 @@ L.TEXT_LAST_UPDATED = "Last Updated"
 L.TEXT_LOW_INVENTORY_SPACE = "Inventory space is 5% or less. Summoning a vendor mount..."
 L.TEXT_RARE_SPOTTED = "has been spotted"
 
-
+L.TITLE_GOSSIPS = "Gossips"
 
 L.TOOLTIP_GOSSIPS_OPEN_BUTTON = "Click to open the Gossips utility."
 L.TOOLTIP_GOSSIPS_SEARCHBOX = "Enter a search query here to filter the above edit box, making it significantly easier to locate what you're looking for.\n\n" ..

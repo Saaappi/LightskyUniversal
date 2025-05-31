@@ -187,7 +187,7 @@ LSU.OpenGossipFrame = function()
         return table.concat(filteredLines, "\n")
     end
 
-    gossipFrame:SetTitle("Gossips") -- LOCALIZE!
+    gossipFrame:SetTitle(L.TITLE_GOSSIPS)
     gossipFrame:SetPortraitToAsset(2056011)
 
     if not gossipFrame.childrenCreated then
@@ -329,7 +329,7 @@ LSU.OpenGossipFrame = function()
         helpIcon:SetPoint("TOPRIGHT", gossipFrame, "TOPRIGHT", -6, -25)
 
         helpIcon:EnableMouse(true)
-        helpIcon:SetScript("OnEnter", function(self) -- LOCALIZE
+        helpIcon:SetScript("OnEnter", function(self)
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
             GameTooltip:SetText(C_AddOns.GetAddOnMetadata(addonName, "Title"), nil, nil, nil, 1, true)
             GameTooltip:AddLine(L.TOOLTIP_GOSSIPS_HELP_BUTTON, 1,1,1, true)
