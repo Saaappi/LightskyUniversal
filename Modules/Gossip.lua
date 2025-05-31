@@ -1,4 +1,4 @@
-local LSU = select(2, ...)
+local addonName, LSU = ...
 local eventFrame = CreateFrame("Frame")
 local gossipFrame = LSU.CreateFrame("Portrait", {
     name = "LSUGossipFrame",
@@ -7,6 +7,7 @@ local gossipFrame = LSU.CreateFrame("Portrait", {
     height = 500,
     movable = true
 })
+local L = LSU.L
 
 local function IsValidGossipNPC(id)
     if LSUDB.Gossips[id] then
@@ -170,6 +171,21 @@ LSU.OpenGossipFrame = function()
         return table.concat(lines, "\n")
     end
 
+    local function FilteredGossipsToText(filter)
+        local allText = GossipsToText()
+        if not filter or filter == "" then
+            return allText
+        end
+        local filteredLines = {}
+        filter = filter:lower()
+        for line in allText:gmatch("[^\r\n]+") do
+            if line:lower():find(filter, 1, true) then
+                table.insert(filteredLines, line)
+            end
+        end
+        return table.concat(filteredLines, "\n")
+    end
+
     gossipFrame:SetTitle("Gossips") -- LOCALIZE!
     gossipFrame:SetPortraitToAsset(2056011)
 
@@ -234,6 +250,25 @@ LSU.OpenGossipFrame = function()
 
         scrollFrame:SetScrollChild(paddingFrame)
 
+        -- Search/filter box
+        local searchBox = CreateFrame("EditBox", nil, gossipFrame, "InputBoxTemplate")
+        searchBox:SetSize(200, 25)
+        searchBox:SetPoint("TOPLEFT", scrollFrame, "BOTTOMLEFT", 5, -5)
+        searchBox:SetAutoFocus(false)
+        searchBox:SetMaxLetters(30)
+        searchBox:SetScript("OnEnter", function(self)
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+            GameTooltip:SetText(C_AddOns.GetAddOnMetadata(addonName, "Title"), nil, nil, nil, 1, true)
+            GameTooltip:AddLine(L.TOOLTIP_GOSSIPS_SEARCHBOX, 1, 1, 1, true)
+            GameTooltip:Show()
+        end)
+        searchBox:SetScript("OnLeave", function() GameTooltip:Hide() end)
+        searchBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+        searchBox:SetScript("OnTextChanged", function(self)
+            local filter = self:GetText()
+            gossipFrame.editBox:SetText(FilteredGossipsToText(filter))
+        end)
+
         local submitButton = LSU.CreateButton({
             type = "BasicButton",
             name = "LSUGossipSubmitButton",
@@ -241,9 +276,9 @@ LSU.OpenGossipFrame = function()
             width = 80,
             height = 25,
             text = SUBMIT,
-            tooltipText = "Submit the contents of the edit box for processing. If valid, the addon will automate the gossips when appropriate." -- LOCALIZE!
+            tooltipText = L.TOOLTIP_GOSSIPS_SUBMIT_BUTTON
         })
-        submitButton:SetPoint("BOTTOM", gossipFrame, "BOTTOM", 0, 10)
+        submitButton:SetPoint("TOPRIGHT", scrollFrame, "BOTTOMRIGHT", 0, -5)
         submitButton:SetScript("OnClick", function()
             local text = editBox:GetText()
             local isValid, errors = ValidateGossipEntries(text)

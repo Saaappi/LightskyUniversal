@@ -24,6 +24,13 @@ L.TEXT_NO_GOSSIP_OPTIONS_AVAILABLE = "No gossip options available."
 L.TEXT_LAST_UPDATED = "Last Updated"
 L.TEXT_LOW_INVENTORY_SPACE = "Inventory space is 5% or less. Summoning a vendor mount..."
 L.TEXT_RARE_SPOTTED = "has been spotted"
-L.TOOLTIP_OPEN_GOSSIPS_BUTTON = "Click to open the Gossips utility."
+
+
+
+L.TOOLTIP_GOSSIPS_OPEN_BUTTON = "Click to open the Gossips utility."
+L.TOOLTIP_GOSSIPS_SEARCHBOX = "Enter a search query here to filter the above edit box, making it significantly easier to locate what you're looking for.\n\n" ..
+"|cffFF474CNOTE|r: Your search query can be no more than 30 characters."
+L.TOOLTIP_GOSSIPS_SUBMIT_BUTTON = "Submit the contents of the edit box for processing. If valid, the addon will add them to your Gossips table and automate their selection going forward.\n\n" ..
+"If you submit gossips that are available in the active Gossip Frame, then they will be selected without the need to close and reopen the frame."
 
 LSU.L = L

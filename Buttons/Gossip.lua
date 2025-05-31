@@ -7,7 +7,7 @@ local button = {
     parent      = UIParent,
     scale       = 1.05,
     texture     = 2056011,
-    tooltipText = L.TOOLTIP_OPEN_GOSSIPS_BUTTON
+    tooltipText = L.TOOLTIP_GOSSIPS_OPEN_BUTTON
 }
 
 GossipFrame:HookScript("OnShow", function()
