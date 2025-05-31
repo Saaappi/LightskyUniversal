@@ -290,10 +290,8 @@ LSU.OpenGossipFrame = function()
                 end
                 return
             end
-            --[[if isValid then
-                PlaySound(SOUNDKIT.GS_TITLE_OPTION_OK, "Master")
-                SyncGossipsFromText(text)
-            end]]
+
+            PlaySound(SOUNDKIT.GS_TITLE_OPTION_OK, "Master")
             if filter ~= "" then
                 local fullLines = {}
                 for line in allGossipTextCache:gmatch("[^\r\n]+") do
