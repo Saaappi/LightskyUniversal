@@ -21,18 +21,6 @@ local openGossipFrameButtonData = {
 }
 
 GossipFrame:HookScript("OnShow", function()
-    C_Timer.After(0.1, function()
-        local guid = UnitGUID("npc")
-        if guid then
-            local id = LSU.Split(guid, "-", 6)
-            local text = GossipFrameTitleText:GetText()
-            if text and tonumber(id) then
-                text = string.format("[|cffFFFFFF%d|r] ", id) .. text
-                GossipFrameTitleText:SetText(text)
-            end
-        end
-    end)
-
     if not getGossipInfoButton then
         getGossipInfoButton = LSU.CreateButton(button)
     end
@@ -65,4 +53,22 @@ end)
 GossipFrame:HookScript("OnHide", function()
     getGossipInfoButton:Hide()
     openGossipFrameButton:Hide()
+end)
+
+hooksecurefunc(GossipFrame, "Update", function(self)
+    local guid = UnitGUID("npc")
+    if guid then
+        local id = LSU.Split(guid, "-", 6)
+        local text = GossipFrameTitleText:GetText()
+        if text and tonumber(id) then
+            text = string.format("[|cffFFFFFF%d|r] ", id) .. text
+            --GossipFrameTitleText:SetText(text)
+            GossipFrame:SetTitle(text)
+        end
+    end
+    --[[local name
+    for i, option in ipairs(self.gossipOptions) do
+        name = option.name .. ","
+        self.gossipOptions[i].name:SetText(name)
+    end]]
 end)
