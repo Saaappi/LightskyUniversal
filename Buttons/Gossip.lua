@@ -21,6 +21,18 @@ local openGossipFrameButtonData = {
 }
 
 GossipFrame:HookScript("OnShow", function()
+    C_Timer.After(0.1, function()
+        local guid = UnitGUID("npc")
+        if guid then
+            local id = LSU.Split(guid, "-", 6)
+            local text = GossipFrameTitleText:GetText()
+            if text and tonumber(id) then
+                text = string.format("[|cffFFFFFF%d|r] ", id) .. text
+                GossipFrameTitleText:SetText(text)
+            end
+        end
+    end)
+
     if not getGossipInfoButton then
         getGossipInfoButton = LSU.CreateButton(button)
     end
