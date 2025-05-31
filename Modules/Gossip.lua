@@ -77,7 +77,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
     end
 end)
 
-function LSUOpenGossipsFrame()
+LSU.OpenGossipFrame = function()
     local function ValidateGossipEntries(text)
         local isValid = true
         local errors = {}

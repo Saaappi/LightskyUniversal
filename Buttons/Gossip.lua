@@ -1,5 +1,6 @@
 local LSU = select(2, ...)
 local L = LSU.L
+local openGossipFrameButton
 local getGossipInfoButton
 local button = {
     type        = "ActionButton",
@@ -9,10 +10,23 @@ local button = {
     texture     = 4549145,
     tooltipText = L.GOSSIP_INFO_BUTTON_TOOLTIP
 }
+local openGossipFrameButtonData = {
+    type = "BasicButton",
+    name = "LSUOpenGossipFrameButton",
+    width = 170,
+    height = 25,
+    text = L.LABEL_OPEN_GOSSIPS_BUTTON,
+    point = "CENTER",
+    parent = UIParent
+}
 
 GossipFrame:HookScript("OnShow", function()
     if not getGossipInfoButton then
         getGossipInfoButton = LSU.CreateButton(button)
+    end
+
+    if not openGossipFrameButton then
+        openGossipFrameButton = LSU.CreateButton(openGossipFrameButtonData)
     end
 
     getGossipInfoButton:ClearAllPoints()
@@ -36,9 +50,15 @@ GossipFrame:HookScript("OnShow", function()
         end
     end)
 
+    openGossipFrameButton:ClearAllPoints()
+    openGossipFrameButton:SetPoint("BOTTOM", GossipFrame, "TOP", 0, 5)
+    openGossipFrameButton:SetScript("OnClick", LSU.OpenGossipFrame)
+
     getGossipInfoButton:Show()
+    openGossipFrameButton:Show()
 end)
 
 GossipFrame:HookScript("OnHide", function()
     getGossipInfoButton:Hide()
+    openGossipFrameButton:Hide()
 end)

@@ -10,6 +10,7 @@ L.CONTAINERS_BUTTON_TOOLTIP = "Click to open container items from your inventory
 L.GOSSIP_INFO_BUTTON_TOOLTIP = "Click to get information about available gossip options."
 L.LABEL_TALENT_IMPORTER = "Talent Importer"
 L.LABEL_NEW_CHARACTER_BUTTON = "Configure New Character"
+L.LABEL_OPEN_GOSSIPS_BUTTON = "Open Gossips"
 L.LABEL_TALENT_IMPORTER_BUTTON_BACK = "Back"
 L.NEW_CHARACTER_BUTTON_TOOLTIP = "Click to configure new character settings for"
 L.SELL_JUNK_TOOLTIP = "|cffFFFFFFThis item is junk!|r"
