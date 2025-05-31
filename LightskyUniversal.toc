@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 2505.34
+## Version: 2505.35
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
@@ -20,6 +20,7 @@ Locales\enUS.lua
 Locales\Locale.lua
 
 # Functions used throughout the addon.
+API.lua
 Common.lua
 
 # Frames
