@@ -59,11 +59,10 @@ hooksecurefunc(GossipFrame, "Update", function(self)
     local guid = UnitGUID("npc")
     if guid then
         local id = LSU.Split(guid, "-", 6)
-        local text = GossipFrameTitleText:GetText()
+        local text = self.TitleContainer.TitleText:GetText()
         if text and tonumber(id) then
             text = string.format("[|cffFFFFFF%d|r] ", id) .. text
-            --GossipFrameTitleText:SetText(text)
-            GossipFrame:SetTitle(text)
+            self:SetGossipTitle(text)
         end
     end
     --[[local name
