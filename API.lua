@@ -1,7 +1,7 @@
-local addonName, LSU = ...
+local LSU = select(2, ...)
 
--- Adapter for GOSSIP_SHOW event
-LSU.GossipAPI = function()
+-- API for GOSSIP_SHOW event
+LSU.QuestGossipShowAPI = function()
     return {
         getNumActive = C_GossipInfo.GetNumActiveQuests,
         getActive = C_GossipInfo.GetActiveQuests,
@@ -14,8 +14,8 @@ LSU.GossipAPI = function()
     }
 end
 
--- Adapter for QUEST_GREETING event
-LSU.ClassicAPI = function()
+-- API for QUEST_GREETING event
+LSU.QuestGreetingAPI = function()
     return {
         getNumActive = GetNumActiveQuests,
         getActive = function()

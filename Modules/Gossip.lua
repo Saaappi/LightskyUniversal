@@ -20,7 +20,7 @@ eventFrame:RegisterEvent("GOSSIP_SHOW")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "GOSSIP_SHOW" then
         C_Timer.After(0.15, function()
-            LSU.ProcessQuestsSequentially(LSU.GossipAPI())
+            LSU.ProcessQuestsSequentially(LSU.QuestGossipShowAPI())
         end)
         C_Timer.After(0.35, function()
             local options = C_GossipInfo.GetOptions()
