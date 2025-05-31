@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 2505.29
+## Version: 2505.30
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
@@ -13,7 +13,6 @@ Harvesters\PlayerHarvester.lua
 # Where all "static" addon data is stored.
 Data\Enum.lua
 Data\Blacklist.lua
-Data\Gossips.lua
 Data\Talents.lua
 
 # Locale
