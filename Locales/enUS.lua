@@ -8,8 +8,6 @@ L.TEXT_CONFIG_IS_NIL = "configID is nil!"
 L.TEXT_TREEID_IS_NIL = "treeID is nil!"
 L.CONTAINERS_BUTTON_TOOLTIP = "Click to open container items from your inventory."
 L.LABEL_TALENT_IMPORTER = "Talent Importer"
-L.LABEL_NEW_CHARACTER_BUTTON = "Configure New Character"
-L.LABEL_OPEN_GOSSIPS_BUTTON = "Open Gossips"
 L.LABEL_TALENT_IMPORTER_BUTTON_BACK = "Back"
 L.NEW_CHARACTER_BUTTON_TOOLTIP = "Click to configure new character settings for"
 L.SELL_JUNK_TOOLTIP = "|cffFFFFFFThis item is junk!|r"
@@ -25,8 +23,17 @@ L.TEXT_LAST_UPDATED = "Last Updated"
 L.TEXT_LOW_INVENTORY_SPACE = "Inventory space is 5% or less. Summoning a vendor mount..."
 L.TEXT_RARE_SPOTTED = "has been spotted"
 
+-- Button labels
+L.LABEL_NEWCHARACTER_BUTTON = "Configure New Character"
+
+-- Popups
+L.POPUP_NEWCHARACTER_TEXT = "Character configuration completed. Would you like to reload now?\n\n" ..
+"|cffFF474CNOTE|r: This is recommended to guarantee the settings are saved server side."
+
+-- Frame titles
 L.TITLE_GOSSIPS = "Gossips"
 
+-- Tooltips
 L.TOOLTIP_GOSSIPS_OPEN_BUTTON = "Click to open the Gossips utility."
 L.TOOLTIP_GOSSIPS_SEARCHBOX = "Enter a search query here to filter the above edit box, making it significantly easier to locate what you're looking for.\n\n" ..
 "|cffFF474CNOTE|r: Your search query can be no more than 30 characters."

@@ -7,7 +7,7 @@ local button = {
     name = "LSUNewCharacterSetupButton",
     width = 170,
     height = 25,
-    text = L.LABEL_NEW_CHARACTER_BUTTON,
+    text = L.LABEL_NEWCHARACTER_BUTTON,
     point = "CENTER",
     parent = UIParent
 }
@@ -20,8 +20,8 @@ local consoleVariables = {
     { name = "autoInteract", value = "1" },
     { name = "autoLootDefault", value = "1" },
     { name = "AutoPushSpellToActionBar", value = "0" },
-    --{ name = "autoQuestProgress", value = "0" },
-    --{ name = "autoQuestWatch", value = "0" },
+    { name = "autoQuestProgress", value = "1" },
+    { name = "autoQuestWatch", value = "1" },
     { name = "bankConfirmTabCleanUp", value = "0" },
     { name = "cameraIndirectVisibility", value = "0" },
     { name = "cameraIndirectOffset", value = "10" },
@@ -81,15 +81,11 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
 
                         C_Minimap.ClearAllTracking()
                         C_EditMode.SetActiveLayout(3)
-                        SetActionBarToggles(
-                            true,
-                            true,
-                            true,
-                            false,
-                            false,
-                            false,
-                            false
-                        )
+
+                        local t1, t2, t3 = GetActionBarToggles()
+                        if not (t1 and t2 and t3) then
+                            SetActionBarToggles(true, true, true, false, false, false, false, false)
+                        end
 
                         SetCurrentTitle(379) -- Esteemed
 
@@ -100,7 +96,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                         end
 
                         StaticPopupDialogs["LSU_NewCharacterConfigurationCompleted"] = {
-                            text = L.TEXT_CONFIGURATION_COMPLETE,
+                            text = L.POPUP_NEWCHARACTER_TEXT,
                             button1 = YES,
                             button2 = NO,
                             explicitAcknowledge = true,
