@@ -37,12 +37,14 @@ hooksecurefunc(GossipFrame, "Update", function(self)
         end
     end
 
-    local numOptions = #(C_GossipInfo.GetOptions())
-    if numOptions > 0 then
-        for index, frame in self.GreetingPanel.ScrollBox:EnumerateFrames() do
+    local options = C_GossipInfo.GetOptions()
+    if options and #options > 0 then
+        local newName
+        for _, frame in self.GreetingPanel.ScrollBox:EnumerateFrames() do
             local frameData = frame:GetData()
-            local optionInfo = frameData.info or self.gossipOptions[index]
-            local newName = string.format("[|cffBA45A0%s|r] ", optionInfo.gossipOptionID) .. optionInfo.name
+            if frameData and frameData.info then
+                newName = string.format("[|cffBA45A0%s|r] ", frameData.info.gossipOptionID) .. frameData.info.name
+            end
             if frame.SetTextAndResize then
                 frame:SetTextAndResize(newName)
             end
