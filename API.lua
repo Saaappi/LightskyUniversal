@@ -122,8 +122,10 @@ LSU.ProcessQuestsAndGossipsSequentially = function(API)
     end
 
     ProcessActiveQuests(1, function()
-        ProcessAvailableQuests(1, function()
-            C_Timer.After(0.25, ProcessAvailableGossips)
+        C_Timer.After(0.25, function()
+            ProcessAvailableQuests(1, function()
+                C_Timer.After(0.25, ProcessAvailableGossips)
+            end)
         end)
     end)
 end
