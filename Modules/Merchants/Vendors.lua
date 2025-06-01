@@ -45,6 +45,19 @@ MerchantFrame:HookScript("OnShow", function()
         end
     end
 
+    --[[local numItems = GetMerchantNumItems()
+    if numItems > 0 then
+        for index = 1, numItems do
+            local itemLink = GetMerchantItemLink(index)
+            if itemLink then
+                local itemType, itemSubType = select(6, C_Item.GetItemInfo(itemLink))
+                if (itemType and itemSubType) and (itemType == "Quest" and itemSubType == "Quest") then
+                    BuyMerchantItem(index, 1)
+                end
+            end
+        end
+    end]]
+
     if not sellJunkButton then
         sellJunkButton = LSU.CreateButton(button)
         if sellJunkButton then
