@@ -150,6 +150,19 @@ LSU.EvaluateConditions = function(conditions)
             if LSU.Character.ChromieTimeExpansionID == expansionID or LSU.Character.Level >= (GetMaxLevelForPlayerExpansion() - 10) then
                 return false
             end
+        elseif conditionType == "OBJECTIVE_COMPLETE" then
+            local questID = tonumber(parts[2])
+            local objectiveIndex = tonumber(parts[3])
+            if questID and objectiveIndex then
+                if C_QuestLog.IsOnQuest(questID) then
+                    local objectives = C_QuestLog.GetQuestObjectives(questID)
+                    if not (objectives and objectives[objectiveIndex] and objectives[objectiveIndex].finished) then
+                        return false
+                    end
+                else
+                    return false
+                end
+            end
         elseif conditionType == "OBJECTIVE_INCOMPLETE" then
             local questID = tonumber(parts[2])
             local objectiveIndex = tonumber(parts[3])
@@ -159,6 +172,8 @@ LSU.EvaluateConditions = function(conditions)
                     if objectives and objectives[objectiveIndex] and objectives[objectiveIndex].finished then
                         return false
                     end
+                else
+                    return false
                 end
             end
         elseif conditionType == "QUEST_ACTIVE" then
