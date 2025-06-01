@@ -35,6 +35,25 @@ local function OnTooltipSetItem(tooltip)
 	end
 end
 
+local function GetRequiredQuestItemCountByName(itemName)
+    local requiredCount = 0
+    local questLogEntries = C_QuestLog.GetNumQuestLogEntries and C_QuestLog.GetNumQuestLogEntries() or GetNumQuestLogEntries()
+    for questIndex = 1, questLogEntries do
+        local questID = C_QuestLog.GetQuestIDForLogIndex and C_QuestLog.GetQuestIDForLogIndex(questIndex)
+        if questID then
+            local objectives = C_QuestLog.GetQuestObjectives(questID)
+            if objectives then
+                for _, objective in ipairs(objectives) do
+                    if objective.type == "item" and objective.text and string.find(objective.text, itemName, 1, true) then
+                        requiredCount = requiredCount + (objective.numRequired or 0)
+                    end
+                end
+            end
+        end
+    end
+    return requiredCount
+end
+
 MerchantFrame:HookScript("OnShow", function()
     if CanMerchantRepair() then
         local cost = GetRepairAllCost()
@@ -45,18 +64,26 @@ MerchantFrame:HookScript("OnShow", function()
         end
     end
 
-    --[[local numItems = GetMerchantNumItems()
-    if numItems > 0 then
-        for index = 1, numItems do
-            local itemLink = GetMerchantItemLink(index)
-            if itemLink then
-                local itemType, itemSubType = select(6, C_Item.GetItemInfo(itemLink))
-                if (itemType and itemSubType) and (itemType == "Quest" and itemSubType == "Quest") then
-                    BuyMerchantItem(index, 1)
+    for index = 1, GetMerchantNumItems() do
+        local itemLink = GetMerchantItemLink(index)
+        if itemLink then
+            local itemName, _, _, _, _, itemType, itemSubType = C_Item.GetItemInfo(itemLink)
+            if itemType == "Quest" and itemSubType == "Quest" then
+                local itemID = GetMerchantItemID(index)
+                local requiredCount = GetRequiredQuestItemCountByName(itemName)
+                local ownedCount = C_Item.GetItemCount(itemID, false, false)
+                local toBuy = requiredCount - ownedCount
+                local maxStackCount = GetMerchantItemMaxStack(index)
+                if toBuy > 0 then
+                    while toBuy > 0 do
+                        local purchaseAmount = math.min(toBuy, maxStackCount)
+                        BuyMerchantItem(index, purchaseAmount)
+                        toBuy = toBuy - purchaseAmount
+                    end
                 end
             end
         end
-    end]]
+    end
 
     if not sellJunkButton then
         sellJunkButton = LSU.CreateButton(button)
