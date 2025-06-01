@@ -51,6 +51,7 @@ L.TOOLTIP_GOSSIPS_HELP_BUTTON = "|cffFF474CThere is a rough cap on the number of
 "Format Examples:\n" ..
 "- |cff00CCFF!CT_EXPANSION;10|r: Checks to see if the player is not in the Legion expansion for Chromie Time.\n" ..
 "- |cff00CCFFQUEST_ACTIVE;12345|r: Checks to see if the player is on the quest with an ID of 12345.\n" ..
+"- |cff00CCFFOBJECTIVE_COMPLETE;12345;1|r: Checks to see if the first objective is complete for the quest with an ID of 12345.\n" ..
 "- |cff00CCFFOBJECTIVE_INCOMPLETE;12345;1|r: Checks to see if the first objective is incomplete for the quest with an ID of 12345.\n\n" ..
 "Daisy chaining conditions together is easily done by separating them with a comma:\n" ..
 "- |cff00CCFF!CT_EXPANSION;10,QUEST_ACTIVE;12345|r: First, the addon will check if the player is not in Legion Chromie Time, and then check if they're on the quest with an ID of 12345.\n\n" ..
