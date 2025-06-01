@@ -16,9 +16,12 @@ local function IsValidGossipNPC(id)
     return false
 end
 
+eventFrame:RegisterEvent("GOSSIP_CONFIRM")
 eventFrame:RegisterEvent("GOSSIP_SHOW")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
-    if event == "GOSSIP_SHOW" then
+    if event == "GOSSIP_CONFIRM" then
+        C_Timer.After(0.15, function() StaticPopup1Button1:Click() end)
+    elseif event == "GOSSIP_SHOW" then
         C_Timer.After(0.15, function()
             LSU.ProcessQuestsSequentially(LSU.QuestGossipShowAPI())
         end)
@@ -38,9 +41,6 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                                     local isAllowed = LSU.EvaluateConditions(gossip.conditions)
                                     if isAllowed then
                                         C_GossipInfo.SelectOption(gossip.gossipOptionID)
-                                        C_Timer.After(.2, function()
-                                            StaticPopup1Button1:Click("LeftButton")
-                                        end)
                                     end
                                 end
                             end

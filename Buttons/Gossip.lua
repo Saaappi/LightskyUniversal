@@ -42,11 +42,13 @@ hooksecurefunc(GossipFrame, "Update", function(self)
         local newName
         for _, frame in self.GreetingPanel.ScrollBox:EnumerateFrames() do
             local frameData = frame:GetData()
-            if frameData and frameData.info then
-                newName = string.format("[|cffBA45A0%s|r] %s", frameData.info.gossipOptionID, frameData.info.name)
-            end
-            if frame.SetTextAndResize then
-                frame:SetTextAndResize(newName)
+            if frameData and frameData.buttonType == 3 then -- a buttonType of 3 is a gossip option
+                if frameData.info then
+                    newName = string.format("[|cffBA45A0%s|r] %s", frameData.info.gossipOptionID, frameData.info.name)
+                    if frame.SetTextAndResize then
+                        frame:SetTextAndResize(newName)
+                    end
+                end
             end
         end
         self.GreetingPanel.ScrollBox:FullUpdateInternal() -- this is necessary because the scrollbox doesn't automatically update when the children are resized
