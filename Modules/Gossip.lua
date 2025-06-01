@@ -9,7 +9,7 @@ local gossipFrame = LSU.CreateFrame("Portrait", {
 })
 local L = LSU.L
 
-local function IsValidGossipNPC(id)
+LSU.IsValidGossipNPC = function(id)
     if LSUDB.Gossips[id] then
         return true, LSUDB.Gossips[id]
     end
@@ -23,31 +23,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         C_Timer.After(0.15, function() StaticPopup1Button1:Click() end)
     elseif event == "GOSSIP_SHOW" then
         C_Timer.After(0.15, function()
-            LSU.ProcessQuestsSequentially(LSU.QuestGossipShowAPI())
-        end)
-        C_Timer.After(0.35, function()
-            local options = C_GossipInfo.GetOptions()
-            if options then
-                if #options == 1 and options[1].icon == 132060 then -- The only option is "Show me your wares" or some other variant, so just pick it automatically
-                    C_GossipInfo.SelectOption(options[1].gossipOptionID)
-                else
-                    local guid = UnitGUID("npc")
-                    if guid then
-                        local id = LSU.Split(guid, "-", 6)
-                        if id then
-                            local isValid, gossips = IsValidGossipNPC(id)
-                            if isValid and gossips then
-                                for _, gossip in ipairs(gossips) do
-                                    local isAllowed = LSU.EvaluateConditions(gossip.conditions)
-                                    if isAllowed then
-                                        C_GossipInfo.SelectOption(gossip.gossipOptionID)
-                                    end
-                                end
-                            end
-                        end
-                    end
-                end
-            end
+            LSU.ProcessQuestsAndGossipsSequentially(LSU.QuestGossipShowAPI())
         end)
     end
 end)

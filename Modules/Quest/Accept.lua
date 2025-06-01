@@ -14,7 +14,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
     end
     if event == "QUEST_GREETING" then
         C_Timer.After(0.15, function()
-            LSU.ProcessQuestsSequentially(LSU.QuestGreetingAPI())
+            LSU.ProcessQuestsAndGossipsSequentially(LSU.QuestGreetingAPI())
         end)
     end
 end)

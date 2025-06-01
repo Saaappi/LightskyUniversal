@@ -44,12 +44,14 @@ LSU.QuestGreetingAPI = function()
     }
 end
 
-LSU.ProcessQuestsSequentially = function(API)
+LSU.ProcessQuestsAndGossipsSequentially = function(API)
     -- Turn in completed quests first, then accept new ones
     local function ProcessActiveQuests(i, callback)
         local numActive = API.getNumActive()
         if i > numActive then
-            callback()
+            if callback then
+                callback()
+            end
             return
         end
         local activeQuests = API.getActive()
@@ -64,9 +66,14 @@ LSU.ProcessQuestsSequentially = function(API)
         end
     end
 
-    local function ProcessAvailableQuests(i)
+    local function ProcessAvailableQuests(i, callback)
         local numAvailable = API.getNumAvailable()
-        if i > numAvailable then return end
+        if i > numAvailable then
+            if callback then
+                callback()
+            end
+            return
+        end
         local availableQuests = API.getAvailable()
         local quest = availableQuests[i]
         if quest then
@@ -75,21 +82,48 @@ LSU.ProcessQuestsSequentially = function(API)
             if not isIgnored and not C_QuestLog.IsOnQuest(questID) then
                 API.selectAvailable(quest)
                 C_Timer.After(0.15, function()
-                    ProcessAvailableQuests(i+1)
+                    ProcessAvailableQuests(i+1, callback)
                 end)
             else
                 if response then
                     local func = loadstring(response)
                     if func then func() end
                 end
-                ProcessAvailableQuests(i+1)
+                ProcessAvailableQuests(i+1, callback)
             end
         else
-            ProcessAvailableQuests(i+1)
+            ProcessAvailableQuests(i+1, callback)
+        end
+    end
+
+    local function ProcessAvailableGossips()
+        local options = C_GossipInfo.GetOptions()
+        if options then
+            if #options == 1 and options[1].icon == 132060 then -- The only option is "Show me your wares" or some other variant, so just pick it automatically
+                C_GossipInfo.SelectOption(options[1].gossipOptionID)
+            else
+                local guid = UnitGUID("npc")
+                if guid then
+                    local id = LSU.Split(guid, "-", 6)
+                    if id then
+                        local isValid, gossips = LSU.IsValidGossipNPC(id)
+                        if isValid and gossips then
+                            for _, gossip in ipairs(gossips) do
+                                local isAllowed = LSU.EvaluateConditions(gossip.conditions)
+                                if isAllowed then
+                                    C_GossipInfo.SelectOption(gossip.gossipOptionID)
+                                end
+                            end
+                        end
+                    end
+                end
+            end
         end
     end
 
     ProcessActiveQuests(1, function()
-        ProcessAvailableQuests(1)
+        ProcessAvailableQuests(1, function()
+            C_Timer.After(0.25, ProcessAvailableGossips)
+        end)
     end)
 end
