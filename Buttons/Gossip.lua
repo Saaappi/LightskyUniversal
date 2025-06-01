@@ -47,10 +47,10 @@ hooksecurefunc(GossipFrame, "Update", function(self)
                     newName = string.format("[|cffBA45A0%s|r] %s", frameData.info.gossipOptionID, frameData.info.name)
                     if frame.SetTextAndResize then
                         frame:SetTextAndResize(newName)
+                        frameData.titleOptionButton:Setup(frameData.info) -- this is necessary to inform the view that the data provider has been updated and it should be resized
                     end
                 end
             end
         end
-        self.GreetingPanel.ScrollBox:FullUpdateInternal() -- this is necessary because the scrollbox doesn't automatically update when the children are resized
     end
 end)
