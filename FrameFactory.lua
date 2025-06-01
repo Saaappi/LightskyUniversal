@@ -8,7 +8,7 @@ LSU.CreateFrame = function(frameType, frameData)
     local name = frameData.name or ("LSUFrameAnon" .. math.random(100000))
     local parent = frameData.parent or UIParent
     local width = frameData.width or parent:GetWidth()
-    local height = frameData.height or parent:GetHeight()
+    local height = frameData.height or 0
 
     local frame
     if frameType == "Portrait" then

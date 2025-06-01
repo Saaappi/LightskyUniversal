@@ -8,6 +8,8 @@ local gossipFrame = LSU.CreateFrame("Portrait", {
     movable = true
 })
 local L = LSU.L
+local fontSize = 14
+local fontPadding = 7.5
 
 LSU.IsValidGossipNPC = function(id)
     if LSUDB.Gossips[id] then
@@ -165,26 +167,41 @@ LSU.OpenGossipFrame = function()
         end)
 
         local font = CreateFont("MyEditBoxFont")
-        font:SetFont("Fonts\\ARIALN.TTF", 14, "")
-        font:SetSpacing(7.5)
+        font:SetFont("Fonts\\ARIALN.TTF", fontSize, "")
+        font:SetSpacing(fontPadding)
 
         local paddingX = 5
         local paddingY = 5
         local paddingFrame = CreateFrame("Frame", nil, scrollFrame)
         paddingFrame:SetWidth(scrollFrame:GetWidth())
-        paddingFrame:SetHeight(scrollFrame:GetHeight())
 
         local editBox = LSU.CreateFrame("EditBox", {
             parent = paddingFrame,
             width = scrollFrame:GetWidth() - 30,
-            height = scrollFrame:GetHeight() - 30,
             isMultiLine = true,
             font = font,
             template = ""
         })
         editBox:SetPoint("TOPLEFT", paddingFrame, "TOPLEFT", paddingX, -paddingY)
         editBox:SetPoint("BOTTOMRIGHT", paddingFrame, "BOTTOMRIGHT", -paddingX, paddingY)
+
+        local function UpdateEditBoxHeight()
+            local minHeight = scrollFrame:GetHeight() - 30
+            local text = editBox:GetText() or ""
+            -- count number of lines (at least 1, even when empty)
+            local lines = 1
+            for _ in text:gmatch("\n") do lines = lines + 1 end
+
+            -- the editbox uses a custom font and size (14), plus some padding (7.5)
+            local fontHeight = fontSize + fontPadding
+            local ebHeight = math.max(minHeight, lines * fontHeight + 20) -- 20 is for padding
+
+            editBox:SetHeight(ebHeight)
+            paddingFrame:SetHeight(ebHeight + 10)
+        end
+
         editBox:SetScript("OnTextChanged", function(self, userInput)
+            UpdateEditBoxHeight()
             if not userInput then -- Only auto-scroll when changed
                 local sf = scrollFrame
                 local _, max = sf.ScrollBar:GetMinMaxValues()
@@ -213,6 +230,7 @@ LSU.OpenGossipFrame = function()
         searchBox:SetScript("OnTextChanged", function(self)
             local filter = self:GetText()
             gossipFrame.editBox:SetText(FilteredGossipsToText(filter, allGossipTextCache))
+            UpdateEditBoxHeight()
         end)
 
         local submitButton = LSU.CreateButton({
