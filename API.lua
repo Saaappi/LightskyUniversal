@@ -20,25 +20,29 @@ LSU.QuestGreetingAPI = function()
         getNumActive = GetNumActiveQuests,
         getActive = function()
             local quests = {}
-            for i = 1, GetNumActiveQuests() do
-                quests[i] = {
-                    questID = GetActiveQuestID(i),
-                    isComplete = select(2, GetActiveTitle(i))
+            for index = 1, GetNumActiveQuests() do
+                quests[index] = {
+                    questID = GetActiveQuestID(index),
+                    isComplete = select(2, GetActiveTitle(index)),
+                    index = index
                 }
             end
             return quests
         end,
-        selectActive = function(quest) SelectActiveQuest(quest.questID) end,
+        selectActive = function(quest) SelectActiveQuest(quest.index) end,
         getNumAvailable = GetNumAvailableQuests,
         getAvailable = function()
             local quests = {}
-            for i = 1, GetNumAvailableQuests() do
-                local questID = select(5, GetAvailableQuestInfo(i))
-                quests[i] = { questID = questID }
+            for index = 1, GetNumAvailableQuests() do
+                local questID = select(5, GetAvailableQuestInfo(index))
+                quests[index] = {
+                    questID = questID,
+                    index = index
+                }
             end
             return quests
         end,
-        selectAvailable = function(quest) SelectAvailableQuest(quest.questID) end,
+        selectAvailable = function(quest) SelectAvailableQuest(quest.index) end,
         isComplete = function(quest) return quest.isComplete end,
         getQuestID = function(quest) return quest.questID end
     }
