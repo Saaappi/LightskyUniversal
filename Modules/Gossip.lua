@@ -209,10 +209,63 @@ LSU.OpenGossipFrame = function()
             end
         end)
 
-        scrollFrame:EnableMouse(true)
-        scrollFrame:SetScript("OnMouseDown", function(self, button)
-            if gossipFrame.editBox then
-                gossipFrame.editBox:SetFocus()
+        local lastClickTime = 0
+        local lastClickX, lastClickY = nil, nil
+        local DOUBLE_CLICK_DELAY = 0.3
+        local DOUBLE_CLICK_PIXEL_TOLERANCE = 5
+        editBox:SetScript("OnMouseUp", function(self, button)
+            if button ~= "LeftButton" then return end
+
+            local clickTime = GetTime()
+            local x, y = GetCursorPosition()
+
+            if lastClickTime and (clickTime - lastClickTime) < DOUBLE_CLICK_DELAY
+                and lastClickX and lastClickY
+                and math.abs(x - lastClickX) < DOUBLE_CLICK_PIXEL_TOLERANCE
+                and math.abs(y - lastClickY) < DOUBLE_CLICK_PIXEL_TOLERANCE
+            then
+                local text = self:GetText() or ""
+                if text == "" then return end
+
+                local cursorPos = self:GetCursorPosition() -- 0-based: position *after* the char you clicked
+
+                local wordCharIndex = cursorPos
+                local len = #text
+                local function isWord(i)
+                    return i >= 1 and i <= len and text:sub(i, i):match("[%w_]")
+                end
+
+                -- Step 1: is the char at cursor a word character?
+                if not isWord(wordCharIndex) then
+                    -- Step 2: is the char to the right a word character?
+                    if isWord(wordCharIndex + 1) then
+                        wordCharIndex = wordCharIndex + 1
+                    else
+                        lastClickTime = 0
+                        lastClickX, lastClickY = nil, nil
+                        return
+                    end
+                end
+
+                -- Expand left
+                local left = wordCharIndex
+                while left > 1 and isWord(left - 1) do
+                    left = left - 1
+                end
+
+                -- Expand right
+                local right = wordCharIndex
+                while right < len and isWord(right + 1) do
+                    right = right + 1
+                end
+
+                -- Highlight the word
+                self:HighlightText(left - 1, right)
+                lastClickTime = 0
+                lastClickX, lastClickY = nil, nil
+            else
+                lastClickTime = clickTime
+                lastClickX, lastClickY = GetCursorPosition()
             end
         end)
 
