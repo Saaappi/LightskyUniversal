@@ -26,6 +26,9 @@ L.TEXT_RARE_SPOTTED = "has been spotted"
 -- Button labels
 L.LABEL_NEWCHARACTER_BUTTON = "Configure New Character"
 
+-- Fontstrings
+L.FONTSTRING_GOSSIP_LINE_COUNT_TEXT = "|cffFFFFFF%s|r line(s)"
+
 -- Popups
 L.POPUP_NEWCHARACTER_TEXT = "Character configuration completed. Would you like to reload now?\n\n" ..
 "|cffFF474CNOTE|r: This is recommended to guarantee the settings are saved server side."

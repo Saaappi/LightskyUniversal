@@ -155,6 +155,22 @@ LSU.OpenGossipFrame = function()
         scrollBG:SetAllPoints(scrollFrame)
         scrollBG:SetColorTexture(0.1, 0.1, 0.1, 0.3)
 
+        local gossipCountText = scrollFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+        gossipCountText:SetPoint("BOTTOMRIGHT", scrollFrame, "TOPRIGHT", 0, 5)
+        gossipCountText:SetText(string.format(L.FONTSTRING_GOSSIP_LINE_COUNT_TEXT, "0"))
+
+        local function UpdateGossipCount()
+            local editBox = gossipFrame.editBox
+            if not editBox then return end
+            local text = editBox:GetText() or ""
+            local count = 0
+            for line in text:gmatch("[^\r\n]+") do
+                if strtrim(line) ~= "" then count = count + 1 end
+            end
+            gossipCountText:SetText(string.format(L.FONTSTRING_GOSSIP_LINE_COUNT_TEXT, count))
+        end
+        gossipFrame.UpdateGossipCount = UpdateGossipCount
+
         scrollFrame:EnableMouseWheel(true)
         scrollFrame:SetScript("OnMouseWheel", function(self, delta)
             local min, max = self.ScrollBar:GetMinMaxValues()
@@ -207,6 +223,7 @@ LSU.OpenGossipFrame = function()
                 local _, max = sf.ScrollBar:GetMinMaxValues()
                 sf:SetVerticalScroll(max)
             end
+            UpdateGossipCount()
         end)
 
         local lastClickTime = 0
@@ -283,6 +300,7 @@ LSU.OpenGossipFrame = function()
         searchBox:SetScript("OnTextChanged", function(self)
             local filter = self:GetText()
             gossipFrame.editBox:SetText(FilteredGossipsToText(filter, allGossipTextCache))
+            if gossipFrame.UpdateGossipCount then gossipFrame.UpdateGossipCount() end
             UpdateEditBoxHeight()
         end)
 
@@ -332,10 +350,12 @@ LSU.OpenGossipFrame = function()
                 -- refresh the cache and editbox
                 allGossipTextCache = GossipsToText()
                 gossipFrame.editBox:SetText(FilteredGossipsToText(filter, allGossipTextCache))
+                if gossipFrame.UpdateGossipCount then gossipFrame.UpdateGossipCount() end
             else
                 SyncGossipsFromText(editedText)
                 allGossipTextCache = GossipsToText()
                 gossipFrame.editBox:SetText(FilteredGossipsToText(filter, allGossipTextCache))
+                if gossipFrame.UpdateGossipCount then gossipFrame.UpdateGossipCount() end
             end
         end)
 
@@ -354,6 +374,7 @@ LSU.OpenGossipFrame = function()
         helpIcon:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
         gossipFrame.editBox = editBox
+        gossipFrame.gossipCountText = gossipCountText
         gossipFrame.childrenCreated = true
     end
 
