@@ -48,7 +48,6 @@ hooksecurefunc(GossipFrame, "Update", function(self)
 
     local options = C_GossipInfo.GetOptions()
     if options and #options > 0 then
-        local newName
         for _, frame in self.GreetingPanel.ScrollBox:EnumerateFrames() do
             local frameData = frame:GetData()
             if frameData and frameData.info then
