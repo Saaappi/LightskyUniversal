@@ -241,15 +241,6 @@ LSU.OpenGossipFrame = function()
             end
             UpdateGossipCount()
         end)
-        --[[editBox:SetScript("OnTextChanged", function(self, userInput)
-            UpdateEditBoxHeight()
-            if not userInput then -- Only auto-scroll when changed
-                local sf = scrollFrame
-                local _, max = sf.ScrollBar:GetMinMaxValues()
-                sf:SetVerticalScroll(max)
-            end
-            UpdateGossipCount()
-        end)]]
 
         local lastClickTime = 0
         local lastClickX, lastClickY = nil, nil
