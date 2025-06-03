@@ -218,13 +218,38 @@ LSU.OpenGossipFrame = function()
 
         editBox:SetScript("OnTextChanged", function(self, userInput)
             UpdateEditBoxHeight()
+            if userInput then
+                local cursorPos = editBox:GetCursorPosition()
+                local text = self:GetText() or ""
+                -- find the line the cursor is on
+                local beforeCursor = text:sub(1, cursorPos)
+                local cursorLine = select(2, beforeCursor:gsub("\n", "\n")) + 1
+
+                -- get scrollFrame's visible region
+                local scrollY = scrollFrame:GetVerticalScroll()
+                local viewHeight = scrollFrame:GetHeight()
+                local fontHeight = fontSize + fontPadding
+
+                local cursorY = (cursorLine - 1) * fontHeight -- this is the y offset of the cursor line
+
+                -- if the cursor is above or below the visible area, then scroll to make it visible
+                if cursorY < scrollY then
+                    scrollFrame:SetVerticalScroll(cursorY)
+                elseif cursorY + fontHeight > scrollY + viewHeight then
+                    scrollFrame:SetVerticalScroll(cursorY + fontHeight - viewHeight)
+                end
+            end
+            UpdateGossipCount()
+        end)
+        --[[editBox:SetScript("OnTextChanged", function(self, userInput)
+            UpdateEditBoxHeight()
             if not userInput then -- Only auto-scroll when changed
                 local sf = scrollFrame
                 local _, max = sf.ScrollBar:GetMinMaxValues()
                 sf:SetVerticalScroll(max)
             end
             UpdateGossipCount()
-        end)
+        end)]]
 
         local lastClickTime = 0
         local lastClickX, lastClickY = nil, nil
