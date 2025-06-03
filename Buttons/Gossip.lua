@@ -9,6 +9,15 @@ local button = {
     texture     = 2056011,
     tooltipText = L.TOOLTIP_GOSSIPS_OPEN_BUTTON
 }
+local formatters = {
+    [3] = function(info) return string.format("[|cffBA45A0%s|r] %s", info.gossipOptionID, info.name) end,
+    [4] = function(info) return string.format("[|cffBA45A0%s|r] %s", info.questID, info.title) end,
+}
+
+local function SetTextAndResize(frame, text)
+    frame:SetText(text)
+    frame:Resize()
+end
 
 GossipFrame:HookScript("OnShow", function()
     if not openGossipFrameButton then
@@ -42,12 +51,10 @@ hooksecurefunc(GossipFrame, "Update", function(self)
         local newName
         for _, frame in self.GreetingPanel.ScrollBox:EnumerateFrames() do
             local frameData = frame:GetData()
-            if frameData and frameData.buttonType == 3 then -- a buttonType of 3 is a gossip option
-                if frameData.info then
-                    newName = string.format("[|cffBA45A0%s|r] %s", frameData.info.gossipOptionID, frameData.info.name)
-                    if frame.SetTextAndResize then
-                        frame:SetTextAndResize(newName)
-                    end
+            if frameData and frameData.info then
+                local formatter = formatters[frameData.buttonType]
+                if formatter then
+                    SetTextAndResize(frame, formatter(frameData.info))
                 end
             end
         end
