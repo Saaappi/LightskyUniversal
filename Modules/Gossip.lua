@@ -10,6 +10,8 @@ local gossipFrame = LSU.CreateFrame("Portrait", {
 local L = LSU.L
 local fontSize = 14
 local fontPadding = 7.5
+local history = {}
+local historyPos = 0
 
 LSU.IsValidGossipNPC = function(id)
     if LSUDB.Gossips[id] then
@@ -219,8 +221,15 @@ LSU.OpenGossipFrame = function()
         editBox:SetScript("OnTextChanged", function(self, userInput)
             UpdateEditBoxHeight()
             if userInput then
+                local text = self:GetText()
+
+                -- avoid duplicates for minor moves
+                if history[#history] ~= text then
+                    table.insert(history, text)
+                    historyPos = #history -- keep track of current position
+                end
+
                 local cursorPos = editBox:GetCursorPosition()
-                local text = self:GetText() or ""
                 -- find the line the cursor is on
                 local beforeCursor = text:sub(1, cursorPos)
                 local cursorLine = select(2, beforeCursor:gsub("\n", "\n")) + 1
@@ -240,6 +249,20 @@ LSU.OpenGossipFrame = function()
                 end
             end
             UpdateGossipCount()
+        end)
+
+        editBox:HookScript("OnKeyDown", function(self, key)
+            if IsControlKeyDown() and (key == "z" or key == "Z") then
+                if historyPos > 1 then
+                    historyPos = historyPos - 1
+                    self:SetText(history[historyPos])
+                end
+            elseif IsControlKeyDown() and (key == "y" or key == "Y") then
+                if historyPos < #history then
+                    historyPos = historyPos + 1
+                    self:SetText(history[historyPos])
+                end
+            end
         end)
 
         local lastClickTime = 0
@@ -398,6 +421,8 @@ LSU.OpenGossipFrame = function()
     allGossipTextCache = GossipsToText()
     local filter = gossipFrame.searchBox and gossipFrame.searchBox:GetText() or ""
     gossipFrame.editBox:SetText(FilteredGossipsToText(filter, allGossipTextCache))
+    history = {gossipFrame.editBox:GetText() or ""}
+    historyPos = 1
 
     gossipFrame:ClearAllPoints()
     gossipFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 160)
