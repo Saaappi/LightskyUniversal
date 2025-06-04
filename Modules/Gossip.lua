@@ -94,7 +94,10 @@ LSU.OpenGossipFrame = function()
                 for _, entry in ipairs(gossips) do
                     for _, option in ipairs(options) do
                         if option.gossipOptionID == entry.gossipOptionID then
-                            C_GossipInfo.SelectOption(option.gossipOptionID)
+                            local isAllowed = LSU.EvaluateConditions(entry.conditions)
+                            if isAllowed then
+                                C_GossipInfo.SelectOption(option.gossipOptionID)
+                            end
                             return
                         end
                     end
