@@ -73,7 +73,7 @@ local function SlashHandler(msg, editBox)
             local chromieTimeDropdown = LSU.CreateDropdown(frame, {
                 label = "Chromie Time",
                 tooltipText = "<PH>",
-                options = { "None", "The Burning Crusade", "Wrath of the Lich King", "Cataclysm", "Mists of Pandaria", "Warlords of Draenor", "Legion", "Battle for Azeroth", "Shadowlands", "Dragonflight"},
+                options = { NONE, EXPANSION_NAME1, EXPANSION_NAME2, EXPANSION_NAME3, EXPANSION_NAME4, EXPANSION_NAME5, EXPANSION_NAME6, EXPANSION_NAME7, EXPANSION_NAME8, EXPANSION_NAME9},
                 defaultIndex = 1
             })
             --[[chromieTimeDropdown:SetWidth(250)
