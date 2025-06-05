@@ -43,16 +43,16 @@ local function SlashHandler(msg, editBox)
             local xSpacing = 180
             local ySpacing = -10
             for i, data in ipairs({
-                {label = L.LABEL_SETTINGS_ACCEPT_QUESTS, tooltipText = "test", savedVarKey = "AcceptQuests.Enabled"},
-                {label = L.LABEL_SETTINGS_AUTO_REPAIR, tooltipText = "test", savedVarKey = "AutoRepair.Enabled"},
-                {label = L.LABEL_SETTINGS_AUTO_TRAIN, tooltipText = "test", savedVarKey = "AutoTrain.Enabled"},
-                {label = L.LABEL_SETTINGS_BUY_QUEST_ITEMS, tooltipText = "test", savedVarKey = "BuyQuestItems.Enabled"},
-                {label = L.LABEL_SETTINGS_CHAT_ICONS, tooltipText = "test", savedVarKey = "ChatIcons.Enabled"},
-                {label = L.LABEL_SETTINGS_COMPLETE_QUESTS, tooltipText = "test", savedVarKey = "CompleteQuests.Enabled"},
-                {label = L.LABEL_SETTINGS_GOSSIP, tooltipText = "test", savedVarKey = "Gossip.Enabled"},
-                {label = L.LABEL_SETTINGS_PLAYER_TALENTS, tooltipText = "test", savedVarKey = "PlayerTalents.Enabled"},
-                {label = L.LABEL_SETTINGS_RARES, tooltipText = "test", savedVarKey = "Rares.Enabled"},
-                {label = L.LABEL_SETTINGS_READY_CHECKS, tooltipText = "test", savedVarKey = "ReadyChecks.Enabled"},
+                {label = L.LABEL_SETTINGS_ACCEPT_QUESTS, tooltipText = L.TOOLTIP_SETTINGS_ACCEPT_QUESTS, savedVarKey = "AcceptQuests.Enabled"},
+                {label = L.LABEL_SETTINGS_AUTO_REPAIR, tooltipText = L.TOOLTIP_SETTINGS_AUTO_REPAIR, savedVarKey = "AutoRepair.Enabled"},
+                {label = L.LABEL_SETTINGS_AUTO_TRAIN, tooltipText = L.TOOLTIP_SETTINGS_AUTO_TRAIN, savedVarKey = "AutoTrain.Enabled"},
+                {label = L.LABEL_SETTINGS_BUY_QUEST_ITEMS, tooltipText = L.TOOLTIP_SETTINGS_BUY_QUEST_ITEMS, savedVarKey = "BuyQuestItems.Enabled"},
+                {label = L.LABEL_SETTINGS_CHAT_ICONS, tooltipText = L.TOOLTIP_SETTINGS_CHAT_ICONS, savedVarKey = "ChatIcons.Enabled"},
+                {label = L.LABEL_SETTINGS_COMPLETE_QUESTS, tooltipText = L.TOOLTIP_SETTINGS_COMPLETE_QUESTS, savedVarKey = "CompleteQuests.Enabled"},
+                {label = L.LABEL_SETTINGS_GOSSIP, tooltipText = L.TOOLTIP_SETTINGS_GOSSIP, savedVarKey = "Gossip.Enabled"},
+                {label = L.LABEL_SETTINGS_PLAYER_TALENTS, tooltipText = L.TOOLTIP_SETTINGS_PLAYER_TALENTS, savedVarKey = "PlayerTalents.Enabled"},
+                {label = L.LABEL_SETTINGS_RARES, tooltipText = L.TOOLTIP_SETTINGS_RARES, savedVarKey = "Rares.Enabled"},
+                {label = L.LABEL_SETTINGS_READY_CHECKS, tooltipText = L.TOOLTIP_SETTINGS_READY_CHECKS, savedVarKey = "ReadyChecks.Enabled"},
                 {label = L.LABEL_SETTINGS_ROLE_CHECKS, tooltipText = L.TOOLTIP_SETTINGS_ROLE_CHECKS, savedVarKey = "RoleChecks.Enabled"},
                 {label = L.LABEL_SETTINGS_SKIP_CINEMATICS, tooltipText = L.TOOLTIP_SETTINGS_SKIP_CINEMATICS, savedVarKey = "SkipCinematics.Enabled"}
             }) do

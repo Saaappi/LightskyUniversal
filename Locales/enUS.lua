@@ -75,7 +75,17 @@ L.TOOLTIP_GOSSIPS_HELP_BUTTON = "|cffFF474CThere is a rough cap on the number of
 "Daisy chaining conditions together is easily done by separating them with a comma:\n" ..
 "- |cff00CCFF!CT_EXPANSION;10,QUEST_ACTIVE;12345|r: First, the addon will check if the player is not in Legion Chromie Time, and then check if they're on the quest with an ID of 12345.\n\n" ..
 "If any condition fails its check, then the gossip will not be selected. Nothing is returned in chat when a condition fails, so if something isn't working as it should, double check your conditions! :D"
-L.TOOLTIP_SETTINGS_ROLE_CHECKS = "Toggle if you want LSU to automatically respond to role checks for you."
-L.TOOLTIP_SETTINGS_SKIP_CINEMATICS = "Toggle to automatically skip in-game cinematics and movies."
+L.TOOLTIP_SETTINGS_ACCEPT_QUESTS = "<PH>"
+L.TOOLTIP_SETTINGS_AUTO_REPAIR = "<PH>"
+L.TOOLTIP_SETTINGS_AUTO_TRAIN = "<PH>"
+L.TOOLTIP_SETTINGS_BUY_QUEST_ITEMS = "<PH>"
+L.TOOLTIP_SETTINGS_CHAT_ICONS = "<PH>"
+L.TOOLTIP_SETTINGS_COMPLETE_QUESTS = "<PH>"
+L.TOOLTIP_SETTINGS_GOSSIP = "<PH>"
+L.TOOLTIP_SETTINGS_PLAYER_TALENTS = "<PH>"
+L.TOOLTIP_SETTINGS_RARES = "<PH>"
+L.TOOLTIP_SETTINGS_READY_CHECKS = "<PH>"
+L.TOOLTIP_SETTINGS_ROLE_CHECKS = "<PH>"
+L.TOOLTIP_SETTINGS_SKIP_CINEMATICS = "<PH>"
 
 LSU.L = L
