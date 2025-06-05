@@ -1,4 +1,4 @@
-local LSU = select(2, ...)
+local addonName, LSU = ...
 local L = {}
 
 L.TALENT_IMPORTER_BUTTON_TOOLTIP = "Click to open the talent importer utility."
@@ -34,7 +34,9 @@ L.POPUP_NEWCHARACTER_TEXT = "Character configuration completed. Would you like t
 "|cffFF474CNOTE|r: This is recommended to guarantee the settings are saved server side."
 
 -- Frame titles
+L.TITLE_ADDON = C_AddOns.GetAddOnMetadata(addonName, "Title")
 L.TITLE_GOSSIPS = "Gossips"
+L.TITLE_SETTINGS = "Settings"
 
 -- Tooltips
 L.TOOLTIP_GOSSIPS_OPEN_BUTTON = "Click to open the Gossips utility."
