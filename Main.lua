@@ -12,6 +12,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                 LSUDB.Gossips = {}
                 LSUDB.Junk = {}
                 LSUDB.PlayerTalents = {}
+                LSUDB.Settings = {}
             end
         end
     end

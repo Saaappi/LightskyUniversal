@@ -1,60 +1,80 @@
 local LSU = select(2, ...)
 local L = LSU.L
-local frame = CreateFrame("Frame", nil, UIParent, "ButtonFrameTemplate")
+local frame
 
-frame:SetToplevel(true)
-table.insert(UISpecialFrames, frame:GetName())
-frame:SetSize(600, 700)
-frame:SetPoint("CENTER")
-frame:Raise()
+local function SlashHandler(msg, editBox)
+    local cmd, rest = msg:match("^(%S*)%s*(.-)$")
+    cmd = cmd:lower()
 
-frame:SetMovable(true)
-frame:SetClampedToScreen(true)
-frame:RegisterForDrag("LeftButton")
-frame:SetScript("OnDragStart", function()
-frame:StartMoving()
-frame:SetUserPlaced(false)
-end)
-frame:SetScript("OnDragStop", function()
-frame:StopMovingOrSizing()
-frame:SetUserPlaced(false)
-end)
+    if cmd == "" then
+        if frame and frame:IsVisible() then frame:Hide(); return end
+        if not frame then
+            frame = CreateFrame("Frame", nil, UIParent, "ButtonFrameTemplate")
 
-ButtonFrameTemplate_HidePortrait(frame)
-ButtonFrameTemplate_HideButtonBar(frame)
-frame.Inset:Hide()
-frame:EnableMouse(true)
-frame:SetScript("OnMouseWheel", function() end)
+            frame:SetToplevel(true)
+            table.insert(UISpecialFrames, frame:GetName())
+            frame:SetSize(600, 700)
+            frame:SetPoint("CENTER")
+            frame:Raise()
 
-frame:SetTitle(L.TITLE_ADDON .. " " .. L.TITLE_SETTINGS)
+            frame:SetMovable(true)
+            frame:SetClampedToScreen(true)
+            frame:RegisterForDrag("LeftButton")
+            frame:SetScript("OnDragStart", function()
+            frame:StartMoving()
+            frame:SetUserPlaced(false)
+            end)
+            frame:SetScript("OnDragStop", function()
+            frame:StopMovingOrSizing()
+            frame:SetUserPlaced(false)
+            end)
 
--- Layout: Adding widgets to the frame...
-local checkboxContainer = CreateFrame("Frame", nil, frame)
-checkboxContainer:SetPoint("TOPLEFT", 20, -60)
-checkboxContainer:SetSize(560, 600)
+            ButtonFrameTemplate_HidePortrait(frame)
+            ButtonFrameTemplate_HideButtonBar(frame)
+            frame.Inset:Hide()
+            frame:EnableMouse(true)
+            frame:SetScript("OnMouseWheel", function() end)
 
-local prev
-for i, data in ipairs({
-    {label = "Accept Quests", callback = function(val) print("Accept Quests: " .. tostring(val)) end},
-    {label = "Auto Repair", callback = function(val) print("Auto Repair: " .. tostring(val)) end, "Test"},
-    {label = "Auto Train", callback = function(val) print("Auto Train: " .. tostring(val)) end},
-    {label = "Buy Quest Items", callback = function(val) print("Buy Quest Items: " .. tostring(val)) end},
-    {label = "Chat Icons", callback = function(val) print("Chat Icons: " .. tostring(val)) end},
-    {label = "Complete Quests", callback = function(val) print("Complete Quests: " .. tostring(val)) end},
-    {label = "Gossip", callback = function(val) print("Gossip: " .. tostring(val)) end},
-    {label = "Player Talents", callback = function(val) print("Player Talents: " .. tostring(val)) end},
-    {label = "Rares", callback = function(val) print("Skip Cinematics: " .. tostring(val)) end},
-    {label = "Ready Checks", callback = function(val) print("Ready Checks: " .. tostring(val)) end},
-    {label = "Role Checks", callback = function(val) print("Role Checks: " .. tostring(val)) end},
-    {label = "Skip Cinematics", callback = function(val) print("Skip Cinematics: " .. tostring(val)) end}
-}) do
-    local checkBox = LSU.CreateCheckbox(checkboxContainer, data.label, 0, data.callback)
-    if prev then
-        checkBox:SetPoint("TOPLEFT", prev, "BOTTOMLEFT", 0, -10)
-    else
-        checkBox:SetPoint("TOPLEFT", checkboxContainer, "TOPLEFT", 0, 0)
+            frame:SetTitle(L.TITLE_ADDON .. " " .. L.TITLE_SETTINGS)
+
+            -- Layout: Adding widgets to the frame...
+            local prev = {}
+            local columnCount = 6
+            local xSpacing = 180
+            local ySpacing = -10
+            for i, data in ipairs({
+                {label = L.LABEL_SETTINGS_ACCEPT_QUESTS, tooltipText = "test", savedVarKey = "AcceptQuests.Enabled"},
+                {label = L.LABEL_SETTINGS_AUTO_REPAIR, tooltipText = "test", savedVarKey = "AutoRepair.Enabled"},
+                {label = L.LABEL_SETTINGS_AUTO_TRAIN, tooltipText = "test", savedVarKey = "AutoTrain.Enabled"},
+                {label = L.LABEL_SETTINGS_BUY_QUEST_ITEMS, tooltipText = "test", savedVarKey = "BuyQuestItems.Enabled"},
+                {label = L.LABEL_SETTINGS_CHAT_ICONS, tooltipText = "test", savedVarKey = "ChatIcons.Enabled"},
+                {label = L.LABEL_SETTINGS_COMPLETE_QUESTS, tooltipText = "test", savedVarKey = "CompleteQuests.Enabled"},
+                {label = L.LABEL_SETTINGS_GOSSIP, tooltipText = "test", savedVarKey = "Gossip.Enabled"},
+                {label = L.LABEL_SETTINGS_PLAYER_TALENTS, tooltipText = "test", savedVarKey = "PlayerTalents.Enabled"},
+                {label = L.LABEL_SETTINGS_RARES, tooltipText = "test", savedVarKey = "Rares.Enabled"},
+                {label = L.LABEL_SETTINGS_READY_CHECKS, tooltipText = "test", savedVarKey = "ReadyChecks.Enabled"},
+                {label = L.LABEL_SETTINGS_ROLE_CHECKS, tooltipText = L.TOOLTIP_SETTINGS_ROLE_CHECKS, savedVarKey = "RoleChecks.Enabled"},
+                {label = L.LABEL_SETTINGS_SKIP_CINEMATICS, tooltipText = L.TOOLTIP_SETTINGS_SKIP_CINEMATICS, savedVarKey = "SkipCinematics.Enabled"}
+            }) do
+                local checkbox = LSU.GetCheckbox(frame, data.label, data.tooltipText, data.savedVarKey)
+                local column = math.floor((i-1) / columnCount)
+                local row = (i-1) % columnCount
+
+                if row == 0 then
+                    checkbox:SetPoint("TOPLEFT", frame, "TOPLEFT", 36 + column * xSpacing, -36)
+                    prev[column+1] = checkbox
+                else
+                    checkbox:SetPoint("TOPLEFT", prev[column+1], "BOTTOMLEFT", 0, ySpacing)
+                    prev[column+1] = checkbox
+                end
+            end
+
+            frame:Show()
+        else
+            frame:Show()
+        end
     end
-    prev = checkBox
 end
 
-frame:Show()
+SLASH_LIGHTSKYUNIVERSAL1 = L.SLASH_CMD_LSU
+SlashCmdList["LIGHTSKYUNIVERSAL"] = SlashHandler

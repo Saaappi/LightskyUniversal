@@ -24,7 +24,19 @@ L.TEXT_LOW_INVENTORY_SPACE = "Inventory space is 5% or less. Summoning a vendor 
 L.TEXT_RARE_SPOTTED = "has been spotted"
 
 -- Button labels
-L.LABEL_NEWCHARACTER_BUTTON = "Configure New Character"
+L.LABEL_NEWCHARACTER_BUTTON         = "Configure New Character"
+L.LABEL_SETTINGS_ACCEPT_QUESTS      = "Accept Quests"
+L.LABEL_SETTINGS_AUTO_REPAIR        = "Auto Repair"
+L.LABEL_SETTINGS_AUTO_TRAIN         = "Auto Train"
+L.LABEL_SETTINGS_BUY_QUEST_ITEMS    = "Buy Quest Items"
+L.LABEL_SETTINGS_CHAT_ICONS         = "Chat Icons"
+L.LABEL_SETTINGS_COMPLETE_QUESTS    = "Complete Quests"
+L.LABEL_SETTINGS_GOSSIP             = "Gossip"
+L.LABEL_SETTINGS_PLAYER_TALENTS     = "Player Talents"
+L.LABEL_SETTINGS_RARES              = "Rares"
+L.LABEL_SETTINGS_READY_CHECKS       = "Ready Checks"
+L.LABEL_SETTINGS_ROLE_CHECKS        = "Role Checks"
+L.LABEL_SETTINGS_SKIP_CINEMATICS    = "Skip Cinematics"
 
 -- Fontstrings
 L.FONTSTRING_GOSSIP_LINE_COUNT_TEXT = "|cffFFFFFF%s|r line(s)"
@@ -32,6 +44,8 @@ L.FONTSTRING_GOSSIP_LINE_COUNT_TEXT = "|cffFFFFFF%s|r line(s)"
 -- Popups
 L.POPUP_NEWCHARACTER_TEXT = "Character configuration completed. Would you like to reload now?\n\n" ..
 "|cffFF474CNOTE|r: This is recommended to guarantee the settings are saved server side."
+
+L.SLASH_CMD_LSU = "/lsu"
 
 -- Frame titles
 L.TITLE_ADDON = C_AddOns.GetAddOnMetadata(addonName, "Title")
@@ -61,5 +75,7 @@ L.TOOLTIP_GOSSIPS_HELP_BUTTON = "|cffFF474CThere is a rough cap on the number of
 "Daisy chaining conditions together is easily done by separating them with a comma:\n" ..
 "- |cff00CCFF!CT_EXPANSION;10,QUEST_ACTIVE;12345|r: First, the addon will check if the player is not in Legion Chromie Time, and then check if they're on the quest with an ID of 12345.\n\n" ..
 "If any condition fails its check, then the gossip will not be selected. Nothing is returned in chat when a condition fails, so if something isn't working as it should, double check your conditions! :D"
+L.TOOLTIP_SETTINGS_ROLE_CHECKS = "Toggle if you want LSU to automatically respond to role checks for you."
+L.TOOLTIP_SETTINGS_SKIP_CINEMATICS = "Toggle to automatically skip in-game cinematics and movies."
 
 LSU.L = L

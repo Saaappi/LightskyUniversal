@@ -1,4 +1,5 @@
 local addonName, LSU = ...
+local L = LSU.L
 
 LSU.CreateFrame = function(frameType, frameData)
     assert(type(frameData) == "table", "frameData must be a table!")
@@ -67,48 +68,31 @@ LSU.CreateFrame = function(frameType, frameData)
     return frame
 end
 
-LSU.CreateCheckbox = function(parent, label, spacing, callback, tooltip)
-    spacing = spacing or 0
-    local holder = CreateFrame("Frame", nil, parent)
-    holder:SetHeight(40)
-    holder:SetPoint("LEFT", parent, "LEFT", 30, 0)
-    holder:SetPoint("RIGHT", parent, "RIGHT", -15, 0)
-    local checkBox = CreateFrame("CheckButton", nil, holder, "SettingsCheckboxTemplate")
+function LSU.GetCheckbox(parent, label, tooltipText, savedVarKey)
+    local checkbox = CreateFrame("CheckButton", nil, parent, "SettingsCheckboxTemplate")
+    checkbox:SetText(label)
+    checkbox:SetNormalFontObject(GameFontHighlight)
+    checkbox:GetFontString():SetPoint("LEFT", checkbox, "RIGHT", 5, 0)
 
-    checkBox:SetPoint("LEFT", holder, "CENTER", -15 - spacing, 0)
-    checkBox:SetText(label)
-    checkBox:SetNormalFontObject(GameFontHighlight)
-    checkBox:GetFontString():SetPoint("RIGHT", holder, "CENTER", -30 - spacing, 0)
+    checkbox:SetChecked(LSUDB.Settings[savedVarKey] and true or false)
 
-    function holder:SetValue(value)
-        checkBox:SetChecked(value)
+    checkbox:SetScript("OnClick", function(self)
+        LSUDB.Settings[savedVarKey] = self:GetChecked() and true or false
+    end)
+
+    if tooltipText then
+        checkbox:SetScript("OnEnter", function(self)
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+            GameTooltip:SetText(L.TITLE_ADDON)
+            GameTooltip:AddLine(tooltipText, 1, 1, 1, 1, true)
+            GameTooltip:Show()
+        end)
+        checkbox:SetScript("OnLeave", function()
+            GameTooltip:Hide()
+        end)
     end
 
-    holder:SetScript("OnEnter", function(self)
-        if tooltip then
-            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-            GameTooltip:SetText(tooltip, 1, 1, 1, true)
-            GameTooltip:Show()
-        end
-        checkBox:OnEnter()
-    end)
-
-    holder:SetScript("OnLeave", function()
-        if tooltip then
-            GameTooltip:Hide()
-        end
-        checkBox:OnLeave()
-    end)
-
-    holder:SetScript("OnMouseUp", function()
-        checkBox:Click()
-    end)
-
-    checkBox:SetScript("OnClick", function()
-        callback(checkBox:GetChecked())
-    end)
-
-    return holder
+    return checkbox
 end
 
 LSU.CreateDropdown = function(parent, labelText, isSelectedCallback, onSelectionCallback)
