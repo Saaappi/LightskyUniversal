@@ -68,8 +68,8 @@ LSU.CreateFrame = function(frameType, frameData)
     return frame
 end
 
-function LSU.GetCheckbox(parent, label, tooltipText, savedVarKey)
-    local checkbox = CreateFrame("CheckButton", nil, parent, "SettingsCheckboxTemplate")
+function LSU.GetCheckbox(parent, num, label, tooltipText, savedVarKey)
+    local checkbox = CreateFrame("CheckButton", "LSUCheckButton"..num, parent, "SettingsCheckboxTemplate")
     checkbox:SetText(label)
     checkbox:SetNormalFontObject(GameFontHighlight)
     checkbox:GetFontString():SetPoint("LEFT", checkbox, "RIGHT", 5, 0)
@@ -110,31 +110,51 @@ function LSU.CreateDivider(parent, width, thickness, xOffset, yOffset, anchor)
     return divider
 end
 
-LSU.CreateDropdown = function(parent, labelText, isSelectedCallback, onSelectionCallback)
-    local frame = CreateFrame("Frame", nil, parent)
-    local dropdown = CreateFrame("DropdownButton", nil, frame, "WowStyle1DropdownTemplate")
-    dropdown:SetWidth(250)
-    dropdown:SetPoint("LEFT", frame, "CENTER", -32, 0)
-    local label = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-    label:SetPoint("LEFT", 20, 0)
-    label:SetPoint("RIGHT", frame, "CENTER", -50, 0)
-    label:SetJustifyH("RIGHT")
-    label:SetText(labelText)
-    frame:SetPoint("LEFT", 30, 0)
-    frame:SetPoint("RIGHT", -30, 0)
-    frame.Init = function(_, entryLabels, values)
-    local entries = {}
-    for index = 1, #entryLabels do
-        table.insert(entries, {entryLabels[index], values[index]})
-    end
-    MenuUtil.CreateRadioMenu(dropdown, isSelectedCallback, onSelectionCallback, unpack(entries))
-    end
-    frame.SetValue = function(_, _)
-    dropdown:GenerateMenu()
-    end
-    frame.Label = label
-    frame.DropDown = dropdown
-    frame:SetHeight(40)
+function LSU.CreateDropdown2()
+    
+end
 
-    return frame
+function LSU.CreateDropdown(parent, args)
+    local width = args.width or 200
+
+    local dropdown = CreateFrame("DropdownButton", nil, parent, "WowStyle1DropdownTemplate")
+    dropdown:SetWidth(width)
+    dropdown:SetPoint("CENTER", parent, "CENTER")
+
+    dropdown.label = dropdown:CreateFontString()
+    dropdown.label:SetFontObject(GameFontHighlight)
+    dropdown.label:SetText(L.LABEL_SETTINGS_CHROMIE_TIME)
+    dropdown.label:SetPoint("BOTTOMLEFT", dropdown, "TOPLEFT", 0, 3)
+
+    dropdown.options = args.options
+    dropdown.selectedIndex = 1
+
+    local function GeneratorFunc(_, rootDescription)
+        for i, label in ipairs(dropdown.options) do
+            rootDescription:CreateRadio(
+                label,
+                function() return dropdown.selectedIndex == i end,
+                function()
+                    dropdown.selectedIndex = i
+                    dropdown:SetDefaultText(label)
+                    print("Selected radio index: ", i)
+                end,
+                i
+            )
+        end
+    end
+
+    dropdown:SetupMenu(GeneratorFunc)
+    dropdown:SetDefaultText(dropdown.options[dropdown.selectedIndex])
+
+    dropdown:SetScript("OnEnter", function(self)
+        GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+        GameTooltip:SetText(L.TITLE_ADDON)
+        GameTooltip:AddLine(args.tooltipText, 1, 1, 1, 1, true)
+        GameTooltip:Show()
+    end)
+
+    dropdown:SetScript("OnLeave", function(self)
+        GameTooltip:Hide()
+    end)
 end

@@ -56,7 +56,7 @@ local function SlashHandler(msg, editBox)
                 {label = L.LABEL_SETTINGS_ROLE_CHECKS, tooltipText = L.TOOLTIP_SETTINGS_ROLE_CHECKS, savedVarKey = "RoleChecks.Enabled"},
                 {label = L.LABEL_SETTINGS_SKIP_CINEMATICS, tooltipText = L.TOOLTIP_SETTINGS_SKIP_CINEMATICS, savedVarKey = "SkipCinematics.Enabled"}
             }) do
-                local checkbox = LSU.GetCheckbox(frame, data.label, data.tooltipText, data.savedVarKey)
+                local checkbox = LSU.GetCheckbox(frame, i, data.label, data.tooltipText, data.savedVarKey)
                 local column = math.floor((i-1) / columnCount)
                 local row = (i-1) % columnCount
 
@@ -69,9 +69,20 @@ local function SlashHandler(msg, editBox)
                 end
             end
 
-            frame:Show()
-        else
-            frame:Show()
+            --local chromieTimeDropdown = LSU.CreateDropdown(frame, 200, L.TOOLTIP_SETTINGS_CHROMIE_TIME, "ChromieTime.ExpansionID")
+            local chromieTimeDropdown = LSU.CreateDropdown(frame, {
+                label = "Chromie Time",
+                tooltipText = "<PH>",
+                options = { "None", "The Burning Crusade", "Wrath of the Lich King", "Cataclysm", "Mists of Pandaria", "Warlords of Draenor", "Legion", "Battle for Azeroth", "Shadowlands", "Dragonflight"},
+                defaultIndex = 1
+            })
+            --[[chromieTimeDropdown:SetWidth(250)
+            chromieTimeDropdown:SetPoint("CENTER", frame, "CENTER", 0, 0)
+            local label = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+            label:SetPoint("LEFT", 20, 0)
+            label:SetPoint("RIGHT", frame, "CENTER", -50, 0)
+            label:SetJustifyH("RIGHT")
+            label:SetText(L.LABEL_SETTINGS_CHROMIE_TIME)]]
         end
     end
 end
