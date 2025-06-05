@@ -12,7 +12,20 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                 LSUDB.Gossips = {}
                 LSUDB.Junk = {}
                 LSUDB.PlayerTalents = {}
-                LSUDB.Settings = {}
+                LSUDB.Settings = {
+                    ["AcceptQuests.Enabled"] = false,
+                    ["AutoRepair.Enabled"] = false,
+                    ["AutoTrain.Enabled"] = false,
+                    ["BuyQuestItems.Enabled"] = false,
+                    ["ChatIcons.Enabled"] = false,
+                    ["CompleteQuests.Enabled"] = false,
+                    ["Gossip.Enabled"] = false,
+                    ["PlayerTalents.Enabled"] = false,
+                    ["Rares.Enabled"] = false,
+                    ["ReadyChecks.Enabled"] = false,
+                    ["RoleChecks.Enabled"] = false,
+                    ["SkipCinematics.Enabled"] = false,
+                }
             end
         end
     end

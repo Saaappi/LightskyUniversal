@@ -95,6 +95,21 @@ function LSU.GetCheckbox(parent, label, tooltipText, savedVarKey)
     return checkbox
 end
 
+function LSU.CreateDivider(parent, width, thickness, xOffset, yOffset, anchor)
+    width = width or 200
+    thickness = thickness or 3
+    xOffset = xOffset or 0
+    yOffset = yOffset or 0
+    anchor = anchor or "TOPLEFT"
+
+    local divider = parent:CreateTexture(nil, "ARTWORK")
+    divider:SetColorTexture(1, 1, 1, 1)
+    divider:SetSize(width, thickness)
+    divider:SetPoint(anchor, xOffset, yOffset)
+
+    return divider
+end
+
 LSU.CreateDropdown = function(parent, labelText, isSelectedCallback, onSelectionCallback)
     local frame = CreateFrame("Frame", nil, parent)
     local dropdown = CreateFrame("DropdownButton", nil, frame, "WowStyle1DropdownTemplate")

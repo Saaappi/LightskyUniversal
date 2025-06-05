@@ -61,7 +61,7 @@ local function SlashHandler(msg, editBox)
                 local row = (i-1) % columnCount
 
                 if row == 0 then
-                    checkbox:SetPoint("TOPLEFT", frame, "TOPLEFT", 36 + column * xSpacing, -36)
+                    checkbox:SetPoint("TOPLEFT", frame, "TOPLEFT", 36 + column * xSpacing, -100)
                     prev[column+1] = checkbox
                 else
                     checkbox:SetPoint("TOPLEFT", prev[column+1], "BOTTOMLEFT", 0, ySpacing)
