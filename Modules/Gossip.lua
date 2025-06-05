@@ -256,14 +256,18 @@ LSU.OpenGossipFrame = function()
 
         editBox:HookScript("OnKeyDown", function(self, key)
             if IsControlKeyDown() and (key == "z" or key == "Z") then
+                local cursorPos = self:GetCursorPosition()
                 if historyPos > 1 then
                     historyPos = historyPos - 1
                     self:SetText(history[historyPos])
+                    self:SetCursorPosition(cursorPos)
                 end
             elseif IsControlKeyDown() and (key == "y" or key == "Y") then
+                local cursorPos = self:GetCursorPosition()
                 if historyPos < #history then
                     historyPos = historyPos + 1
                     self:SetText(history[historyPos])
+                    self:SetCursorPosition(cursorPos)
                 end
             end
         end)
