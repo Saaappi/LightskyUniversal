@@ -19,11 +19,13 @@ eventFrame:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW")
 eventFrame:RegisterEvent("TRAINER_UPDATE")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "PLAYER_INTERACTION_MANAGER_FRAME_SHOW" then
+        if not LSUDB.Settings["AutoTrain.Enabled"] then return end
         local type = ...
         if type == 7 then
             BuyService()
         end
     elseif event == "TRAINER_UPDATE" then
+        if not LSUDB.Settings["AutoTrain.Enabled"] then return end
         C_Timer.After(.25, BuyService)
     end
 end)

@@ -158,6 +158,16 @@ local function SlashHandler(msg, editBox)
             checkbox12:SetPoint("TOPLEFT", checkbox11, "BOTTOMLEFT", 0, -ySpacing)
             checkbox12:Show()
 
+            local checkbox13 = LSU.NewCheckbox({
+                id = 13,
+                parent = frame,
+                label = L.LABEL_SETTINGS_NEW_CHARACTER,
+                savedVarKey = "NewCharacter.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_NEW_CHARACTER
+            })
+            checkbox13:SetPoint("TOPLEFT", frame, "TOPLEFT", 50 + 2 * 180, -100)
+            checkbox13:Show()
+
             local chromieTimeDropdown = LSU.NewRadioDropdown({
                 parent = checkbox6,
                 label = L.LABEL_SETTINGS_CHROMIE_TIME,

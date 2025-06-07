@@ -70,6 +70,7 @@ local function GetSpellIcon(spellLink)
 end
 
 local function Main(_, _, msg, ...)
+    if not LSUDB.Settings["ChatIcons.Enabled"] then return end
     if string.find(msg, "achievement") then
         msg = msg:gsub("(|H([^:|]+):([^|]-)|h(.-)|h)", GetAchievementIcon)
     elseif string.find(msg, "item") then

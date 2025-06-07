@@ -1,4 +1,4 @@
-local eventFrame = CreateFrame("Frame")
+--[[local eventFrame = CreateFrame("Frame")
 
 local maps = {
     {
@@ -38,4 +38,4 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
             end
         end)
     end
-end)
+end)]]

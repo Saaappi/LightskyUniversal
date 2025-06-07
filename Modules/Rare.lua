@@ -6,6 +6,7 @@ local seen = {}
 eventFrame:RegisterEvent("NAME_PLATE_UNIT_ADDED")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "NAME_PLATE_UNIT_ADDED" then
+        if not LSUDB.Settings["Rares.Enabled"] then return end
         local unitToken = ...
         local unitGuid = UnitGUID(unitToken)
         if unitToken and unitGuid then

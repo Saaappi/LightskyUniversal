@@ -20,6 +20,7 @@ local function SetTextAndResize(frame, text)
 end
 
 GossipFrame:HookScript("OnShow", function()
+    if not LSUDB.Settings["Gossip.Enabled"] then return end
     if not openGossipFrameButton then
         openGossipFrameButton = LSU.CreateButton(button)
     end
@@ -32,10 +33,12 @@ GossipFrame:HookScript("OnShow", function()
 end)
 
 GossipFrame:HookScript("OnHide", function()
+    if not LSUDB.Settings["Gossip.Enabled"] then return end
     openGossipFrameButton:Hide()
 end)
 
 hooksecurefunc(GossipFrame, "Update", function(self)
+    if not LSUDB.Settings["Gossip.Enabled"] then return end
     local guid = UnitGUID("npc")
     if guid then
         local id = LSU.Split(guid, "-", 6)

@@ -68,6 +68,7 @@ eventFrame:RegisterEvent("PLAYER_LOGIN")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "PLAYER_LOGIN" then
         C_Timer.After(3, function()
+            if not LSUDB.Settings["NewCharacter.Enabled"] then return end
             local guid = UnitGUID("player")
             if not LSUDB.Characters[guid] then
                 -- This must be added after the Player Collector has a chance to harvest its data.

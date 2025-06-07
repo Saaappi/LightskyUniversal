@@ -4,6 +4,7 @@ local importerButton
 local applyTalentsButton
 
 EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
+    if not LSUDB.Settings["PlayerTalents.Enabled"] then return end
     local parentFrame = PlayerSpellsFrame
     local talentsFrame = parentFrame.TalentsTab or PlayerSpellsFrame.TalentsFrame
     if not importerButton then
@@ -50,5 +51,6 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
 end)
 
 EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Hide", function()
+    if not LSUDB.Settings["PlayerTalents.Enabled"] then return end
     applyTalentsButton:Hide()
 end)

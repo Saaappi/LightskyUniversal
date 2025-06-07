@@ -45,6 +45,7 @@ eventFrame:RegisterEvent("QUEST_COMPLETE")
 eventFrame:RegisterEvent("QUEST_PROGRESS")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "QUEST_COMPLETE" then
+        if not LSUDB.Settings["CompleteQuests.Enabled"] then return end
         C_Timer.After(0.2, function()
             local numRewardChoices = GetNumQuestChoices()
             if numRewardChoices <= 1 then
@@ -84,6 +85,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         end)
     end
     if event == "QUEST_PROGRESS" then
+        if not LSUDB.Settings["CompleteQuests.Enabled"] then return end
         C_Timer.After(0.2, function()
             if IsQuestCompletable() then
                 CompleteQuest()

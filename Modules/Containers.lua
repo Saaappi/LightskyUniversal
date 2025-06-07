@@ -1,4 +1,4 @@
-local LSU = select(2, ...)
+--[[local LSU = select(2, ...)
 local L = LSU.L
 local eventFrame = CreateFrame("Frame")
 local openContainersButton
@@ -56,4 +56,4 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
             eventFrame:UnregisterEvent(event)
         end
     end
-end)
+end)]]

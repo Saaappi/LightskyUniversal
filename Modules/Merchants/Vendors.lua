@@ -1,6 +1,6 @@
 local addonName, LSU = ...
 local L = LSU.L
-local sellJunkButton
+--[[local sellJunkButton
 local button = {
     type        = "ActionButton",
     name        = "LSUSellJunkButton",
@@ -8,9 +8,9 @@ local button = {
     scale       = 0.75,
     texture     = 133785,
     tooltipText = L.SELL_JUNK_BUTTON_TOOLTIP
-}
+}]]
 
-local function AddTextToTooltip(tooltip)
+--[[local function AddTextToTooltip(tooltip)
 	local frame, text
 	for i = 1, 30 do
 		frame = _G[tooltip:GetName() .. "TextLeft" .. i]
@@ -33,7 +33,7 @@ local function OnTooltipSetItem(tooltip)
             return
         end
 	end
-end
+end]]
 
 local function GetRequiredQuestItemCountByName(itemName)
     local requiredCount = 0
@@ -56,6 +56,7 @@ end
 
 MerchantFrame:HookScript("OnShow", function()
     if CanMerchantRepair() then
+        if not LSUDB.Settings["AutoRepair.Enabled"] then return end
         local cost = GetRepairAllCost()
         local money = GetMoney()
         local reservePercent = 0.33 -- Keep at least 33% of money
@@ -64,6 +65,7 @@ MerchantFrame:HookScript("OnShow", function()
         end
     end
 
+    if not LSUDB.Settings["BuyQuestItems.Enabled"] then return end
     for index = 1, GetMerchantNumItems() do
         local itemLink = GetMerchantItemLink(index)
         if itemLink then
@@ -85,7 +87,7 @@ MerchantFrame:HookScript("OnShow", function()
         end
     end
 
-    if not sellJunkButton then
+    --[[if not sellJunkButton then
         sellJunkButton = LSU.CreateButton(button)
         if sellJunkButton then
             sellJunkButton:ClearAllPoints()
@@ -109,11 +111,11 @@ MerchantFrame:HookScript("OnShow", function()
         end
     else
         sellJunkButton:Show()
-    end
+    end]]
 end)
 
-MerchantFrame:HookScript("OnHide", function()
+--[[MerchantFrame:HookScript("OnHide", function()
     sellJunkButton:Hide()
 end)
 
-TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, OnTooltipSetItem)
+TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, OnTooltipSetItem)]]
