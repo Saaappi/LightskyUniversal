@@ -38,6 +38,66 @@ local function SlashHandler(msg, editBox)
 
             frame:SetTitle(L.TITLE_ADDON .. " " .. L.TITLE_SETTINGS)
 
+            local discordLinkDialog = "LSU_SETTINGS_DISCORD_LINK_DIALOG"
+            StaticPopupDialogs[discordLinkDialog] = {
+                text = L.LABEL_POPUP_CTRLC_COPY,
+                button1 = DONE,
+                hasEditBox = 1,
+                OnShow = function(self)
+                    self.editBox:SetText("https://discord.gg/2Q3DKhu9HT")
+                    self.editBox:HighlightText()
+                end,
+                EditBoxOnEnterPressed = function(self)
+                    self:GetParent():Hide()
+                end,
+                EditBoxOnEscapePressed = StaticPopup_StandardEditBoxOnEscapePressed,
+                editBoxWidth = 230,
+                timeout = 0,
+                hideOnEscape = 1,
+            }
+            local discordButton = LSU.NewBasicButton({
+                name = "LSUDiscordButton",
+                parent = frame,
+                width = 120,
+                height = 25,
+                label = "Discord",
+                tooltipText = "Join the Discord today!"
+            })
+            discordButton:SetPoint("TOP", frame, "TOP", -65, -30)
+            discordButton:SetScript("OnClick", function()
+                StaticPopup_Show(discordLinkDialog)
+            end)
+
+            local donateLinkDialog = "LSU_SETTINGS_DONATE_LINK_DIALOG"
+            StaticPopupDialogs[donateLinkDialog] = {
+                text = L.LABEL_POPUP_CTRLC_COPY,
+                button1 = DONE,
+                hasEditBox = 1,
+                OnShow = function(self)
+                    self.editBox:SetText("https://coff.ee/lightskygg")
+                    self.editBox:HighlightText()
+                end,
+                EditBoxOnEnterPressed = function(self)
+                    self:GetParent():Hide()
+                end,
+                EditBoxOnEscapePressed = StaticPopup_StandardEditBoxOnEscapePressed,
+                editBoxWidth = 230,
+                timeout = 0,
+                hideOnEscape = 1,
+            }
+            local donateButton = LSU.NewBasicButton({
+                name = "LSUDonateButton",
+                parent = frame,
+                width = 120,
+                height = 25,
+                label = "Donate",
+                tooltipText = "Donate today!"
+            })
+            donateButton:SetPoint("LEFT", discordButton, "RIGHT", 10, 0)
+            donateButton:SetScript("OnClick", function()
+                StaticPopup_Show(donateLinkDialog)
+            end)
+
             frame.versionLabel = frame:CreateFontString()
             frame.versionLabel:SetFontObject(GameFontHighlight)
             frame.versionLabel:SetText(C_AddOns.GetAddOnMetadata(addonName, "Version"))

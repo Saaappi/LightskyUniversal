@@ -25,6 +25,7 @@ L.TEXT_RARE_SPOTTED = "has been spotted"
 
 -- Button labels
 L.LABEL_NEWCHARACTER_BUTTON             = "Configure New Character"
+L.LABEL_POPUP_CTRLC_COPY                = "Use Ctrl+C to copy the link below."
 L.LABEL_SETTINGS_ACCEPT_QUESTS          = "Accept Quests"
 L.LABEL_SETTINGS_AUTO_REPAIR            = "Auto Repair"
 L.LABEL_SETTINGS_AUTO_TRAIN             = "Auto Train"
