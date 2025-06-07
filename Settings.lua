@@ -1,4 +1,4 @@
-local LSU = select(2, ...)
+local addonName, LSU = ...
 local L = LSU.L
 local frame
 local ySpacing = 10
@@ -37,6 +37,11 @@ local function SlashHandler(msg, editBox)
             frame:SetScript("OnMouseWheel", function() end)
 
             frame:SetTitle(L.TITLE_ADDON .. " " .. L.TITLE_SETTINGS)
+
+            frame.versionLabel = frame:CreateFontString()
+            frame.versionLabel:SetFontObject(GameFontHighlight)
+            frame.versionLabel:SetText(C_AddOns.GetAddOnMetadata(addonName, "Version"))
+            frame.versionLabel:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -15, -30)
 
             local checkbox1 = LSU.NewCheckbox({
                 id = 1,
