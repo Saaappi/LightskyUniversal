@@ -67,30 +67,3 @@ LSU.CreateFrame = function(frameType, frameData)
     end
     return frame
 end
-
-function LSU.GetCheckbox(parent, num, label, tooltipText, savedVarKey)
-    local checkbox = CreateFrame("CheckButton", "LSUCheckButton"..num, parent, "SettingsCheckboxTemplate")
-    checkbox:SetText(label)
-    checkbox:SetNormalFontObject(GameFontHighlight)
-    checkbox:GetFontString():SetPoint("LEFT", checkbox, "RIGHT", 5, 0)
-
-    checkbox:SetChecked(LSUDB.Settings[savedVarKey] and true or false)
-
-    checkbox:SetScript("OnClick", function(self)
-        LSUDB.Settings[savedVarKey] = self:GetChecked() and true or false
-    end)
-
-    if tooltipText then
-        checkbox:SetScript("OnEnter", function(self)
-            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-            GameTooltip:SetText(L.TITLE_ADDON)
-            GameTooltip:AddLine(tooltipText, 1, 1, 1, 1, true)
-            GameTooltip:Show()
-        end)
-        checkbox:SetScript("OnLeave", function()
-            GameTooltip:Hide()
-        end)
-    end
-
-    return checkbox
-end
