@@ -1,6 +1,6 @@
 ## Interface: 110105
 ## Title: Lightsky Universal
-## Version: 2506.27
+## Version: 2506.28
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 136243
@@ -29,6 +29,7 @@ FrameFactory.lua
 # Classes
 Classes\Checkbox.lua
 Classes\Dropdown.lua
+Classes\EditBox.lua
 
 # Buttons
 Button.lua
@@ -53,6 +54,7 @@ Modules\Quest\Complete.lua
 Modules\Quest\Popup.lua
 Modules\Rare.lua
 #Modules\Transmogrification.lua
+Modules\Warbank.lua
 
 KeybindHandler.lua
 Main.lua
