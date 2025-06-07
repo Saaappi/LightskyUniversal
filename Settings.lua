@@ -69,20 +69,25 @@ local function SlashHandler(msg, editBox)
                 end
             end
 
-            --local chromieTimeDropdown = LSU.CreateDropdown(frame, 200, L.TOOLTIP_SETTINGS_CHROMIE_TIME, "ChromieTime.ExpansionID")
-            local chromieTimeDropdown = LSU.CreateDropdown(frame, {
-                label = "Chromie Time",
-                tooltipText = "<PH>",
-                options = { NONE, EXPANSION_NAME1, EXPANSION_NAME2, EXPANSION_NAME3, EXPANSION_NAME4, EXPANSION_NAME5, EXPANSION_NAME6, EXPANSION_NAME7, EXPANSION_NAME8, EXPANSION_NAME9},
-                defaultIndex = 1
+            local chromieTimeDropdown = LSU.NewRadioDropdown({
+                parent = frame,
+                savedVarKey = "ChromieTimeExpansionID",
+                options = {
+                    { DISABLE, 0 },
+                    { EXPANSION_NAME1, 6 }, -- TBC
+                    { EXPANSION_NAME2, 7 }, -- WotLK
+                    { EXPANSION_NAME3, 5 }, -- Cata
+                    { EXPANSION_NAME4, 8 }, -- MoP
+                    { EXPANSION_NAME5, 9 }, -- WoD
+                    { EXPANSION_NAME6, 10 }, -- Legion
+                    { EXPANSION_NAME7, 15 }, -- Battle for Azeroth
+                    { EXPANSION_NAME8, 14 }, -- Shadowlands
+                    { EXPANSION_NAME9, 16 }, -- Dragonflight
+                }
             })
-            --[[chromieTimeDropdown:SetWidth(250)
-            chromieTimeDropdown:SetPoint("CENTER", frame, "CENTER", 0, 0)
-            local label = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-            label:SetPoint("LEFT", 20, 0)
-            label:SetPoint("RIGHT", frame, "CENTER", -50, 0)
-            label:SetJustifyH("RIGHT")
-            label:SetText(L.LABEL_SETTINGS_CHROMIE_TIME)]]
+            chromieTimeDropdown:SetPoint("CENTER", frame, "CENTER")
+            chromieTimeDropdown:SetWidth(180)
+            chromieTimeDropdown:Show()
         end
     end
 end
