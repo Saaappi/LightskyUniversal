@@ -1,8 +1,9 @@
 local eventHandler = CreateFrame("Frame")
+local transactionInProgress = false
 
 local function GetTransactionAmount()
     local keepAmount = LSUDB.Settings["WarbankDepositInCopper"] or 0
-    local netAmount = GetMoney() - (keepAmount * 10000)
+    local netAmount = GetMoney() - keepAmount
     return (netAmount ~= 0) and netAmount or nil
 end
 
@@ -29,6 +30,10 @@ local function OnEvent(_, event, interactionType)
 
     if not IsBankOpenEvent(event, interactionType) then return end
     if not C_Bank.CanDepositMoney(2) then return end
+
+    if transactionInProgress then return end
+    transactionInProgress = true
+    C_Timer.After(0.5, function() transactionInProgress = false end)
 
     local transactionAmount = GetTransactionAmount()
     if not transactionAmount then return end
