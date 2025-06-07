@@ -94,6 +94,8 @@ local function SlashHandler(msg, editBox)
                 chromieTimeDropdown:SetText(DISABLE)
             end
             chromieTimeDropdown:Show()
+        else
+            frame:Show()
         end
     end
 end
