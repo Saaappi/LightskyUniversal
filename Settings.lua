@@ -60,8 +60,7 @@ local function SlashHandler(msg, editBox)
                 parent = frame,
                 width = 120,
                 height = 25,
-                label = "Discord",
-                tooltipText = "Join the Discord today!"
+                label = L.LABEL_SETTINGS_DISCORD
             })
             discordButton:SetPoint("TOP", frame, "TOP", -65, -30)
             discordButton:SetScript("OnClick", function()
@@ -90,8 +89,7 @@ local function SlashHandler(msg, editBox)
                 parent = frame,
                 width = 120,
                 height = 25,
-                label = "Donate",
-                tooltipText = "Donate today!"
+                label = L.LABEL_SETTINGS_DONATE
             })
             donateButton:SetPoint("LEFT", discordButton, "RIGHT", 10, 0)
             donateButton:SetScript("OnClick", function()

@@ -18,6 +18,8 @@ function LSU.NewBasicButton(data)
     button:SetSize(data.width, data.height)
     button:RegisterForClicks("LeftButtonUp")
     button:SetText(data.label)
-    SetTooltipScripts(button, data.tooltipText)
+    if data.tooltipText then
+        SetTooltipScripts(button, data.tooltipText)
+    end
     return button
 end
