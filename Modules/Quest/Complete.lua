@@ -73,6 +73,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     end
                 end
 
+                if not LSUDB.Settings["QuestRewardSelectionID"] or LSUDB.Settings["QuestRewardSelectionID"] == 0 then return end
                 local numBetterRewards = #bestRewardIndices
                 if numBetterRewards > 0 then
                     local chosenIndex = bestRewardIndices[math.random(1, numBetterRewards)]
