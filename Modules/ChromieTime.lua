@@ -9,8 +9,8 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         C_Timer.After(0.15, function(...)
             local type = args[1]
             if type == 45 then
-                if UnitChromieTimeID("player") ~= 10 then
-                    C_ChromieTime.SelectChromieTimeOption(10)
+                if UnitChromieTimeID("player") ~= LSUDB.Settings["ChromieTimeExpansionID"] then
+                    C_ChromieTime.SelectChromieTimeOption(LSUDB.Settings["ChromieTimeExpansionID"])
                 end
             end
         end)
