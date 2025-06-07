@@ -160,6 +160,8 @@ local function SlashHandler(msg, editBox)
 
             local chromieTimeDropdown = LSU.NewRadioDropdown({
                 parent = checkbox6,
+                label = L.LABEL_SETTINGS_CHROMIE_TIME,
+                tooltipText = L.TOOLTIP_SETTINGS_CHROMIE_TIME,
                 savedVarKey = "ChromieTimeExpansionID",
                 options = {
                     { DISABLE, 0 },
@@ -175,13 +177,22 @@ local function SlashHandler(msg, editBox)
                 }
             })
             chromieTimeDropdown:SetPoint("TOPLEFT", checkbox6, "BOTTOMLEFT", 0, -50)
-            chromieTimeDropdown:SetWidth(180)
-            local expansion = LSU.Enum.Expansions[LSUDB.Settings["ChromieTimeExpansionID"]]
-            if expansion then
-                chromieTimeDropdown:SetText(expansion)
-            else
-                chromieTimeDropdown:SetText(DISABLE)
-            end
+            chromieTimeDropdown:SetText(LSU.Enum.Expansions[LSUDB.Settings["ChromieTimeExpansionID"]] or DISABLE)
+            chromieTimeDropdown:Show()
+
+            local questRewardDropdown = LSU.NewRadioDropdown({
+                parent = chromieTimeDropdown,
+                label = L.LABEL_SETTINGS_QUEST_REWARDS,
+                tooltipText = L.TOOLTIP_SETTINGS_QUEST_REWARDS,
+                savedVarKey = "QuestRewardSelectionID",
+                options = {
+                    { DISABLE, 0 },
+                    { L.LABEL_SETTINGS_SELL_PRICE, 1 },
+                    { L.LABEL_SETTINGS_ITEM_LEVEL, 2 },
+                }
+            })
+            questRewardDropdown:SetPoint("TOPLEFT", chromieTimeDropdown, "TOPRIGHT", 25, 0)
+            questRewardDropdown:SetText(LSU.Enum.QuestRewardSelections[LSUDB.Settings["QuestRewardSelectionID"]])
             chromieTimeDropdown:Show()
         else
             frame:Show()
