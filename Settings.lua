@@ -1,6 +1,7 @@
 local LSU = select(2, ...)
 local L = LSU.L
 local frame
+local ySpacing = 10
 
 local function SlashHandler(msg, editBox)
     local cmd, rest = msg:match("^(%S*)%s*(.-)$")
@@ -37,40 +38,128 @@ local function SlashHandler(msg, editBox)
 
             frame:SetTitle(L.TITLE_ADDON .. " " .. L.TITLE_SETTINGS)
 
-            -- Layout: Adding widgets to the frame...
-            local prev = {}
-            local columnCount = 6
-            local xSpacing = 180
-            local ySpacing = -10
-            for i, data in ipairs({
-                {label = L.LABEL_SETTINGS_ACCEPT_QUESTS, tooltipText = L.TOOLTIP_SETTINGS_ACCEPT_QUESTS, savedVarKey = "AcceptQuests.Enabled"},
-                {label = L.LABEL_SETTINGS_AUTO_REPAIR, tooltipText = L.TOOLTIP_SETTINGS_AUTO_REPAIR, savedVarKey = "AutoRepair.Enabled"},
-                {label = L.LABEL_SETTINGS_AUTO_TRAIN, tooltipText = L.TOOLTIP_SETTINGS_AUTO_TRAIN, savedVarKey = "AutoTrain.Enabled"},
-                {label = L.LABEL_SETTINGS_BUY_QUEST_ITEMS, tooltipText = L.TOOLTIP_SETTINGS_BUY_QUEST_ITEMS, savedVarKey = "BuyQuestItems.Enabled"},
-                {label = L.LABEL_SETTINGS_CHAT_ICONS, tooltipText = L.TOOLTIP_SETTINGS_CHAT_ICONS, savedVarKey = "ChatIcons.Enabled"},
-                {label = L.LABEL_SETTINGS_COMPLETE_QUESTS, tooltipText = L.TOOLTIP_SETTINGS_COMPLETE_QUESTS, savedVarKey = "CompleteQuests.Enabled"},
-                {label = L.LABEL_SETTINGS_GOSSIP, tooltipText = L.TOOLTIP_SETTINGS_GOSSIP, savedVarKey = "Gossip.Enabled"},
-                {label = L.LABEL_SETTINGS_PLAYER_TALENTS, tooltipText = L.TOOLTIP_SETTINGS_PLAYER_TALENTS, savedVarKey = "PlayerTalents.Enabled"},
-                {label = L.LABEL_SETTINGS_RARES, tooltipText = L.TOOLTIP_SETTINGS_RARES, savedVarKey = "Rares.Enabled"},
-                {label = L.LABEL_SETTINGS_READY_CHECKS, tooltipText = L.TOOLTIP_SETTINGS_READY_CHECKS, savedVarKey = "ReadyChecks.Enabled"},
-                {label = L.LABEL_SETTINGS_ROLE_CHECKS, tooltipText = L.TOOLTIP_SETTINGS_ROLE_CHECKS, savedVarKey = "RoleChecks.Enabled"},
-                {label = L.LABEL_SETTINGS_SKIP_CINEMATICS, tooltipText = L.TOOLTIP_SETTINGS_SKIP_CINEMATICS, savedVarKey = "SkipCinematics.Enabled"}
-            }) do
-                local checkbox = LSU.GetCheckbox(frame, i, data.label, data.tooltipText, data.savedVarKey)
-                local column = math.floor((i-1) / columnCount)
-                local row = (i-1) % columnCount
+            local checkbox1 = LSU.NewCheckbox({
+                id = 1,
+                parent = frame,
+                label = L.LABEL_SETTINGS_ACCEPT_QUESTS,
+                savedVarKey = "AcceptQuests.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_ACCEPT_QUESTS
+            })
+            checkbox1:SetPoint("TOPLEFT", frame, "TOPLEFT", 50, -100)
+            checkbox1:Show()
 
-                if row == 0 then
-                    checkbox:SetPoint("TOPLEFT", frame, "TOPLEFT", 36 + column * xSpacing, -100)
-                    prev[column+1] = checkbox
-                else
-                    checkbox:SetPoint("TOPLEFT", prev[column+1], "BOTTOMLEFT", 0, ySpacing)
-                    prev[column+1] = checkbox
-                end
-            end
+            local checkbox2 = LSU.NewCheckbox({
+                id = 2,
+                parent = frame,
+                label = L.LABEL_SETTINGS_AUTO_REPAIR,
+                savedVarKey = "AutoRepair.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_AUTO_REPAIR
+            })
+            checkbox2:SetPoint("TOPLEFT", checkbox1, "BOTTOMLEFT", 0, -ySpacing)
+            checkbox2:Show()
+
+            local checkbox3 = LSU.NewCheckbox({
+                id = 3,
+                parent = frame,
+                label = L.LABEL_SETTINGS_AUTO_TRAIN,
+                savedVarKey = "AutoTrain.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_AUTO_TRAIN
+            })
+            checkbox3:SetPoint("TOPLEFT", checkbox2, "BOTTOMLEFT", 0, -ySpacing)
+            checkbox3:Show()
+
+            local checkbox4 = LSU.NewCheckbox({
+                id = 4,
+                parent = frame,
+                label = L.LABEL_SETTINGS_BUY_QUEST_ITEMS,
+                savedVarKey = "BuyQuestItems.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_BUY_QUEST_ITEMS
+            })
+            checkbox4:SetPoint("TOPLEFT", checkbox3, "BOTTOMLEFT", 0, -ySpacing)
+            checkbox4:Show()
+
+            local checkbox5 = LSU.NewCheckbox({
+                id = 5,
+                parent = frame,
+                label = L.LABEL_SETTINGS_CHAT_ICONS,
+                savedVarKey = "ChatIcons.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_CHAT_ICONS
+            })
+            checkbox5:SetPoint("TOPLEFT", checkbox4, "BOTTOMLEFT", 0, -ySpacing)
+            checkbox5:Show()
+
+            local checkbox6 = LSU.NewCheckbox({
+                id = 6,
+                parent = frame,
+                label = L.LABEL_SETTINGS_COMPLETE_QUESTS,
+                savedVarKey = "CompleteQuests.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_COMPLETE_QUESTS
+            })
+            checkbox6:SetPoint("TOPLEFT", checkbox5, "BOTTOMLEFT", 0, -ySpacing)
+            checkbox6:Show()
+
+            local checkbox7 = LSU.NewCheckbox({
+                id = 7,
+                parent = frame,
+                label = L.LABEL_SETTINGS_GOSSIP,
+                savedVarKey = "Gossip.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_GOSSIP
+            })
+            checkbox7:SetPoint("TOPLEFT", frame, "TOPLEFT", 50 + 1 * 180, -100)
+            checkbox7:Show()
+
+            local checkbox8 = LSU.NewCheckbox({
+                id = 8,
+                parent = frame,
+                label = L.LABEL_SETTINGS_PLAYER_TALENTS,
+                savedVarKey = "PlayerTalents.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_PLAYER_TALENTS
+            })
+            checkbox8:SetPoint("TOPLEFT", checkbox7, "BOTTOMLEFT", 0, -ySpacing)
+            checkbox8:Show()
+
+            local checkbox9 = LSU.NewCheckbox({
+                id = 9,
+                parent = frame,
+                label = L.LABEL_SETTINGS_RARES,
+                savedVarKey = "Rares.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_RARES
+            })
+            checkbox9:SetPoint("TOPLEFT", checkbox8, "BOTTOMLEFT", 0, -ySpacing)
+            checkbox9:Show()
+
+            local checkbox10 = LSU.NewCheckbox({
+                id = 10,
+                parent = frame,
+                label = L.LABEL_SETTINGS_READY_CHECKS,
+                savedVarKey = "ReadyChecks.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_READY_CHECKS
+            })
+            checkbox10:SetPoint("TOPLEFT", checkbox9, "BOTTOMLEFT", 0, -ySpacing)
+            checkbox10:Show()
+
+            local checkbox11 = LSU.NewCheckbox({
+                id = 11,
+                parent = frame,
+                label = L.LABEL_SETTINGS_ROLE_CHECKS,
+                savedVarKey = "RoleChecks.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_ROLE_CHECKS
+            })
+            checkbox11:SetPoint("TOPLEFT", checkbox10, "BOTTOMLEFT", 0, -ySpacing)
+            checkbox11:Show()
+
+            local checkbox12 = LSU.NewCheckbox({
+                id = 12,
+                parent = frame,
+                label = L.LABEL_SETTINGS_SKIP_CINEMATICS,
+                savedVarKey = "SkipCinematics.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_SKIP_CINEMATICS
+            })
+            checkbox12:SetPoint("TOPLEFT", checkbox11, "BOTTOMLEFT", 0, -ySpacing)
+            checkbox12:Show()
 
             local chromieTimeDropdown = LSU.NewRadioDropdown({
-                parent = frame,
+                parent = checkbox6,
                 savedVarKey = "ChromieTimeExpansionID",
                 options = {
                     { DISABLE, 0 },
@@ -85,7 +174,7 @@ local function SlashHandler(msg, editBox)
                     { EXPANSION_NAME9, 16 }, -- Dragonflight
                 }
             })
-            chromieTimeDropdown:SetPoint("CENTER", frame, "CENTER")
+            chromieTimeDropdown:SetPoint("TOPLEFT", checkbox6, "BOTTOMLEFT", 0, -50)
             chromieTimeDropdown:SetWidth(180)
             local expansion = LSU.Enum.Expansions[LSUDB.Settings["ChromieTimeExpansionID"]]
             if expansion then
