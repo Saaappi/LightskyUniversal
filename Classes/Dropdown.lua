@@ -30,8 +30,6 @@ function LSU.NewRadioDropdown(dropdownData)
         dropdown:SetText(value)
     end
 
-    local expansionName = (C_ChromieTime.GetChromieTimeExpansionOption(selectedValue)).name
-    dropdown:SetDefaultText(expansionName or NONE)
     MenuUtil.CreateRadioMenu(dropdown, IsSelected, SetSelected, unpack(dropdownData.options))
 
     return dropdown

@@ -87,6 +87,12 @@ local function SlashHandler(msg, editBox)
             })
             chromieTimeDropdown:SetPoint("CENTER", frame, "CENTER")
             chromieTimeDropdown:SetWidth(180)
+            local expansion = LSU.Enum.Expansions[LSUDB.Settings["ChromieTimeExpansionID"]]
+            if expansion then
+                chromieTimeDropdown:SetText(expansion)
+            else
+                chromieTimeDropdown:SetText(DISABLE)
+            end
             chromieTimeDropdown:Show()
         end
     end
