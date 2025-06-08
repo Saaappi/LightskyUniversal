@@ -1,5 +1,22 @@
 local LSU = select(2, ...)
 local eventFrame = CreateFrame("Frame")
+
+--[[local function IsWeapon(itemLink)
+    local classID = select(12, C_Item.GetItemInfo(itemLink))
+    return classID == 2
+end
+
+local function GetSellPrice(itemLink)
+    return (select(11, C_Item.GetItemInfo(itemLink)))
+end
+
+local function GetEquippedItemLevel(loc)
+    if not loc then return 0 end
+
+end]]
+
+--[[local LSU = select(2, ...)
+local eventFrame = CreateFrame("Frame")
 local bestRewardIndices = {}
 local bestRewardIndex, bestItemLevelDifference = 0, 0
 local slots = {
@@ -29,21 +46,57 @@ local function GetEquippedItemLevel(equipLoc)
     local slot = slots[equipLoc]
     if not slot then return nil end
     if type(slot) == "table" then
-        --[[local itemLevels = {}
+        local itemLevels = {}
         for _, invSlot in pairs(slot) do
             local equippedLink = GetInventoryItemLink("player", invSlot)
             table.insert(itemLevels, C_Item.GetDetailedItemLevelInfo(equippedLink) or 0)
         end
-        return itemLevels]]
+        return itemLevels
     else
         local equippedLink = GetInventoryItemLink("player", slot) or ""
         return C_Item.GetDetailedItemLevelInfo(equippedLink) or 0
     end
-end
+end]]
 
-eventFrame:RegisterEvent("QUEST_COMPLETE")
-eventFrame:RegisterEvent("QUEST_PROGRESS")
-eventFrame:SetScript("OnEvent", function(_, event, ...)
+local inventoryValueToSlotID = {
+    [17] = 16, -- INVTYPE_2HWEAPON
+    [21] = 16, -- INVTYPE_WEAPONMAINHAND
+}
+
+QuestFrame:HookScript("OnShow", function()
+    if not LSUDB.Settings["CompleteQuests.Enabled"] then return end
+    if IsQuestCompletable() then
+        CompleteQuest()
+    else
+        local numRewards = GetNumQuestChoices()
+        if numRewards <= 1 then
+            GetQuestReward(1)
+            QuestFrameCompleteQuestButton:Click()
+        elseif numRewards > 1 then
+            local bestIndex, bestUpgrade = 1, -math.huge
+            for i = 1, numRewards do
+                local link = GetQuestItemLink("choice", i)
+                if link then
+                    local rewardLevel = C_Item.GetDetailedItemLevelInfo(link)
+                    local loc = select(9, C_Item.GetItemInfo(link))
+                    if loc ~= "INVTYPE_NON_EQUIP_IGNORE" then
+                        local rewardInventoryTypeValue = C_Item.GetItemInventoryTypeByID(link)
+                        if inventoryValueToSlotID[rewardInventoryTypeValue] then
+                            local invSlotID = inventoryValueToSlotID[rewardInventoryTypeValue]
+                            local equippedLink = GetInventoryItemLink("player", invSlotID)
+                            local equippedLevel = C_Item.GetDetailedItemLevelInfo(equippedLink)
+                            local equippedInventoryTypeValue = C_Item.GetItemInventoryTypeByID(equippedLink)
+                            if equippedInventoryTypeValue == rewardInventoryTypeValue then
+                                print(link, " is the same inventory type!")
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end)
+--[[eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "QUEST_COMPLETE" then
         if not LSUDB.Settings["CompleteQuests.Enabled"] then return end
         C_Timer.After(0.2, function()
@@ -93,4 +146,4 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
             end
         end)
     end
-end)
+end)]]
