@@ -134,7 +134,7 @@ QuestFrame:HookScript("OnShow", function()
             QuestFrameCompleteQuestButton:Click()
         elseif numRewards > 1 then
             local allowedWeaponTypes = GetAllowedWeaponTypes()
-            local bestIndex, bestUpgrade, bestSellIndex, bestSellPrice = 1, -math.huge, 1, 0
+            local bestIndex, bestUpgrade, bestSellIndex, bestSellPrice, bestItemLink, globalInvSlotID = 1, -math.huge, 1, 0, "", 0
             for i = 1, numRewards do
                 local link = GetQuestItemLink("choice", i)
                 if link then
@@ -143,10 +143,8 @@ QuestFrame:HookScript("OnShow", function()
                     if loc ~= "INVTYPE_NON_EQUIP_IGNORE" then
                         local rewardInventoryTypeValue = C_Item.GetItemInventoryTypeByID(link)
                         local invSlotID = inventoryValueToSlotID[rewardInventoryTypeValue]
-                        local isWeaponReward = false
                         if invSlotID and type(invSlotID) == table then
                             -- The reward is a ring, trinket, or a dual wield weapon
-                            local foundUpgrade = false
                             for _, slot in ipairs(invSlotID) do
                                 local equippedLevel, equippedLink = GetEquippedItemLevel(slot)
                                 if not equippedLink and not (rewardInventoryTypeValue == 16 or rewardInventoryTypeValue == 17) then
@@ -154,12 +152,16 @@ QuestFrame:HookScript("OnShow", function()
                                     if not (rewardInventoryTypeValue == 16 or rewardInventoryTypeValue == 17) then
                                         if rewardLevel > bestUpgrade then
                                             bestIndex = i
+                                            bestItemLink = link
+                                            globalInvSlotID = invSlotID
                                             bestUpgrade = rewardLevel
                                         end
                                     end
                                 elseif equippedLevel and rewardLevel > equippedLevel then
                                     if (rewardLevel - equippedLevel) > bestUpgrade then
                                         bestIndex = i
+                                        bestItemLink = link
+                                        globalInvSlotID = invSlotID
                                         bestUpgrade = rewardLevel - equippedLevel
                                     end
                                 end
@@ -171,11 +173,15 @@ QuestFrame:HookScript("OnShow", function()
                                     if not equippedLink then
                                         if rewardLevel > bestUpgrade then
                                             bestIndex = i
+                                            bestItemLink = link
+                                            globalInvSlotID = invSlotID
                                             bestUpgrade = rewardLevel
                                         end
                                     elseif equippedLevel and rewardLevel > equippedLevel then
                                         if (rewardLevel - equippedLevel) > bestUpgrade then
                                             bestIndex = i
+                                            bestItemLink = link
+                                            globalInvSlotID = invSlotID
                                             bestUpgrade = rewardLevel - equippedLevel
                                         end
                                     end
@@ -185,11 +191,15 @@ QuestFrame:HookScript("OnShow", function()
                                 if not equippedLink then
                                     if rewardLevel > bestUpgrade then
                                         bestIndex = i
+                                        bestItemLink = link
+                                        globalInvSlotID = invSlotID
                                         bestUpgrade = rewardLevel
                                     end
                                 elseif equippedLevel and rewardLevel > equippedLevel then
                                     if (rewardLevel - equippedLevel) > bestUpgrade then
                                         bestIndex = i
+                                        bestItemLink = link
+                                        globalInvSlotID = invSlotID
                                         bestUpgrade = rewardLevel - equippedLevel
                                     end
                                 end
@@ -197,33 +207,22 @@ QuestFrame:HookScript("OnShow", function()
                         elseif invSlotID and (not inventoryValueToSlotID[invSlotID]) then
                             LSU.PrintWarning("Unsupported item type detected:" .. rewardInventoryTypeValue)
                         end
-                        --[[if inventoryValueToSlotID[rewardInventoryTypeValue] then
-                            
-                            local equippedLink = GetInventoryItemLink("player", invSlotID) or nil
-                            if equippedLink then
-                                local equippedLevel = C_Item.GetDetailedItemLevelInfo(equippedLink)
-                                local equippedInventoryTypeValue = C_Item.GetItemInventoryTypeByID(equippedLink)
-                                if equippedInventoryTypeValue == rewardInventoryTypeValue then
-                                    if equippedLevel > rewardLevel then
-                                        -- do stuff
-                                    end
-                                end
-                            end
-                        end]]
                     end
                 end
                 local price = GetSellPrice(link)
                 if price > bestSellPrice then
                     bestSellIndex = i
+                    bestItemLink = link
                     bestSellPrice = price
                 end
             end
             if bestUpgrade > 0 then
-                print(bestIndex, " is the best ITEM LEVEL reward!")
+                print(bestItemLink, " is the best ITEM LEVEL reward!")
                 --GetQuestReward(bestIndex)
             else
-                print(bestSellIndex, " is the best SELL PRICE reward!")
+                print(bestItemLink, " is the best SELL PRICE reward!")
                 --GetQuestReward(bestSellIndex)
+                --C_Timer.After(0.15, function(bestItemLink) C_Item.EquipItemByName(bestItemLink, globalInvSlotID) end)
             end
             --QuestFrameCompleteQuestButton:Click()
         end
