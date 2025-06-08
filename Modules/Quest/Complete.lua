@@ -57,40 +57,40 @@ local allowedWeaponTypesBySpecID = {
     [64] = {7, 10, 15}, -- Frost
     [1449] = {7, 10, 15}, -- Initial
     -- Monk
-    [268] = {}, -- Brewmaster
-    [269] = {}, -- Windwalker
-    [270] = {}, -- Mistweaver
-    [1450] = {}, -- Initial
+    [268] = {0, 4, 6, 7, 10, 11, 12, 13}, -- Brewmaster
+    [269] = {0, 4, 6, 7, 10, 11, 12, 13}, -- Windwalker
+    [270] = {0, 4, 6, 7, 10, 11, 12, 13}, -- Mistweaver
+    [1450] = {0, 4, 6, 7, 10, 11, 12, 13}, -- Initial
     -- Paladin
-    [65] = {}, -- Holy
-    [66] = {}, -- Protection
-    [70] = {}, -- Retribution
-    [1451] = {}, -- Initial
+    [65] = {0, 1, 4, 5, 6, 7, 8}, -- Holy
+    [66] = {0, 4, 7}, -- Protection
+    [70] = {1, 5, 8}, -- Retribution
+    [1451] = {1, 5, 8}, -- Initial
     -- Priest
-    [256] = {}, -- Discipline
-    [257] = {}, -- Holy
-    [258] = {}, -- Shadow
-    [1452] = {}, -- Initial
+    [256] = {4, 10, 15}, -- Discipline
+    [257] = {4, 10, 15}, -- Holy
+    [258] = {4, 10, 15}, -- Shadow
+    [1452] = {10}, -- Initial
     -- Rogue
-    [259] = {}, -- Assassination
-    [260] = {}, -- Outlaw
-    [261] = {}, -- Subtlety
-    [1453] = {}, -- Initial
+    [259] = {15}, -- Assassination
+    [260] = {0, 4, 7, 11, 12, 13}, -- Outlaw
+    [261] = {15}, -- Subtlety
+    [1453] = {15}, -- Initial
     -- Shaman
-    [262] = {}, -- Elemental
-    [263] = {}, -- Enhancement
-    [264] = {}, -- Restoration
-    [1444] = {}, -- Initial
+    [262] = {0, 4, 10, 15}, -- Elemental
+    [263] = {4, 11, 12, 13}, -- Enhancement
+    [264] = {0, 4, 10, 15}, -- Restoration
+    [1444] = {0, 4, 10, 15}, -- Initial
     -- Warlock
-    [265] = {}, -- Affliction
-    [266] = {}, -- Demonology
-    [267] = {}, -- Destruction
-    [1454] = {}, -- Initial
+    [265] = {7, 10, 15}, -- Affliction
+    [266] = {7, 10, 15}, -- Demonology
+    [267] = {7, 10, 15}, -- Destruction
+    [1454] = {7, 10, 15}, -- Initial
     -- Warrior
-    [71] = {}, -- Arms
-    [72] = {}, -- Fury
-    [73] = {}, -- Protection
-    [1446] = {}, -- Initial
+    [71] = {0, 1, 4, 5, 6, 7, 8}, -- Arms
+    [72] = {0, 1, 4, 5, 6, 7, 8}, -- Fury
+    [73] = {0, 4, 7}, -- Protection
+    [1446] = {0, 1, 4, 5, 6, 7, 8}, -- Initial
 }
 
 local function GetAllowedWeaponTypes()
