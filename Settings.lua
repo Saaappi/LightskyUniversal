@@ -184,9 +184,9 @@ local function SlashHandler(msg, editBox)
             local checkbox9 = LSU.NewCheckbox({
                 id = 9,
                 parent = frame,
-                label = L.LABEL_SETTINGS_RARES,
-                savedVarKey = "Rares.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_RARES
+                label = L.LABEL_SETTINGS_QUEST_REWARDS,
+                savedVarKey = "QuestRewards.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_QUEST_REWARDS
             })
             checkbox9:SetPoint("TOPLEFT", checkbox8, "BOTTOMLEFT", 0, -ySpacing)
             checkbox9:Show()
@@ -194,9 +194,9 @@ local function SlashHandler(msg, editBox)
             local checkbox10 = LSU.NewCheckbox({
                 id = 10,
                 parent = frame,
-                label = L.LABEL_SETTINGS_READY_CHECKS,
-                savedVarKey = "ReadyChecks.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_READY_CHECKS
+                label = L.LABEL_SETTINGS_RARES,
+                savedVarKey = "Rares.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_RARES
             })
             checkbox10:SetPoint("TOPLEFT", checkbox9, "BOTTOMLEFT", 0, -ySpacing)
             checkbox10:Show()
@@ -204,9 +204,9 @@ local function SlashHandler(msg, editBox)
             local checkbox11 = LSU.NewCheckbox({
                 id = 11,
                 parent = frame,
-                label = L.LABEL_SETTINGS_ROLE_CHECKS,
-                savedVarKey = "RoleChecks.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_ROLE_CHECKS
+                label = L.LABEL_SETTINGS_READY_CHECKS,
+                savedVarKey = "ReadyChecks.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_READY_CHECKS
             })
             checkbox11:SetPoint("TOPLEFT", checkbox10, "BOTTOMLEFT", 0, -ySpacing)
             checkbox11:Show()
@@ -214,9 +214,9 @@ local function SlashHandler(msg, editBox)
             local checkbox12 = LSU.NewCheckbox({
                 id = 12,
                 parent = frame,
-                label = L.LABEL_SETTINGS_SKIP_CINEMATICS,
-                savedVarKey = "SkipCinematics.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_SKIP_CINEMATICS
+                label = L.LABEL_SETTINGS_ROLE_CHECKS,
+                savedVarKey = "RoleChecks.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_ROLE_CHECKS
             })
             checkbox12:SetPoint("TOPLEFT", checkbox11, "BOTTOMLEFT", 0, -ySpacing)
             checkbox12:Show()
@@ -224,12 +224,22 @@ local function SlashHandler(msg, editBox)
             local checkbox13 = LSU.NewCheckbox({
                 id = 13,
                 parent = frame,
+                label = L.LABEL_SETTINGS_SKIP_CINEMATICS,
+                savedVarKey = "SkipCinematics.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_SKIP_CINEMATICS
+            })
+            checkbox13:SetPoint("TOPLEFT", frame, "TOPLEFT", 50 + 2 * 180, -100)
+            checkbox13:Show()
+
+            local checkbox14 = LSU.NewCheckbox({
+                id = 14,
+                parent = frame,
                 label = L.LABEL_SETTINGS_NEW_CHARACTER,
                 savedVarKey = "NewCharacter.Enabled",
                 tooltipText = L.TOOLTIP_SETTINGS_NEW_CHARACTER
             })
-            checkbox13:SetPoint("TOPLEFT", frame, "TOPLEFT", 50 + 2 * 180, -100)
-            checkbox13:Show()
+            checkbox14:SetPoint("TOPLEFT", checkbox13, "BOTTOMLEFT", 0, -ySpacing)
+            checkbox14:Show()
 
             local chromieTimeDropdown = LSU.NewRadioDropdown({
                 parent = checkbox6,
@@ -251,21 +261,6 @@ local function SlashHandler(msg, editBox)
             })
             chromieTimeDropdown:SetPoint("TOPLEFT", checkbox6, "BOTTOMLEFT", 0, -50)
             chromieTimeDropdown:SetText(LSU.Enum.Expansions[LSUDB.Settings["ChromieTimeExpansionID"]] or DISABLE)
-            chromieTimeDropdown:Show()
-
-            local questRewardDropdown = LSU.NewRadioDropdown({
-                parent = chromieTimeDropdown,
-                label = L.LABEL_SETTINGS_QUEST_REWARDS,
-                tooltipText = L.TOOLTIP_SETTINGS_QUEST_REWARDS,
-                savedVarKey = "QuestRewardSelectionID",
-                options = {
-                    { DISABLE, 0 },
-                    { L.LABEL_SETTINGS_SELL_PRICE, 1 },
-                    { L.LABEL_SETTINGS_ITEM_LEVEL, 2 },
-                }
-            })
-            questRewardDropdown:SetPoint("TOPLEFT", chromieTimeDropdown, "TOPRIGHT", 25, 0)
-            questRewardDropdown:SetText(LSU.Enum.QuestRewardSelections[LSUDB.Settings["QuestRewardSelectionID"]])
             chromieTimeDropdown:Show()
 
             local warbankDepositEditBox = LSU.NewEditBox({

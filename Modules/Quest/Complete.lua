@@ -123,11 +123,10 @@ local function IsValidWeapon(itemLink, allowedWeaponTypes)
     return allowedWeaponTypes[subClassID] == true
 end
 
-QuestFrame:HookScript("OnShow", function()
-    if not LSUDB.Settings["CompleteQuests.Enabled"] then return end
-    if IsQuestCompletable() then
-        CompleteQuest()
-    else
+local handlers = {
+    QUEST_COMPLETE = function(...)
+        if not LSUDB.Settings["CompleteQuests.Enabled"] then return end
+        if not LSUDB.Settings["QuestRewards.Enabled"] then return end
         local numRewards = GetNumQuestChoices()
         if numRewards <= 1 then
             GetQuestReward(1)
@@ -217,14 +216,27 @@ QuestFrame:HookScript("OnShow", function()
                 end
             end
             if bestUpgrade > 0 then
-                print(bestItemLink, " is the best ITEM LEVEL reward!")
-                --GetQuestReward(bestIndex)
+                GetQuestReward(bestIndex)
             else
-                print(bestItemLink, " is the best SELL PRICE reward!")
-                --GetQuestReward(bestSellIndex)
+                GetQuestReward(bestSellIndex)
                 --C_Timer.After(0.15, function(bestItemLink) C_Item.EquipItemByName(bestItemLink, globalInvSlotID) end)
             end
             --QuestFrameCompleteQuestButton:Click()
         end
+    end,
+    QUEST_PROGRESS = function(...)
+        if not LSUDB.Settings["CompleteQuests.Enabled"] then return end
+        if IsQuestCompletable() then
+            CompleteQuest()
+        end
+    end
+}
+
+eventFrame:RegisterEvent("QUEST_COMPLETE")
+eventFrame:RegisterEvent("QUEST_PROGRESS")
+eventFrame:SetScript("OnEvent", function(_, event, ...)
+    local handler = handlers[event]
+    if handler then
+        handler(...)
     end
 end)
