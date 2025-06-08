@@ -95,7 +95,7 @@ local allowedWeaponTypesBySpecID = {
 
 local function GetAllowedWeaponTypes()
     local specID = PlayerUtil.GetCurrentSpecID()
-    if specID and GetAllowedWeaponTypes[specID] then
+    if specID and allowedWeaponTypesBySpecID[specID] then
         return allowedWeaponTypesBySpecID[specID]
     end
     return nil
@@ -194,7 +194,7 @@ QuestFrame:HookScript("OnShow", function()
                                     end
                                 end
                             end
-                        else
+                        elseif invSlotID and (not inventoryValueToSlotID[invSlotID]) then
                             LSU.PrintWarning("Unsupported item type detected:" .. rewardInventoryTypeValue)
                         end
                         --[[if inventoryValueToSlotID[rewardInventoryTypeValue] then
