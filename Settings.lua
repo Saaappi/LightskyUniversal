@@ -101,148 +101,63 @@ local function SlashHandler(msg, editBox)
             frame.versionLabel:SetText(C_AddOns.GetAddOnMetadata(addonName, "Version"))
             frame.versionLabel:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -15, -30)
 
-            local checkbox1 = LSU.NewCheckbox({
-                id = 1,
-                parent = frame,
-                label = L.LABEL_SETTINGS_ACCEPT_QUESTS,
-                savedVarKey = "AcceptQuests.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_ACCEPT_QUESTS
-            })
-            checkbox1:SetPoint("TOPLEFT", frame, "TOPLEFT", 50, -100)
-            checkbox1:Show()
+            local scrollFrame = CreateFrame("ScrollFrame", nil, frame, "UIPanelScrollFrameTemplate")
+            scrollFrame:SetPoint("TOPLEFT", frame, "TOPLEFT", 30, -65)
+            scrollFrame:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -35, 20)
 
-            local checkbox2 = LSU.NewCheckbox({
-                id = 2,
-                parent = frame,
-                label = L.LABEL_SETTINGS_AUTO_REPAIR,
-                savedVarKey = "AutoRepair.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_AUTO_REPAIR
-            })
-            checkbox2:SetPoint("TOPLEFT", checkbox1, "BOTTOMLEFT", 0, -ySpacing)
-            checkbox2:Show()
+            local scrollChild = CreateFrame("Frame", nil, scrollFrame)
+            scrollChild:SetSize(1, 1)
+            scrollFrame:SetScrollChild(scrollChild)
 
-            local checkbox3 = LSU.NewCheckbox({
-                id = 3,
-                parent = frame,
-                label = L.LABEL_SETTINGS_AUTO_TRAIN,
-                savedVarKey = "AutoTrain.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_AUTO_TRAIN
-            })
-            checkbox3:SetPoint("TOPLEFT", checkbox2, "BOTTOMLEFT", 0, -ySpacing)
-            checkbox3:Show()
+            local lastWidget = nil
 
-            local checkbox4 = LSU.NewCheckbox({
-                id = 4,
-                parent = frame,
-                label = L.LABEL_SETTINGS_BUY_QUEST_ITEMS,
-                savedVarKey = "BuyQuestItems.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_BUY_QUEST_ITEMS
-            })
-            checkbox4:SetPoint("TOPLEFT", checkbox3, "BOTTOMLEFT", 0, -ySpacing)
-            checkbox4:Show()
+            local checkboxData = {
+                {L.LABEL_SETTINGS_ACCEPT_QUESTS,   "AcceptQuests.Enabled",    L.TOOLTIP_SETTINGS_ACCEPT_QUESTS},
+                {L.LABEL_SETTINGS_AUTO_REPAIR,     "AutoRepair.Enabled",      L.TOOLTIP_SETTINGS_AUTO_REPAIR},
+                {L.LABEL_SETTINGS_AUTO_TRAIN,      "AutoTrain.Enabled",       L.TOOLTIP_SETTINGS_AUTO_TRAIN},
+                {L.LABEL_SETTINGS_BUY_QUEST_ITEMS, "BuyQuestItems.Enabled",   L.TOOLTIP_SETTINGS_BUY_QUEST_ITEMS},
+                {L.LABEL_SETTINGS_CHAT_ICONS,      "ChatIcons.Enabled",       L.TOOLTIP_SETTINGS_CHAT_ICONS},
+                {L.LABEL_SETTINGS_COMPLETE_QUESTS, "CompleteQuests.Enabled",  L.TOOLTIP_SETTINGS_COMPLETE_QUESTS},
+                {L.LABEL_SETTINGS_GOSSIP,          "Gossip.Enabled",          L.TOOLTIP_SETTINGS_GOSSIP},
+                {L.LABEL_SETTINGS_PLAYER_TALENTS,  "PlayerTalents.Enabled",   L.TOOLTIP_SETTINGS_PLAYER_TALENTS},
+                {L.LABEL_SETTINGS_QUEST_REWARDS,   "QuestRewards.Enabled",    L.TOOLTIP_SETTINGS_QUEST_REWARDS},
+                {L.LABEL_SETTINGS_RARES,           "Rares.Enabled",           L.TOOLTIP_SETTINGS_RARES},
+                {L.LABEL_SETTINGS_READY_CHECKS,    "ReadyChecks.Enabled",     L.TOOLTIP_SETTINGS_READY_CHECKS},
+                {L.LABEL_SETTINGS_ROLE_CHECKS,     "RoleChecks.Enabled",      L.TOOLTIP_SETTINGS_ROLE_CHECKS},
+                {L.LABEL_SETTINGS_SKIP_CINEMATICS, "SkipCinematics.Enabled",  L.TOOLTIP_SETTINGS_SKIP_CINEMATICS},
+                {L.LABEL_SETTINGS_NEW_CHARACTER,   "NewCharacter.Enabled",    L.TOOLTIP_SETTINGS_NEW_CHARACTER},
+            }
 
-            local checkbox5 = LSU.NewCheckbox({
-                id = 5,
-                parent = frame,
-                label = L.LABEL_SETTINGS_CHAT_ICONS,
-                savedVarKey = "ChatIcons.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_CHAT_ICONS
-            })
-            checkbox5:SetPoint("TOPLEFT", checkbox4, "BOTTOMLEFT", 0, -ySpacing)
-            checkbox5:Show()
+            local columnWidth = 180
+            local rowHeight = 25 + ySpacing
+            local startX = 20
+            local startY = -10
+            local checkboxes = {}
+            local leftColumnCheckboxes = {}
+            for i, data in ipairs(checkboxData) do
+                local col = ((i-1) % 3) + 1
+                local row = math.floor((i-1) / 3) + 1
 
-            local checkbox6 = LSU.NewCheckbox({
-                id = 6,
-                parent = frame,
-                label = L.LABEL_SETTINGS_COMPLETE_QUESTS,
-                savedVarKey = "CompleteQuests.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_COMPLETE_QUESTS
-            })
-            checkbox6:SetPoint("TOPLEFT", checkbox5, "BOTTOMLEFT", 0, -ySpacing)
-            checkbox6:Show()
+                local cb = LSU.NewCheckbox({
+                    id = i,
+                    parent = scrollChild,
+                    label = data[1],
+                    savedVarKey = data[2],
+                    tooltipText = data[3],
+                })
+                local x = startX + (col-1)*columnWidth
+                local y = startY - (row-1)*rowHeight
+                cb:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", x, y)
+                cb:Show()
+                checkboxes[i] = cb
 
-            local checkbox7 = LSU.NewCheckbox({
-                id = 7,
-                parent = frame,
-                label = L.LABEL_SETTINGS_GOSSIP,
-                savedVarKey = "Gossip.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_GOSSIP
-            })
-            checkbox7:SetPoint("TOPLEFT", frame, "TOPLEFT", 50 + 1 * 180, -100)
-            checkbox7:Show()
-
-            local checkbox8 = LSU.NewCheckbox({
-                id = 8,
-                parent = frame,
-                label = L.LABEL_SETTINGS_PLAYER_TALENTS,
-                savedVarKey = "PlayerTalents.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_PLAYER_TALENTS
-            })
-            checkbox8:SetPoint("TOPLEFT", checkbox7, "BOTTOMLEFT", 0, -ySpacing)
-            checkbox8:Show()
-
-            local checkbox9 = LSU.NewCheckbox({
-                id = 9,
-                parent = frame,
-                label = L.LABEL_SETTINGS_QUEST_REWARDS,
-                savedVarKey = "QuestRewards.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_QUEST_REWARDS
-            })
-            checkbox9:SetPoint("TOPLEFT", checkbox8, "BOTTOMLEFT", 0, -ySpacing)
-            checkbox9:Show()
-
-            local checkbox10 = LSU.NewCheckbox({
-                id = 10,
-                parent = frame,
-                label = L.LABEL_SETTINGS_RARES,
-                savedVarKey = "Rares.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_RARES
-            })
-            checkbox10:SetPoint("TOPLEFT", checkbox9, "BOTTOMLEFT", 0, -ySpacing)
-            checkbox10:Show()
-
-            local checkbox11 = LSU.NewCheckbox({
-                id = 11,
-                parent = frame,
-                label = L.LABEL_SETTINGS_READY_CHECKS,
-                savedVarKey = "ReadyChecks.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_READY_CHECKS
-            })
-            checkbox11:SetPoint("TOPLEFT", checkbox10, "BOTTOMLEFT", 0, -ySpacing)
-            checkbox11:Show()
-
-            local checkbox12 = LSU.NewCheckbox({
-                id = 12,
-                parent = frame,
-                label = L.LABEL_SETTINGS_ROLE_CHECKS,
-                savedVarKey = "RoleChecks.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_ROLE_CHECKS
-            })
-            checkbox12:SetPoint("TOPLEFT", checkbox11, "BOTTOMLEFT", 0, -ySpacing)
-            checkbox12:Show()
-
-            local checkbox13 = LSU.NewCheckbox({
-                id = 13,
-                parent = frame,
-                label = L.LABEL_SETTINGS_SKIP_CINEMATICS,
-                savedVarKey = "SkipCinematics.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_SKIP_CINEMATICS
-            })
-            checkbox13:SetPoint("TOPLEFT", frame, "TOPLEFT", 50 + 2 * 180, -100)
-            checkbox13:Show()
-
-            local checkbox14 = LSU.NewCheckbox({
-                id = 14,
-                parent = frame,
-                label = L.LABEL_SETTINGS_NEW_CHARACTER,
-                savedVarKey = "NewCharacter.Enabled",
-                tooltipText = L.TOOLTIP_SETTINGS_NEW_CHARACTER
-            })
-            checkbox14:SetPoint("TOPLEFT", checkbox13, "BOTTOMLEFT", 0, -ySpacing)
-            checkbox14:Show()
+                if col == 1 then
+                    table.insert(leftColumnCheckboxes, cb)
+                end
+            end
 
             local chromieTimeDropdown = LSU.NewRadioDropdown({
-                parent = checkbox6,
+                parent = scrollChild,
                 label = L.LABEL_SETTINGS_CHROMIE_TIME,
                 tooltipText = L.TOOLTIP_SETTINGS_CHROMIE_TIME,
                 savedVarKey = "ChromieTimeExpansionID",
@@ -259,7 +174,7 @@ local function SlashHandler(msg, editBox)
                     { EXPANSION_NAME9, 16 }, -- Dragonflight
                 }
             })
-            chromieTimeDropdown:SetPoint("TOPLEFT", checkbox6, "BOTTOMLEFT", 0, -50)
+            chromieTimeDropdown:SetPoint("TOPLEFT", leftColumnCheckboxes[#leftColumnCheckboxes], "BOTTOMLEFT", 0, -50)
             chromieTimeDropdown:SetText(LSU.Enum.Expansions[LSUDB.Settings["ChromieTimeExpansionID"]] or DISABLE)
             chromieTimeDropdown:Show()
 
@@ -283,6 +198,9 @@ local function SlashHandler(msg, editBox)
                 self:ClearFocus()
             end)
             warbankDepositEditBox:Show()
+
+            lastWidget = warbankDepositEditBox
+            scrollChild:SetSize(scrollFrame:GetWidth()-20, math.abs(lastWidget:GetBottom() - scrollChild:GetTop()) + 30)
         else
             frame:Show()
         end
