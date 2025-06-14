@@ -156,6 +156,11 @@ local function SlashHandler(msg, editBox)
                 end
             end
 
+            local chromieTimeModuleFS = scrollChild:CreateFontString()
+            chromieTimeModuleFS:SetFontObject("ChatBubbleFont")
+            chromieTimeModuleFS:SetText("Chromie Time")
+            chromieTimeModuleFS:SetPoint("TOPLEFT", leftColumnCheckboxes[#leftColumnCheckboxes], "BOTTOMLEFT", 0, -50)
+
             local chromieTimeDropdown = LSU.NewRadioDropdown({
                 parent = scrollChild,
                 label = L.LABEL_SETTINGS_CHROMIE_TIME,
@@ -174,11 +179,12 @@ local function SlashHandler(msg, editBox)
                     { EXPANSION_NAME9, 16 }, -- Dragonflight
                 }
             })
-            chromieTimeDropdown:SetPoint("TOPLEFT", leftColumnCheckboxes[#leftColumnCheckboxes], "BOTTOMLEFT", 0, -50)
+            chromieTimeDropdown:SetPoint("TOPLEFT", chromieTimeModuleFS, "BOTTOMLEFT", 0, -10)
             chromieTimeDropdown:SetText(LSU.Enum.Expansions[LSUDB.Settings["ChromieTimeExpansionID"]] or DISABLE)
+            chromieTimeDropdown.label:Hide()
             chromieTimeDropdown:Show()
 
-            local warbankDepositEditBox = LSU.NewEditBox({
+            --[[local warbankDepositEditBox = LSU.NewEditBox({
                 name = "LSUWarbankDepositEditBox",
                 parent = chromieTimeDropdown,
                 width = 200,
@@ -197,9 +203,15 @@ local function SlashHandler(msg, editBox)
                 warbankDepositEditBox:SetText(C_CurrencyInfo.GetCoinTextureString(amount))
                 self:ClearFocus()
             end)
-            warbankDepositEditBox:Show()
+            warbankDepositEditBox:Show()]]
 
-            lastWidget = warbankDepositEditBox
+            local newCharacterModuleFS = scrollChild:CreateFontString()
+            newCharacterModuleFS:SetFontObject("ChatBubbleFont")
+            newCharacterModuleFS:SetText("New Character Module")
+            newCharacterModuleFS:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", 0, -25)
+
+            --lastWidget = warbankDepositEditBox
+            lastWidget = chromieTimeDropdown
             scrollChild:SetSize(scrollFrame:GetWidth()-20, math.abs(lastWidget:GetBottom() - scrollChild:GetTop()) + 30)
         else
             frame:Show()
