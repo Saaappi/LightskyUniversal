@@ -13,55 +13,35 @@ local button = {
 }
 
 local consoleVariables = {
-    { name = "alwaysCompareItems", value = "0" },
-    { name = "alwaysShowActionBars", value = "1" },
-    { name = "arachnophobiaMode", value = "1" },
-    { name = "autoDismountFlying", value = "0" },
-    { name = "autoInteract", value = "1" },
-    { name = "autoLootDefault", value = "1" },
-    { name = "AutoPushSpellToActionBar", value = "0" },
-    --{ name = "autoQuestProgress", value = "1" },
-    --{ name = "autoQuestWatch", value = "1" },
-    --{ name = "bankConfirmTabCleanUp", value = "0" },
-    --{ name = "cameraIndirectVisibility", value = "0" },
-    --{ name = "cameraIndirectOffset", value = "10" },
-    --{ name = "calendarShowLockouts", value = "0" },
-    --{ name = "chatBubblesParty", value = "0" },
-    { name = "cooldownViewerEnabled", value = "1" },
-    --{ name = "countdownForCooldowns", value = "1" },
-    { name = "DisableAdvancedFlyingFullScreenEffects", value = "1" },
-    { name = "DisableAdvancedFlyingVelocityVFX", value = "1" },
-    { name = "disableUserAddonsByDefault", value = "1" },
-    { name = "enableFloatingCombatText", value = "1" },
-    --{ name = "findYourselfAnywhereOnlyInCombat", value = "1" },
-    { name = "FootstepSounds", value = "0" },
-    --{ name = "graphicsDepthEffects", value = "2" },
-    --{ name = "graphicsEnvironmentDetail", value = "7" },
-    --{ name = "graphicsGroundClutter", value = "3" },
-    --{ name = "graphicsParticleDensity", value = "3" },
-    --{ name = "graphicsShadowQuality", value = "1" },
-    --{ name = "graphicsSpellDensity", value = "2" },
-    { name = "lootUnderMouse", value = "1" },
-    { name = "mountJournalShowPlayer", value = "1" },
-    --{ name = "movieSubtitleBackgroundAlpha", value = "85" },
-    --{ name = "nameplateShowSelf", value = "0" },
-    { name = "occludedSilhouettePlayer", value = "1" },
-    { name = "profanityFilter", value = "0" },
-    { name = "pvpFramesDisplayClassColor", value = "1" },
-    { name = "questTextContrast", value = "1" },
-    { name = "raidFramesDisplayClassColor", value = "1" },
-    { name = "ReplaceMyPlayerPortrait", value = "1" },
-    { name = "ReplaceOtherPlayerPortraits", value = "1" },
-    --{ name = "screenshotQuality", value = "6" },
-    { name = "scriptErrors", value = "1" },
-    --{ name = "scrollToLogQuest", value = "1" },
-    { name = "showTargetOfTarget", value = "1" },
-    { name = "showTutorials", value = "0" },
-    { name = "SoftTargetEnemy", value = "2" },
-    { name = "SoftTargetEnemyArc", value = "1" },
-    { name = "SoftTargetIconEnemy", value = "1" },
-    { name = "spellBookHidePassives", value = "1" },
-    --{ name = "whisperMode", value = "inline" },
+    { name = "alwaysCompareItems", savedVarKey = "NewCharacter.AlwaysCompareItems.Enabled", value = "0" },
+    { name = "alwaysShowActionBars", savedVarKey = "NewCharacter.AlwaysShowActionBars.Enabled", value = "1" },
+    { name = "arachnophobiaMode", savedVarKey = "NewCharacter.ArachnophobiaMode.Enabled", value = "1" },
+    { name = "autoDismountFlying", savedVarKey = "NewCharacter.AutoDismountFlying.Enabled", value = "0" },
+    { name = "autoInteract", savedVarKey = "NewCharacter.AutoInteract.Enabled", value = "1" },
+    { name = "autoLootDefault", savedVarKey = "NewCharacter.AutoLootDefault.Enabled", value = "1" },
+    { name = "AutoPushSpellToActionBar", savedVarKey = "NewCharacter.AutoPushSpellToActionBar.Enabled", value = "0" },
+    { name = "cooldownViewerEnabled", savedVarKey = "NewCharacter.CooldownViewer.Enabled", value = "1" },
+    { name = "DisableAdvancedFlyingFullScreenEffects", savedVarKey = "NewCharacter.DisableSkyridingFullScreenEffects.Enabled", value = "1" },
+    { name = "DisableAdvancedFlyingVelocityVFX", savedVarKey = "NewCharacter.DisableSkyridingVelocityVFX.Enabled", value = "1" },
+    { name = "disableUserAddonsByDefault", savedVarKey = "NewCharacter.DisableUserAddonsByDefault.Enabled", value = "1" },
+    { name = "enableFloatingCombatText", savedVarKey = "NewCharacter.EnableFloatingCombatText.Enabled", value = "1" },
+    { name = "FootstepSounds", savedVarKey = "NewCharacter.FootstepSounds.Enabled", value = "0" },
+    { name = "lootUnderMouse", savedVarKey = "NewCharacter.LootUnderMouse.Enabled", value = "1" },
+    { name = "mountJournalShowPlayer", savedVarKey = "NewCharacter.MountJournalShowPlayer.Enabled", value = "1" },
+    { name = "occludedSilhouettePlayer", savedVarKey = "NewCharacter.OccludedSilhouettePlayer.Enabled", value = "1" },
+    { name = "profanityFilter", savedVarKey = "NewCharacter.ProfanityFilter.Enabled", value = "0" },
+    { name = "pvpFramesDisplayClassColor", savedVarKey = "NewCharacter.PvPFramesDisplayClassColor.Enabled", value = "1" },
+    { name = "questTextContrast", savedVarKey = "NewCharacter.QuestTextContrast.Enabled", value = "1" },
+    { name = "raidFramesDisplayClassColor", savedVarKey = "NewCharacter.RaidFramesDisplayClassColor.Enabled", value = "1" },
+    { name = "ReplaceMyPlayerPortrait", savedVarKey = "NewCharacter.ReplaceMyPlayerPortrait.Enabled", value = "1" },
+    { name = "ReplaceOtherPlayerPortraits", savedVarKey = "NewCharacter.ReplaceOtherPlayerPortraits.Enabled", value = "1" },
+    { name = "scriptErrors", savedVarKey = "NewCharacter.ShowScriptErrors.Enabled", value = "1" },
+    { name = "showTargetOfTarget", savedVarKey = "NewCharacter.ShowTargetOfTarget.Enabled", value = "1" },
+    { name = "showTutorials", savedVarKey = "NewCharacter.ShowTutorials.Enabled", value = "0" },
+    { name = "SoftTargetEnemy", savedVarKey = "NewCharacter.SoftTargetEnemy.Enabled", value = "2" },
+    { name = "SoftTargetEnemyArc", savedVarKey = "NewCharacter.SoftTargetEnemy.Enabled", value = "1" },
+    { name = "SoftTargetIconEnemy", savedVarKey = "NewCharacter.SoftTargetEnemy.Enabled", value = "1" },
+    { name = "spellBookHidePassives", savedVarKey = "NewCharacter.SpellBookHidePassives.Enabled", value = "1" },
 }
 
 eventFrame:RegisterEvent("PLAYER_LOGIN")
@@ -80,17 +60,21 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     newCharacterSetupButton:SetScript("OnClick", function()
                         newCharacterSetupButton:Hide()
 
-                        C_Minimap.ClearAllTracking()
-                        C_EditMode.SetActiveLayout(3)
+                        if LSUDB.Settings["NewCharacter.ClearAllTracking.Enabled"] then
+                            C_Minimap.ClearAllTracking()
+                        end
+                        --C_EditMode.SetActiveLayout(3)
 
-                        local t1, t2, t3 = GetActionBarToggles()
+                        --[[local t1, t2, t3 = GetActionBarToggles()
                         if not (t1 and t2 and t3) then
                             SetActionBarToggles(true, true, true, false, false, false, false, false)
-                        end
+                        end]]
 
                         for _, consoleVariable in ipairs(consoleVariables) do
-                            if C_CVar.GetCVar(consoleVariable.name) ~= consoleVariable.value then
-                                C_CVar.SetCVar(consoleVariable.name, consoleVariable.value)
+                            if consoleVariable.savedVarKey then
+                                if C_CVar.GetCVar(consoleVariable.name) ~= consoleVariable.value then
+                                    C_CVar.SetCVar(consoleVariable.name, consoleVariable.value)
+                                end
                             end
                         end
 
