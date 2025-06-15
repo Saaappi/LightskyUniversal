@@ -213,6 +213,27 @@ local function SlashHandler(msg, editBox)
                 {"Auto Interact", "NewCharacter.AutoInteract.Enabled", "<PH>"},
                 {"Auto Loot", "NewCharacter.AutoLootDefault.Enabled", "<PH>"},
                 {"Auto Push Spells", "NewCharacter.AutoPushSpellToActionBar.Enabled", "<PH>"},
+                {"Cooldown Viewer", "NewCharacter.CooldownViewer.Enabled", "<PH>"},
+                {"Disable Skyriding Full Screen Effects", "NewCharacter.DisableSkyridingFullScreenEffects.Enabled", "<PH>"},
+                {"Disable Skyriding Velocity VFX", "NewCharacter.DisableSkyridingVelocityVFX.Enabled", "<PH>"},
+                {"Disable User Addons By Default", "NewCharacter.DisableUserAddonsByDefault.Enabled", "<PH>"},
+                {"Enable Floating Combat Text", "NewCharacter.EnableFloatingCombatText.Enabled", "<PH>"},
+                {"Footstep Sounds", "NewCharacter.FootstepSounds.Enabled", "<PH>"},
+                {"Loot Under Mouse", "NewCharacter.LootUnderMouse.Enabled", "<PH>"},
+                {"Mount Journal Show Player", "NewCharacter.MountJournalShowPlayer.Enabled", "<PH>"},
+                {"Occluded Silhouette Player", "NewCharacter.OccludedSilhouettePlayer.Enabled", "<PH>"},
+                {"Profanity Filter", "NewCharacter.ProfanityFilter.Enabled", "<PH>"},
+                {"PvP Frames Display Class Color", "NewCharacter.PvPFramesDisplayClassColor.Enabled", "<PH>"},
+                {"Quest Text Contrast", "NewCharacter.QuestTextContrast.Enabled", "<PH>"},
+                {"Raid Frames Display Class Color", "NewCharacter.RaidFramesDisplayClassColor.Enabled", "<PH>"},
+                {"Replace My Player Portrait", "NewCharacter.ReplaceMyPlayerPortrait.Enabled", "<PH>"},
+                {"Replace Other Player Portraits", "NewCharacter.ReplaceOtherPlayerPortraits.Enabled", "<PH>"},
+                {"Show Script Errors", "NewCharacter.ShowScriptErrors.Enabled", "<PH>"},
+                {"Show Target of Target", "NewCharacter.ShowTargetOfTarget.Enabled", "<PH>"},
+                {"Show Tutorials", "NewCharacter.ShowTutorials.Enabled", "<PH>"},
+                {"Show Tutorials", "NewCharacter.ShowTutorials.Enabled", "<PH>"},
+                {"Soft Target Enemy", "NewCharacter.SoftTargetEnemy.Enabled", "<PH>"},
+                {"Spellbook Hide Passives", "NewCharacter.SpellBookHidePassives.Enabled", "<PH>"},
             }
 
             checkboxes = {}
@@ -229,7 +250,7 @@ local function SlashHandler(msg, editBox)
                 })
                 local x = startX + (col-1)*columnWidth
                 local y = startY - (row-1)*rowHeight
-                cb:SetPoint("TOPLEFT", newCharacterModuleFS, "TOPLEFT", x, y)
+                cb:SetPoint("TOPLEFT", newCharacterModuleFS, "BOTTOMLEFT", x, y)
                 cb:Show()
                 checkboxes[i] = cb
             end
