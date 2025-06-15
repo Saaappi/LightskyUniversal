@@ -207,27 +207,6 @@ local function SlashHandler(msg, editBox)
             chromieTimeDropdown.label:Hide()
             chromieTimeDropdown:Show()
 
-            --[[local warbankDepositEditBox = LSU.NewEditBox({
-                name = "LSUWarbankDepositEditBox",
-                parent = chromieTimeDropdown,
-                width = 200,
-                height = 25,
-                maxLetters = 7,
-                label = L.LABEL_SETTINGS_DEPOSIT_KEEP_AMOUNT,
-                tooltipText = L.TOOLTIP_SETTINGS_DEPOSIT_KEEP_AMOUNT
-            })
-            warbankDepositEditBox:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", 0, -50)
-            warbankDepositEditBox:SetText(C_CurrencyInfo.GetCoinTextureString(LSUDB.Settings["WarbankDepositInCopper"] or 0))
-            warbankDepositEditBox:SetScript("OnEnterPressed", function(self)
-                local amount = tonumber(self:GetText()) or 0
-                amount = math.max(amount, 0)
-                amount = amount * 10000
-                LSUDB.Settings["WarbankDepositInCopper"] = amount
-                warbankDepositEditBox:SetText(C_CurrencyInfo.GetCoinTextureString(amount))
-                self:ClearFocus()
-            end)
-            warbankDepositEditBox:Show()]]
-
             local newCharacterModuleFS = scrollChild:CreateFontString()
             newCharacterModuleFS:SetFontObject("ChatBubbleFont")
             newCharacterModuleFS:SetText(L.HEADER_NEW_CHARACTER_MODULE)
