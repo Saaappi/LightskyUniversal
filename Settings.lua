@@ -113,20 +113,20 @@ local function SlashHandler(msg, editBox)
 
             local generalModulesFS = scrollChild:CreateFontString()
             generalModulesFS:SetFontObject("ChatBubbleFont")
-            generalModulesFS:SetText("General Modules")
+            generalModulesFS:SetText(L.HEADER_GENERAL_MODULES)
             generalModulesFS:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 20, -30)
 
             local checkboxData = {
-                {L.LABEL_SETTINGS_ACCEPT_QUESTS,   "AcceptQuests.Enabled",    L.TOOLTIP_SETTINGS_ACCEPT_QUESTS},
-                {L.LABEL_SETTINGS_AUTO_REPAIR,     "AutoRepair.Enabled",      L.TOOLTIP_SETTINGS_AUTO_REPAIR},
-                {L.LABEL_SETTINGS_AUTO_TRAIN,      "AutoTrain.Enabled",       L.TOOLTIP_SETTINGS_AUTO_TRAIN},
-                {L.LABEL_SETTINGS_BUY_QUEST_ITEMS, "BuyQuestItems.Enabled",   L.TOOLTIP_SETTINGS_BUY_QUEST_ITEMS},
-                {L.LABEL_SETTINGS_COMPLETE_QUESTS, "CompleteQuests.Enabled",  L.TOOLTIP_SETTINGS_COMPLETE_QUESTS},
-                {L.LABEL_SETTINGS_PLAYER_TALENTS,  "PlayerTalents.Enabled",   L.TOOLTIP_SETTINGS_PLAYER_TALENTS},
-                {L.LABEL_SETTINGS_QUEST_REWARDS,   "QuestRewards.Enabled",    L.TOOLTIP_SETTINGS_QUEST_REWARDS},
-                {L.LABEL_SETTINGS_RARES,           "Rares.Enabled",           L.TOOLTIP_SETTINGS_RARES},
-                {L.LABEL_SETTINGS_SKIP_CINEMATICS, "SkipCinematics.Enabled",  L.TOOLTIP_SETTINGS_SKIP_CINEMATICS},
-                {L.LABEL_SETTINGS_NEW_CHARACTER,   "NewCharacter.Enabled",    L.TOOLTIP_SETTINGS_NEW_CHARACTER},
+                {L.LABEL_ACCEPT_QUESTS,   "AcceptQuests.Enabled",    L.TOOLTIP_ACCEPT_QUESTS},
+                {L.LABEL_AUTO_REPAIR,     "AutoRepair.Enabled",      L.TOOLTIP_AUTO_REPAIR},
+                {L.LABEL_AUTO_TRAIN,      "AutoTrain.Enabled",       L.TOOLTIP_AUTO_TRAIN},
+                {L.LABEL_BUY_QUEST_ITEMS, "BuyQuestItems.Enabled",   L.TOOLTIP_BUY_QUEST_ITEMS},
+                {L.LABEL_COMPLETE_QUESTS, "CompleteQuests.Enabled",  L.TOOLTIP_COMPLETE_QUESTS},
+                {L.LABEL_PLAYER_TALENTS,  "PlayerTalents.Enabled",   L.TOOLTIP_PLAYER_TALENTS},
+                {L.LABEL_QUEST_REWARDS,   "QuestRewards.Enabled",    L.TOOLTIP_QUEST_REWARDS},
+                {L.LABEL_RARES,           "Rares.Enabled",           L.TOOLTIP_RARES},
+                {L.LABEL_SKIP_CINEMATICS, "SkipCinematics.Enabled",  L.TOOLTIP_SKIP_CINEMATICS},
+                {L.LABEL_NEW_CHARACTER,   "NewCharacter.Enabled",    L.TOOLTIP_NEW_CHARACTER},
             }
 
             local columnWidth = 180
@@ -154,7 +154,7 @@ local function SlashHandler(msg, editBox)
 
             local gossipModuleFS = scrollChild:CreateFontString()
             gossipModuleFS:SetFontObject("ChatBubbleFont")
-            gossipModuleFS:SetText("Gossip Module")
+            gossipModuleFS:SetText(L.HEADER_GOSSIP_MODULE)
             gossipModuleFS:SetPoint("TOPLEFT", checkboxes[10], "BOTTOMLEFT", -20, -50)
 
             local openGossipsFrameButton = LSU.NewBasicButton({
@@ -162,7 +162,7 @@ local function SlashHandler(msg, editBox)
                 parent = scrollChild,
                 width = 120,
                 height = 25,
-                label = "Open Gossips"
+                label = L.LABEL_OPEN_GOSSIPS
             })
             openGossipsFrameButton:SetPoint("TOPLEFT", gossipModuleFS, "BOTTOMLEFT", 20, -10)
             openGossipsFrameButton:SetScript("OnClick", function()
@@ -181,13 +181,13 @@ local function SlashHandler(msg, editBox)
 
             local chromieTimeModuleFS = scrollChild:CreateFontString()
             chromieTimeModuleFS:SetFontObject("ChatBubbleFont")
-            chromieTimeModuleFS:SetText("Chromie Time Module")
+            chromieTimeModuleFS:SetText(L.HEADER_CHROMIE_TIME_MODULE)
             chromieTimeModuleFS:SetPoint("TOPLEFT", gossipModuleFS, "BOTTOMLEFT", 0, -125)
 
             local chromieTimeDropdown = LSU.NewRadioDropdown({
                 parent = scrollChild,
-                label = L.LABEL_SETTINGS_CHROMIE_TIME,
-                tooltipText = L.TOOLTIP_SETTINGS_CHROMIE_TIME,
+                label = L.LABEL_CHROMIE_TIME,
+                tooltipText = L.TOOLTIP_CHROMIE_TIME,
                 savedVarKey = "ChromieTimeExpansionID",
                 options = {
                     { DISABLE, 0 },
@@ -230,38 +230,38 @@ local function SlashHandler(msg, editBox)
 
             local newCharacterModuleFS = scrollChild:CreateFontString()
             newCharacterModuleFS:SetFontObject("ChatBubbleFont")
-            newCharacterModuleFS:SetText("New Character Module")
+            newCharacterModuleFS:SetText(L.HEADER_NEW_CHARACTER_MODULE)
             newCharacterModuleFS:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", -20, -50)
 
             local newCharacterModuleCheckboxData = {
-                {"Always Compare Items", "NewCharacter.AlwaysCompareItems.Enabled", "<PH>"},
-                {"Always Show Action Bars", "NewCharacter.AlwaysShowActionBars.Enabled", "<PH>"},
-                {"Arachnophobia Mode", "NewCharacter.ArachnophobiaMode.Enabled", "<PH>"},
-                {"Auto Dismount Flying", "NewCharacter.AutoDismountFlying.Enabled", "<PH>"},
-                {"Auto Interact", "NewCharacter.AutoInteract.Enabled", "<PH>"},
-                {"Auto Loot", "NewCharacter.AutoLootDefault.Enabled", "<PH>"},
-                {"Auto Push Spells", "NewCharacter.AutoPushSpellToActionBar.Enabled", "<PH>"},
-                {"Clear All Tracking", "NewCharacter.ClearAllTracking.Enabled", "<PH>"},
-                {"Cooldown Viewer", "NewCharacter.CooldownViewer.Enabled", "<PH>"},
-                {"Disable Skyriding Full Screen Effects", "NewCharacter.DisableSkyridingFullScreenEffects.Enabled", "<PH>"},
-                {"Disable Skyriding Velocity VFX", "NewCharacter.DisableSkyridingVelocityVFX.Enabled", "<PH>"},
-                {"Disable User Addons By Default", "NewCharacter.DisableUserAddonsByDefault.Enabled", "<PH>"},
-                {"Enable Floating Combat Text", "NewCharacter.EnableFloatingCombatText.Enabled", "<PH>"},
-                {"Footstep Sounds", "NewCharacter.FootstepSounds.Enabled", "<PH>"},
-                {"Loot Under Mouse", "NewCharacter.LootUnderMouse.Enabled", "<PH>"},
-                {"Mount Journal Show Player", "NewCharacter.MountJournalShowPlayer.Enabled", "<PH>"},
-                {"Occluded Silhouette Player", "NewCharacter.OccludedSilhouettePlayer.Enabled", "<PH>"},
-                {"Profanity Filter", "NewCharacter.ProfanityFilter.Enabled", "<PH>"},
-                {"PvP Frames Display Class Color", "NewCharacter.PvPFramesDisplayClassColor.Enabled", "<PH>"},
-                {"Quest Text Contrast", "NewCharacter.QuestTextContrast.Enabled", "<PH>"},
-                {"Raid Frames Display Class Color", "NewCharacter.RaidFramesDisplayClassColor.Enabled", "<PH>"},
-                {"Replace My Player Portrait", "NewCharacter.ReplaceMyPlayerPortrait.Enabled", "<PH>"},
-                {"Replace Other Player Portraits", "NewCharacter.ReplaceOtherPlayerPortraits.Enabled", "<PH>"},
-                {"Show Script Errors", "NewCharacter.ShowScriptErrors.Enabled", "<PH>"},
-                {"Show Target of Target", "NewCharacter.ShowTargetOfTarget.Enabled", "<PH>"},
-                {"Show Tutorials", "NewCharacter.ShowTutorials.Enabled", "<PH>"},
-                {"Soft Target Enemy", "NewCharacter.SoftTargetEnemy.Enabled", "<PH>"},
-                {"Spellbook Hide Passives", "NewCharacter.SpellBookHidePassives.Enabled", "<PH>"},
+                {L.LABEL_ALWAYS_COMPARE_ITEMS, "NewCharacter.AlwaysCompareItems.Enabled", "<PH>"},
+                {L.LABEL_ALWAYS_SHOW_ACTION_BARS, "NewCharacter.AlwaysShowActionBars.Enabled", "<PH>"},
+                {L.LABEL_ARACHNOPHOBIA_MODE, "NewCharacter.ArachnophobiaMode.Enabled", "<PH>"},
+                {L.LABEL_AUTO_DISMOUNT_FLYING, "NewCharacter.AutoDismountFlying.Enabled", "<PH>"},
+                {L.LABEL_AUTO_INTERACT, "NewCharacter.AutoInteract.Enabled", "<PH>"},
+                {L.LABEL_AUTO_LOOT , "NewCharacter.AutoLootDefault.Enabled", "<PH>"},
+                {L.LABEL_AUTO_PUSH_SPELLS_TO_ACTION_BAR, "NewCharacter.AutoPushSpellToActionBar.Enabled", "<PH>"},
+                {L.LABEL_CLEAR_ALL_TRACKING, "NewCharacter.ClearAllTracking.Enabled", "<PH>"},
+                {L.LABEL_COOLDOWN_VIEWER, "NewCharacter.CooldownViewer.Enabled", "<PH>"},
+                {L.LABEL_DISABLE_SKYRIDING_FULL_SCREEN, "NewCharacter.DisableSkyridingFullScreenEffects.Enabled", "<PH>"},
+                {L.LABEL_DISABLE_SKYRIDING_VELOCITY_VFX, "NewCharacter.DisableSkyridingVelocityVFX.Enabled", "<PH>"},
+                {L.LABEL_DISABLE_USER_ADDONS_BY_DEFAULT, "NewCharacter.DisableUserAddonsByDefault.Enabled", "<PH>"},
+                {L.LABEL_ENABLE_FLOATING_COMBAT_TEXT, "NewCharacter.EnableFloatingCombatText.Enabled", "<PH>"},
+                {L.LABEL_DISABLE_FOOTSTEP_SOUNDS, "NewCharacter.FootstepSounds.Enabled", "<PH>"},
+                {L.LABEL_LOOT_UNDER_MOUSE, "NewCharacter.LootUnderMouse.Enabled", "<PH>"},
+                {L.LABEL_MOUNT_JOURNAL_SHOW_PLAYER, "NewCharacter.MountJournalShowPlayer.Enabled", "<PH>"},
+                {L.LABEL_OCCLUDED_SILHOUETTE_PLAYER, "NewCharacter.OccludedSilhouettePlayer.Enabled", "<PH>"},
+                {L.LABEL_PROFANITY_FILTER, "NewCharacter.ProfanityFilter.Enabled", "<PH>"},
+                {L.LABEL_PVP_FRAMES_DISPLAY_CLASS_COLOR, "NewCharacter.PvPFramesDisplayClassColor.Enabled", "<PH>"},
+                {L.LABEL_QUEST_TEXT_CONTRAST, "NewCharacter.QuestTextContrast.Enabled", "<PH>"},
+                {L.LABEL_RAID_FRAMES_DISPLAY_CLASS_COLOR, "NewCharacter.RaidFramesDisplayClassColor.Enabled", "<PH>"},
+                {L.LABEL_REPLACE_MY_PLAYER_PORTRAIT, "NewCharacter.ReplaceMyPlayerPortrait.Enabled", "<PH>"},
+                {L.LABEL_REPLACE_OTHER_PLAYER_PORTRAITS, "NewCharacter.ReplaceOtherPlayerPortraits.Enabled", "<PH>"},
+                {L.LABEL_SHOW_SCRIPT_ERRORS, "NewCharacter.ShowScriptErrors.Enabled", "<PH>"},
+                {L.LABEL_SHOW_TARGET_OF_TARGET, "NewCharacter.ShowTargetOfTarget.Enabled", "<PH>"},
+                {L.LABEL_SHOW_TUTORIALS, "NewCharacter.ShowTutorials.Enabled", "<PH>"},
+                {L.LABEL_SOFT_TARGET_ENEMY, "NewCharacter.SoftTargetEnemy.Enabled", "<PH>"},
+                {L.LABEL_SPELLBOOK_HIDE_PASSIVES, "NewCharacter.SpellBookHidePassives.Enabled", "<PH>"},
             }
 
             checkboxes = {}
@@ -285,8 +285,8 @@ local function SlashHandler(msg, editBox)
 
             local editModeLayoutDropdown = LSU.NewRadioDropdown({
                 parent = scrollChild,
-                label = "Edit Mode Layout",
-                tooltipText = L.TOOLTIP_SETTINGS_CHROMIE_TIME,
+                label = L.LABEL_EDIT_MODE_LAYOUT,
+                tooltipText = "<PH>",
                 savedVarKey = "EditModeLayoutID",
                 options = LSUDB.EditModeLayouts
             })
