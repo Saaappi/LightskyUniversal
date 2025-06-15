@@ -118,12 +118,9 @@ local function SlashHandler(msg, editBox)
                 {L.LABEL_SETTINGS_BUY_QUEST_ITEMS, "BuyQuestItems.Enabled",   L.TOOLTIP_SETTINGS_BUY_QUEST_ITEMS},
                 {L.LABEL_SETTINGS_CHAT_ICONS,      "ChatIcons.Enabled",       L.TOOLTIP_SETTINGS_CHAT_ICONS},
                 {L.LABEL_SETTINGS_COMPLETE_QUESTS, "CompleteQuests.Enabled",  L.TOOLTIP_SETTINGS_COMPLETE_QUESTS},
-                {L.LABEL_SETTINGS_GOSSIP,          "Gossip.Enabled",          L.TOOLTIP_SETTINGS_GOSSIP},
                 {L.LABEL_SETTINGS_PLAYER_TALENTS,  "PlayerTalents.Enabled",   L.TOOLTIP_SETTINGS_PLAYER_TALENTS},
                 {L.LABEL_SETTINGS_QUEST_REWARDS,   "QuestRewards.Enabled",    L.TOOLTIP_SETTINGS_QUEST_REWARDS},
                 {L.LABEL_SETTINGS_RARES,           "Rares.Enabled",           L.TOOLTIP_SETTINGS_RARES},
-                {L.LABEL_SETTINGS_READY_CHECKS,    "ReadyChecks.Enabled",     L.TOOLTIP_SETTINGS_READY_CHECKS},
-                {L.LABEL_SETTINGS_ROLE_CHECKS,     "RoleChecks.Enabled",      L.TOOLTIP_SETTINGS_ROLE_CHECKS},
                 {L.LABEL_SETTINGS_SKIP_CINEMATICS, "SkipCinematics.Enabled",  L.TOOLTIP_SETTINGS_SKIP_CINEMATICS},
                 {L.LABEL_SETTINGS_NEW_CHARACTER,   "NewCharacter.Enabled",    L.TOOLTIP_SETTINGS_NEW_CHARACTER},
             }
@@ -151,10 +148,37 @@ local function SlashHandler(msg, editBox)
                 checkboxes[i] = cb
             end
 
+            local gossipModuleFS = scrollChild:CreateFontString()
+            gossipModuleFS:SetFontObject("ChatBubbleFont")
+            gossipModuleFS:SetText("Gossip Module")
+            gossipModuleFS:SetPoint("TOPLEFT", checkboxes[10], "BOTTOMLEFT", 0, -50)
+
+            local openGossipsFrameButton = LSU.NewBasicButton({
+                name = "LSUOpenGossipsFrameButton",
+                parent = frame,
+                width = 120,
+                height = 25,
+                label = "Open Gossips"
+            })
+            openGossipsFrameButton:SetPoint("TOPLEFT", gossipModuleFS, "BOTTOMLEFT", 20, -10)
+            openGossipsFrameButton:SetScript("OnClick", function()
+                frame:Hide()
+                LSU.OpenGossipFrame()
+            end)
+
+            local gossipCheckbox = LSU.NewCheckbox({
+                id = 20,
+                parent = scrollChild,
+                label = L.LABEL_SETTINGS_GOSSIP,
+                savedVarKey = "Gossip.Enabled",
+                tooltipText = L.TOOLTIP_SETTINGS_GOSSIP
+            })
+            gossipCheckbox:SetPoint("TOPLEFT", openGossipsFrameButton, "BOTTOMLEFT", 0, -10)
+
             local chromieTimeModuleFS = scrollChild:CreateFontString()
             chromieTimeModuleFS:SetFontObject("ChatBubbleFont")
-            chromieTimeModuleFS:SetText("Chromie Time")
-            chromieTimeModuleFS:SetPoint("TOPLEFT", checkboxes[13], "BOTTOMLEFT", 0, -50)
+            chromieTimeModuleFS:SetText("Chromie Time Module")
+            chromieTimeModuleFS:SetPoint("TOPLEFT", gossipModuleFS, "BOTTOMLEFT", 0, -125)
 
             local chromieTimeDropdown = LSU.NewRadioDropdown({
                 parent = scrollChild,
@@ -203,7 +227,7 @@ local function SlashHandler(msg, editBox)
             local newCharacterModuleFS = scrollChild:CreateFontString()
             newCharacterModuleFS:SetFontObject("ChatBubbleFont")
             newCharacterModuleFS:SetText("New Character Module")
-            newCharacterModuleFS:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", 0, -25)
+            newCharacterModuleFS:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", 0, -50)
 
             local newCharacterModuleCheckboxData = {
                 {"Always Compare Items", "NewCharacter.AlwaysCompareItems.Enabled", "<PH>"},
