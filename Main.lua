@@ -20,6 +20,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     ["ChatIcons.Enabled"] = false,
                     ["ChromieTimeExpansionID"] = 0,
                     ["CompleteQuests.Enabled"] = false,
+                    ["EditModeLayoutID"] = 1,
                     ["Gossip.Enabled"] = false,
                     ["NewCharacter.Enabled"] = false,
                     ["PlayerTalents.Enabled"] = false,

@@ -63,12 +63,8 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                         if LSUDB.Settings["NewCharacter.ClearAllTracking.Enabled"] then
                             C_Minimap.ClearAllTracking()
                         end
-                        --C_EditMode.SetActiveLayout(3)
 
-                        --[[local t1, t2, t3 = GetActionBarToggles()
-                        if not (t1 and t2 and t3) then
-                            SetActionBarToggles(true, true, true, false, false, false, false, false)
-                        end]]
+                        C_EditMode.SetActiveLayout(LSUDB.Settings["EditModeLayoutID"] + 2)
 
                         for _, consoleVariable in ipairs(consoleVariables) do
                             if consoleVariable.savedVarKey then

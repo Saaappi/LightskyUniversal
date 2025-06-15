@@ -159,7 +159,7 @@ local function SlashHandler(msg, editBox)
 
             local openGossipsFrameButton = LSU.NewBasicButton({
                 name = "LSUOpenGossipsFrameButton",
-                parent = frame,
+                parent = scrollChild,
                 width = 120,
                 height = 25,
                 label = "Open Gossips"
@@ -283,8 +283,19 @@ local function SlashHandler(msg, editBox)
                 checkboxes[i] = cb
             end
 
-            --lastWidget = warbankDepositEditBox
-            lastWidget = chromieTimeDropdown
+            local editModeLayoutDropdown = LSU.NewRadioDropdown({
+                parent = scrollChild,
+                label = L.LABEL_SETTINGS_CHROMIE_TIME,
+                tooltipText = L.TOOLTIP_SETTINGS_CHROMIE_TIME,
+                savedVarKey = "EditModeLayoutID",
+                options = LSUDB.EditModeLayouts
+            })
+            editModeLayoutDropdown:SetPoint("TOPLEFT", checkboxes[28], "BOTTOMLEFT", 0, -10)
+            editModeLayoutDropdown:SetText(LSUDB.EditModeLayouts[LSUDB.Settings["EditModeLayoutID"]][1])
+            editModeLayoutDropdown.label:Hide()
+            editModeLayoutDropdown:Show()
+
+            lastWidget = editModeLayoutDropdown
             scrollChild:SetSize(scrollFrame:GetWidth()-20, math.abs(lastWidget:GetBottom() - scrollChild:GetTop()) + 30)
         else
             frame:Show()
