@@ -202,7 +202,7 @@ local function SlashHandler(msg, editBox)
                     { EXPANSION_NAME9, 16 }, -- Dragonflight
                 }
             })
-            chromieTimeDropdown:SetPoint("TOPLEFT", chromieTimeModuleFS, "BOTTOMLEFT", 0, -10)
+            chromieTimeDropdown:SetPoint("TOPLEFT", chromieTimeModuleFS, "BOTTOMLEFT", 20, -10)
             chromieTimeDropdown:SetText(LSU.Enum.Expansions[LSUDB.Settings["ChromieTimeExpansionID"]] or DISABLE)
             chromieTimeDropdown.label:Hide()
             chromieTimeDropdown:Show()
@@ -231,7 +231,7 @@ local function SlashHandler(msg, editBox)
             local newCharacterModuleFS = scrollChild:CreateFontString()
             newCharacterModuleFS:SetFontObject("ChatBubbleFont")
             newCharacterModuleFS:SetText("New Character Module")
-            newCharacterModuleFS:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", 0, -50)
+            newCharacterModuleFS:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", -20, -50)
 
             local newCharacterModuleCheckboxData = {
                 {"Always Compare Items", "NewCharacter.AlwaysCompareItems.Enabled", "<PH>"},
@@ -285,14 +285,13 @@ local function SlashHandler(msg, editBox)
 
             local editModeLayoutDropdown = LSU.NewRadioDropdown({
                 parent = scrollChild,
-                label = L.LABEL_SETTINGS_CHROMIE_TIME,
+                label = "Edit Mode Layout",
                 tooltipText = L.TOOLTIP_SETTINGS_CHROMIE_TIME,
                 savedVarKey = "EditModeLayoutID",
                 options = LSUDB.EditModeLayouts
             })
-            editModeLayoutDropdown:SetPoint("TOPLEFT", checkboxes[28], "BOTTOMLEFT", 0, -10)
+            editModeLayoutDropdown:SetPoint("TOPLEFT", checkboxes[28], "BOTTOMLEFT", 0, -30)
             editModeLayoutDropdown:SetText(LSUDB.EditModeLayouts[LSUDB.Settings["EditModeLayoutID"]][1])
-            editModeLayoutDropdown.label:Hide()
             editModeLayoutDropdown:Show()
 
             lastWidget = editModeLayoutDropdown
