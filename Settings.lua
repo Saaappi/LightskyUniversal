@@ -111,12 +111,16 @@ local function SlashHandler(msg, editBox)
 
             local lastWidget = nil
 
+            local generalModulesFS = scrollChild:CreateFontString()
+            generalModulesFS:SetFontObject("ChatBubbleFont")
+            generalModulesFS:SetText("General Modules")
+            generalModulesFS:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 20, -30)
+
             local checkboxData = {
                 {L.LABEL_SETTINGS_ACCEPT_QUESTS,   "AcceptQuests.Enabled",    L.TOOLTIP_SETTINGS_ACCEPT_QUESTS},
                 {L.LABEL_SETTINGS_AUTO_REPAIR,     "AutoRepair.Enabled",      L.TOOLTIP_SETTINGS_AUTO_REPAIR},
                 {L.LABEL_SETTINGS_AUTO_TRAIN,      "AutoTrain.Enabled",       L.TOOLTIP_SETTINGS_AUTO_TRAIN},
                 {L.LABEL_SETTINGS_BUY_QUEST_ITEMS, "BuyQuestItems.Enabled",   L.TOOLTIP_SETTINGS_BUY_QUEST_ITEMS},
-                {L.LABEL_SETTINGS_CHAT_ICONS,      "ChatIcons.Enabled",       L.TOOLTIP_SETTINGS_CHAT_ICONS},
                 {L.LABEL_SETTINGS_COMPLETE_QUESTS, "CompleteQuests.Enabled",  L.TOOLTIP_SETTINGS_COMPLETE_QUESTS},
                 {L.LABEL_SETTINGS_PLAYER_TALENTS,  "PlayerTalents.Enabled",   L.TOOLTIP_SETTINGS_PLAYER_TALENTS},
                 {L.LABEL_SETTINGS_QUEST_REWARDS,   "QuestRewards.Enabled",    L.TOOLTIP_SETTINGS_QUEST_REWARDS},
@@ -143,7 +147,7 @@ local function SlashHandler(msg, editBox)
                 })
                 local x = startX + (col-1)*columnWidth
                 local y = startY - (row-1)*rowHeight
-                cb:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", x, y)
+                cb:SetPoint("TOPLEFT", generalModulesFS, "BOTTOMLEFT", x, y)
                 cb:Show()
                 checkboxes[i] = cb
             end
@@ -151,7 +155,7 @@ local function SlashHandler(msg, editBox)
             local gossipModuleFS = scrollChild:CreateFontString()
             gossipModuleFS:SetFontObject("ChatBubbleFont")
             gossipModuleFS:SetText("Gossip Module")
-            gossipModuleFS:SetPoint("TOPLEFT", checkboxes[10], "BOTTOMLEFT", 0, -50)
+            gossipModuleFS:SetPoint("TOPLEFT", checkboxes[10], "BOTTOMLEFT", -20, -50)
 
             local openGossipsFrameButton = LSU.NewBasicButton({
                 name = "LSUOpenGossipsFrameButton",
