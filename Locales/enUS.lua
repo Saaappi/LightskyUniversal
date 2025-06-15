@@ -131,5 +131,8 @@ L.TOOLTIP_PLAYER_TALENTS = "Quickly learn new talents at the click of a button!"
 L.TOOLTIP_QUEST_REWARDS = "Automatically selects the best quest reward—prioritizing item level, sell price, or choosing randomly if needed."
 L.TOOLTIP_RARES = "Control rare spawn notifications—toggle announcements for rare NPCs on or off."
 L.TOOLTIP_SKIP_CINEMATICS = "Enjoy uninterrupted gameplay by skipping in-game cinematics and movies automatically."
+L.TOOLTIP_ALWAYS_COMPARE_ITEMS = "When enabled, hovering an item will always show the comparison tooltip."
+L.TOOLTIP_ALWAYS_SHOW_ACTION_BARS = "When enabled, always show action bars."
+L.TOOLTIP_ARACHNOPHOBIA_MODE = "Change the in-game arachnids into crabs."
 
 LSU.L = L

@@ -213,9 +213,9 @@ local function SlashHandler(msg, editBox)
             newCharacterModuleFS:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", -20, -50)
 
             local newCharacterModuleCheckboxData = {
-                {L.LABEL_ALWAYS_COMPARE_ITEMS, "NewCharacter.AlwaysCompareItems.Enabled", "<PH>"},
-                {L.LABEL_ALWAYS_SHOW_ACTION_BARS, "NewCharacter.AlwaysShowActionBars.Enabled", "<PH>"},
-                {L.LABEL_ARACHNOPHOBIA_MODE, "NewCharacter.ArachnophobiaMode.Enabled", "<PH>"},
+                {L.LABEL_ALWAYS_COMPARE_ITEMS, "NewCharacter.AlwaysCompareItems.Enabled", L.TOOLTIP_ALWAYS_COMPARE_ITEMS},
+                {L.LABEL_ALWAYS_SHOW_ACTION_BARS, "NewCharacter.AlwaysShowActionBars.Enabled", L.TOOLTIP_ALWAYS_SHOW_ACTION_BARS},
+                {L.LABEL_ARACHNOPHOBIA_MODE, "NewCharacter.ArachnophobiaMode.Enabled", L.TOOLTIP_ARACHNOPHOBIA_MODE},
                 {L.LABEL_AUTO_DISMOUNT_FLYING, "NewCharacter.AutoDismountFlying.Enabled", "<PH>"},
                 {L.LABEL_AUTO_INTERACT, "NewCharacter.AutoInteract.Enabled", "<PH>"},
                 {L.LABEL_AUTO_LOOT , "NewCharacter.AutoLootDefault.Enabled", "<PH>"},

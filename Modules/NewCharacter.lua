@@ -13,35 +13,35 @@ local button = {
 }
 
 local consoleVariables = {
-    { name = "alwaysCompareItems", savedVarKey = "NewCharacter.AlwaysCompareItems.Enabled", value = "0" },
-    { name = "alwaysShowActionBars", savedVarKey = "NewCharacter.AlwaysShowActionBars.Enabled", value = "1" },
-    { name = "arachnophobiaMode", savedVarKey = "NewCharacter.ArachnophobiaMode.Enabled", value = "1" },
-    { name = "autoDismountFlying", savedVarKey = "NewCharacter.AutoDismountFlying.Enabled", value = "0" },
-    { name = "autoInteract", savedVarKey = "NewCharacter.AutoInteract.Enabled", value = "1" },
-    { name = "autoLootDefault", savedVarKey = "NewCharacter.AutoLootDefault.Enabled", value = "1" },
-    { name = "AutoPushSpellToActionBar", savedVarKey = "NewCharacter.AutoPushSpellToActionBar.Enabled", value = "0" },
-    { name = "cooldownViewerEnabled", savedVarKey = "NewCharacter.CooldownViewer.Enabled", value = "1" },
-    { name = "DisableAdvancedFlyingFullScreenEffects", savedVarKey = "NewCharacter.DisableSkyridingFullScreenEffects.Enabled", value = "1" },
-    { name = "DisableAdvancedFlyingVelocityVFX", savedVarKey = "NewCharacter.DisableSkyridingVelocityVFX.Enabled", value = "1" },
-    { name = "disableUserAddonsByDefault", savedVarKey = "NewCharacter.DisableUserAddonsByDefault.Enabled", value = "1" },
-    { name = "enableFloatingCombatText", savedVarKey = "NewCharacter.EnableFloatingCombatText.Enabled", value = "1" },
-    { name = "FootstepSounds", savedVarKey = "NewCharacter.FootstepSounds.Enabled", value = "0" },
-    { name = "lootUnderMouse", savedVarKey = "NewCharacter.LootUnderMouse.Enabled", value = "1" },
-    { name = "mountJournalShowPlayer", savedVarKey = "NewCharacter.MountJournalShowPlayer.Enabled", value = "1" },
-    { name = "occludedSilhouettePlayer", savedVarKey = "NewCharacter.OccludedSilhouettePlayer.Enabled", value = "1" },
-    { name = "profanityFilter", savedVarKey = "NewCharacter.ProfanityFilter.Enabled", value = "0" },
-    { name = "pvpFramesDisplayClassColor", savedVarKey = "NewCharacter.PvPFramesDisplayClassColor.Enabled", value = "1" },
-    { name = "questTextContrast", savedVarKey = "NewCharacter.QuestTextContrast.Enabled", value = "1" },
-    { name = "raidFramesDisplayClassColor", savedVarKey = "NewCharacter.RaidFramesDisplayClassColor.Enabled", value = "1" },
-    { name = "ReplaceMyPlayerPortrait", savedVarKey = "NewCharacter.ReplaceMyPlayerPortrait.Enabled", value = "1" },
-    { name = "ReplaceOtherPlayerPortraits", savedVarKey = "NewCharacter.ReplaceOtherPlayerPortraits.Enabled", value = "1" },
-    { name = "scriptErrors", savedVarKey = "NewCharacter.ShowScriptErrors.Enabled", value = "1" },
-    { name = "showTargetOfTarget", savedVarKey = "NewCharacter.ShowTargetOfTarget.Enabled", value = "1" },
-    { name = "showTutorials", savedVarKey = "NewCharacter.ShowTutorials.Enabled", value = "0" },
-    { name = "SoftTargetEnemy", savedVarKey = "NewCharacter.SoftTargetEnemy.Enabled", value = "2" },
-    { name = "SoftTargetEnemyArc", savedVarKey = "NewCharacter.SoftTargetEnemy.Enabled", value = "1" },
-    { name = "SoftTargetIconEnemy", savedVarKey = "NewCharacter.SoftTargetEnemy.Enabled", value = "1" },
-    { name = "spellBookHidePassives", savedVarKey = "NewCharacter.SpellBookHidePassives.Enabled", value = "1" },
+    { name = "alwaysCompareItems", savedVarKey = "NewCharacter.AlwaysCompareItems.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "alwaysShowActionBars", savedVarKey = "NewCharacter.AlwaysShowActionBars.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "arachnophobiaMode", savedVarKey = "NewCharacter.ArachnophobiaMode.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "autoDismountFlying", savedVarKey = "NewCharacter.AutoDismountFlying.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "autoInteract", savedVarKey = "NewCharacter.AutoInteract.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "autoLootDefault", savedVarKey = "NewCharacter.AutoLootDefault.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "AutoPushSpellToActionBar", savedVarKey = "NewCharacter.AutoPushSpellToActionBar.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "cooldownViewerEnabled", savedVarKey = "NewCharacter.CooldownViewer.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "DisableAdvancedFlyingFullScreenEffects", savedVarKey = "NewCharacter.DisableSkyridingFullScreenEffects.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "DisableAdvancedFlyingVelocityVFX", savedVarKey = "NewCharacter.DisableSkyridingVelocityVFX.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "disableUserAddonsByDefault", savedVarKey = "NewCharacter.DisableUserAddonsByDefault.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "enableFloatingCombatText", savedVarKey = "NewCharacter.EnableFloatingCombatText.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "FootstepSounds", savedVarKey = "NewCharacter.FootstepSounds.Enabled", trueValue = "0", falseValue = "1" },
+    { name = "lootUnderMouse", savedVarKey = "NewCharacter.LootUnderMouse.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "mountJournalShowPlayer", savedVarKey = "NewCharacter.MountJournalShowPlayer.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "occludedSilhouettePlayer", savedVarKey = "NewCharacter.OccludedSilhouettePlayer.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "profanityFilter", savedVarKey = "NewCharacter.ProfanityFilter.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "pvpFramesDisplayClassColor", savedVarKey = "NewCharacter.PvPFramesDisplayClassColor.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "questTextContrast", savedVarKey = "NewCharacter.QuestTextContrast.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "raidFramesDisplayClassColor", savedVarKey = "NewCharacter.RaidFramesDisplayClassColor.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "ReplaceMyPlayerPortrait", savedVarKey = "NewCharacter.ReplaceMyPlayerPortrait.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "ReplaceOtherPlayerPortraits", savedVarKey = "NewCharacter.ReplaceOtherPlayerPortraits.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "scriptErrors", savedVarKey = "NewCharacter.ShowScriptErrors.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "showTargetOfTarget", savedVarKey = "NewCharacter.ShowTargetOfTarget.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "showTutorials", savedVarKey = "NewCharacter.ShowTutorials.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "SoftTargetEnemy", savedVarKey = "NewCharacter.SoftTargetEnemy.Enabled", trueValue = "2", falseValue = "0" },
+    { name = "SoftTargetEnemyArc", savedVarKey = "NewCharacter.SoftTargetEnemy.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "SoftTargetIconEnemy", savedVarKey = "NewCharacter.SoftTargetEnemy.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "spellBookHidePassives", savedVarKey = "NewCharacter.SpellBookHidePassives.Enabled", trueValue = "1", falseValue = "0" },
 }
 
 eventFrame:RegisterEvent("PLAYER_LOGIN")
@@ -68,8 +68,12 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
 
                         for _, consoleVariable in ipairs(consoleVariables) do
                             if consoleVariable.savedVarKey then
-                                if C_CVar.GetCVar(consoleVariable.name) ~= consoleVariable.value then
-                                    C_CVar.SetCVar(consoleVariable.name, consoleVariable.value)
+                                if C_CVar.GetCVar(consoleVariable.name) ~= consoleVariable.trueValue then
+                                    C_CVar.SetCVar(consoleVariable.name, consoleVariable.trueValue)
+                                end
+                            else
+                                if C_CVar.GetCVar(consoleVariable.name) ~= consoleVariable.falseValue then
+                                    C_CVar.SetCVar(consoleVariable.name, consoleVariable.falseValue)
                                 end
                             end
                         end
