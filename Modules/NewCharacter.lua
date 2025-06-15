@@ -88,8 +88,6 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                             SetActionBarToggles(true, true, true, false, false, false, false, false)
                         end
 
-                        SetCurrentTitle(379) -- Esteemed
-
                         for _, consoleVariable in ipairs(consoleVariables) do
                             if C_CVar.GetCVar(consoleVariable.name) ~= consoleVariable.value then
                                 C_CVar.SetCVar(consoleVariable.name, consoleVariable.value)

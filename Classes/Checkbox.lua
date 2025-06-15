@@ -4,8 +4,14 @@ local L = LSU.L
 function LSU.NewCheckbox(data)
     local checkbox = CreateFrame("CheckButton", "LSUCheckButton"..data.id, data.parent, "SettingsCheckboxTemplate")
     checkbox:SetText(data.label)
+
+    local label = checkbox:GetFontString()
+    label:SetWidth(100)
+    label:SetWordWrap(true)
+    label:SetJustifyH("LEFT")
+    label:SetJustifyV("MIDDLE")
+    label:SetPoint("LEFT", checkbox, "RIGHT", 3, 0)
     checkbox:SetNormalFontObject(GameFontHighlight)
-    checkbox:GetFontString():SetPoint("LEFT", checkbox, "RIGHT", 5, 0)
 
     checkbox:SetChecked(LSUDB.Settings[data.savedVarKey] and true or false)
 

@@ -133,7 +133,6 @@ local function SlashHandler(msg, editBox)
             local startX = 20
             local startY = -10
             local checkboxes = {}
-            local leftColumnCheckboxes = {}
             for i, data in ipairs(checkboxData) do
                 local col = ((i-1) % 3) + 1
                 local row = math.floor((i-1) / 3) + 1
@@ -150,16 +149,12 @@ local function SlashHandler(msg, editBox)
                 cb:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", x, y)
                 cb:Show()
                 checkboxes[i] = cb
-
-                if col == 1 then
-                    table.insert(leftColumnCheckboxes, cb)
-                end
             end
 
             local chromieTimeModuleFS = scrollChild:CreateFontString()
             chromieTimeModuleFS:SetFontObject("ChatBubbleFont")
             chromieTimeModuleFS:SetText("Chromie Time")
-            chromieTimeModuleFS:SetPoint("TOPLEFT", leftColumnCheckboxes[#leftColumnCheckboxes], "BOTTOMLEFT", 0, -50)
+            chromieTimeModuleFS:SetPoint("TOPLEFT", checkboxes[13], "BOTTOMLEFT", 0, -50)
 
             local chromieTimeDropdown = LSU.NewRadioDropdown({
                 parent = scrollChild,
@@ -209,6 +204,35 @@ local function SlashHandler(msg, editBox)
             newCharacterModuleFS:SetFontObject("ChatBubbleFont")
             newCharacterModuleFS:SetText("New Character Module")
             newCharacterModuleFS:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", 0, -25)
+
+            local newCharacterModuleCheckboxData = {
+                {"Always Compare Items", "NewCharacter.AlwaysCompareItems.Enabled", "<PH>"},
+                {"Always Show Action Bars", "NewCharacter.AlwaysShowActionBars.Enabled", "<PH>"},
+                {"Arachnophobia Mode", "NewCharacter.ArachnophobiaMode.Enabled", "<PH>"},
+                {"Auto Dismount Flying", "NewCharacter.AutoDismountFlying.Enabled", "<PH>"},
+                {"Auto Interact", "NewCharacter.AutoInteract.Enabled", "<PH>"},
+                {"Auto Loot", "NewCharacter.AutoLootDefault.Enabled", "<PH>"},
+                {"Auto Push Spells", "NewCharacter.AutoPushSpellToActionBar.Enabled", "<PH>"},
+            }
+
+            checkboxes = {}
+            for i, data in ipairs(newCharacterModuleCheckboxData) do
+                local col = ((i-1) % 3) + 1
+                local row = math.floor((i-1) / 3) + 1
+
+                local cb = LSU.NewCheckbox({
+                    id = i,
+                    parent = scrollChild,
+                    label = data[1],
+                    savedVarKey = data[2],
+                    tooltipText = data[3],
+                })
+                local x = startX + (col-1)*columnWidth
+                local y = startY - (row-1)*rowHeight
+                cb:SetPoint("TOPLEFT", newCharacterModuleFS, "TOPLEFT", x, y)
+                cb:Show()
+                checkboxes[i] = cb
+            end
 
             --lastWidget = warbankDepositEditBox
             lastWidget = chromieTimeDropdown
