@@ -73,7 +73,7 @@ local function SlashHandler(msg, editBox)
                 button1 = DONE,
                 hasEditBox = 1,
                 OnShow = function(self)
-                    self.editBox:SetText("https://coff.ee/lightskygg")
+                    self.editBox:SetText("https://linktr.ee/lightskygg")
                     self.editBox:HighlightText()
                 end,
                 EditBoxOnEnterPressed = function(self)
