@@ -38,15 +38,12 @@ Button.lua
 Buttons\Gossip.lua
 Buttons\TalentButton.lua
 
-Modules\ChatIcons.lua
-Modules\Checks.lua
+# Modules
 Modules\ChromieTime.lua
 Modules\Cinematics.lua
-#Modules\Containers.lua
 Modules\Gossip.lua
 Modules\Merchants\Trainers.lua
 Modules\Merchants\Vendors.lua
-Modules\Mount.lua
 Modules\NewCharacter.lua
 Modules\PlayerTalents\PlayerTalents.lua
 Modules\PlayerTalents\TalentImporter.lua
@@ -55,8 +52,6 @@ Modules\Quest\Accept.lua
 Modules\Quest\Complete.lua
 Modules\Quest\Popup.lua
 Modules\Rare.lua
-#Modules\Transmogrification.lua
-Modules\Warbank.lua
 
 KeybindHandler.lua
 Main.lua
