@@ -70,6 +70,7 @@ L.LABEL_SHOW_TUTORIALS                  = "Show Tutorials"
 L.LABEL_SKIP_CINEMATICS                 = "Skip Cinematics"
 L.LABEL_SOFT_TARGET_ENEMY               = "Soft Target Enemy"
 L.LABEL_SPELLBOOK_HIDE_PASSIVES         = "Spellbook Hide Passives"
+L.LABEL_WIPE_CHARACTER                  = "Wipe Character"
 
 L.HEADER_CHROMIE_TIME_MODULE            = "Chromie Time Module"
 L.HEADER_GENERAL_MODULES                = "General Modules"

@@ -212,6 +212,17 @@ local function SlashHandler(msg, editBox)
             newCharacterModuleFS:SetText(L.HEADER_NEW_CHARACTER_MODULE)
             newCharacterModuleFS:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", -20, -50)
 
+            local wipeCharacterButton = LSU.NewBasicButton({
+                name = "LSUWipeCharacterAsNewCharacterButton",
+                parent = scrollChild,
+                width = 120,
+                height = 25,
+                label = L.LABEL_WIPE_CHARACTER
+            })
+            wipeCharacterButton:SetPoint("TOPLEFT", newCharacterModuleFS, "BOTTOMLEFT", 20, -10)
+            wipeCharacterButton:SetScript("OnClick", function()
+            end)
+
             local newCharacterModuleCheckboxData = {
                 {L.LABEL_ALWAYS_COMPARE_ITEMS, "NewCharacter.AlwaysCompareItems.Enabled", L.TOOLTIP_ALWAYS_COMPARE_ITEMS},
                 {L.LABEL_ALWAYS_SHOW_ACTION_BARS, "NewCharacter.AlwaysShowActionBars.Enabled", L.TOOLTIP_ALWAYS_SHOW_ACTION_BARS},
@@ -257,7 +268,7 @@ local function SlashHandler(msg, editBox)
                 })
                 local x = startX + (col-1)*columnWidth
                 local y = startY - (row-1)*rowHeight
-                cb:SetPoint("TOPLEFT", newCharacterModuleFS, "BOTTOMLEFT", x, y)
+                cb:SetPoint("TOPLEFT", wipeCharacterButton, "BOTTOMLEFT", (x-20), y)
                 cb:Show()
                 checkboxes[i] = cb
             end
