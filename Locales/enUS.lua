@@ -153,5 +153,6 @@ L.TOOLTIP_SHOW_TARGET_OF_TARGET        = "Shows the target of your current targe
 L.TOOLTIP_SHOW_TUTORIALS               = "Displays tutorial popups to guide you through gameplay and features."
 L.TOOLTIP_SOFT_TARGET_ENEMY            = "Highlights or selects enemies you're looking at without requiring a hard target, enabling quick interaction or awareness."
 L.TOOLTIP_SPELLBOOK_HIDE_PASSIVES      = "Hides passive spells in your spellbook for a clearer view of active abilities."
+L.TOOLTIP_EDIT_MODE_LAYOUTS            = "Choose and apply your preferred Edit Mode layout."
 
 LSU.L = L

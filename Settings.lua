@@ -265,7 +265,7 @@ local function SlashHandler(msg, editBox)
             local editModeLayoutDropdown = LSU.NewRadioDropdown({
                 parent = scrollChild,
                 label = L.LABEL_EDIT_MODE_LAYOUT,
-                tooltipText = "<PH>",
+                tooltipText = L.TOOLTIP_EDIT_MODE_LAYOUTS,
                 savedVarKey = "EditModeLayoutID",
                 options = LSUDB.EditModeLayouts
             })
