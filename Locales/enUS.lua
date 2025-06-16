@@ -155,9 +155,9 @@ L.TOOLTIP_RAID_FRAMES_DISPLAY_CLASS_COLOR = "Displays player class colors on rai
 L.TOOLTIP_REPLACE_MY_PLAYER_PORTRAIT = "Replaces your character’s portrait with your class icon."
 L.TOOLTIP_REPLACE_OTHER_PLAYER_PORTRAITS = "Replaces the portraits of other players with their class icon."
 L.TOOLTIP_SHOW_SCRIPT_ERRORS = "Displays Lua script errors as they occur to help identify and troubleshoot addon or interface issues."
-L.TOOLTIP_SHOW_TARGET_OF_TARGET = "<PH>"
-L.TOOLTIP_SHOW_TUTORIALS = "<PH>"
-L.TOOLTIP_SOFT_TARGET_ENEMY = "<PH>"
-L.TOOLTIP_SPELLBOOK_HIDE_PASSIVES = "<PH>"
+L.TOOLTIP_SHOW_TARGET_OF_TARGET = "Shows the target of your current target for improved situational awareness."
+L.TOOLTIP_SHOW_TUTORIALS = "Displays tutorial popups to guide you through gameplay and features."
+L.TOOLTIP_SOFT_TARGET_ENEMY = "Highlights or selects enemies you’re looking at without requiring a hard target, enabling quick interaction or awareness."
+L.TOOLTIP_SPELLBOOK_HIDE_PASSIVES = "Hides passive spells in your spellbook for a clearer view of active abilities."
 
 LSU.L = L
