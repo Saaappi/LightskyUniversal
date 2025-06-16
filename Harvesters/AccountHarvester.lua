@@ -13,7 +13,22 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         local layouts = (C_EditMode.GetLayouts()).layouts
         if layouts then
             for i = 1, #layouts do
-                table.insert(LSUDB.EditModeLayouts, { layouts[i].layoutName, i })
+                local name = layouts[i].layoutName
+                local foundIndex = nil
+
+                for idx, layout in ipairs(LSUDB.EditModeLayouts) do
+                    if layout[1] == name then
+                        foundIndex = idx
+                        break
+                    end
+                end
+
+                if foundIndex then
+                    table.remove(LSUDB.EditModeLayouts, foundIndex)
+                    table.insert(LSUDB.EditModeLayouts, foundIndex, { name, i })
+                else
+                    table.insert(LSUDB.EditModeLayouts, { name, i })
+                end
             end
         end
 
