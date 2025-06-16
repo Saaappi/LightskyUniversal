@@ -83,6 +83,7 @@ L.FONTSTRING_GOSSIP_LINE_COUNT_TEXT     = "|cffFFFFFF%s|r line(s)"
 -- Popups
 L.POPUP_NEWCHARACTER_TEXT = "Character configuration completed. Would you like to reload now?\n\n" ..
 "|cffFF474CNOTE|r: This is recommended to guarantee the settings are saved server side."
+L.POPUP_NEW_CHARACTER_WIPED = "The unique identifier for this character has been wiped. Would you like to reload now?"
 
 L.SLASH_CMD_LSU                        = "/lsu"
 
@@ -155,5 +156,6 @@ L.TOOLTIP_SHOW_TUTORIALS               = "Displays tutorial popups to guide you 
 L.TOOLTIP_SOFT_TARGET_ENEMY            = "Highlights or selects enemies you're looking at without requiring a hard target, enabling quick interaction or awareness."
 L.TOOLTIP_SPELLBOOK_HIDE_PASSIVES      = "Hides passive spells in your spellbook for a clearer view of active abilities."
 L.TOOLTIP_EDIT_MODE_LAYOUTS            = "Choose and apply your preferred Edit Mode layout."
+L.TOOLTIP_NEW_CHARACTER_WIPE_BUTTON    = "Removes the current character from the list of known characters. Doing this will allow you to rerun the New Character configuration for the current character."
 
 LSU.L = L

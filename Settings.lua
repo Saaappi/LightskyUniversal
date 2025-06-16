@@ -220,7 +220,37 @@ local function SlashHandler(msg, editBox)
                 label = L.LABEL_WIPE_CHARACTER
             })
             wipeCharacterButton:SetPoint("TOPLEFT", newCharacterModuleFS, "BOTTOMLEFT", 20, -10)
+            wipeCharacterButton:SetScript("OnEnter", function(self)
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                GameTooltip:SetText(L.TITLE_ADDON)
+                GameTooltip:AddLine(L.TOOLTIP_NEW_CHARACTER_WIPE_BUTTON, 1, 1, 1, 1, true)
+                GameTooltip:Show()
+            end)
+            wipeCharacterButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
             wipeCharacterButton:SetScript("OnClick", function()
+                local found = false
+                for guid, _ in pairs(LSUDB.Characters) do
+                    if guid == LSU.Character["GUID"] then
+                        LSUDB.Characters[guid] = nil
+                        found = true
+                        break
+                    end
+                end
+
+                if found then
+                    StaticPopupDialogs["LSU_NewCharacterWiped"] = {
+                        text = L.POPUP_NEW_CHARACTER_WIPED,
+                        button1 = YES,
+                        button2 = NO,
+                        explicitAcknowledge = true,
+                        OnAccept = function()
+                            C_UI.Reload()
+                        end,
+                        OnCancel = function() end,
+                        preferredIndex = 3
+                    }
+                    StaticPopup_Show("LSU_NewCharacterWiped")
+                end
             end)
 
             local newCharacterModuleCheckboxData = {

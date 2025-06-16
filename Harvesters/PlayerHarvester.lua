@@ -18,6 +18,7 @@ local function OnPlayerEnteringWorld()
     local className, classID = select(2, UnitClass("player"))
     character.ClassName = className
     character.ClassID = classID
+    character.GUID = UnitGUID("player")
 
     local specID = GetPlayerSpecializationID()
     character.SpecID = specID
