@@ -25,6 +25,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     ["NewCharacter.AlwaysCompareItems.Enabled"] = false,
                     ["NewCharacter.AlwaysShowActionBars.Enabled"] = false,
                     ["NewCharacter.ArachnophobiaMode.Enabled"] = false,
+                    ["NewCharacter.AssistedCombatHighlight.Enabled"] = false,
                     ["NewCharacter.AutoDismountFlying.Enabled"] = false,
                     ["NewCharacter.AutoInteract.Enabled"] = false,
                     ["NewCharacter.AutoLootDefault.Enabled"] = false,
