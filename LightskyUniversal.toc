@@ -1,6 +1,7 @@
 ## Interface: 110107
 ## Title: Lightsky Universal
-## Version: 1.0.0
+## Version: @project-version@
+## X-Curse-Project-ID: 1289001
 ## Author: LightskyGG
 ## SavedVariables: LSUDB
 ## IconTexture: 4914667
