@@ -257,6 +257,7 @@ local function SlashHandler(msg, editBox)
                 {L.LABEL_ALWAYS_COMPARE_ITEMS, "NewCharacter.AlwaysCompareItems.Enabled", L.TOOLTIP_ALWAYS_COMPARE_ITEMS},
                 {L.LABEL_ALWAYS_SHOW_ACTION_BARS, "NewCharacter.AlwaysShowActionBars.Enabled", L.TOOLTIP_ALWAYS_SHOW_ACTION_BARS},
                 {L.LABEL_ARACHNOPHOBIA_MODE, "NewCharacter.ArachnophobiaMode.Enabled", L.TOOLTIP_ARACHNOPHOBIA_MODE},
+                {L.LABEL_ASSISTED_COMBAT_HIGHLIGHT, "NewCharacter.AssistedCombatHighlight.Enabled", L.TOOLTIP_ASSISTED_COMBAT_HIGHLIGHT},
                 {L.LABEL_AUTO_DISMOUNT_FLYING, "NewCharacter.AutoDismountFlying.Enabled", L.TOOLTIP_AUTO_DISMOUNT_FLYING},
                 {L.LABEL_AUTO_INTERACT, "NewCharacter.AutoInteract.Enabled", L.TOOLTIP_AUTO_INTERACT},
                 {L.LABEL_AUTO_LOOT , "NewCharacter.AutoLootDefault.Enabled", L.TOOLTIP_AUTO_LOOT_DEFAULT},

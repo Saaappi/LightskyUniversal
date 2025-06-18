@@ -16,6 +16,7 @@ local consoleVariables = {
     { name = "alwaysCompareItems", savedVarKey = "NewCharacter.AlwaysCompareItems.Enabled", trueValue = "1", falseValue = "0" },
     { name = "alwaysShowActionBars", savedVarKey = "NewCharacter.AlwaysShowActionBars.Enabled", trueValue = "1", falseValue = "0" },
     { name = "arachnophobiaMode", savedVarKey = "NewCharacter.ArachnophobiaMode.Enabled", trueValue = "1", falseValue = "0" },
+    { name = "assistedCombatHighlight", savedVarKey = "NewCharacter.AssistedCombatHighlight.Enabled", trueValue = "1", falseValue = "0" },
     { name = "autoDismountFlying", savedVarKey = "NewCharacter.AutoDismountFlying.Enabled", trueValue = "1", falseValue = "0" },
     { name = "autoInteract", savedVarKey = "NewCharacter.AutoInteract.Enabled", trueValue = "1", falseValue = "0" },
     { name = "autoLootDefault", savedVarKey = "NewCharacter.AutoLootDefault.Enabled", trueValue = "1", falseValue = "0" },
