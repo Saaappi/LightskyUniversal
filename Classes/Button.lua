@@ -23,3 +23,16 @@ function LSU.NewBasicButton(data)
     end
     return button
 end
+
+function LSU.NewInsecureBasicButton(data)
+    local button = CreateFrame("Button", data.name, data.parent, "UIPanelButtonTemplate, InsecureActionButtonTemplate")
+    button:SetSize(data.width, data.height)
+    button:RegisterForClicks("AnyUp")
+    button:SetAttribute("type", data.attributeType)
+    button:SetAttribute(data.attributeType, data.attributeValue)
+    button:SetText(data.label)
+    if data.tooltipText then
+        SetTooltipScripts(button, data.tooltipText)
+    end
+    return button
+end

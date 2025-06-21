@@ -212,6 +212,27 @@ local function SlashHandler(msg, editBox)
             newCharacterModuleFS:SetText(L.HEADER_NEW_CHARACTER_MODULE)
             newCharacterModuleFS:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", -20, -50)
 
+            local warbandMapButton = LSU.NewInsecureBasicButton({
+                name = "LSUUseWarbandMapButton",
+                parent = scrollChild,
+                width = 120,
+                height = 25,
+                attributeType = "spell",
+                attributeValue = 431280,
+                label = L.LABEL_WARBAND_MAP_TO_EVERYWHERE_ALL_AT_ONCE
+            })
+            warbandMapButton:SetPoint("TOPLEFT", newCharacterModuleFS, "BOTTOMLEFT", 20, -10)
+            warbandMapButton:SetScript("OnEnter", function(self)
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                GameTooltip:SetText(L.TITLE_ADDON)
+                GameTooltip:AddLine(L.TOOLTIP_WARBAND_MAP_TO_EVERYWHERE_ALL_AT_ONCE, 1, 1, 1, 1, true)
+                GameTooltip:Show()
+            end)
+            warbandMapButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
+            --[[warbandMapButton:SetScript("OnClick", function()
+                print("A")
+            end)]]
+
             local wipeCharacterButton = LSU.NewBasicButton({
                 name = "LSUWipeCharacterAsNewCharacterButton",
                 parent = scrollChild,
@@ -219,7 +240,7 @@ local function SlashHandler(msg, editBox)
                 height = 25,
                 label = L.LABEL_WIPE_CHARACTER
             })
-            wipeCharacterButton:SetPoint("TOPLEFT", newCharacterModuleFS, "BOTTOMLEFT", 20, -10)
+            wipeCharacterButton:SetPoint("LEFT", warbandMapButton, "RIGHT", 10, 0)
             wipeCharacterButton:SetScript("OnEnter", function(self)
                 GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
                 GameTooltip:SetText(L.TITLE_ADDON)
@@ -299,7 +320,7 @@ local function SlashHandler(msg, editBox)
                 })
                 local x = startX + (col-1)*columnWidth
                 local y = startY - (row-1)*rowHeight
-                cb:SetPoint("TOPLEFT", wipeCharacterButton, "BOTTOMLEFT", (x-20), y)
+                cb:SetPoint("TOPLEFT", warbandMapButton, "BOTTOMLEFT", (x-20), y)
                 cb:Show()
                 checkboxes[i] = cb
             end
