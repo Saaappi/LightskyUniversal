@@ -51,6 +51,7 @@ end
 LSU.ProcessQuestsAndGossipsSequentially = function(API)
     -- Turn in completed quests first, then accept new ones
     local function ProcessActiveQuests(i, callback)
+        if not LSUDB.Settings["CompleteQuests.Enabled"] then return end
         local numActive = API.getNumActive()
         if i > numActive then
             if callback then
@@ -71,6 +72,7 @@ LSU.ProcessQuestsAndGossipsSequentially = function(API)
     end
 
     local function ProcessAvailableQuests(i, callback)
+        if not LSUDB.Settings["AcceptQuests.Enabled"] then return end
         local numAvailable = API.getNumAvailable()
         if i > numAvailable then
             if callback then
@@ -101,6 +103,7 @@ LSU.ProcessQuestsAndGossipsSequentially = function(API)
     end
 
     local function ProcessAvailableGossips()
+        if not LSUDB.Settings["Gossip.Enabled"] then return end
         local options = C_GossipInfo.GetOptions()
         if options then
             if #options == 1 and options[1].icon == 132060 then -- The only option is "Show me your wares" or some other variant, so just pick it automatically
