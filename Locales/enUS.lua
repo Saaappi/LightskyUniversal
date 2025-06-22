@@ -16,6 +16,7 @@ L.TEXT_COULD_NOT_RETRIEVE_NPC_INFO              = "Could not retrieve NPC inform
 L.TEXT_NO_GOSSIP_OPTIONS_AVAILABLE              = "No gossip options available."
 L.TEXT_LAST_UPDATED                             = "Last Updated"
 L.TEXT_RARE_SPOTTED                             = "has been spotted"
+L.TEXT_RARE_SLASH_WAY                           = "way"
 
 -- Button labels        
 L.LABEL_ACCEPT_QUESTS                           = "Accept Quests"

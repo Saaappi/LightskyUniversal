@@ -98,7 +98,7 @@ local function SlashHandler(msg, editBox)
 
             frame.versionLabel = frame:CreateFontString()
             frame.versionLabel:SetFontObject(GameFontHighlight)
-            frame.versionLabel:SetText(C_AddOns.GetAddOnMetadata(addonName, "Version"))
+            frame.versionLabel:SetText("1.2.0")
             frame.versionLabel:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -15, -30)
 
             local scrollFrame = CreateFrame("ScrollFrame", nil, frame, "UIPanelScrollFrameTemplate")
@@ -229,9 +229,6 @@ local function SlashHandler(msg, editBox)
                 GameTooltip:Show()
             end)
             warbandMapButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
-            --[[warbandMapButton:SetScript("OnClick", function()
-                print("A")
-            end)]]
 
             local wipeCharacterButton = LSU.NewBasicButton({
                 name = "LSUWipeCharacterAsNewCharacterButton",
