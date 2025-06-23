@@ -17,7 +17,6 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     ["AutoRepair.Enabled"] = false,
                     ["AutoTrain.Enabled"] = false,
                     ["BuyQuestItems.Enabled"] = false,
-                    ["ChatIcons.Enabled"] = false,
                     ["ChromieTimeExpansionID"] = 0,
                     ["CompleteQuests.Enabled"] = false,
                     ["EditModeLayoutID"] = 1,
@@ -55,11 +54,24 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     ["PlayerTalents.Enabled"] = false,
                     ["QuestRewards.Enabled"] = false,
                     ["Rares.Enabled"] = false,
-                    ["ReadyChecks.Enabled"] = false,
-                    ["RoleChecks.Enabled"] = false,
-                    ["SkipCinematics.Enabled"] = false,
-                    ["WarbankDepositInCopper"] = 0
+                    ["SkipCinematics.Enabled"] = false
                 }
+            else
+                local oldVariables = {
+                    "Junk"
+                }
+                local oldSettingVariables = {
+                    "ChatIcons.Enabled",
+                    "WarbankDepositInCopper",
+                    "ReadyChecks.Enabled",
+                    "RoleChecks.Enabled"
+                }
+                for _, variable in ipairs(oldVariables) do
+                    LSUDB[variable] = nil
+                end
+                for _, variable in ipairs(oldSettingVariables) do
+                    LSUDB.Settings[variable] = nil
+                end
             end
         end
     end

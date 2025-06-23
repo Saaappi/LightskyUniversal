@@ -68,7 +68,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                         C_EditMode.SetActiveLayout(LSUDB.Settings["EditModeLayoutID"] + 2)
 
                         for _, consoleVariable in ipairs(consoleVariables) do
-                            if consoleVariable.savedVarKey then
+                            if LSUDB.Settings[consoleVariable.savedVarKey] then
                                 if C_CVar.GetCVar(consoleVariable.name) ~= consoleVariable.trueValue then
                                     C_CVar.SetCVar(consoleVariable.name, consoleVariable.trueValue)
                                 end
