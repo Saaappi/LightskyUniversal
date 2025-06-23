@@ -20,6 +20,38 @@ LSU.IsValidGossipNPC = function(id)
     return false
 end
 
+local function RemoveDuplicateEntries(text)
+    -- Map: npcID:gossipOptionID -> { index, line, length }
+    local best = {}
+    local lines = {}
+    for line in text:gmatch("[^\r\n]+") do
+        table.insert(lines, line)
+    end
+    for i, line in ipairs(lines) do
+        local npcID, gossipOptionID, conditions = line:match('^(%d+),(%d+),?%s*(.*)$')
+        if npcID and gossipOptionID then
+            local key = npcID .. "," .. gossipOptionID
+            -- Length = total characters (longer includes more conditions)
+            local len = #conditions
+            if not best[key] or len > best[key].length or (len == best[key].length and i > best[key].index) then
+                best[key] = { index = i, line = line, length = len }
+            end
+        end
+    end
+    -- Only keep "best" lines
+    local keep = {}
+    for _, v in pairs(best) do
+        keep[v.index] = true
+    end
+    local result = {}
+    for i, line in ipairs(lines) do
+        if keep[i] then
+            table.insert(result, line)
+        end
+    end
+    return table.concat(result, "\n")
+end
+
 eventFrame:RegisterEvent("GOSSIP_CONFIRM")
 eventFrame:RegisterEvent("GOSSIP_SHOW")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
@@ -386,19 +418,20 @@ LSU.OpenGossipFrame = function()
                 for _, line in ipairs(fullLines) do
                     if line:lower():find(filter:lower(), 1, true) then
                         if filteredSet[line] then
-                            table.insert(mergedLines, line) -- line wasn't deleted, else line was deleted; don't keep it
+                            table.insert(mergedLines, line)
                         end
                     else
-                        table.insert(mergedLines, line) -- line wasn't filtered, so keep as is
+                        table.insert(mergedLines, line)
                     end
                 end
-                SyncGossipsFromText(table.concat(mergedLines, "\n"))
-                -- refresh the cache and editbox
+                local deduped = RemoveDuplicateEntries(table.concat(mergedLines, "\n"))
+                SyncGossipsFromText(deduped)
                 allGossipTextCache = GossipsToText()
                 gossipFrame.editBox:SetText(FilteredGossipsToText(filter, allGossipTextCache))
                 if gossipFrame.UpdateGossipCount then gossipFrame.UpdateGossipCount() end
             else
-                SyncGossipsFromText(editedText)
+                local deduped = RemoveDuplicateEntries(editedText)
+                SyncGossipsFromText(deduped)
                 allGossipTextCache = GossipsToText()
                 gossipFrame.editBox:SetText(FilteredGossipsToText(filter, allGossipTextCache))
                 if gossipFrame.UpdateGossipCount then gossipFrame.UpdateGossipCount() end
