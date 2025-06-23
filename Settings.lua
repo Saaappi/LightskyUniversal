@@ -98,7 +98,7 @@ local function SlashHandler(msg, editBox)
 
             frame.versionLabel = frame:CreateFontString()
             frame.versionLabel:SetFontObject(GameFontHighlight)
-            frame.versionLabel:SetText("1.3.0")
+            frame.versionLabel:SetText(C_AddOns.GetAddOnMetadata(addonName, "Version"))
             frame.versionLabel:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -15, -30)
 
             local scrollFrame = CreateFrame("ScrollFrame", nil, frame, "UIPanelScrollFrameTemplate")
