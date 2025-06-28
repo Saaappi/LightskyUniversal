@@ -52,6 +52,18 @@ local function RemoveDuplicateEntries(text)
     return table.concat(result, "\n")
 end
 
+-- HelpMePlay table-to-text importer helper
+local function HMPGossipsToText(hmpGossips)
+    local lines = {}
+    for id, gossips in pairs(hmpGossips) do
+        for _, gossipID in ipairs(gossips) do
+            local line = tostring(id) .. "," .. tostring(gossipID)
+            table.insert(lines, line)
+        end
+    end
+    return table.concat(lines, "\n")
+end
+
 eventFrame:RegisterEvent("GOSSIP_CONFIRM")
 eventFrame:RegisterEvent("GOSSIP_SHOW")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
@@ -435,6 +447,35 @@ LSU.OpenGossipFrame = function()
                 allGossipTextCache = GossipsToText()
                 gossipFrame.editBox:SetText(FilteredGossipsToText(filter, allGossipTextCache))
                 if gossipFrame.UpdateGossipCount then gossipFrame.UpdateGossipCount() end
+            end
+        end)
+
+        local importFromHMPButton = LSU.CreateButton({
+            type = "BasicButton",
+            name = "LSUImportFromHMPButton",
+            parent = gossipFrame,
+            width = 80,
+            height = 25,
+            text = LSU.Locales.IMPORT,
+            tooltipText = LSU.Locales.IMPORT_DESC
+        })
+        importFromHMPButton:SetPoint("RIGHT", submitButton, "LEFT", -5, 0)
+        importFromHMPButton:SetScript("OnClick", function()
+            if C_AddOns.IsAddOnLoaded("HelpMePlay") then
+                if HelpMePlayDB.PlayerGossips and next(HelpMePlayDB.PlayerGossips) then
+                    local importedText = HMPGossipsToText(HelpMePlayDB.PlayerGossips)
+                    local currentText = GossipsToText()
+                    local combinedText = currentText .. "\n" .. importedText
+                    local deduped = RemoveDuplicateEntries(combinedText)
+                    SyncGossipsFromText(deduped)
+                    allGossipTextCache = GossipsToText()
+                    gossipFrame.editBox:SetText(FilteredGossipsToText(gossipFrame.searchBox and gossipFrame.searchBox:GetText() or "", allGossipTextCache))
+                    if gossipFrame.UpdateGossipCount then gossipFrame.UpdateGossipCount() end
+                    submitButton:Click()
+                    HelpMePlayDB.PlayerGossips = nil
+                end
+            else
+                LSU.PrintError(string.format(LSU.Locales.ADDON_NOT_FOUND, "HelpMePlay"))
             end
         end)
 
