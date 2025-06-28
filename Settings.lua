@@ -117,16 +117,17 @@ local function SlashHandler(msg, editBox)
             generalModulesFS:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 20, -30)
 
             local checkboxData = {
-                {L.LABEL_ACCEPT_QUESTS,   "AcceptQuests.Enabled",    L.TOOLTIP_ACCEPT_QUESTS},
-                {L.LABEL_AUTO_REPAIR,     "AutoRepair.Enabled",      L.TOOLTIP_AUTO_REPAIR},
-                {L.LABEL_AUTO_TRAIN,      "AutoTrain.Enabled",       L.TOOLTIP_AUTO_TRAIN},
-                {L.LABEL_BUY_QUEST_ITEMS, "BuyQuestItems.Enabled",   L.TOOLTIP_BUY_QUEST_ITEMS},
-                {L.LABEL_COMPLETE_QUESTS, "CompleteQuests.Enabled",  L.TOOLTIP_COMPLETE_QUESTS},
-                {L.LABEL_PLAYER_TALENTS,  "PlayerTalents.Enabled",   L.TOOLTIP_PLAYER_TALENTS},
-                {L.LABEL_QUEST_REWARDS,   "QuestRewards.Enabled",    L.TOOLTIP_QUEST_REWARDS},
-                {L.LABEL_RARES,           "Rares.Enabled",           L.TOOLTIP_RARES},
-                {L.LABEL_SKIP_CINEMATICS, "SkipCinematics.Enabled",  L.TOOLTIP_SKIP_CINEMATICS},
-                {L.LABEL_NEW_CHARACTER,   "NewCharacter.Enabled",    L.TOOLTIP_NEW_CHARACTER},
+                {L.LABEL_ACCEPT_QUESTS,         "AcceptQuests.Enabled",    L.TOOLTIP_ACCEPT_QUESTS},
+                {L.LABEL_AUTO_REPAIR,           "AutoRepair.Enabled",      L.TOOLTIP_AUTO_REPAIR},
+                {L.LABEL_AUTO_TRAIN,            "AutoTrain.Enabled",       L.TOOLTIP_AUTO_TRAIN},
+                {L.LABEL_BUY_QUEST_ITEMS,       "BuyQuestItems.Enabled",   L.TOOLTIP_BUY_QUEST_ITEMS},
+                {L.LABEL_COMPLETE_QUESTS,       "CompleteQuests.Enabled",  L.TOOLTIP_COMPLETE_QUESTS},
+                {L.LABEL_PLAYER_TALENTS,        "PlayerTalents.Enabled",   L.TOOLTIP_PLAYER_TALENTS},
+                {L.LABEL_QUEST_REWARDS,         "QuestRewards.Enabled",    L.TOOLTIP_QUEST_REWARDS},
+                {L.LABEL_RARES,                 "Rares.Enabled",           L.TOOLTIP_RARES},
+                {L.LABEL_SKIP_CINEMATICS,       "SkipCinematics.Enabled",  L.TOOLTIP_SKIP_CINEMATICS},
+                {L.LABEL_NEW_CHARACTER,         "NewCharacter.Enabled",    L.TOOLTIP_NEW_CHARACTER},
+                {LSU.Locales.AUTO_SHARE_QUESTS, "AutoShareQuests.Enabled", LSU.Locales.AUTO_SHARE_QUESTS_TOOLTIP},
             }
 
             local columnWidth = 180

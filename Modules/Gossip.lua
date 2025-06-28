@@ -457,7 +457,7 @@ LSU.OpenGossipFrame = function()
             width = 80,
             height = 25,
             text = LSU.Locales.IMPORT,
-            tooltipText = LSU.Locales.IMPORT_DESC
+            tooltipText = LSU.Locales.IMPORT_TOOLTIP
         })
         importFromHMPButton:SetPoint("RIGHT", submitButton, "LEFT", -5, 0)
         importFromHMPButton:SetScript("OnClick", function()

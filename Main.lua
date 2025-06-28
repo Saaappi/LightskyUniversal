@@ -15,6 +15,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                 LSUDB.Settings = {
                     ["AcceptQuests.Enabled"] = false,
                     ["AutoRepair.Enabled"] = false,
+                    ["AutoShareQuests.Enabled"] = false,
                     ["AutoTrain.Enabled"] = false,
                     ["BuyQuestItems.Enabled"] = false,
                     ["ChromieTimeExpansionID"] = 0,
