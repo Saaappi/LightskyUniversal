@@ -25,7 +25,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         local unitName = UnitName(unitToken)
         if not (unitID and unitName) then return end
 
-        local targetIndex = math.random(1, 8)
+        local targetIndex = math.random(1, 7)
         SetRaidTarget(unitToken, targetIndex)
 
         local position = C_Map.GetPlayerMapPosition(LSU.Map.CurrentMapID, "player")
