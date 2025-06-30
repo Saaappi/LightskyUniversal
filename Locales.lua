@@ -69,6 +69,8 @@ L["AUTO_TRAIN_TOOLTIP"] = "Effortlessly learn new skills by automatically traini
 L["BACK"] = "Back"
 L["BACK_TOOLTIP"] = "Return to class selection."
 
+L["BUTTON_FAILED_TO_CREATE"] = "Button failed to create: %s"
+
 L["BUY_QUEST_ITEMS"] = "Buy Quest Items"
 L["BUY_QUEST_ITEMS_TOOLTIP"] = "Never forget a quest item again! Purchases required quest items from vendors automatically."
 
@@ -81,6 +83,8 @@ L["CLEAR_ALL_TRACKING_TOOLTIP"] = "Automatically removes all active tracking opt
 
 L["COMPLETE_QUESTS"] = "Complete Quests"
 L["COMPLETE_QUESTS_TOOLTIP"] = "Finish quests with automatic turn-ins and selecting rewards."
+
+L["CONFIG_ID_IS_NIL"] = "The config ID is nil!"
 
 L["CONFIGURE_NEW_CHARACTER"] = "Configure New Character"
 L["CONFIGURE_NEW_CHARACTER_TOOLTIP"] = "Quickly configure new characters with a click of a button! Check this box, then opt into any settings under the New Character section below."
@@ -219,6 +223,10 @@ L["SPELLBOOK_HIDE_PASSIVES_TOOLTIP"] = "Hides passive spells in your spellbook f
 
 L["TALENT_IMPORTER"] = "Talent Importer"
 L["TALENT_IMPORTER_BUTTON_TOOLTIP"] = "Click to open the talent importer utility."
+
+L["THIS_IS_A_BAD_LOADOUT"] = "This is a bad loadout! Try importing a new one."
+
+L["TREE_ID_IS_NIL"] = "The tree ID is nil!"
 
 L["USE_CTRLC_TO_COPY_THE_LINK_BELOW"] = "Use Ctrl+C to copy the link below."
 

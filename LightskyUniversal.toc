@@ -15,8 +15,6 @@ Harvesters\PlayerHarvester.lua
 # Locale
 Locales.lua
 Core\Locales.lua
-Locales\enUS.lua
-Locales\Locale.lua
 
 # Where all "static" addon data is stored.
 Data\Enum.lua

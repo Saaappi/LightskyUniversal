@@ -137,14 +137,14 @@ end
 LSU.ResetTree = function()
     local configID = C_ClassTalents.GetActiveConfigID()
     if not configID then
-        LSU.PrintError(L.TEXT_CONFIG_IS_NIL)
+        LSU.PrintError(LSU.Locales.CONFIG_ID_IS_NIL)
         return false
     end
 
     local specID = PlayerUtil.GetCurrentSpecID()
     local treeID = C_ClassTalents.GetTraitTreeForSpec(specID)
     if not treeID then
-        LSU.PrintError(L.TEXT_TREEID_IS_NIL)
+        LSU.PrintError(LSU.Locales.TREE_ID_IS_NIL)
         return false
     end
 
@@ -158,7 +158,7 @@ LSU.ImportText = function(importText)
 
     local configID = C_ClassTalents.GetActiveConfigID()
     if not configID then
-        LSU.PrintError(L.TEXT_CONFIG_IS_NIL)
+        LSU.PrintError(LSU.Locales.CONFIG_ID_IS_NIL)
         return
     end
 
@@ -202,7 +202,7 @@ LSU.ImportText = function(importText)
                 end
 
                 if not name then
-                    LSU.PrintError(L.TEXT_BAD_LOADOUT)
+                    LSU.PrintError(LSU.Locales.THIS_IS_A_BAD_LOADOUT)
                     DevTools_Dump(entry)
                     break
                 elseif errorRank and entry.ranksPurchased > 1 then

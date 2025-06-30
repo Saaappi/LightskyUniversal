@@ -94,7 +94,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                         StaticPopup_Show("LSU_NewCharacterConfigurationCompleted")
                     end)
                 else
-                    LSU.PrintError(string.format("%s: %s", L.TEXT_BUTTON_CREATION_FAILED, button.name))
+                    LSU.PrintError(string.format(LSU.Locales.BUTTON_FAILED_TO_CREATE, button.name))
                 end
             end
         end)
