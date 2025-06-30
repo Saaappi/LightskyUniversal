@@ -103,6 +103,7 @@ end)
 
 hooksecurefunc(NamePlateDriverFrame, "OnSoftTargetUpdate", function()
     if not LSUDB.Settings["NewCharacter.SoftTargetEnemy.Enabled"] then return end
-    RemoveRaidTargets()
-    SetRaidTarget("softenemy", 8)
+    if UnitExists("softenemy") and (not GetRaidTargetIndex("softenemy")) then
+        SetRaidTarget("softenemy", 8)
+    end
 end)

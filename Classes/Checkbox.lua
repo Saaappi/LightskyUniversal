@@ -19,13 +19,14 @@ function LSU.NewCheckbox(data)
     end)
 
     if data.tooltipText then
-        checkbox:SetScript("OnEnter", function(self)
+        checkbox:HookScript("OnEnter", function(self)
+            self.HoverBackground:SetShown(false)
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
             GameTooltip:SetText(LSU.Locales.ADDON_TITLE)
             GameTooltip:AddLine(data.tooltipText, 1, 1, 1, 1, true)
             GameTooltip:Show()
         end)
-        checkbox:SetScript("OnLeave", function()
+        checkbox:HookScript("OnLeave", function()
             GameTooltip:Hide()
         end)
     end
