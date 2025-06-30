@@ -236,13 +236,13 @@ local function SlashHandler(msg, editBox)
                 parent = scrollChild,
                 width = 120,
                 height = 25,
-                label = L.LABEL_WIPE_CHARACTER
+                label = LSU.Locales.WIPE_CHARACTER
             })
             wipeCharacterButton:SetPoint("LEFT", warbandMapButton, "RIGHT", 10, 0)
             wipeCharacterButton:SetScript("OnEnter", function(self)
                 GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
                 GameTooltip:SetText(L.TITLE_ADDON)
-                GameTooltip:AddLine(L.TOOLTIP_NEW_CHARACTER_WIPE_BUTTON, 1, 1, 1, 1, true)
+                GameTooltip:AddLine(LSU.Locales.WIPE_CHARACTER_TOOLTIP, 1, 1, 1, 1, true)
                 GameTooltip:Show()
             end)
             wipeCharacterButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
@@ -273,35 +273,35 @@ local function SlashHandler(msg, editBox)
             end)
 
             local newCharacterModuleCheckboxData = {
-                { LSU.Locales.ALWAYS_COMPARE_ITEMS,                 "NewCharacter.AlwaysCompareItems.Enabled",                LSU.Locales.ALWAYS_COMPARE_ITEMS_TOOLTIP                   },
-                { LSU.Locales.ALWAYS_SHOW_ACTION_BARS,              "NewCharacter.AlwaysShowActionBars.Enabled",              LSU.Locales.ALWAYS_SHOW_ACTION_BARS_TOOLTIP                },
-                { LSU.Locales.ARACHNOPHOBIA_MODE,                   "NewCharacter.ArachnophobiaMode.Enabled",                 LSU.Locales.ARACHNOPHOBIA_MODE_TOOLTIP                     },
-                { LSU.Locales.ASSISTED_COMBAT_HIGHLIGHT,            "NewCharacter.AssistedCombatHighlight.Enabled",           LSU.Locales.ASSISTED_COMBAT_HIGHLIGHT_TOOLTIP              },
-                { LSU.Locales.AUTO_DISMOUNT_FLYING,                 "NewCharacter.AutoDismountFlying.Enabled",                LSU.Locales.AUTO_DISMOUNT_FLYING_TOOLTIP                   },
-                { LSU.Locales.AUTO_INTERACT,                        "NewCharacter.AutoInteract.Enabled",                      LSU.Locales.AUTO_INTERACT_TOOLTIP                          },
-                { LSU.Locales.AUTO_LOOT ,                           "NewCharacter.AutoLootDefault.Enabled",                   LSU.Locales.AUTO_LOOT_TOOLTIP                              },
-                { LSU.Locales.AUTO_PUSH_SPELLS_TO_ACTION_BAR,       "NewCharacter.AutoPushSpellToActionBar.Enabled",          LSU.Locales.AUTO_PUSH_SPELLS_TO_ACTION_BAR_TOOLTIP         },
-                { LSU.Locales.CLEAR_ALL_TRACKING,                   "NewCharacter.ClearAllTracking.Enabled",                  LSU.Locales.CLEAR_ALL_TRACKING_TOOLTIP                     },
-                { LSU.Locales.COOLDOWN_VIEWER,                      "NewCharacter.CooldownViewer.Enabled",                    LSU.Locales.COOLDOWN_VIEWER_TOOLTIP                        },
-                { LSU.Locales.DISABLE_SKYRIDING_FULL_SCREEN_EFFECT, "NewCharacter.DisableSkyridingFullScreenEffects.Enabled", LSU.Locales.DISABLE_SKYRIDING_FULL_SCREEN_EFFECT_TOOLTIP   },
-                { LSU.Locales.DISABLE_SKYRIDING_VELOCITY_VFX,       "NewCharacter.DisableSkyridingVelocityVFX.Enabled",       LSU.Locales.DISABLE_SKYRIDING_VFX_TOOLTIP                  },
-                { LSU.Locales.DISABLE_USER_ADDONS_BY_DEFAULT,       "NewCharacter.DisableUserAddonsByDefault.Enabled",        LSU.Locales.DISABLE_USER_ADDONS_BY_DEFAULT_TOOLTIP         },
-                { LSU.Locales.ENABLE_FLOATING_COMBAT_TEXT,          "NewCharacter.EnableFloatingCombatText.Enabled",          LSU.Locales.ENABLE_FLOATING_COMBAT_TEXT_TOOLTIP            },
-                { LSU.Locales.DISABLE_FOOTSTEP_SOUNDS,              "NewCharacter.FootstepSounds.Enabled",                    LSU.Locales.DISABLE_FOOTSTEP_SOUNDS_TOOLTIP                },
-                { LSU.Locales.LOOT_UNDER_MOUSE,                     "NewCharacter.LootUnderMouse.Enabled",                    LSU.Locales.LOOT_UNDER_MOUSE_TOOLTIP                       },
-                { LSU.Locales.MOUNT_JOURNAL_SHOW_PLAYER,            "NewCharacter.MountJournalShowPlayer.Enabled",            LSU.Locales.MOUNT_JOURNAL_SHOWS_PLAYER_TOOLTIP             },
-                { LSU.Locales.OCCLUDED_SILHOUETTE_PLAYER,           "NewCharacter.OccludedSilhouettePlayer.Enabled",          LSU.Locales.OCCLUDED_SILHOUETTE_PLAYER_TOOLTIP             },
-                { LSU.Locales.ENABLE_PROFANITY_FILTER,              "NewCharacter.ProfanityFilter.Enabled",                   LSU.Locales.ENABLE_PROFANITY_FILTER_TOOLTIP                },
-                { LSU.Locales.PVP_FRAMES_DISPLAY_CLASS_COLOR,       "NewCharacter.PvPFramesDisplayClassColor.Enabled",        LSU.Locales.PVP_FRAMES_DISPLAY_CLASS_COLOR_TOOLTIP         },
-                { LSU.Locales.QUEST_TEXT_CONTRAST,                  "NewCharacter.QuestTextContrast.Enabled",                 LSU.Locales.QUEST_TEXT_CONTRAST_TOOLTIP                    },
-                { LSU.Locales.RAID_FRAMES_DISPLAY_CLASS_COLOR,      "NewCharacter.RaidFramesDisplayClassColor.Enabled",       LSU.Locales.RAID_FRAMES_DISPLAY_CLASS_COLOR_TOOLTIP        },
-                { LSU.Locales.REPLACE_MY_PLAYER_PORTRAIT,           "NewCharacter.ReplaceMyPlayerPortrait.Enabled",           LSU.Locales.REPLACE_MY_PLAYER_PORTRAIT_TOOLTIP             },
-                { LSU.Locales.REPLACE_OTHER_PLAYER_PORTRAITS,       "NewCharacter.ReplaceOtherPlayerPortraits.Enabled",       LSU.Locales.REPLACE_OTHER_PLAYER_PORTRAITS_TOOLTIP         },
-                { LSU.Locales.SHOW_SCRIPT_ERRORS,                   "NewCharacter.ShowScriptErrors.Enabled",                  LSU.Locales.SHOW_SCRIPT_ERRORS_TOOLTIP                     },
-                { LSU.Locales.SHOW_TARGET_OF_TARGET,                "NewCharacter.ShowTargetOfTarget.Enabled",                LSU.Locales.SHOW_TARGET_OF_TARGET_TOOLTIP                  },
-                { LSU.Locales.SHOW_TUTORIALS,                       "NewCharacter.ShowTutorials.Enabled",                     LSU.Locales.SHOW_TUTORIALS_TOOLTIP                         },
-                { LSU.Locales.SOFT_TARGET_ENEMY,                    "NewCharacter.SoftTargetEnemy.Enabled",                   LSU.Locales.SOFT_TARGET_ENEMY_TOOLTIP                      },
-                { LSU.Locales.SPELLBOOK_HIDE_PASSIVES,              "NewCharacter.SpellBookHidePassives.Enabled",             LSU.Locales.SPELLBOOK_HIDE_PASSIVES_TOOLTIP                },
+                { LSU.Locales.ALWAYS_COMPARE_ITEMS,                  "NewCharacter.AlwaysCompareItems.Enabled",                LSU.Locales.ALWAYS_COMPARE_ITEMS_TOOLTIP                   },
+                { LSU.Locales.ALWAYS_SHOW_ACTION_BARS,               "NewCharacter.AlwaysShowActionBars.Enabled",              LSU.Locales.ALWAYS_SHOW_ACTION_BARS_TOOLTIP                },
+                { LSU.Locales.ARACHNOPHOBIA_MODE,                    "NewCharacter.ArachnophobiaMode.Enabled",                 LSU.Locales.ARACHNOPHOBIA_MODE_TOOLTIP                     },
+                { LSU.Locales.ASSISTED_COMBAT_HIGHLIGHT,             "NewCharacter.AssistedCombatHighlight.Enabled",           LSU.Locales.ASSISTED_COMBAT_HIGHLIGHT_TOOLTIP              },
+                { LSU.Locales.AUTO_DISMOUNT_FLYING,                  "NewCharacter.AutoDismountFlying.Enabled",                LSU.Locales.AUTO_DISMOUNT_FLYING_TOOLTIP                   },
+                { LSU.Locales.AUTO_INTERACT,                         "NewCharacter.AutoInteract.Enabled",                      LSU.Locales.AUTO_INTERACT_TOOLTIP                          },
+                { LSU.Locales.AUTO_LOOT ,                            "NewCharacter.AutoLootDefault.Enabled",                   LSU.Locales.AUTO_LOOT_TOOLTIP                              },
+                { LSU.Locales.AUTO_PUSH_SPELLS_TO_ACTION_BAR,        "NewCharacter.AutoPushSpellToActionBar.Enabled",          LSU.Locales.AUTO_PUSH_SPELLS_TO_ACTION_BAR_TOOLTIP         },
+                { LSU.Locales.CLEAR_ALL_TRACKING,                    "NewCharacter.ClearAllTracking.Enabled",                  LSU.Locales.CLEAR_ALL_TRACKING_TOOLTIP                     },
+                { LSU.Locales.COOLDOWN_VIEWER,                       "NewCharacter.CooldownViewer.Enabled",                    LSU.Locales.COOLDOWN_VIEWER_TOOLTIP                        },
+                { LSU.Locales.DISABLE_SKYRIDING_FULL_SCREEN_EFFECTS, "NewCharacter.DisableSkyridingFullScreenEffects.Enabled", LSU.Locales.DISABLE_SKYRIDING_FULL_SCREEN_EFFECTS_TOOLTIP  },
+                { LSU.Locales.DISABLE_SKYRIDING_VELOCITY_VFX,        "NewCharacter.DisableSkyridingVelocityVFX.Enabled",       LSU.Locales.DISABLE_SKYRIDING_VFX_TOOLTIP                  },
+                { LSU.Locales.DISABLE_USER_ADDONS_BY_DEFAULT,        "NewCharacter.DisableUserAddonsByDefault.Enabled",        LSU.Locales.DISABLE_USER_ADDONS_BY_DEFAULT_TOOLTIP         },
+                { LSU.Locales.ENABLE_FLOATING_COMBAT_TEXT,           "NewCharacter.EnableFloatingCombatText.Enabled",          LSU.Locales.ENABLE_FLOATING_COMBAT_TEXT_TOOLTIP            },
+                { LSU.Locales.DISABLE_FOOTSTEP_SOUNDS,               "NewCharacter.FootstepSounds.Enabled",                    LSU.Locales.DISABLE_FOOTSTEP_SOUNDS_TOOLTIP                },
+                { LSU.Locales.LOOT_UNDER_MOUSE,                      "NewCharacter.LootUnderMouse.Enabled",                    LSU.Locales.LOOT_UNDER_MOUSE_TOOLTIP                       },
+                { LSU.Locales.MOUNT_JOURNAL_SHOW_PLAYER,             "NewCharacter.MountJournalShowPlayer.Enabled",            LSU.Locales.MOUNT_JOURNAL_SHOWS_PLAYER_TOOLTIP             },
+                { LSU.Locales.OCCLUDED_SILHOUETTE_PLAYER,            "NewCharacter.OccludedSilhouettePlayer.Enabled",          LSU.Locales.OCCLUDED_SILHOUETTE_PLAYER_TOOLTIP             },
+                { LSU.Locales.PROFANITY_FILTER,                      "NewCharacter.ProfanityFilter.Enabled",                   LSU.Locales.PROFANITY_FILTER_TOOLTIP                       },
+                { LSU.Locales.PVP_FRAMES_DISPLAY_CLASS_COLOR,        "NewCharacter.PvPFramesDisplayClassColor.Enabled",        LSU.Locales.PVP_FRAMES_DISPLAY_CLASS_COLOR_TOOLTIP         },
+                { LSU.Locales.QUEST_TEXT_CONTRAST,                   "NewCharacter.QuestTextContrast.Enabled",                 LSU.Locales.QUEST_TEXT_CONTRAST_TOOLTIP                    },
+                { LSU.Locales.RAID_FRAMES_DISPLAY_CLASS_COLOR,       "NewCharacter.RaidFramesDisplayClassColor.Enabled",       LSU.Locales.RAID_FRAMES_DISPLAY_CLASS_COLOR_TOOLTIP        },
+                { LSU.Locales.REPLACE_MY_PLAYER_PORTRAIT,            "NewCharacter.ReplaceMyPlayerPortrait.Enabled",           LSU.Locales.REPLACE_MY_PLAYER_PORTRAIT_TOOLTIP             },
+                { LSU.Locales.REPLACE_OTHER_PLAYER_PORTRAITS,        "NewCharacter.ReplaceOtherPlayerPortraits.Enabled",       LSU.Locales.REPLACE_OTHER_PLAYER_PORTRAITS_TOOLTIP         },
+                { LSU.Locales.SHOW_SCRIPT_ERRORS,                    "NewCharacter.ShowScriptErrors.Enabled",                  LSU.Locales.SHOW_SCRIPT_ERRORS_TOOLTIP                     },
+                { LSU.Locales.SHOW_TARGET_OF_TARGET,                 "NewCharacter.ShowTargetOfTarget.Enabled",                LSU.Locales.SHOW_TARGET_OF_TARGET_TOOLTIP                  },
+                { LSU.Locales.SHOW_TUTORIALS,                        "NewCharacter.ShowTutorials.Enabled",                     LSU.Locales.SHOW_TUTORIALS_TOOLTIP                         },
+                { LSU.Locales.SOFT_TARGET_ENEMY,                     "NewCharacter.SoftTargetEnemy.Enabled",                   LSU.Locales.SOFT_TARGET_ENEMY_TOOLTIP                      },
+                { LSU.Locales.SPELLBOOK_HIDE_PASSIVES,               "NewCharacter.SpellBookHidePassives.Enabled",             LSU.Locales.SPELLBOOK_HIDE_PASSIVES_TOOLTIP                },
             }
 
             checkboxes = {}
