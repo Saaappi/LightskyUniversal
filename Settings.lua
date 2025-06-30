@@ -40,7 +40,7 @@ local function SlashHandler(msg, editBox)
 
             local discordLinkDialog = "LSU_SETTINGS_DISCORD_LINK_DIALOG"
             StaticPopupDialogs[discordLinkDialog] = {
-                text = L.LABEL_POPUP_CTRLC_COPY,
+                text = LSU.Locales.USE_CTRLC_TO_COPY_THE_LINK_BELOW,
                 button1 = DONE,
                 hasEditBox = 1,
                 OnShow = function(self)
@@ -60,7 +60,7 @@ local function SlashHandler(msg, editBox)
                 parent = frame,
                 width = 120,
                 height = 25,
-                label = L.LABEL_DISCORD
+                label = LSU.Locales.DISCORD
             })
             discordButton:SetPoint("TOP", frame, "TOP", -65, -30)
             discordButton:SetScript("OnClick", function()
@@ -69,7 +69,7 @@ local function SlashHandler(msg, editBox)
 
             local donateLinkDialog = "LSU_SETTINGS_DONATE_LINK_DIALOG"
             StaticPopupDialogs[donateLinkDialog] = {
-                text = L.LABEL_POPUP_CTRLC_COPY,
+                text = LSU.Locales.USE_CTRLC_TO_COPY_THE_LINK_BELOW,
                 button1 = DONE,
                 hasEditBox = 1,
                 OnShow = function(self)
@@ -89,7 +89,7 @@ local function SlashHandler(msg, editBox)
                 parent = frame,
                 width = 120,
                 height = 25,
-                label = L.LABEL_DONATE
+                label = LSU.Locales.DONATE
             })
             donateButton:SetPoint("LEFT", discordButton, "RIGHT", 10, 0)
             donateButton:SetScript("OnClick", function()

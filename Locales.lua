@@ -24,7 +24,7 @@ L["ADDON_NOT_FOUND"] = "%s not found! Are you sure it's loaded?"
 -- Popups
 L["JOINED_GROUP"] = "You've joined or are joining a group while Auto Share Quests is enabled.\n\n" ..
 "Would you like to disable this feature now? (No reload necessary!)"
-L["USE_CTRL+C_TO_COPY_THE_LINK_BELOW"] = "Use Ctrl+C to copy the link below."
+L["USE_CTRLC_TO_COPY_THE_LINK_BELOW"] = "Use Ctrl+C to copy the link below."
 
 -- Button Labels & Tooltips
 L["DISCORD"] = "Discord"
