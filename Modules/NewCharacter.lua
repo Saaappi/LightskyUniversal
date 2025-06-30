@@ -38,8 +38,8 @@ local consoleVariables = {
     { name = "scriptErrors",                           savedVarKey = "NewCharacter.ShowScriptErrors.Enabled",                  trueValue = "1", falseValue = "0" },
     { name = "showTargetOfTarget",                     savedVarKey = "NewCharacter.ShowTargetOfTarget.Enabled",                trueValue = "1", falseValue = "0" },
     { name = "showTutorials",                          savedVarKey = "NewCharacter.ShowTutorials.Enabled",                     trueValue = "1", falseValue = "0" },
-    { name = "SoftTargetEnemy",                        savedVarKey = "NewCharacter.SoftTargetEnemy.Enabled",                   trueValue = "2", falseValue = "0" },
-    { name = "SoftTargetEnemyArc",                     savedVarKey = "NewCharacter.SoftTargetEnemy.Enabled",                   trueValue = "1", falseValue = "0" },
+    { name = "SoftTargetEnemy",                        savedVarKey = "NewCharacter.SoftTargetEnemy.Enabled",                   trueValue = "2", falseValue = "1" },
+    { name = "SoftTargetEnemyArc",                     savedVarKey = "NewCharacter.SoftTargetEnemy.Enabled",                   trueValue = "1", falseValue = "2" },
     { name = "SoftTargetIconEnemy",                    savedVarKey = "NewCharacter.SoftTargetEnemy.Enabled",                   trueValue = "1", falseValue = "0" },
     { name = "spellBookHidePassives",                  savedVarKey = "NewCharacter.SpellBookHidePassives.Enabled",             trueValue = "1", falseValue = "0" },
 }
