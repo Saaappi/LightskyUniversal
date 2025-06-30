@@ -206,7 +206,7 @@ LSU.OpenGossipFrame = function()
 
         local gossipCountText = scrollFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         gossipCountText:SetPoint("BOTTOMRIGHT", scrollFrame, "TOPRIGHT", 0, 5)
-        gossipCountText:SetText(string.format(L.FONTSTRING_GOSSIP_LINE_COUNT_TEXT, "0"))
+        gossipCountText:SetText(string.format("%s %s", "0", LSU.Locales.LINES))
 
         local function UpdateGossipCount()
             local editBox = gossipFrame.editBox
@@ -216,7 +216,7 @@ LSU.OpenGossipFrame = function()
             for line in text:gmatch("[^\r\n]+") do
                 if strtrim(line) ~= "" then count = count + 1 end
             end
-            gossipCountText:SetText(string.format(L.FONTSTRING_GOSSIP_LINE_COUNT_TEXT, count))
+            gossipCountText:SetText(string.format("%d %s", count, LSU.Locales.LINES))
         end
         gossipFrame.UpdateGossipCount = UpdateGossipCount
 

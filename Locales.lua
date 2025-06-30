@@ -149,6 +149,8 @@ L["JOINED_GROUP"] = "You've joined or are joining a group while Auto Share Quest
 
 L["LAST_UPDATED"] = "Last Updated"
 
+L["LINES"] = "line(s)"
+
 L["LOOT_UNDER_MOUSE"] = "Loot Under Mouse"
 L["LOOT_UNDER_MOUSE_TOOLTIP"] = "Displays the loot window beneath your mouse cursor."
 
