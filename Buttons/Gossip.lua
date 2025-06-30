@@ -7,7 +7,7 @@ local button = {
     parent      = UIParent,
     scale       = 1.05,
     texture     = 2056011,
-    tooltipText = L.TOOLTIP_GOSSIPS_OPEN_BUTTON
+    tooltipText = LSU.Locales.GOSSIP_BUTTON_TOOLTIP
 }
 local formatters = {
     [3] = function(info) return string.format("[|cffBA45A0%s|r] %s", info.gossipOptionID, info.name) end,

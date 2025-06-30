@@ -188,7 +188,7 @@ LSU.OpenGossipFrame = function()
         return table.concat(filteredLines, "\n")
     end
 
-    gossipFrame:SetTitle(L.TITLE_GOSSIPS)
+    gossipFrame:SetTitle(LSU.Locales.GOSSIP .. " " .. LSU.Locales.SETTINGS)
     gossipFrame:SetPortraitToAsset(2056011)
 
     if not gossipFrame.childrenCreated then
@@ -384,7 +384,7 @@ LSU.OpenGossipFrame = function()
             width = 200,
             height = 25,
             maxLetters = 30,
-            tooltipText = L.TOOLTIP_GOSSIPS_SEARCHBOX
+            tooltipText = LSU.Locales.GOSSIP_SEARCH_BOX_TOOLTIP
         })
         searchBox:SetPoint("TOPLEFT", scrollFrame, "BOTTOMLEFT", 5, -5)
         searchBox:SetScript("OnTextChanged", function(self)
@@ -401,7 +401,7 @@ LSU.OpenGossipFrame = function()
             width = 80,
             height = 25,
             text = SUBMIT,
-            tooltipText = L.TOOLTIP_GOSSIPS_SUBMIT_BUTTON
+            tooltipText = LSU.Locales.GOSSIP_SUBMIT_BUTTON_TOOLTIP
         })
         submitButton:SetPoint("TOPRIGHT", scrollFrame, "BOTTOMRIGHT", 0, -5)
         submitButton:SetScript("OnClick", function()
@@ -457,7 +457,7 @@ LSU.OpenGossipFrame = function()
             width = 80,
             height = 25,
             text = LSU.Locales.IMPORT,
-            tooltipText = LSU.Locales.IMPORT_TOOLTIP
+            tooltipText = LSU.Locales.GOSSIP_IMPORT_BUTTON_TOOLTIP
         })
         importFromHMPButton:SetPoint("RIGHT", submitButton, "LEFT", -5, 0)
         importFromHMPButton:SetScript("OnClick", function()
@@ -488,7 +488,7 @@ LSU.OpenGossipFrame = function()
         helpIcon:SetScript("OnEnter", function(self)
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
             GameTooltip:SetText(C_AddOns.GetAddOnMetadata(addonName, "Title"), nil, nil, nil, 1, true)
-            GameTooltip:AddLine(L.TOOLTIP_GOSSIPS_HELP_BUTTON, 1,1,1, true)
+            GameTooltip:AddLine(LSU.Locales.GOSSIP_HELP_BUTTON_TOOLTIP, 1,1,1, true)
             GameTooltip:Show()
         end)
         helpIcon:SetScript("OnLeave", function() GameTooltip:Hide() end)
