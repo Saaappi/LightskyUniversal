@@ -132,7 +132,7 @@ L["MOUNT_JOURNAL_SHOW_PLAYER"] = "Mount Journal Show Player"
 L["MOUNT_JOURNAL_SHOW_PLAYER_TOOLTIP"] = "Automatically displays your character model riding mounts in the Mount Journal preview."
 
 L["NEW_CHARACTER"] = "New Character"
-L["NEW_CHARACTER_TOOLTIP"] = ""
+L["NEW_CHARACTER_TOOLTIP"] = "Tired of configuring specific settings for every new character? Toggle this feature and opt into settings under the New Character Module section below."
 
 L["OCCLUDED_SILHOUETTE_PLAYER"] = "Occluded Silhouette Player"
 L["OCCLUDED_SILHOUETTE_PLAYER_TOOLTIP"] = "Displays your character's silhouette when view is blocked by objects, such as trees, for improved tracking."
