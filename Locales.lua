@@ -37,7 +37,7 @@ L["WAY"] = "way"
 -- Popups
 L["JOINED_GROUP"] = "You've joined or are joining a group while Auto Share Quests is enabled.\n\n" ..
 "Would you like to disable this feature now? (No reload necessary!)"
-L["NEW_CHARACTER_TEXT"] = "Character configuration completed for %s. Would you like to reload now?\n\n" ..
+L["NEW_CHARACTER_TEXT"] = "Character configuration completed for |c%s%s|r. Would you like to reload now?\n\n" ..
 "|cffFF474CNOTE|r: This is recommended to guarantee the settings are saved server side."
 L["NEW_CHARACTER_WIPED"] = "The unique identifier for this character has been wiped. Would you like to reload now?"
 L["USE_CTRLC_TO_COPY_THE_LINK_BELOW"] = "Use Ctrl+C to copy the link below."
@@ -48,6 +48,7 @@ L["DONATE"] = "Donate"
 L["IMPORT"] = "Import"
 L["IMPORT_TOOLTIP"] = "Quickly import gossips in the Player Gossips table from the HelpMePlay addon.\n\n" ..
 "|cffFF474CNOTE:|r This will WIPE the gossips from HelpMePlay. This action is irreversible!"
+L["NEW_CHARACTER_BUTTON_TOOLTIP"] = "Click to configure new character settings for |c%s%s|r."
 
 L["AUTO_SHARE_QUESTS"] = "Auto Share Quests"
 L["AUTO_SHARE_QUESTS_TOOLTIP"] = "Automatically share quests with your party when you accept them."

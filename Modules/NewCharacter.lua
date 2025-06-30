@@ -7,7 +7,7 @@ local button = {
     name = "LSUNewCharacterSetupButton",
     width = 170,
     height = 25,
-    text = L.LABEL_NEWCHARACTER_BUTTON,
+    text = LSU.Locales.CONFIGURE_NEW_CHARACTER,
     point = "CENTER",
     parent = UIParent
 }
@@ -53,7 +53,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
             local guid = UnitGUID("player")
             if not LSUDB.Characters[guid] then
                 -- This must be added after the Player Collector has a chance to harvest its data.
-                button.tooltipText = string.format("%s |c%s%s|r.", L.NEW_CHARACTER_BUTTON_TOOLTIP, LSU.Character.ClassColor:GenerateHexColor(), LSU.Character.Name)
+                button.tooltipText = string.format(LSU.Locales.NEW_CHARACTER_BUTTON_TOOLTIP, LSU.Character.ClassColor:GenerateHexColor(), LSU.Character.Name)
                 newCharacterSetupButton = LSU.CreateButton(button)
                 if newCharacterSetupButton then
                     newCharacterSetupButton:ClearAllPoints()
@@ -80,7 +80,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                         end
 
                         StaticPopupDialogs["LSU_NewCharacterConfigurationCompleted"] = {
-                            text = string.format(LSU.Locales.NEW_CHARACTER_CONFIGURATION_COMPLETED, LSU.Character.Name),
+                            text = string.format(LSU.Locales.NEW_CHARACTER_CONFIGURATION_COMPLETED, LSU.Character.ClassColor:GenerateHexColor(), LSU.Character.Name),
                             button1 = YES,
                             button2 = NO,
                             explicitAcknowledge = true,
