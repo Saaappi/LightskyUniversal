@@ -58,7 +58,7 @@ L["AUTO_LOOT"] = "Auto Loot"
 L["AUTO_LOOT_TOOLTIP"] = "Automatically collects loot from defeated enemies or opened containers."
 
 L["AUTO_PUSH_SPELLS_TO_ACTION_BAR"] = "Auto Push Spells To Action Bar"
-L["AUTO_PUSH_SPELLS_TO_ACTION_BAR_TOOLIP"] = "Automatically adds newly learned spells to your action bar when you level up."
+L["AUTO_PUSH_SPELLS_TO_ACTION_BAR_TOOLTIP"] = "Automatically adds newly learned spells to your action bar when you level up."
 
 L["AUTO_REPAIR"] = "Auto Repair"
 L["AUTO_REPAIR_TOOLTIP"] = "Keep your gear in top shape by auto-repairing at vendors, as long as the repair cost is under 33% of your current gold."
@@ -237,3 +237,5 @@ L["WAY"] = "way"
 
 L["WIPE_CHARACTER"] = "Wipe Character"
 L["WIPE_CHARACTER_TOOLTIP"] = "Removes the current character from the list of known characters. Doing this will allow you to rerun the New Character configuration for the current character."
+
+L["ZZZ_DEBUG"] = "DEBUG"

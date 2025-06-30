@@ -139,7 +139,7 @@ local function SlashHandler(msg, editBox)
                 local row = math.floor((i-1) / 3) + 1
 
                 local cb = LSU.NewCheckbox({
-                    id = i,
+                    id = "_GEN"..i,
                     parent = scrollChild,
                     label = data[1],
                     savedVarKey = data[2],
@@ -271,6 +271,8 @@ local function SlashHandler(msg, editBox)
                 end
             end)
 
+            -- Any of the tooltips formatted not using dot notation is due to some bug with the
+            -- length of the string name.
             local newCharacterModuleCheckboxData = {
                 { LSU.Locales.ALWAYS_COMPARE_ITEMS,                  "NewCharacter.AlwaysCompareItems.Enabled",                LSU.Locales.ALWAYS_COMPARE_ITEMS_TOOLTIP                   },
                 { LSU.Locales.ALWAYS_SHOW_ACTION_BARS,               "NewCharacter.AlwaysShowActionBars.Enabled",              LSU.Locales.ALWAYS_SHOW_ACTION_BARS_TOOLTIP                },
@@ -279,16 +281,16 @@ local function SlashHandler(msg, editBox)
                 { LSU.Locales.AUTO_DISMOUNT_FLYING,                  "NewCharacter.AutoDismountFlying.Enabled",                LSU.Locales.AUTO_DISMOUNT_FLYING_TOOLTIP                   },
                 { LSU.Locales.AUTO_INTERACT,                         "NewCharacter.AutoInteract.Enabled",                      LSU.Locales.AUTO_INTERACT_TOOLTIP                          },
                 { LSU.Locales.AUTO_LOOT ,                            "NewCharacter.AutoLootDefault.Enabled",                   LSU.Locales.AUTO_LOOT_TOOLTIP                              },
-                --{ LSU.Locales.AUTO_PUSH_SPELLS_TO_ACTION_BAR,        "NewCharacter.AutoPushSpellToActionBar.Enabled",          LSU.Locales.AUTO_PUSH_SPELLS_TO_ACTION_BAR_TOOLTIP         },
+                { LSU.Locales.AUTO_PUSH_SPELLS_TO_ACTION_BAR,        "NewCharacter.AutoPushSpellToActionBar.Enabled",          LSU.Locales.AUTO_PUSH_SPELLS_TO_ACTION_BAR_TOOLTIP         },
                 { LSU.Locales.CLEAR_ALL_TRACKING,                    "NewCharacter.ClearAllTracking.Enabled",                  LSU.Locales.CLEAR_ALL_TRACKING_TOOLTIP                     },
                 { LSU.Locales.COOLDOWN_VIEWER,                       "NewCharacter.CooldownViewer.Enabled",                    LSU.Locales.COOLDOWN_VIEWER_TOOLTIP                        },
                 { LSU.Locales.DISABLE_SKYRIDING_FULL_SCREEN_EFFECTS, "NewCharacter.DisableSkyridingFullScreenEffects.Enabled", LSU.Locales.DISABLE_SKYRIDING_FULL_SCREEN_EFFECTS_TOOLTIP  },
-                --{ LSU.Locales.DISABLE_SKYRIDING_VELOCITY_VFX,        "NewCharacter.DisableSkyridingVelocityVFX.Enabled",       LSU.Locales.DISABLE_SKYRIDING_VFX_TOOLTIP                  },
+                { LSU.Locales.DISABLE_SKYRIDING_VELOCITY_VFX,        "NewCharacter.DisableSkyridingVelocityVFX.Enabled",       LSU.Locales.DISABLE_SKYRIDING_VELOCITY_VFX_TOOLTIP         },
                 { LSU.Locales.DISABLE_USER_ADDONS_BY_DEFAULT,        "NewCharacter.DisableUserAddonsByDefault.Enabled",        LSU.Locales.DISABLE_USER_ADDONS_BY_DEFAULT_TOOLTIP         },
                 { LSU.Locales.ENABLE_FLOATING_COMBAT_TEXT,           "NewCharacter.EnableFloatingCombatText.Enabled",          LSU.Locales.ENABLE_FLOATING_COMBAT_TEXT_TOOLTIP            },
                 { LSU.Locales.DISABLE_FOOTSTEP_SOUNDS,               "NewCharacter.FootstepSounds.Enabled",                    LSU.Locales.DISABLE_FOOTSTEP_SOUNDS_TOOLTIP                },
                 { LSU.Locales.LOOT_UNDER_MOUSE,                      "NewCharacter.LootUnderMouse.Enabled",                    LSU.Locales.LOOT_UNDER_MOUSE_TOOLTIP                       },
-                --{ LSU.Locales.MOUNT_JOURNAL_SHOW_PLAYER,             "NewCharacter.MountJournalShowPlayer.Enabled",            LSU.Locales.MOUNT_JOURNAL_SHOWS_PLAYER_TOOLTIP             },
+                { LSU.Locales.MOUNT_JOURNAL_SHOW_PLAYER,             "NewCharacter.MountJournalShowPlayer.Enabled",            LSU.Locales.MOUNT_JOURNAL_SHOW_PLAYER_TOOLTIP              },
                 { LSU.Locales.OCCLUDED_SILHOUETTE_PLAYER,            "NewCharacter.OccludedSilhouettePlayer.Enabled",          LSU.Locales.OCCLUDED_SILHOUETTE_PLAYER_TOOLTIP             },
                 { LSU.Locales.PROFANITY_FILTER,                      "NewCharacter.ProfanityFilter.Enabled",                   LSU.Locales.PROFANITY_FILTER_TOOLTIP                       },
                 { LSU.Locales.PVP_FRAMES_DISPLAY_CLASS_COLOR,        "NewCharacter.PvPFramesDisplayClassColor.Enabled",        LSU.Locales.PVP_FRAMES_DISPLAY_CLASS_COLOR_TOOLTIP         },
@@ -309,7 +311,7 @@ local function SlashHandler(msg, editBox)
                 local row = math.floor((i-1) / 3) + 1
 
                 local cb = LSU.NewCheckbox({
-                    id = i,
+                    id = "_NCC"..i,
                     parent = scrollChild,
                     label = data[1],
                     savedVarKey = data[2],
