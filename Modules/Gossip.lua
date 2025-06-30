@@ -478,19 +478,30 @@ LSU.OpenGossipFrame = function()
             end
         end)
 
-        local helpIcon = gossipFrame:CreateTexture(nil, "OVERLAY")
-        helpIcon:SetTexture("Interface\\COMMON\\help-i")
-        helpIcon:SetSize(32, 32)
-        helpIcon:SetPoint("TOPRIGHT", gossipFrame, "TOPRIGHT", -6, -25)
+        local helpButton = CreateFrame("Button", nil, gossipFrame)
+        helpButton:SetSize(28, 28)
 
-        helpIcon:EnableMouse(true)
-        helpIcon:SetScript("OnEnter", function(self)
+        local icon = helpButton:CreateTexture(nil, "OVERLAY")
+        icon:SetTexture("Interface\\COMMON\\help-i")
+
+        local highlight = helpButton:CreateTexture(nil, "HIGHLIGHT")
+        highlight:SetTexture("Interface\\COMMON\\help-i")
+        highlight:SetAlpha(0.25)
+        highlight:SetAllPoints(icon)
+
+        helpButton:SetNormalTexture(icon)
+        helpButton:SetHighlightTexture(highlight, "ADD")
+
+        helpButton:SetPoint("TOPRIGHT", gossipFrame, "TOPRIGHT", -8, -25)
+
+        helpButton:EnableMouse(true)
+        helpButton:SetScript("OnEnter", function(self)
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
             GameTooltip:SetText(C_AddOns.GetAddOnMetadata(addonName, "Title"), nil, nil, nil, 1, true)
             GameTooltip:AddLine(LSU.Locales.GOSSIP_HELP_BUTTON_TOOLTIP, 1,1,1, true)
             GameTooltip:Show()
         end)
-        helpIcon:SetScript("OnLeave", function() GameTooltip:Hide() end)
+        helpButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
         gossipFrame.editBox = editBox
         gossipFrame.gossipCountText = gossipCountText
