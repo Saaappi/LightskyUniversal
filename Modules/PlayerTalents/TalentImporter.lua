@@ -92,7 +92,7 @@ local function GetOrCreateFrame()
             width = defaults.FRAME_BASE_WIDTH,
             movable = true
         })
-        state.frame:SetTitle(L.LABEL_TALENT_IMPORTER)
+        state.frame:SetTitle(LSU.Locales.TALENT_IMPORTER)
         state.frame:SetPortraitToAsset(132222)
 
         state.frame.classNameText = state.frame:CreateFontString(nil, "OVERLAY")

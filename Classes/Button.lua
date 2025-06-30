@@ -4,7 +4,7 @@ local L = LSU.L
 local function SetTooltipScripts(button, tooltipText)
     button:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:SetText(L.TITLE_ADDON, nil, nil, nil, 1, true)
+        GameTooltip:SetText(LSU.Locales.ADDON_TITLE, nil, nil, nil, 1, true)
         if tooltipText then
             GameTooltip:AddLine(tooltipText, 1, 1, 1, true)
         end

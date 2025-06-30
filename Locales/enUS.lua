@@ -1,26 +1,19 @@
 local addonName, LSU = ...
 local L = {}
 
-L.TALENT_IMPORTER_BUTTON_TOOLTIP                = "Click to open the talent importer utility."
 L.TEXT_BAD_LOADOUT                              = "This is a bad loadout! Try importing a new one."
 L.TEXT_CONFIG_IS_NIL                            = "configID is nil!"
 L.TEXT_TREEID_IS_NIL                            = "treeID is nil!"
-L.LABEL_TALENT_IMPORTER                         = "Talent Importer"
 L.TEXT_BUTTON_CREATION_FAILED                   = "Button failed to create"
 L.TEXT_CHARACTER_VARIABLE_NIL                   = "The {character} variable is nil. Please reload."
 L.TEXT_COULD_NOT_RETRIEVE_NPC_INFO              = "Could not retrieve NPC information."
 L.TEXT_NO_GOSSIP_OPTIONS_AVAILABLE              = "No gossip options available."
-L.TEXT_LAST_UPDATED                             = "Last Updated"
 
 -- Fontstrings
 L.FONTSTRING_GOSSIP_LINE_COUNT_TEXT             = "|cffFFFFFF%s|r line(s)"
 
-L.SLASH_CMD_LSU                        = "/lsu"
-
 -- Frame titles
-L.TITLE_ADDON                          = C_AddOns.GetAddOnMetadata(addonName, "Title")
 L.TITLE_GOSSIPS                        = "Gossips"
-L.TITLE_SETTINGS                       = "Settings"
 
 -- Tooltips
 L.TOOLTIP_GOSSIPS_OPEN_BUTTON          = "Click to open the Gossips utility."

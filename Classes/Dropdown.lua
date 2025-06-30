@@ -13,7 +13,7 @@ function LSU.NewRadioDropdown(dropdownData)
 
     dropdown:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:SetText(L.TITLE_ADDON)
+        GameTooltip:SetText(LSU.Locales.ADDON_TITLE)
         GameTooltip:AddLine(dropdownData.tooltipText, 1, 1, 1, 1, true)
         GameTooltip:Show()
     end)

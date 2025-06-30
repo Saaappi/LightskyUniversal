@@ -31,6 +31,8 @@ L["AUTO_SHARE_QUESTS_TOOLTIP"] = "Automatically share quests with your party whe
 L["ACCEPT_QUESTS"] = "Accept Quests"
 L["ACCEPT_QUESTS_TOOLTIP"] = "Streamline your gameplay by automatically accepting most available quests from NPCs."
 
+L["ADDON_TITLE"] = C_AddOns.GetAddOnMetadata(addonName, "Title")
+
 L["ALWAYS_COMPARE_ITEMS"] = "Always Compare Items"
 L["ALWAYS_COMPARE_ITEMS_TOOLTIP"] = "Force displays the comparison tooltip when you hover over other items, allowing you to easily compare attributes and stats."
 
@@ -171,6 +173,8 @@ L["REPLACE_MY_PLAYER_PORTRAIT_TOOLTIP"] = "Replaces your character's portrait wi
 L["REPLACE_OTHER_PLAYER_PORTRAITS"] = "Replace Other Player Portraits"
 L["REPLACE_OTHER_PLAYER_PORTRAITS_TOOLTIP"] = "Replaces the portraits of other players with their class icon."
 
+L["SETTINGS"] = "Settings"
+
 L["SHOW_SCRIPT_ERRORS"] = "Show Script Errors"
 L["SHOW_SCRIPT_ERRORS_TOOLTIP"] = "Displays Lua script errors as they occur to help identify and troubleshoot addon or interface issues."
 
@@ -189,6 +193,7 @@ L["SOFT_TARGET_ENEMY_TOOLTIP"] = "Highlights or selects enemies you're looking a
 L["SPELLBOOK_HIDE_PASSIVES"] = "Spellbook Hide Passives"
 L["SPELLBOOK_HIDE_PASSIVES_TOOLTIP"] = "Hides passive spells in your spellbook for a clearer view of active abilities."
 
+L["TALENT_IMPORTER"] = "Talent Importer"
 L["TALENT_IMPORTER_BUTTON_TOOLTIP"] = "Click to open the talent importer utility."
 
 L["USE_CTRLC_TO_COPY_THE_LINK_BELOW"] = "Use Ctrl+C to copy the link below."

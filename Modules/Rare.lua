@@ -67,12 +67,12 @@ local function HandleLinkClick(_, link)
             local displayID = GetNPCDisplayByID(unitID)
 			local size = 16
 			TomTom:AddWaypoint(mapID, x, y, {
-				title = unitName .. "\n" .. L.TITLE_ADDON,
+				title = unitName .. "\n" .. LSU.Locales.ADDON_TITLE,
 				minimap_displayID = displayID,
 				minimap_icon_size = size,
 				worldmap_displayID = displayID,
 				worldmap_icon_size = size,
-				from = L.TITLE_ADDON,
+				from = LSU.Locales.ADDON_TITLE,
 				minimap = true
 			})
 		else
