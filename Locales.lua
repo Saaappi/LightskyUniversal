@@ -144,7 +144,7 @@ L["GOSSIP_SUBMIT_BUTTON_TOOLTIP"] = "Submit the contents of the edit box for pro
 "If you submit gossips that are available in the active Gossip Frame, then they will be selected without the need to close and reopen the frame."
 L["GOSSIP_TOOLTIP"] = "Interact with supported NPCs efficiently by instantly selecting gossip options."
 
-L["HAS_BEEN_SPOTTED"] = "has been spotted"
+L["HAS_BEEN_SPOTTED"] = "has been spotted!"
 
 L["IMPORT"] = "Import"
 

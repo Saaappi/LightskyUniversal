@@ -100,3 +100,9 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         eventFrame:UnregisterEvent(event)
     end
 end)
+
+hooksecurefunc(NamePlateDriverFrame, "OnSoftTargetUpdate", function()
+    if not LSUDB.Settings["NewCharacter.SoftTargetEnemy.Enabled"] then return end
+    RemoveRaidTargets()
+    SetRaidTarget("softenemy", 8)
+end)
