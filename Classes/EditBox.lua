@@ -1,5 +1,4 @@
 local LSU = select(2, ...)
-local L = LSU.L
 
 function LSU.NewEditBox(data)
     local editBox = CreateFrame("EditBox", data.name, data.parent, "InputBoxTemplate")

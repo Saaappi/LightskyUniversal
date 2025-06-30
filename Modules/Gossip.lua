@@ -7,7 +7,6 @@ local gossipFrame = LSU.CreateFrame("Portrait", {
     height = 500,
     movable = true
 })
-local L = LSU.L
 local fontSize = 14
 local fontPadding = 7.5
 local history = {}

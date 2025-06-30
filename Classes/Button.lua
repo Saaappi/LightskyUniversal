@@ -1,5 +1,4 @@
 local LSU = select(2, ...)
-local L = LSU.L
 
 local function SetTooltipScripts(button, tooltipText)
     button:SetScript("OnEnter", function(self)

@@ -1,5 +1,4 @@
 local addonName, LSU = ...
-local L = LSU.L
 local frame
 local ySpacing = 10
 

@@ -1,5 +1,4 @@
 local LSU = select(2, ...)
-local L = LSU.L
 
 function LSU.NewCheckbox(data)
     local checkbox = CreateFrame("CheckButton", "LSUCheckButton"..data.id, data.parent, "SettingsCheckboxTemplate")

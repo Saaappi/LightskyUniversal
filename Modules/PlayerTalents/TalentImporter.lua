@@ -1,5 +1,4 @@
 local LSU = select(2, ...)
-local L = LSU.L
 
 local defaults = {
     FRAME_BASE_WIDTH = 230,

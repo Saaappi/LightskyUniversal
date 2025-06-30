@@ -1,5 +1,4 @@
 local LSU = select(2, ...)
-local L = LSU.L
 
 function LSU.NewRadioDropdown(dropdownData)
     local dropdown = CreateFrame("DropdownButton", nil, dropdownData.parent or UIParent, "WowStyle1DropdownTemplate")

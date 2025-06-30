@@ -1,5 +1,4 @@
 local addonName, LSU = ...
-local L = LSU.L
 
 LSU.CreateFrame = function(frameType, frameData)
     assert(type(frameData) == "table", "frameData must be a table!")
