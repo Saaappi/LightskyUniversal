@@ -54,7 +54,6 @@ Modules\Quest\Complete.lua
 Modules\Quest\Popup.lua
 Modules\Rare.lua
 
-KeybindHandler.lua
 Main.lua
 
 Settings.lua

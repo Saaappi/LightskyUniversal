@@ -1,5 +1,0 @@
-<Bindings>
-	<Binding name="LSU_MOUNTUP" category="Lightsky Universal">
-		LSUKeybindHandler(GetBindingKey("LSU_MOUNTUP"))
-	</Binding>
-</Bindings>
