@@ -18,8 +18,18 @@ LIGHTSKYUNIVERSAL_LOCALES = Locales
 
 local L = Locales.enUS
 
+-- Headers (Settings)
+L["GENERAL_MODULES"] = "General Modules"
+L["GOSSIP_MODULE"] = "Gossip Module"
+L["CHROMIE_TIME_MODULE"] = "Chromie Time Module"
+L["NEW_CHARACTER_MODULE"] = "New Character Module"
+
 -- Error Messages
 L["ADDON_NOT_FOUND"] = "%s not found! Are you sure it's loaded?"
+
+-- Text Output (Chat)
+L["HAS_BEEN_SPOTTED"] = "has been spotted"
+L["WAY"] = "way"
 
 -- Popups
 L["JOINED_GROUP"] = "You've joined or are joining a group while Auto Share Quests is enabled.\n\n" ..

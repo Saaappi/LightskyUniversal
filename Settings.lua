@@ -113,7 +113,7 @@ local function SlashHandler(msg, editBox)
 
             local generalModulesFS = scrollChild:CreateFontString()
             generalModulesFS:SetFontObject("ChatBubbleFont")
-            generalModulesFS:SetText(L.HEADER_GENERAL_MODULES)
+            generalModulesFS:SetText(LSU.Locales.GENERAL_MODULES)
             generalModulesFS:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 20, -30)
 
             local checkboxData = {
@@ -155,7 +155,7 @@ local function SlashHandler(msg, editBox)
 
             local gossipModuleFS = scrollChild:CreateFontString()
             gossipModuleFS:SetFontObject("ChatBubbleFont")
-            gossipModuleFS:SetText(L.HEADER_GOSSIP_MODULE)
+            gossipModuleFS:SetText(LSU.Locales.GOSSIP_MODULE)
             gossipModuleFS:SetPoint("TOPLEFT", checkboxes[10], "BOTTOMLEFT", -20, -50)
 
             local openGossipsFrameButton = LSU.NewBasicButton({
@@ -182,7 +182,7 @@ local function SlashHandler(msg, editBox)
 
             local chromieTimeModuleFS = scrollChild:CreateFontString()
             chromieTimeModuleFS:SetFontObject("ChatBubbleFont")
-            chromieTimeModuleFS:SetText(L.HEADER_CHROMIE_TIME_MODULE)
+            chromieTimeModuleFS:SetText(LSU.Locales.CHROMIE_TIME_MODULE)
             chromieTimeModuleFS:SetPoint("TOPLEFT", gossipModuleFS, "BOTTOMLEFT", 0, -125)
 
             local chromieTimeDropdown = LSU.NewRadioDropdown({
@@ -210,7 +210,7 @@ local function SlashHandler(msg, editBox)
 
             local newCharacterModuleFS = scrollChild:CreateFontString()
             newCharacterModuleFS:SetFontObject("ChatBubbleFont")
-            newCharacterModuleFS:SetText(L.HEADER_NEW_CHARACTER_MODULE)
+            newCharacterModuleFS:SetText(LSU.Locales.NEW_CHARACTER_MODULE)
             newCharacterModuleFS:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", -20, -50)
 
             local warbandMapButton = LSU.NewInsecureBasicButton({

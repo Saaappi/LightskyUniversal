@@ -32,8 +32,8 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         local position = C_Map.GetPlayerMapPosition(LSU.Map.CurrentMapID, "player")
         if position then
             local x, y = position:GetXY()
-            local link = LinkUtil.FormatLink("addonLSU", "[/" .. L.TEXT_RARE_SLASH_WAY .."]", LSU.Map.CurrentMapID, x, y, unitName, unitID)
-            LSU.Print(string.format("|cffFFD700%s|r %s! %s", unitName, L.TEXT_RARE_SPOTTED, BATTLENET_FONT_COLOR:WrapTextInColorCode(link)))
+            local link = LinkUtil.FormatLink("addonLSU", "[/" .. LSU.Locales.WAY .."]", LSU.Map.CurrentMapID, x, y, unitName, unitID)
+            LSU.Print(string.format("|cffFFD700%s|r %s! %s", unitName, LSU.Locales.HAS_BEEN_SPOTTED, BATTLENET_FONT_COLOR:WrapTextInColorCode(link)))
         end
 
         PlaySound(17318, "Master")

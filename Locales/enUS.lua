@@ -15,13 +15,6 @@ L.TEXT_CHARACTER_VARIABLE_NIL                   = "The {character} variable is n
 L.TEXT_COULD_NOT_RETRIEVE_NPC_INFO              = "Could not retrieve NPC information."
 L.TEXT_NO_GOSSIP_OPTIONS_AVAILABLE              = "No gossip options available."
 L.TEXT_LAST_UPDATED                             = "Last Updated"
-L.TEXT_RARE_SPOTTED                             = "has been spotted"
-L.TEXT_RARE_SLASH_WAY                           = "way"
-
-L.HEADER_CHROMIE_TIME_MODULE                    = "Chromie Time Module"
-L.HEADER_GENERAL_MODULES                        = "General Modules"
-L.HEADER_GOSSIP_MODULE                          = "Gossip Module"
-L.HEADER_NEW_CHARACTER_MODULE                   = "New Character Module"
 
 -- Fontstrings
 L.FONTSTRING_GOSSIP_LINE_COUNT_TEXT             = "|cffFFFFFF%s|r line(s)"
