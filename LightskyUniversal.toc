@@ -33,6 +33,7 @@ Classes\Button.lua
 Classes\Checkbox.lua
 Classes\Dropdown.lua
 Classes\EditBox.lua
+Classes\StaticPopup.lua
 
 # Buttons
 Button.lua

@@ -495,6 +495,22 @@ LSU.OpenGossipFrame = function()
         helpButton:SetPoint("TOPRIGHT", gossipFrame, "TOPRIGHT", -8, -25)
 
         helpButton:EnableMouse(true)
+        helpButton:SetScript("OnClick", function()
+            LSU.NewStaticPopup(
+                "GossipFrameHelpButtonPopup",
+                LSU.Locales.USE_CTRLC_TO_COPY_THE_LINK_BELOW,
+                {
+                    button1Text = DONE,
+                    hasEditBox = 1,
+                    onShow = function(self)
+                        self.editBox:SetText("https://github.com/Saaappi/LightskyUniversal/wiki/Gossip-Conditions")
+                        self.editBox:HighlightText()
+                    end,
+                    onAccept = function() end,
+                }
+            )
+            StaticPopup_Show("GossipFrameHelpButtonPopup")
+        end)
         helpButton:SetScript("OnEnter", function(self)
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
             GameTooltip:SetText(C_AddOns.GetAddOnMetadata(addonName, "Title"), nil, nil, nil, 1, true)

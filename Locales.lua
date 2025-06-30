@@ -122,19 +122,7 @@ L["GOSSIP_HELP_BUTTON_TOOLTIP"] = "|cffFF474CThere is a rough cap on the number 
 "Entering data requires the ID of the NPC/GameObject, the ID of the desired gossip option, and optionally a list of conditions.\n\n" ..
 "The |cff00CCFF<ID>|r for the NPC or GameObject can be found at the top of the GossipFrame when interacting with the target. It prefixes the name within [].\n\n" ..
 "The |cff00CCFF<GossipOptionID>|r can be found before the text of the option within []. It's the number in the |cffBA45A0mulberry|r color.\n\n" ..
-"Conditions are slightly more complicated and can be daisy chained together. Condition types are case sensitive and should always be CAPITALIZED! Condition types and their values should always be separated by a semicolon. Supported conditions and how to format them can be seen below:\n\n" ..
-"Supported Conditions:\n" ..
-"- |cff00CCFF!CT_EXPANSION|r: Used to determine whether the player is not in the given Chromie Time expansion.\n" ..
-"- |cff00CCFFQUEST_ACTIVE|r: Used to determine if a player is actively on a quest.\n" ..
-"- |cff00CCFFOBJECTIVE_INCOMPLETE|r: Used to determine if a given objective is incomplete on an active quest.\n\n" ..
-"Format Examples:\n" ..
-"- |cff00CCFF!CT_EXPANSION;10|r: Checks to see if the player is not in the Legion expansion for Chromie Time.\n" ..
-"- |cff00CCFFQUEST_ACTIVE;12345|r: Checks to see if the player is on the quest with an ID of 12345.\n" ..
-"- |cff00CCFFOBJECTIVE_COMPLETE;12345;1|r: Checks to see if the first objective is complete for the quest with an ID of 12345.\n" ..
-"- |cff00CCFFOBJECTIVE_INCOMPLETE;12345;1|r: Checks to see if the first objective is incomplete for the quest with an ID of 12345.\n\n" ..
-"Daisy chaining conditions together is easily done by separating them with a comma:\n" ..
-"- |cff00CCFF!CT_EXPANSION;10,QUEST_ACTIVE;12345|r: First, the addon will check if the player is not in Legion Chromie Time, and then check if they're on the quest with an ID of 12345.\n\n" ..
-"If any condition fails its check, then the gossip will not be selected. Nothing is returned in chat when a condition fails, so if something isn't working as it should, double check your conditions! :D"
+"Conditions are slightly more complicated and can be daisy chained together. Condition types are case sensitive and should always be CAPITALIZED! Condition types and their values should always be separated by a semicolon. Supported conditions and how to format them can be seen on the GitHub wiki page."
 L["GOSSIP_IMPORT_BUTTON_TOOLTIP"] = "Quickly import gossips in the Player Gossips table from the HelpMePlay addon.\n\n" ..
 "|cffFF474CNOTE:|r This will WIPE the gossips from HelpMePlay. This action is irreversible!"
 L["GOSSIP_MODULE"] = "Gossip Module"
