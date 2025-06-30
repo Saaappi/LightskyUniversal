@@ -117,17 +117,17 @@ local function SlashHandler(msg, editBox)
             generalModulesFS:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 20, -30)
 
             local checkboxData = {
-                {L.LABEL_ACCEPT_QUESTS,         "AcceptQuests.Enabled",    L.TOOLTIP_ACCEPT_QUESTS},
-                {L.LABEL_AUTO_REPAIR,           "AutoRepair.Enabled",      L.TOOLTIP_AUTO_REPAIR},
-                {L.LABEL_AUTO_TRAIN,            "AutoTrain.Enabled",       L.TOOLTIP_AUTO_TRAIN},
-                {L.LABEL_BUY_QUEST_ITEMS,       "BuyQuestItems.Enabled",   L.TOOLTIP_BUY_QUEST_ITEMS},
-                {L.LABEL_COMPLETE_QUESTS,       "CompleteQuests.Enabled",  L.TOOLTIP_COMPLETE_QUESTS},
-                {L.LABEL_PLAYER_TALENTS,        "PlayerTalents.Enabled",   L.TOOLTIP_PLAYER_TALENTS},
-                {L.LABEL_QUEST_REWARDS,         "QuestRewards.Enabled",    L.TOOLTIP_QUEST_REWARDS},
-                {L.LABEL_RARES,                 "Rares.Enabled",           L.TOOLTIP_RARES},
-                {L.LABEL_SKIP_CINEMATICS,       "SkipCinematics.Enabled",  L.TOOLTIP_SKIP_CINEMATICS},
-                {L.LABEL_NEW_CHARACTER,         "NewCharacter.Enabled",    L.TOOLTIP_NEW_CHARACTER},
-                {LSU.Locales.AUTO_SHARE_QUESTS, "AutoShareQuests.Enabled", LSU.Locales.AUTO_SHARE_QUESTS_TOOLTIP},
+                {LSU.Locales.ACCEPT_QUESTS,         "AcceptQuests.Enabled",     LSU.Locales.ACCEPT_QUESTS_TOOLTIP},
+                {LSU.Locales.AUTO_REPAIR,           "AutoRepair.Enabled",       LSU.Locales.AUTO_REPAIR_TOOLTIP},
+                {LSU.Locales.AUTO_SHARE_QUESTS,     "AutoShareQuests.Enabled",  LSU.Locales.AUTO_SHARE_QUESTS_TOOLTIP},
+                {LSU.Locales.AUTO_TRAIN,            "AutoTrain.Enabled",        LSU.Locales.AUTO_TRAIN_TOOLTIP},
+                {LSU.Locales.BUY_QUEST_ITEMS,       "BuyQuestItems.Enabled",    LSU.Locales.BUY_QUEST_ITEMS_TOOLTIP},
+                {LSU.Locales.COMPLETE_QUESTS,       "CompleteQuests.Enabled",   LSU.Locales.COMPLETE_QUESTS_TOOLTIP},
+                {LSU.Locales.NEW_CHARACTER,         "NewCharacter.Enabled",     LSU.Locales.NEW_CHARACTER_TOOLTIP},
+                {LSU.Locales.PLAYER_TALENTS,        "PlayerTalents.Enabled",    LSU.Locales.PLAYER_TALENTS_TOOLTIP},
+                {LSU.Locales.QUEST_REWARDS,         "QuestRewards.Enabled",     LSU.Locales.QUEST_REWARDS_TOOLTIP},
+                {LSU.Locales.RARES,                 "Rares.Enabled",            LSU.Locales.RARES_TOOLTIP},
+                {LSU.Locales.SKIP_CINEMATICS,       "SkipCinematics.Enabled",   LSU.Locales.SKIP_CINEMATICS_TOOLTIP},
             }
 
             local columnWidth = 180
@@ -163,7 +163,7 @@ local function SlashHandler(msg, editBox)
                 parent = scrollChild,
                 width = 120,
                 height = 25,
-                label = L.LABEL_OPEN_GOSSIPS
+                label = LSU.Locales.OPEN_GOSSIPS
             })
             openGossipsFrameButton:SetPoint("TOPLEFT", gossipModuleFS, "BOTTOMLEFT", 20, -10)
             openGossipsFrameButton:SetScript("OnClick", function()
@@ -174,9 +174,9 @@ local function SlashHandler(msg, editBox)
             local gossipCheckbox = LSU.NewCheckbox({
                 id = 20,
                 parent = scrollChild,
-                label = L.LABEL_GOSSIP,
+                label = LSU.Locales.GOSSIP,
                 savedVarKey = "Gossip.Enabled",
-                tooltipText = L.TOOLTIP_GOSSIP
+                tooltipText = LSU.Locales.GOSSIP_TOOLTIP
             })
             gossipCheckbox:SetPoint("TOPLEFT", openGossipsFrameButton, "BOTTOMLEFT", 0, -10)
 
@@ -187,8 +187,8 @@ local function SlashHandler(msg, editBox)
 
             local chromieTimeDropdown = LSU.NewRadioDropdown({
                 parent = scrollChild,
-                label = L.LABEL_CHROMIE_TIME,
-                tooltipText = L.TOOLTIP_CHROMIE_TIME,
+                label = LSU.Locales.CHROMIE_TIME,
+                tooltipText = LSU.Locales.CHROMIE_TIME_TOOLTIP,
                 savedVarKey = "ChromieTimeExpansionID",
                 options = {
                     { DISABLE, 0 },
@@ -220,13 +220,13 @@ local function SlashHandler(msg, editBox)
                 height = 25,
                 attributeType = "spell",
                 attributeValue = 431280,
-                label = L.LABEL_WARBAND_MAP_TO_EVERYWHERE_ALL_AT_ONCE
+                label = LSU.Locales.WARBAND_MAP
             })
             warbandMapButton:SetPoint("TOPLEFT", newCharacterModuleFS, "BOTTOMLEFT", 20, -10)
             warbandMapButton:SetScript("OnEnter", function(self)
                 GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
                 GameTooltip:SetText(L.TITLE_ADDON)
-                GameTooltip:AddLine(L.TOOLTIP_WARBAND_MAP_TO_EVERYWHERE_ALL_AT_ONCE, 1, 1, 1, 1, true)
+                GameTooltip:AddLine(LSU.Locales.WARBAND_MAP_TOOLTIP, 1, 1, 1, 1, true)
                 GameTooltip:Show()
             end)
             warbandMapButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
@@ -276,7 +276,7 @@ local function SlashHandler(msg, editBox)
                 {L.LABEL_ALWAYS_COMPARE_ITEMS, "NewCharacter.AlwaysCompareItems.Enabled", L.TOOLTIP_ALWAYS_COMPARE_ITEMS},
                 {L.LABEL_ALWAYS_SHOW_ACTION_BARS, "NewCharacter.AlwaysShowActionBars.Enabled", L.TOOLTIP_ALWAYS_SHOW_ACTION_BARS},
                 {L.LABEL_ARACHNOPHOBIA_MODE, "NewCharacter.ArachnophobiaMode.Enabled", L.TOOLTIP_ARACHNOPHOBIA_MODE},
-                {L.LABEL_ASSISTED_COMBAT_HIGHLIGHT, "NewCharacter.AssistedCombatHighlight.Enabled", L.TOOLTIP_ASSISTED_COMBAT_HIGHLIGHT},
+                {L.LABEL_ASSISTED_COMBAT_HIGHLIGHT, "NewCharacter.AssistedCombatHighlight.Enabled", LSU.Locales.ASSISTED_COMBAT_HIGHLIGHT_TOOLTIP},
                 {L.LABEL_AUTO_DISMOUNT_FLYING, "NewCharacter.AutoDismountFlying.Enabled", L.TOOLTIP_AUTO_DISMOUNT_FLYING},
                 {L.LABEL_AUTO_INTERACT, "NewCharacter.AutoInteract.Enabled", L.TOOLTIP_AUTO_INTERACT},
                 {L.LABEL_AUTO_LOOT , "NewCharacter.AutoLootDefault.Enabled", L.TOOLTIP_AUTO_LOOT_DEFAULT},
@@ -325,8 +325,8 @@ local function SlashHandler(msg, editBox)
 
             local editModeLayoutDropdown = LSU.NewRadioDropdown({
                 parent = scrollChild,
-                label = L.LABEL_EDIT_MODE_LAYOUT,
-                tooltipText = L.TOOLTIP_EDIT_MODE_LAYOUTS,
+                label = LSU.Locales.EDIT_MODE_LAYOUT,
+                tooltipText = LSU.Locales.EDIT_MODE_LAYOUT_TOOLTIP,
                 savedVarKey = "EditModeLayoutID",
                 options = LSUDB.EditModeLayouts
             })
