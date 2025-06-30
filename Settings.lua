@@ -258,7 +258,7 @@ local function SlashHandler(msg, editBox)
 
                 if found then
                     StaticPopupDialogs["LSU_NewCharacterWiped"] = {
-                        text = L.POPUP_NEW_CHARACTER_WIPED,
+                        text = LSU.Locales.NEW_CHARACTER_WIPED,
                         button1 = YES,
                         button2 = NO,
                         explicitAcknowledge = true,
@@ -342,5 +342,6 @@ local function SlashHandler(msg, editBox)
     end
 end
 
-SLASH_LIGHTSKYUNIVERSAL1 = L.SLASH_CMD_LSU
+SLASH_LIGHTSKYUNIVERSAL1 = LSU.Locales.SLASH_COMMAND1
+SLASH_LIGHTSKYUNIVERSAL2 = LSU.Locales.SLASH_COMMAND2
 SlashCmdList["LIGHTSKYUNIVERSAL"] = SlashHandler

@@ -19,11 +19,6 @@ L.TEXT_LAST_UPDATED                             = "Last Updated"
 -- Fontstrings
 L.FONTSTRING_GOSSIP_LINE_COUNT_TEXT             = "|cffFFFFFF%s|r line(s)"
 
--- Popups
-L.POPUP_NEWCHARACTER_TEXT = "Character configuration completed. Would you like to reload now?\n\n" ..
-"|cffFF474CNOTE|r: This is recommended to guarantee the settings are saved server side."
-L.POPUP_NEW_CHARACTER_WIPED = "The unique identifier for this character has been wiped. Would you like to reload now?"
-
 L.SLASH_CMD_LSU                        = "/lsu"
 
 -- Frame titles

@@ -18,6 +18,9 @@ LIGHTSKYUNIVERSAL_LOCALES = Locales
 
 local L = Locales.enUS
 
+L["SLASH_COMMAND1"] = "/lightskyuniversal"
+L["SLASH_COMMAND2"] = "/lsu"
+
 -- Headers (Settings)
 L["GENERAL_MODULES"] = "General Modules"
 L["GOSSIP_MODULE"] = "Gossip Module"
@@ -34,6 +37,9 @@ L["WAY"] = "way"
 -- Popups
 L["JOINED_GROUP"] = "You've joined or are joining a group while Auto Share Quests is enabled.\n\n" ..
 "Would you like to disable this feature now? (No reload necessary!)"
+L["NEW_CHARACTER_TEXT"] = "Character configuration completed for %s. Would you like to reload now?\n\n" ..
+"|cffFF474CNOTE|r: This is recommended to guarantee the settings are saved server side."
+L["NEW_CHARACTER_WIPED"] = "The unique identifier for this character has been wiped. Would you like to reload now?"
 L["USE_CTRLC_TO_COPY_THE_LINK_BELOW"] = "Use Ctrl+C to copy the link below."
 
 -- Button Labels & Tooltips

@@ -80,7 +80,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                         end
 
                         StaticPopupDialogs["LSU_NewCharacterConfigurationCompleted"] = {
-                            text = L.POPUP_NEWCHARACTER_TEXT,
+                            text = string.format(LSU.Locales.NEW_CHARACTER_CONFIGURATION_COMPLETED, LSU.Character.Name),
                             button1 = YES,
                             button2 = NO,
                             explicitAcknowledge = true,
