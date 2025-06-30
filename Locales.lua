@@ -21,34 +21,9 @@ local L = Locales.enUS
 L["SLASH_COMMAND1"] = "/lightskyuniversal"
 L["SLASH_COMMAND2"] = "/lsu"
 
--- Headers (Settings)
-L["GENERAL_MODULES"] = "General Modules"
-L["GOSSIP_MODULE"] = "Gossip Module"
-L["CHROMIE_TIME_MODULE"] = "Chromie Time Module"
-L["NEW_CHARACTER_MODULE"] = "New Character Module"
+----------
 
--- Error Messages
 L["ADDON_NOT_FOUND"] = "%s not found! Are you sure it's loaded?"
-
--- Text Output (Chat)
-L["HAS_BEEN_SPOTTED"] = "has been spotted"
-L["WAY"] = "way"
-
--- Popups
-L["JOINED_GROUP"] = "You've joined or are joining a group while Auto Share Quests is enabled.\n\n" ..
-"Would you like to disable this feature now? (No reload necessary!)"
-L["NEW_CHARACTER_TEXT"] = "Character configuration completed for |c%s%s|r. Would you like to reload now?\n\n" ..
-"|cffFF474CNOTE|r: This is recommended to guarantee the settings are saved server side."
-L["NEW_CHARACTER_WIPED"] = "The unique identifier for this character has been wiped. Would you like to reload now?"
-L["USE_CTRLC_TO_COPY_THE_LINK_BELOW"] = "Use Ctrl+C to copy the link below."
-
--- Button Labels & Tooltips
-L["DISCORD"] = "Discord"
-L["DONATE"] = "Donate"
-L["IMPORT"] = "Import"
-L["IMPORT_TOOLTIP"] = "Quickly import gossips in the Player Gossips table from the HelpMePlay addon.\n\n" ..
-"|cffFF474CNOTE:|r This will WIPE the gossips from HelpMePlay. This action is irreversible!"
-L["NEW_CHARACTER_BUTTON_TOOLTIP"] = "Click to configure new character settings for |c%s%s|r."
 
 L["AUTO_SHARE_QUESTS"] = "Auto Share Quests"
 L["AUTO_SHARE_QUESTS_TOOLTIP"] = "Automatically share quests with your party when you accept them."
@@ -61,6 +36,9 @@ L["ALWAYS_COMPARE_ITEMS_TOOLTIP"] = "Force displays the comparison tooltip when 
 
 L["ALWAYS_SHOW_ACTION_BARS"] = "Always Show Action Bars"
 L["ALWAYS_SHOW_ACTION_BARS_TOOLTIP"] = "Keeps action bars visible at all times."
+
+L["APPLY_TALENTS"] = "Apply Talents"
+L["APPLY_TALENTS_TOOLTIP"] = "Click to apply talents for your class and specialization."
 
 L["ARACHNOPHOBIA_MODE"] = "Arachnophobia Mode"
 L["ARACHNOPHOBIA_MODE_TOOLTIP"] = "Replaces arachnid creature models with crabs to provide a more comfortable experience for players with arachnophobia."
@@ -86,10 +64,14 @@ L["AUTO_REPAIR_TOOLTIP"] = "Keep your gear in top shape by auto-repairing at ven
 L["AUTO_TRAIN"] = "Auto Train"
 L["AUTO_TRAIN_TOOLTIP"] = "Effortlessly learn new skills by automatically training all available spells at trainers—limited to affordable costs (up to 33% of your gold)."
 
+L["BACK"] = "Back"
+L["BACK_TOOLTIP"] = "Return to class selection."
+
 L["BUY_QUEST_ITEMS"] = "Buy Quest Items"
 L["BUY_QUEST_ITEMS_TOOLTIP"] = "Never forget a quest item again! Purchases required quest items from vendors automatically."
 
 L["CHROMIE_TIME"] = "Chromie Time"
+L["CHROMIE_TIME_MODULE"] = "Chromie Time Module"
 L["CHROMIE_TIME_TOOLTIP"] = "Automatically choose and activate your preferred Chromie Time expansion when interacting with them."
 
 L["CLEAR_ALL_TRACKING"] = "Clear All Tracking"
@@ -116,14 +98,32 @@ L["DISABLE_SKYRIDING_VELOCITY_VFX_TOOLTIP"] = "Disables velocity visual effects 
 L["DISABLE_USER_ADDONS_BY_DEFAULT"] = "Disable User Addons By Default"
 L["DISABLE_USER_ADDONS_BY_DEFAULT_TOOLTIP"] = "Prevents newly installed addons from being enabled automatically."
 
+L["DISCORD"] = "Discord"
+
+L["DONATE"] = "Donate"
+
 L["EDIT_MODE_LAYOUT"] = "Edit Mode Layout"
 L["EDIT_MODE_LAYOUT_TOOLTIP"] = "Choose and apply your preferred Edit Mode layout."
 
 L["ENABLE_FLOATING_COMBAT_TEXT"] = "Enable Floating Combat Text"
 L["ENABLE_FLOATING_COMBAT_TEXT_TOOLTIP"] = "Enables or disables floating combat text for damage, healing, and other events during combat."
 
+L["GENERAL_MODULES"] = "General Modules"
+
 L["GOSSIP"] = "Gossip"
+L["GOSSIP_MODULE"] = "Gossip Module"
 L["GOSSIP_TOOLTIP"] = "Interact with supported NPCs efficiently by instantly selecting gossip options."
+
+L["HAS_BEEN_SPOTTED"] = "has been spotted"
+
+L["IMPORT"] = "Import"
+L["IMPORT_TOOLTIP"] = "Quickly import gossips in the Player Gossips table from the HelpMePlay addon.\n\n" ..
+"|cffFF474CNOTE:|r This will WIPE the gossips from HelpMePlay. This action is irreversible!"
+
+L["JOINED_GROUP"] = "You've joined or are joining a group while Auto Share Quests is enabled.\n\n" ..
+"Would you like to disable this feature now? (No reload necessary!)"
+
+L["LAST_UPDATED"] = "Last Updated"
 
 L["LOOT_UNDER_MOUSE"] = "Loot Under Mouse"
 L["LOOT_UNDER_MOUSE_TOOLTIP"] = "Displays the loot window beneath your mouse cursor."
@@ -132,7 +132,12 @@ L["MOUNT_JOURNAL_SHOW_PLAYER"] = "Mount Journal Show Player"
 L["MOUNT_JOURNAL_SHOW_PLAYER_TOOLTIP"] = "Automatically displays your character model riding mounts in the Mount Journal preview."
 
 L["NEW_CHARACTER"] = "New Character"
+L["NEW_CHARACTER_BUTTON_TOOLTIP"] = "Click to configure new character settings for |c%s%s|r."
+L["NEW_CHARACTER_MODULE"] = "New Character Module"
+L["NEW_CHARACTER_TEXT"] = "Character configuration completed for |c%s%s|r. Would you like to reload now?\n\n" ..
+"|cffFF474CNOTE|r: This is recommended to guarantee the settings are saved server side."
 L["NEW_CHARACTER_TOOLTIP"] = "Tired of configuring specific settings for every new character? Toggle this feature and opt into settings under the New Character Module section below."
+L["NEW_CHARACTER_WIPED"] = "The unique identifier for this character has been wiped. Would you like to reload now?"
 
 L["OCCLUDED_SILHOUETTE_PLAYER"] = "Occluded Silhouette Player"
 L["OCCLUDED_SILHOUETTE_PLAYER_TOOLTIP"] = "Displays your character's silhouette when view is blocked by objects, such as trees, for improved tracking."
@@ -184,8 +189,14 @@ L["SOFT_TARGET_ENEMY_TOOLTIP"] = "Highlights or selects enemies you're looking a
 L["SPELLBOOK_HIDE_PASSIVES"] = "Spellbook Hide Passives"
 L["SPELLBOOK_HIDE_PASSIVES_TOOLTIP"] = "Hides passive spells in your spellbook for a clearer view of active abilities."
 
+L["TALENT_IMPORTER_BUTTON_TOOLTIP"] = "Click to open the talent importer utility."
+
+L["USE_CTRLC_TO_COPY_THE_LINK_BELOW"] = "Use Ctrl+C to copy the link below."
+
 L["WARBAND_MAP"] = "Warband Map"
 L["WARBAND_MAP_TOOLTIP"] = "Allows you to quickly cast |cnIQ3:|Hitem:212174::::::::71:104:::::::::|h[The Warband Map to Everywhere All At Once]|h|r spell, quickly revealing the map for every zone you've explored with your warband."
+
+L["WAY"] = "way"
 
 L["WIPE_CHARACTER"] = "Wipe Character"
 L["WIPE_CHARACTER_TOOLTIP"] = "Removes the current character from the list of known characters. Doing this will allow you to rerun the New Character configuration for the current character."

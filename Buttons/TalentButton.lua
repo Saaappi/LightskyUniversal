@@ -14,7 +14,7 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
             parent = talentsFrame.SearchBox,
             scale = 0.5,
             texture = 132222,
-            tooltipText = L.TALENT_IMPORTER_BUTTON_TOOLTIP
+            tooltipText = LSU.Locales.TALENT_IMPORTER_BUTTON_TOOLTIP
         }
         importerButton = LSU.CreateButton(button)
         importerButton:SetScript("OnClick", function()
@@ -32,8 +32,8 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
             name = "LSUApplyTalentsButton",
             width = 120,
             height = 25,
-            text = "Apply Talents",
-            tooltipText = L.APPLY_TALENTS_BUTTON_TOOLTIP,
+            text = LSU.Locales.APPLY_TALENTS,
+            tooltipText = LSU.Locales.APPLY_TALENTS_TOOLTIP,
             point = "LEFT",
             parent = talentsFrame.SearchBox
         }

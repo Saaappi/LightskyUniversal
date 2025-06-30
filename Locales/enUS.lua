@@ -2,14 +2,10 @@ local addonName, LSU = ...
 local L = {}
 
 L.TALENT_IMPORTER_BUTTON_TOOLTIP                = "Click to open the talent importer utility."
-L.APPLY_TALENTS_BUTTON_TOOLTIP                  = "Click to apply talents for your class and specialization."
 L.TEXT_BAD_LOADOUT                              = "This is a bad loadout! Try importing a new one."
 L.TEXT_CONFIG_IS_NIL                            = "configID is nil!"
 L.TEXT_TREEID_IS_NIL                            = "treeID is nil!"
 L.LABEL_TALENT_IMPORTER                         = "Talent Importer"
-L.LABEL_TALENT_IMPORTER_BUTTON_BACK             = "Back"
-L.NEW_CHARACTER_BUTTON_TOOLTIP                  = "Click to configure new character settings for"
-L.TALENT_IMPORTER_BUTTON_BACK_TOOLTIP           = "Return to class selection."
 L.TEXT_BUTTON_CREATION_FAILED                   = "Button failed to create"
 L.TEXT_CHARACTER_VARIABLE_NIL                   = "The {character} variable is nil. Please reload."
 L.TEXT_COULD_NOT_RETRIEVE_NPC_INFO              = "Could not retrieve NPC information."
