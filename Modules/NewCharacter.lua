@@ -78,19 +78,19 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                             end
                         end
 
-                        StaticPopupDialogs["LSU_NewCharacterConfigurationCompleted"] = {
-                            text = string.format(LSU.Locales.NEW_CHARACTER_TEXT, LSU.Character.ClassColor:GenerateHexColor(), LSU.Character.Name),
-                            button1 = YES,
-                            button2 = NO,
-                            explicitAcknowledge = true,
-                            OnAccept = function()
-                                LSUDB.Characters[guid] = LSU.Character.Name
-                                C_UI.Reload()
-                            end,
-                            OnCancel = function() end,
-                            preferredIndex = 3
-                        }
-                        StaticPopup_Show("LSU_NewCharacterConfigurationCompleted")
+                        local nccCompleteDialog = "LSU_NewCharacterConfigurationCompleted"
+                        LSU.NewStaticPopup(
+                            nccCompleteDialog,
+                            string.format(LSU.Locales.NEW_CHARACTER_TEXT, LSU.Character.ClassColor:GenerateHexColor(), LSU.Character.Name),
+                            {
+                                button2Text = NO,
+                                onAccept = function()
+                                    LSUDB.Characters[guid] = LSU.Character.Name
+                                    C_UI.Reload()
+                                end
+                            }
+                        )
+                        StaticPopup_Show(nccCompleteDialog)
                     end)
                 else
                     LSU.PrintError(string.format(LSU.Locales.BUTTON_FAILED_TO_CREATE, button.name))
