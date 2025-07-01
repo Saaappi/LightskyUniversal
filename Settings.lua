@@ -248,18 +248,18 @@ local function SlashHandler(msg, editBox)
                 end
 
                 if found then
-                    StaticPopupDialogs["LSU_NewCharacterWiped"] = {
-                        text = LSU.Locales.NEW_CHARACTER_WIPED,
-                        button1 = YES,
-                        button2 = NO,
-                        explicitAcknowledge = true,
-                        OnAccept = function()
-                            C_UI.Reload()
-                        end,
-                        OnCancel = function() end,
-                        preferredIndex = 3
-                    }
-                    StaticPopup_Show("LSU_NewCharacterWiped")
+                    local nccWipeComplete = "LSU_NewCharacterWiped"
+                    LSU.NewStaticPopup(
+                        nccWipeComplete,
+                        LSU.Locales.NEW_CHARACTER_WIPED,
+                        {
+                            button2Text = NO,
+                            onAccept = function()
+                                C_UI.Reload()
+                            end,
+                        }
+                    )
+                    StaticPopup_Show(nccWipeComplete)
                 end
             end)
 

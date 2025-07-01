@@ -8,18 +8,19 @@ eventFrame:RegisterEvent("QUEST_GREETING")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "GROUP_JOINED" then
         if not LSUDB.Settings["AutoShareQuests.Enabled"] then return end
-        StaticPopupDialogs["LSU_JoinedGroup"] = {
-            text = LSU.Locales.JOINED_GROUP,
-            button1 = YES,
-            button2 = NO,
-            explicitAcknowledge = true,
-            OnAccept = function()
-                LSUDB.Settings["AutoShareQuests.Enabled"] = false
-            end,
-            OnCancel = function() end,
-            preferredIndex = 3
-        }
-        StaticPopup_Show("LSU_JoinedGroup")
+
+        local joinedGroupDialog = "LSU_JoinedGroup"
+        LSU.NewStaticPopup(
+            joinedGroupDialog,
+            LSU.Locales.JOINED_GROUP,
+            {
+                button2Text = NO,
+                onAccept = function()
+                    LSUDB.Settings["AutoShareQuests.Enabled"] = false
+                end,
+            }
+        )
+        StaticPopup_Show(joinedGroupDialog)
     end
     if event == "QUEST_ACCEPTED" then
         if not LSUDB.Settings["AutoShareQuests.Enabled"] then return end
