@@ -248,7 +248,7 @@ local function SlashHandler(msg, editBox)
                 end
 
                 if found then
-                    local nccWipeComplete = "LSU_NewCharacterWiped"
+                    local nccWipeCompleteDialog = "LSU_NewCharacterWiped"
                     LSU.NewStaticPopup(
                         nccWipeComplete,
                         LSU.Locales.NEW_CHARACTER_WIPED,
@@ -259,7 +259,7 @@ local function SlashHandler(msg, editBox)
                             end,
                         }
                     )
-                    StaticPopup_Show(nccWipeComplete)
+                    StaticPopup_Show(nccWipeCompleteDialog)
                 end
             end)
 
