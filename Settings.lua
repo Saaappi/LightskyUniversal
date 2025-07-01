@@ -38,22 +38,18 @@ local function SlashHandler(msg, editBox)
             frame:SetTitle(LSU.Locales.ADDON_TITLE .. " " .. LSU.Locales.SETTINGS)
 
             local discordLinkDialog = "LSU_SETTINGS_DISCORD_LINK_DIALOG"
-            StaticPopupDialogs[discordLinkDialog] = {
-                text = LSU.Locales.USE_CTRLC_TO_COPY_THE_LINK_BELOW,
-                button1 = DONE,
-                hasEditBox = 1,
-                OnShow = function(self)
-                    self.editBox:SetText("https://discord.gg/2Q3DKhu9HT")
-                    self.editBox:HighlightText()
-                end,
-                EditBoxOnEnterPressed = function(self)
-                    self:GetParent():Hide()
-                end,
-                EditBoxOnEscapePressed = StaticPopup_StandardEditBoxOnEscapePressed,
-                editBoxWidth = 230,
-                timeout = 0,
-                hideOnEscape = 1,
-            }
+            LSU.NewStaticPopup(
+                discordLinkDialog,
+                LSU.Locales.USE_CTRLC_TO_COPY_THE_LINK_BELOW,
+                {
+                    button1Text = DONE,
+                    hasEditBox = 1,
+                    onShow = function(self)
+                        self.editBox:SetText("https://discord.gg/2Q3DKhu9HT")
+                        self.editBox:HighlightText()
+                    end,
+                }
+            )
             local discordButton = LSU.NewBasicButton({
                 name = "LSUDiscordButton",
                 parent = frame,
@@ -67,22 +63,18 @@ local function SlashHandler(msg, editBox)
             end)
 
             local donateLinkDialog = "LSU_SETTINGS_DONATE_LINK_DIALOG"
-            StaticPopupDialogs[donateLinkDialog] = {
-                text = LSU.Locales.USE_CTRLC_TO_COPY_THE_LINK_BELOW,
-                button1 = DONE,
-                hasEditBox = 1,
-                OnShow = function(self)
-                    self.editBox:SetText("https://linktr.ee/lightskygg")
-                    self.editBox:HighlightText()
-                end,
-                EditBoxOnEnterPressed = function(self)
-                    self:GetParent():Hide()
-                end,
-                EditBoxOnEscapePressed = StaticPopup_StandardEditBoxOnEscapePressed,
-                editBoxWidth = 230,
-                timeout = 0,
-                hideOnEscape = 1,
-            }
+            LSU.NewStaticPopup(
+                donateLinkDialog,
+                LSU.Locales.USE_CTRLC_TO_COPY_THE_LINK_BELOW,
+                {
+                    button1Text = DONE,
+                    hasEditBox = 1,
+                    onShow = function(self)
+                        self.editBox:SetText("https://linktr.ee/lightskygg")
+                        self.editBox:HighlightText()
+                    end,
+                }
+            )
             local donateButton = LSU.NewBasicButton({
                 name = "LSUDonateButton",
                 parent = frame,
