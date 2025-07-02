@@ -13,11 +13,6 @@ local formatters = {
     [4] = function(info) return string.format("[|cffBA45A0%s|r] %s", info.questID, info.title) end,
 }
 
-local function SetTextAndResize(frame, text)
-    frame:SetText(text)
-    frame:Resize()
-end
-
 GossipFrame:HookScript("OnShow", function()
     if not LSUDB.Settings["Gossip.Enabled"] then return end
     if not openGossipFrameButton then
@@ -48,17 +43,27 @@ hooksecurefunc(GossipFrame, "Update", function(self)
         end
     end
 
-    local options = C_GossipInfo.GetOptions()
-    if options and #options > 0 then
-        for _, frame in self.GreetingPanel.ScrollBox:EnumerateFrames() do
-            local frameData = frame:GetData()
-            if frameData and frameData.info then
-                local formatter = formatters[frameData.buttonType]
-                if formatter then
-                    SetTextAndResize(frame, formatter(frameData.info))
+    local dataProvider = self.GreetingPanel.ScrollBox:GetDataProvider()
+    if dataProvider and next(dataProvider.collection) then
+        local modifiedData = {}
+        for k, v in ipairs(dataProvider.collection) do
+            local entry = v
+            if entry then
+                if entry.info then
+                    local newEntry = {}
+                    for i, j in pairs(entry) do newEntry[i] = j end
+
+                    local formatter = formatters[entry.buttonType]
+                    if formatter then
+                        newEntry.info.name = formatter(entry.info)
+                    end
+                    table.insert(modifiedData, newEntry)
+                else
+                    table.insert(modifiedData, entry) -- preserves the entries like the gossip text at the top of the frame
                 end
             end
         end
-        self.GreetingPanel.ScrollBox:FullUpdateInternal() -- this is necessary to inform the view that the data provider has been updated and it should be resized
+        dataProvider:Flush()
+        dataProvider:InsertTable(modifiedData)
     end
 end)
