@@ -159,7 +159,20 @@ LSU.OpenGossipFrame = function()
             table.sort(npcIDs, function(a, b) return tonumber(a) < tonumber(b) end)
 
             -- Output the gossips in order
+            --[[for _, npcID in ipairs(npcIDs) do
+                for _, entry in ipairs(LSUDB.Gossips[npcID]) do
+                    local line = tostring(npcID) .. "," .. tostring(entry.gossipOptionID)
+                    if entry.conditions and #entry.conditions > 0 then
+                        line = line .. ',\"' .. table.concat(entry.conditions, ",") .. '\"'
+                    end
+                    table.insert(lines, line)
+                end
+            end]]
             for _, npcID in ipairs(npcIDs) do
+                local entries = LSUDB.Gossips[npcID]
+                table.sort(entries, function(a, b)
+                    return tonumber(a.gossipOptionID) < tonumber(b.gossipOptionID)
+                end)
                 for _, entry in ipairs(LSUDB.Gossips[npcID]) do
                     local line = tostring(npcID) .. "," .. tostring(entry.gossipOptionID)
                     if entry.conditions and #entry.conditions > 0 then
