@@ -509,6 +509,9 @@ LSU.OpenGossipFrame = function()
                     onShow = function(self)
                         self.editBox:SetText("https://github.com/Saaappi/LightskyUniversal/wiki/Gossip-Conditions")
                         self.editBox:HighlightText()
+                        self.editBox:SetScript("OnKeyUp", function(_, key)
+                            if IsControlKeyDown() and key == "C" then StaticPopup_Hide("GossipFrameHelpButtonPopup") end
+                        end)
                     end,
                     onAccept = function() end,
                 }

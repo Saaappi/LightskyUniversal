@@ -47,6 +47,9 @@ local function SlashHandler(msg, editBox)
                     onShow = function(self)
                         self.editBox:SetText("https://discord.gg/2Q3DKhu9HT")
                         self.editBox:HighlightText()
+                        self.editBox:SetScript("OnKeyUp", function(_, key)
+                            if IsControlKeyDown() and key == "C" then StaticPopup_Hide(discordLinkDialog) end
+                        end)
                     end,
                 }
             )
@@ -72,6 +75,9 @@ local function SlashHandler(msg, editBox)
                     onShow = function(self)
                         self.editBox:SetText("https://linktr.ee/lightskygg")
                         self.editBox:HighlightText()
+                        self.editBox:SetScript("OnKeyUp", function(_, key)
+                            if IsControlKeyDown() and key == "C" then StaticPopup_Hide(donateLinkDialog) end
+                        end)
                     end,
                 }
             )
