@@ -15,7 +15,7 @@ end
 function LSU.NewBasicButton(data)
     local button = CreateFrame("Button", data.name, data.parent, "UIPanelButtonTemplate")
     button:SetSize(data.width, data.height)
-    button:RegisterForClicks("LeftButtonUp")
+    button:RegisterForClicks("LeftButtonUp", "RightButtonUp")
     button:SetText(data.label)
     if data.tooltipText then
         SetTooltipScripts(button, data.tooltipText)

@@ -229,44 +229,68 @@ local function SlashHandler(msg, editBox)
             end)
             warbandMapButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
 
-            local wipeCharacterButton = LSU.NewBasicButton({
-                name = "LSUWipeCharacterAsNewCharacterButton",
+            local wipeConfigurationButton = LSU.NewBasicButton({
+                name = "LSUWipeNCCButton",
                 parent = scrollChild,
-                width = 120,
+                width = 130,
                 height = 25,
-                label = LSU.Locales.WIPE_CHARACTER
+                label = LSU.Locales.WIPE_CONFIGURATION
             })
-            wipeCharacterButton:SetPoint("LEFT", warbandMapButton, "RIGHT", 10, 0)
-            wipeCharacterButton:SetScript("OnEnter", function(self)
+            wipeConfigurationButton:SetPoint("LEFT", warbandMapButton, "RIGHT", 10, 0)
+            wipeConfigurationButton:SetScript("OnEnter", function(self)
                 GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
                 GameTooltip:SetText(LSU.Locales.ADDON_TITLE)
-                GameTooltip:AddLine(LSU.Locales.WIPE_CHARACTER_TOOLTIP, 1, 1, 1, 1, true)
+                GameTooltip:AddLine(LSU.Locales.WIPE_CONFIGURATION_TOOLTIP, 1, 1, 1, 1, true)
                 GameTooltip:Show()
             end)
-            wipeCharacterButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
-            wipeCharacterButton:SetScript("OnClick", function()
+            wipeConfigurationButton:SetScript("OnLeave", function() GameTooltip:Hide() end)
+            wipeConfigurationButton:SetScript("OnClick", function(_, button)
                 local found = false
-                for guid, _ in pairs(LSUDB.Characters) do
-                    if guid == LSU.Character["GUID"] then
-                        LSUDB.Characters[guid] = nil
-                        found = true
-                        break
+                if button == "LeftButton" then
+                    for guid, _ in pairs(LSUDB.Characters) do
+                        if guid == LSU.Character["GUID"] then
+                            LSUDB.Characters[guid] = nil
+                            found = true
+                            break
+                        end
                     end
-                end
 
-                if found then
-                    local nccWipeCompleteDialog = "LSU_NewCharacterWiped"
-                    LSU.NewStaticPopup(
-                        nccWipeCompleteDialog,
-                        LSU.Locales.NEW_CHARACTER_WIPED,
-                        {
-                            button2Text = NO,
-                            onAccept = function()
-                                C_UI.Reload()
-                            end,
-                        }
-                    )
-                    StaticPopup_Show(nccWipeCompleteDialog)
+                    if found then
+                        local nccWipeCompleteDialog = "LSU_NewCharacterWiped"
+                        LSU.NewStaticPopup(
+                            nccWipeCompleteDialog,
+                            LSU.Locales.NEW_CHARACTER_WIPED,
+                            {
+                                button2Text = NO,
+                                onAccept = function()
+                                    C_UI.Reload()
+                                end,
+                            }
+                        )
+                        StaticPopup_Show(nccWipeCompleteDialog)
+                    end
+                elseif button == "RightButton" then
+                    if next(LSUDB.Characters) then
+                        found = true
+                        for guid, _ in pairs(LSUDB.Characters) do
+                            LSUDB.Characters[guid] = nil
+                        end
+
+                        if found then
+                            local nccWipeAllCompleteDialog = "LSU_NewCharacterAllWiped"
+                            LSU.NewStaticPopup(
+                                nccWipeAllCompleteDialog,
+                                LSU.Locales.NEW_CHARACTER_ALL_WIPED,
+                                {
+                                    button2Text = NO,
+                                    onAccept = function()
+                                        C_UI.Reload()
+                                    end,
+                                }
+                            )
+                            StaticPopup_Show(nccWipeAllCompleteDialog)
+                        end
+                    end
                 end
             end)
 

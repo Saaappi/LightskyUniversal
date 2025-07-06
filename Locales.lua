@@ -156,6 +156,7 @@ L["NEW_CHARACTER_TEXT"] = "Character configuration completed for |c%s%s|r. Would
 "|cffFF474CNOTE|r: This is recommended to guarantee the settings are saved server side."
 L["NEW_CHARACTER_TOOLTIP"] = "Tired of configuring specific settings for every new character? Toggle this feature and opt into settings under the New Character Module section below."
 L["NEW_CHARACTER_WIPED"] = "The unique identifier for this character has been wiped. Would you like to reload now?"
+L["NEW_CHARACTER_ALL_WIPED"] = "The unique identifiers for all characters have been wiped. Would you like to reload now?"
 
 L["OCCLUDED_SILHOUETTE_PLAYER"] = "Occluded Silhouette Player"
 L["OCCLUDED_SILHOUETTE_PLAYER_TOOLTIP"] = "Displays your character's silhouette when view is blocked by objects, such as trees, for improved tracking."
@@ -223,7 +224,7 @@ L["WARBAND_MAP_TOOLTIP"] = "Allows you to quickly cast |cnIQ3:|Hitem:212174:::::
 
 L["WAY"] = "way"
 
-L["WIPE_CHARACTER"] = "Wipe Character"
-L["WIPE_CHARACTER_TOOLTIP"] = "Removes the current character from the list of known characters. Doing this will allow you to rerun the New Character configuration for the current character."
+L["WIPE_CONFIGURATION"] = "Wipe Configuration"
+L["WIPE_CONFIGURATION_TOOLTIP"] = "Left Button: Removes the current character from the list of known characters.\n\nRight Button: Removes ALL characters from the list of known characters.\n\nDoing either will allow you to rerun the New Character configuration for the current character."
 
 L["ZZZ_DEBUG"] = "DEBUG"
