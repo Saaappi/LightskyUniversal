@@ -31,6 +31,9 @@ L["AUTO_SHARE_QUESTS_TOOLTIP"] = "Automatically share quests with your party whe
 L["ACCEPT_QUESTS"] = "Accept Quests"
 L["ACCEPT_QUESTS_TOOLTIP"] = "Streamline your gameplay by automatically accepting most available quests from NPCs."
 
+L["ACTION_BAR"] = "Action Bar"
+L["ACTION_BAR_TOOLTIP"] = "Toggle to allow the New Character Configuration to enable Action Bar %d."
+
 L["ADDON_TITLE"] = C_AddOns.GetAddOnMetadata(addonName, "Title")
 
 L["ALWAYS_COMPARE_ITEMS"] = "Always Compare Items"

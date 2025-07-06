@@ -334,6 +334,7 @@ local function SlashHandler(msg, editBox)
                 { LSU.Locales.SPELLBOOK_HIDE_PASSIVES,               "NewCharacter.SpellBookHidePassives.Enabled",             LSU.Locales.SPELLBOOK_HIDE_PASSIVES_TOOLTIP                },
             }
 
+            -- New Character Configuration
             checkboxes = {}
             for i, data in ipairs(newCharacterModuleCheckboxData) do
                 local col = ((i-1) % 3) + 1
@@ -353,6 +354,25 @@ local function SlashHandler(msg, editBox)
                 checkboxes[i] = cb
             end
 
+            -- Action Bars
+            for i = 2, 8 do
+                local idx = i - 2
+                local col = ((idx) % 3) + 1
+                local row = math.floor(idx / 3) + 1
+
+                local cb = LSU.NewCheckbox({
+                    id = "_NCC_ActionBar"..i,
+                    parent = scrollChild,
+                    label = LSU.Locales.ACTION_BAR .. " " .. i,
+                    savedVarKey = "NewCharacter.ActionBar" .. i .. ".Enabled",
+                    tooltipText = string.format(LSU.Locales.ACTION_BAR_TOOLTIP, i),
+                })
+                local x = startX + (col-1)*columnWidth
+                local y = startY - (row-1)*rowHeight
+                cb:SetPoint("TOPLEFT", LSUCheckButton_NCC28, "BOTTOMLEFT", (x-20), y)
+                cb:Show()
+            end
+
             local editModeLayoutDropdown = LSU.NewRadioDropdown({
                 parent = scrollChild,
                 label = LSU.Locales.EDIT_MODE_LAYOUT,
@@ -360,7 +380,8 @@ local function SlashHandler(msg, editBox)
                 savedVarKey = "EditModeLayoutID",
                 options = LSUDB.EditModeLayouts
             })
-            editModeLayoutDropdown:SetPoint("TOPLEFT", checkboxes[28], "BOTTOMLEFT", 0, -30)
+            --editModeLayoutDropdown:SetPoint("TOPLEFT", checkboxes[28], "BOTTOMLEFT", 0, -30)
+            editModeLayoutDropdown:SetPoint("TOPLEFT", LSUCheckButton_NCC_ActionBar8, "BOTTOMLEFT", 0, -30)
             editModeLayoutDropdown:SetText(LSUDB.EditModeLayouts[LSUDB.Settings["EditModeLayoutID"]][1])
             editModeLayoutDropdown:Show()
 

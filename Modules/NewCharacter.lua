@@ -60,6 +60,17 @@ function LSU.ConfigureNewCharacter()
                     C_Minimap.ClearAllTracking()
                 end
 
+                SetActionBarToggles(
+                    LSUDB.Settings["NewCharacter.ActionBar2.Enabled"],
+                    LSUDB.Settings["NewCharacter.ActionBar3.Enabled"],
+                    LSUDB.Settings["NewCharacter.ActionBar4.Enabled"],
+                    LSUDB.Settings["NewCharacter.ActionBar5.Enabled"],
+                    LSUDB.Settings["NewCharacter.ActionBar6.Enabled"],
+                    LSUDB.Settings["NewCharacter.ActionBar7.Enabled"],
+                    LSUDB.Settings["NewCharacter.ActionBar8.Enabled"],
+                    LSUDB.Settings["NewCharacter.AlwaysShowActionBars.Enabled"]
+                )
+
                 C_EditMode.SetActiveLayout(LSUDB.Settings["EditModeLayoutID"] + 2)
 
                 for _, consoleVariable in ipairs(consoleVariables) do
