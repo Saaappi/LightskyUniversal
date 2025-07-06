@@ -16,6 +16,9 @@ function LSU.NewCheckbox(data)
 
     checkbox:SetScript("OnClick", function(self)
         LSUDB.Settings[data.savedVarKey] = self:GetChecked() and true or false
+        if data.onCallback then
+            data.onCallback(self:GetChecked())
+        end
     end)
 
     if data.tooltipText then

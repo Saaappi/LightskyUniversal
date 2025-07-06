@@ -44,58 +44,62 @@ local consoleVariables = {
     { name = "spellBookHidePassives",                  savedVarKey = "NewCharacter.SpellBookHidePassives.Enabled",             trueValue = "1", falseValue = "0" },
 }
 
+function LSU.ConfigureNewCharacter()
+    local guid = UnitGUID("player")
+    if not LSUDB.Characters[guid] then
+        -- This must be added after the Player Collector has a chance to harvest its data.
+        button.tooltipText = string.format(LSU.Locales.NEW_CHARACTER_BUTTON_TOOLTIP, LSU.Character.ClassColor:GenerateHexColor(), LSU.Character.Name)
+        newCharacterSetupButton = LSU.CreateButton(button)
+        if newCharacterSetupButton then
+            newCharacterSetupButton:ClearAllPoints()
+            newCharacterSetupButton:SetPoint("CENTER", newCharacterSetupButton:GetParent(), "CENTER", 0, 0)
+            newCharacterSetupButton:SetScript("OnClick", function()
+                newCharacterSetupButton:Hide()
+
+                if LSUDB.Settings["NewCharacter.ClearAllTracking.Enabled"] then
+                    C_Minimap.ClearAllTracking()
+                end
+
+                C_EditMode.SetActiveLayout(LSUDB.Settings["EditModeLayoutID"] + 2)
+
+                for _, consoleVariable in ipairs(consoleVariables) do
+                    if LSUDB.Settings[consoleVariable.savedVarKey] then
+                        if C_CVar.GetCVar(consoleVariable.name) ~= consoleVariable.trueValue then
+                            C_CVar.SetCVar(consoleVariable.name, consoleVariable.trueValue)
+                        end
+                    else
+                        if C_CVar.GetCVar(consoleVariable.name) ~= consoleVariable.falseValue then
+                            C_CVar.SetCVar(consoleVariable.name, consoleVariable.falseValue)
+                        end
+                    end
+                end
+
+                local nccCompleteDialog = "LSU_NewCharacterConfigurationCompleted"
+                LSU.NewStaticPopup(
+                    nccCompleteDialog,
+                    string.format(LSU.Locales.NEW_CHARACTER_TEXT, LSU.Character.ClassColor:GenerateHexColor(), LSU.Character.Name),
+                    {
+                        button2Text = NO,
+                        onAccept = function()
+                            LSUDB.Characters[guid] = LSU.Character.Name
+                            C_UI.Reload()
+                        end
+                    }
+                )
+                StaticPopup_Show(nccCompleteDialog)
+            end)
+        else
+            LSU.PrintError(string.format(LSU.Locales.BUTTON_FAILED_TO_CREATE, button.name))
+        end
+    end
+end
+
 eventFrame:RegisterEvent("PLAYER_LOGIN")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "PLAYER_LOGIN" then
         C_Timer.After(3, function()
             if not LSUDB.Settings["NewCharacter.Enabled"] then return end
-            local guid = UnitGUID("player")
-            if not LSUDB.Characters[guid] then
-                -- This must be added after the Player Collector has a chance to harvest its data.
-                button.tooltipText = string.format(LSU.Locales.NEW_CHARACTER_BUTTON_TOOLTIP, LSU.Character.ClassColor:GenerateHexColor(), LSU.Character.Name)
-                newCharacterSetupButton = LSU.CreateButton(button)
-                if newCharacterSetupButton then
-                    newCharacterSetupButton:ClearAllPoints()
-                    newCharacterSetupButton:SetPoint("CENTER", newCharacterSetupButton:GetParent(), "CENTER", 0, 0)
-                    newCharacterSetupButton:SetScript("OnClick", function()
-                        newCharacterSetupButton:Hide()
-
-                        if LSUDB.Settings["NewCharacter.ClearAllTracking.Enabled"] then
-                            C_Minimap.ClearAllTracking()
-                        end
-
-                        C_EditMode.SetActiveLayout(LSUDB.Settings["EditModeLayoutID"] + 2)
-
-                        for _, consoleVariable in ipairs(consoleVariables) do
-                            if LSUDB.Settings[consoleVariable.savedVarKey] then
-                                if C_CVar.GetCVar(consoleVariable.name) ~= consoleVariable.trueValue then
-                                    C_CVar.SetCVar(consoleVariable.name, consoleVariable.trueValue)
-                                end
-                            else
-                                if C_CVar.GetCVar(consoleVariable.name) ~= consoleVariable.falseValue then
-                                    C_CVar.SetCVar(consoleVariable.name, consoleVariable.falseValue)
-                                end
-                            end
-                        end
-
-                        local nccCompleteDialog = "LSU_NewCharacterConfigurationCompleted"
-                        LSU.NewStaticPopup(
-                            nccCompleteDialog,
-                            string.format(LSU.Locales.NEW_CHARACTER_TEXT, LSU.Character.ClassColor:GenerateHexColor(), LSU.Character.Name),
-                            {
-                                button2Text = NO,
-                                onAccept = function()
-                                    LSUDB.Characters[guid] = LSU.Character.Name
-                                    C_UI.Reload()
-                                end
-                            }
-                        )
-                        StaticPopup_Show(nccCompleteDialog)
-                    end)
-                else
-                    LSU.PrintError(string.format(LSU.Locales.BUTTON_FAILED_TO_CREATE, button.name))
-                end
-            end
+            LSU.ConfigureNewCharacter()
         end)
         eventFrame:UnregisterEvent(event)
     end

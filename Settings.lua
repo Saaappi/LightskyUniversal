@@ -114,7 +114,13 @@ local function SlashHandler(msg, editBox)
                 { LSU.Locales.AUTO_TRAIN,        "AutoTrain.Enabled",       LSU.Locales.AUTO_TRAIN_TOOLTIP         },
                 { LSU.Locales.BUY_QUEST_ITEMS,   "BuyQuestItems.Enabled",   LSU.Locales.BUY_QUEST_ITEMS_TOOLTIP    },
                 { LSU.Locales.COMPLETE_QUESTS,   "CompleteQuests.Enabled",  LSU.Locales.COMPLETE_QUESTS_TOOLTIP    },
-                { LSU.Locales.NEW_CHARACTER,     "NewCharacter.Enabled",    LSU.Locales.NEW_CHARACTER_TOOLTIP      },
+                { LSU.Locales.NEW_CHARACTER,     "NewCharacter.Enabled",    LSU.Locales.NEW_CHARACTER_TOOLTIP,
+                  function(state)
+                    if state then
+                        LSU.ConfigureNewCharacter()
+                    end
+                  end
+                },
                 { LSU.Locales.PLAYER_TALENTS,    "PlayerTalents.Enabled",   LSU.Locales.PLAYER_TALENTS_TOOLTIP     },
                 { LSU.Locales.QUEST_REWARDS,     "QuestRewards.Enabled",    LSU.Locales.QUEST_REWARDS_TOOLTIP      },
                 { LSU.Locales.RARES,             "Rares.Enabled",           LSU.Locales.RARES_TOOLTIP              },
@@ -136,6 +142,7 @@ local function SlashHandler(msg, editBox)
                     label = data[1],
                     savedVarKey = data[2],
                     tooltipText = data[3],
+                    onCallback = data[4]
                 })
                 local x = startX + (col-1)*columnWidth
                 local y = startY - (row-1)*rowHeight
@@ -250,7 +257,7 @@ local function SlashHandler(msg, editBox)
                 if found then
                     local nccWipeCompleteDialog = "LSU_NewCharacterWiped"
                     LSU.NewStaticPopup(
-                        nccWipeComplete,
+                        nccWipeCompleteDialog,
                         LSU.Locales.NEW_CHARACTER_WIPED,
                         {
                             button2Text = NO,
