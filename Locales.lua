@@ -185,7 +185,9 @@ L["RAID_FRAMES_DISPLAY_CLASS_COLOR"] = "Raid Frames Display Class Color"
 L["RAID_FRAMES_DISPLAY_CLASS_COLOR_TOOLTIP"] = "Displays player class colors on raid frames for easier identification of group members."
 
 L["RARES"] = "Rares"
+L["RARES_DD_OPTION1"] = "Dungeon Ready"
 L["RARES_TOOLTIP"] = "Control rare spawn notifications—toggle announcements for rare NPCs on or off."
+L["RARES_DD_TOOLTIP"] = "Select or disable the sound that plays when a rare is discovered."
 
 L["REPLACE_MY_PLAYER_PORTRAIT"] = "Replace My Player Portrait"
 L["REPLACE_MY_PLAYER_PORTRAIT_TOOLTIP"] = "Replaces your character's portrait with your class icon."

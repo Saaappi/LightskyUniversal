@@ -21,17 +21,16 @@ function addonTable.NewRadioDropdown(dropdownData)
         GameTooltip:Hide()
     end)
 
-    local selectedValue = LSUDB.Settings[dropdownData.savedVarKey]
+    --local selectedValue = LSUDB.Settings[dropdownData.savedVarKey]
     local function IsSelected(value)
-        return value == selectedValue
+        return value == LSUDB.Settings[dropdownData.savedVarKey]
     end
     local function SetSelected(value)
-        selectedValue = value
         LSUDB.Settings[dropdownData.savedVarKey] = value
         dropdown:SetText(value)
     end
 
-    MenuUtil.CreateRadioMenu(dropdown, IsSelected, SetSelected, unpack(dropdownData.options))
+    MenuUtil.CreateRadioMenu(dropdown, IsSelected, dropdownData.setSelectedFunc or SetSelected, unpack(dropdownData.options))
 
     return dropdown
 end

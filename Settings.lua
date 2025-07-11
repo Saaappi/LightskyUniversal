@@ -129,7 +129,6 @@ local function SlashHandler(msg, editBox)
                 },
                 { addonTable.Locales.PLAYER_TALENTS,    "PlayerTalents.Enabled",   addonTable.Locales.PLAYER_TALENTS_TOOLTIP     },
                 { addonTable.Locales.QUEST_REWARDS,     "QuestRewards.Enabled",    addonTable.Locales.QUEST_REWARDS_TOOLTIP      },
-                { addonTable.Locales.RARES,             "Rares.Enabled",           addonTable.Locales.RARES_TOOLTIP              },
                 { addonTable.Locales.SKIP_CINEMATICS,   "SkipCinematics.Enabled",  addonTable.Locales.SKIP_CINEMATICS_TOOLTIP    },
             }
 
@@ -212,10 +211,45 @@ local function SlashHandler(msg, editBox)
             chromieTimeDropdown.label:Hide()
             chromieTimeDropdown:Show()
 
+            -- RARES --
+            local raresFontString = scrollChild:CreateFontString()
+            raresFontString:SetFontObject("ChatBubbleFont")
+            raresFontString:SetText(addonTable.Locales.RARES)
+            raresFontString:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", -20, -50)
+
+            local raresCheckbox = addonTable.NewCheckbox({
+                id = 20,
+                parent = scrollChild,
+                label = addonTable.Locales.RARES,
+                savedVarKey = "Rares.Enabled",
+                tooltipText = addonTable.Locales.RARES_TOOLTIP
+            })
+            raresCheckbox:SetPoint("TOPLEFT", raresFontString, "BOTTOMLEFT", 20, -10)
+
+            local rareNotificationDropdown = addonTable.NewRadioDropdown({
+                parent = scrollChild,
+                label = addonTable.Locales.RARES,
+                tooltipText = addonTable.Locales.RARES_DD_TOOLTIP,
+                savedVarKey = "Rares.NotificationSoundID",
+                options = {
+                    { DISABLE, 0 },
+                    { addonTable.Locales.RARES_DD_OPTION1, 17318 }
+                },
+                setSelectedFunc = function(value)
+                    LSUDB.Settings["Rares.NotificationSoundID"] = value
+                    PlaySound(value, "Master")
+                end,
+            })
+            rareNotificationDropdown:SetPoint("TOPLEFT", raresCheckbox, "BOTTOMLEFT", 0, -10)
+            rareNotificationDropdown.label:Hide()
+            rareNotificationDropdown:Show()
+            -----------
+
+            -- NEW CHARACTER --
             local newCharacterModuleFS = scrollChild:CreateFontString()
             newCharacterModuleFS:SetFontObject("ChatBubbleFont")
             newCharacterModuleFS:SetText(addonTable.Locales.NEW_CHARACTER_MODULE)
-            newCharacterModuleFS:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", -20, -50)
+            newCharacterModuleFS:SetPoint("TOPLEFT", rareNotificationDropdown, "BOTTOMLEFT", -20, -50)
 
             local warbandMapButton = addonTable.NewInsecureBasicButton({
                 name = "LSUUseWarbandMapButton",
@@ -384,6 +418,7 @@ local function SlashHandler(msg, editBox)
             editModeLayoutDropdown:SetPoint("TOPLEFT", LSUCheckButton_NCC_ActionBar8, "BOTTOMLEFT", 0, -30)
             editModeLayoutDropdown:SetText(LSUDB.EditModeLayouts[LSUDB.Settings["EditModeLayoutID"]][1])
             editModeLayoutDropdown:Show()
+            -------------------
 
             lastWidget = editModeLayoutDropdown
             scrollChild:SetSize(scrollFrame:GetWidth()-20, math.abs(lastWidget:GetBottom() - scrollChild:GetTop()) + 30)

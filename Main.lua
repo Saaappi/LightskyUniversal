@@ -62,6 +62,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     ["PlayerTalents.Enabled"] = false,
                     ["QuestRewards.Enabled"] = false,
                     ["Rares.Enabled"] = false,
+                    ["Rares.NotificationSoundID"] = 0,
                     ["SkipCinematics.Enabled"] = false
                 }
             else
