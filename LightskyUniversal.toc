@@ -23,10 +23,6 @@ Data\Talents.lua
 API.lua
 Common.lua
 
-# Frames
-FrameFactory.lua
-Frames\GossipFrame.lua
-
 # Classes
 Classes\Button.lua
 Classes\Checkbox.lua
@@ -34,9 +30,13 @@ Classes\Dropdown.lua
 Classes\EditBox.lua
 Classes\StaticPopup.lua
 
+# Frames
+FrameFactory.lua
+Frames\GossipFrame.lua
+
 # Buttons
 Button.lua
-Buttons\Gossip.lua
+Buttons\GossipButton.lua
 Buttons\TalentButton.lua
 
 # Modules
