@@ -1,5 +1,9 @@
 local addonTable = select(2, ...)
 local eventFrame = CreateFrame("Frame")
+local formatters = {
+    [3] = function(info) return string.format("[|cffBA45A0%s|r] %s", info.gossipOptionID, info.name) end,
+    [4] = function(info) return string.format("[|cffBA45A0%s|r] %s", info.questID, info.title) end,
+}
 
 eventFrame:RegisterEvent("GOSSIP_CONFIRM")
 eventFrame:RegisterEvent("GOSSIP_SHOW")
