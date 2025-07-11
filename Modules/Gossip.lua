@@ -8,7 +8,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         C_Timer.After(0.1, function() StaticPopup1Button1:Click() end)
     elseif event == "GOSSIP_SHOW" then
         C_Timer.After(0.1, function()
-            addonTable.ProcessQuestsAndGossipsSequentially(addonTable.QuestGossipShowAPI())
+            --addonTable.ProcessQuestsAndGossipsSequentially(addonTable.QuestGossipShowAPI())
         end)
     end
 end)
@@ -17,6 +17,8 @@ end)
 -- within Blizzard's GossipFrame.
 hooksecurefunc(GossipFrame, "Update", function(self)
     if not LSUDB.Settings["Gossip.Enabled"] then return end
+
+    -- Add the ID number to the frame's title container.
     local guid = UnitGUID("npc")
     if guid then
         local id = addonTable.Split(guid, "-", 6)
@@ -27,6 +29,7 @@ hooksecurefunc(GossipFrame, "Update", function(self)
         end
     end
 
+    -- Prefix each gossip button with its ID number.
     local dataProvider = self.GreetingPanel.ScrollBox:GetDataProvider()
     if dataProvider and next(dataProvider.collection) then
         local modifiedData = {}
@@ -50,4 +53,7 @@ hooksecurefunc(GossipFrame, "Update", function(self)
         dataProvider:Flush()
         dataProvider:InsertTable(modifiedData)
     end
+
+    -- Select gossips, if appropriate.
+    addonTable.ProcessQuestsAndGossipsSequentially(addonTable.QuestGossipShowAPI())
 end)
