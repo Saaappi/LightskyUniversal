@@ -32,7 +32,7 @@ local function OnPlayerEnteringWorld()
     local chromieTimeExpansionID = UnitChromieTimeID("player")
     player.ChromieTimeExpansionID = chromieTimeExpansionID
 
-    player.FullName = player.Name .. "-" .. player.NormalizedRealmName
+    player.FullName = player.Name .. "-" .. (player.NormalizedRealmName or player.RealmName)
     ------------------------
 
     -- EDIT MODE --
