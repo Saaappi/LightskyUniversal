@@ -1,6 +1,6 @@
-local addonName, LSU = ...
+local addonName, addonTable = ...
 
-LSU.CreateFrame = function(frameType, frameData)
+addonTable.CreateFrame = function(frameType, frameData)
     assert(type(frameData) == "table", "frameData must be a table!")
     assert(frameType == "Portrait" or frameType == "EditBox", "Only 'Portrait' and 'EditBox' frames are supported.")
 

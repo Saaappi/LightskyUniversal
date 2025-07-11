@@ -1,7 +1,7 @@
-local LSU = select(2, ...)
+local addonTable = select(2, ...)
 
 -- API for GOSSIP_SHOW event
-LSU.QuestGossipShowAPI = function()
+addonTable.QuestGossipShowAPI = function()
     return {
         getNumActive = C_GossipInfo.GetNumActiveQuests,
         getActive = C_GossipInfo.GetActiveQuests,
@@ -15,7 +15,7 @@ LSU.QuestGossipShowAPI = function()
 end
 
 -- API for QUEST_GREETING event
-LSU.QuestGreetingAPI = function()
+addonTable.QuestGreetingAPI = function()
     return {
         getNumActive = GetNumActiveQuests,
         getActive = function()
@@ -48,7 +48,7 @@ LSU.QuestGreetingAPI = function()
     }
 end
 
-LSU.ProcessQuestsAndGossipsSequentially = function(API)
+addonTable.ProcessQuestsAndGossipsSequentially = function(API)
     -- Turn in completed quests first, then accept new ones
     local function ProcessActiveQuests(i, callback)
         if not LSUDB.Settings["CompleteQuests.Enabled"] then return end
@@ -84,7 +84,7 @@ LSU.ProcessQuestsAndGossipsSequentially = function(API)
         local quest = availableQuests[i]
         if quest then
             local questID = API.getQuestID(quest)
-            local isIgnored, response = LSU.IsQuestIgnored(questID)
+            local isIgnored, response = addonTable.IsQuestIgnored(questID)
             if not isIgnored and not C_QuestLog.IsOnQuest(questID) then
                 API.selectAvailable(quest)
                 C_Timer.After(0.15, function()
@@ -111,12 +111,12 @@ LSU.ProcessQuestsAndGossipsSequentially = function(API)
             else
                 local guid = UnitGUID("npc")
                 if guid then
-                    local id = LSU.Split(guid, "-", 6)
+                    local id = addonTable.Split(guid, "-", 6)
                     if id then
-                        local isValid, gossips = LSU.IsValidGossipNPC(id)
+                        local isValid, gossips = addonTable.IsValidGossipNPC(id)
                         if isValid and gossips then
                             for _, gossip in ipairs(gossips) do
-                                local isAllowed = LSU.EvaluateConditions(gossip.conditions)
+                                local isAllowed = addonTable.EvaluateConditions(gossip.conditions)
                                 if isAllowed then
                                     C_GossipInfo.SelectOption(gossip.gossipOptionID)
                                 end

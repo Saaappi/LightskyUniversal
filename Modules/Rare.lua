@@ -1,4 +1,4 @@
-local LSU = select(2, ...)
+local addonTable = select(2, ...)
 local eventFrame = CreateFrame("Frame")
 local seen = {}
 
@@ -21,18 +21,18 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         local classification = UnitClassification(unitToken)
         if classification ~= "rare" and classification ~= "rareelite" then return end
 
-        local unitID = LSU.Split(unitGuid, "-", 6)
+        local unitID = addonTable.Split(unitGuid, "-", 6)
         local unitName = UnitName(unitToken)
         if not (unitID and unitName) then return end
 
         local targetIndex = math.random(1, 7)
         SetRaidTarget(unitToken, targetIndex)
 
-        local position = C_Map.GetPlayerMapPosition(LSU.Map.CurrentMapID, "player")
+        local position = C_Map.GetPlayerMapPosition(addonTable.Map.CurrentMapID, "player")
         if position then
             local x, y = position:GetXY()
-            local link = LinkUtil.FormatLink("addonLSU", "[/" .. LSU.Locales.WAY .."]", LSU.Map.CurrentMapID, x, y, unitName, unitID)
-            LSU.Print(string.format("|cffFFD700%s|r %s %s", unitName, LSU.Locales.HAS_BEEN_SPOTTED, BATTLENET_FONT_COLOR:WrapTextInColorCode(link)))
+            local link = LinkUtil.FormatLink("addonLSU", "[/" .. addonTable.Locales.WAY .."]", addonTable.Map.CurrentMapID, x, y, unitName, unitID)
+            addonTable.Print(string.format("|cffFFD700%s|r %s %s", unitName, addonTable.Locales.HAS_BEEN_SPOTTED, BATTLENET_FONT_COLOR:WrapTextInColorCode(link)))
         end
 
         PlaySound(17318, "Master")
@@ -66,12 +66,12 @@ local function HandleLinkClick(_, link)
             local displayID = GetNPCDisplayByID(unitID)
 			local size = 16
 			TomTom:AddWaypoint(mapID, x, y, {
-				title = unitName .. "\n" .. LSU.Locales.ADDON_TITLE,
+				title = unitName .. "\n" .. addonTable.Locales.ADDON_TITLE,
 				minimap_displayID = displayID,
 				minimap_icon_size = size,
 				worldmap_displayID = displayID,
 				worldmap_icon_size = size,
-				from = LSU.Locales.ADDON_TITLE,
+				from = addonTable.Locales.ADDON_TITLE,
 				minimap = true
 			})
 		else

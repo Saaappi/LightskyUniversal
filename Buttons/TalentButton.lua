@@ -1,4 +1,4 @@
-local LSU = select(2, ...)
+local addonTable = select(2, ...)
 local importerButton
 local applyTalentsButton
 
@@ -13,9 +13,9 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
             parent = talentsFrame.SearchBox,
             scale = 0.5,
             texture = 132222,
-            tooltipText = LSU.Locales.TALENT_IMPORTER_BUTTON_TOOLTIP
+            tooltipText = addonTable.Locales.TALENT_IMPORTER_BUTTON_TOOLTIP
         }
-        importerButton = LSU.CreateButton(button)
+        importerButton = addonTable.CreateButton(button)
         importerButton:SetScript("OnClick", function()
             HideUIPanel(PlayerSpellsFrame)
             LSUOpenTalentImporter()
@@ -31,22 +31,22 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
             name = "LSUApplyTalentsButton",
             width = 120,
             height = 25,
-            text = LSU.Locales.APPLY_TALENTS,
-            tooltipText = LSU.Locales.APPLY_TALENTS_TOOLTIP,
+            text = addonTable.Locales.APPLY_TALENTS,
+            tooltipText = addonTable.Locales.APPLY_TALENTS_TOOLTIP,
             point = "LEFT",
             parent = talentsFrame.SearchBox
         }
-        applyTalentsButton = LSU.CreateButton(button)
+        applyTalentsButton = addonTable.CreateButton(button)
     end
     applyTalentsButton:ClearAllPoints()
     applyTalentsButton:SetPoint("LEFT", applyTalentsButton:GetParent(), "RIGHT", 27.5, 0)
     applyTalentsButton:Show()
     applyTalentsButton:SetScript("OnClick", function()
-        local class = LSUDB.PlayerTalents[LSU.Character.ClassID]
+        local class = LSUDB.PlayerTalents[addonTable.Character.ClassID]
         if class then
-            local talents = class and class[LSU.Character.SpecID]
+            local talents = class and class[addonTable.Character.SpecID]
             if talents then
-                LSU.ImportText(talents.importString)
+                addonTable.ImportText(talents.importString)
             end
         end
     end)

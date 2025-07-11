@@ -1,6 +1,6 @@
-local addonName, LSU = ...
+local addonName, addonTable = ...
 
-function LSU.NewStaticPopup(key, text, opts)
+function addonTable.NewStaticPopup(key, text, opts)
     opts = opts or {}
     StaticPopupDialogs[key] = {
         text = text,

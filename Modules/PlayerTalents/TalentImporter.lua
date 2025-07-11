@@ -1,4 +1,4 @@
-local LSU = select(2, ...)
+local addonTable = select(2, ...)
 
 local defaults = {
     FRAME_BASE_WIDTH = 230,
@@ -84,14 +84,14 @@ end
 
 local function GetOrCreateFrame()
     if not state.frame then
-        state.frame = LSU.CreateFrame("Portrait", {
+        state.frame = addonTable.CreateFrame("Portrait", {
             name = "LSUTalentImporterFrame",
             parent = UIParent,
             height = defaults.FRAME_BASE_HEIGHT,
             width = defaults.FRAME_BASE_WIDTH,
             movable = true
         })
-        state.frame:SetTitle(LSU.Locales.TALENT_IMPORTER)
+        state.frame:SetTitle(addonTable.Locales.TALENT_IMPORTER)
         state.frame:SetPortraitToAsset(132222)
 
         state.frame.classNameText = state.frame:CreateFontString(nil, "OVERLAY")
@@ -106,7 +106,7 @@ end
 local function CreateClassButtons(frame)
     if #state.classButtons > 0 then return end -- The class buttons already exist
 
-    for index, btn in ipairs(LSU.Enum.PlayerTalents.ClassButtons) do
+    for index, btn in ipairs(addonTable.Enum.PlayerTalents.ClassButtons) do
         local button = CreateFrame("Button", "LSUClassButton"..index, frame, "ActionButtonTemplate")
         button:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 
@@ -120,7 +120,7 @@ local function CreateClassButtons(frame)
             HideClassButtons()
             HideEditBoxes()
 
-            for i, spec in ipairs(LSU.Enum.PlayerTalents.SpecEditBoxes[self.ID]) do
+            for i, spec in ipairs(addonTable.Enum.PlayerTalents.SpecEditBoxes[self.ID]) do
                 local editBoxName = "LSUSpecEditBox" .. i
                 local editBox = CreateFrame("EditBox", editBoxName, frame, "InputBoxTemplate")
                 table.insert(state.editBoxes, editBox)
@@ -172,9 +172,9 @@ local function CreateClassButtons(frame)
                 editBox:SetScript("OnEnter", function(self)
                     GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
                     if not db or not next(db) then
-                        GameTooltip:SetText(LSU.Locales.LAST_UPDATED .. ": -")
+                        GameTooltip:SetText(addonTable.Locales.LAST_UPDATED .. ": -")
                     else
-                        GameTooltip:SetText(string.format("%s: %s (%s)", LSU.Locales.LAST_UPDATED, db.date or "-", db.patch or "-"))
+                        GameTooltip:SetText(string.format("%s: %s (%s)", addonTable.Locales.LAST_UPDATED, db.date or "-", db.patch or "-"))
                     end
                     GameTooltip:Show()
                 end)
@@ -190,14 +190,14 @@ local function CreateClassButtons(frame)
             frame.classNameText:Show()
 
             if not state.backButton then
-                state.backButton = LSU.CreateButton({
+                state.backButton = addonTable.CreateButton({
                     type = "BasicButton",
                     name = "LSUTalentImporterBackButton",
                     parent = frame,
                     width = 80,
                     height = 25,
-                    text = LSU.Locales.BACK,
-                    tooltipText = LSU.Locales.BACK_TOOLTIP
+                    text = addonTable.Locales.BACK,
+                    tooltipText = addonTable.Locales.BACK_TOOLTIP
                 })
                 state.backButton:SetPoint("BOTTOM", frame, "BOTTOM", 0, 7)
                 state.backButton:SetScript("OnClick", function()

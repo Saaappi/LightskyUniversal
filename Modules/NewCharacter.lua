@@ -1,4 +1,4 @@
-local LSU = select(2, ...)
+local addonTable = select(2, ...)
 local eventFrame = CreateFrame("Frame")
 local newCharacterSetupButton
 local button = {
@@ -6,7 +6,7 @@ local button = {
     name = "LSUNewCharacterSetupButton",
     width = 170,
     height = 25,
-    text = LSU.Locales.CONFIGURE_NEW_CHARACTER,
+    text = addonTable.Locales.CONFIGURE_NEW_CHARACTER,
     point = "CENTER",
     parent = UIParent
 }
@@ -44,12 +44,12 @@ local consoleVariables = {
     { name = "spellBookHidePassives",                  savedVarKey = "NewCharacter.SpellBookHidePassives.Enabled",             trueValue = "1", falseValue = "0" },
 }
 
-function LSU.ConfigureNewCharacter()
+function addonTable.ConfigureNewCharacter()
     local guid = UnitGUID("player")
     if not LSUDB.Characters[guid] then
         -- This must be added after the Player Collector has a chance to harvest its data.
-        button.tooltipText = string.format(LSU.Locales.NEW_CHARACTER_BUTTON_TOOLTIP, LSU.Character.ClassColor:GenerateHexColor(), LSU.Character.Name)
-        newCharacterSetupButton = LSU.CreateButton(button)
+        button.tooltipText = string.format(addonTable.Locales.NEW_CHARACTER_BUTTON_TOOLTIP, addonTable.Character.ClassColor:GenerateHexColor(), addonTable.Character.Name)
+        newCharacterSetupButton = addonTable.CreateButton(button)
         if newCharacterSetupButton then
             newCharacterSetupButton:ClearAllPoints()
             newCharacterSetupButton:SetPoint("CENTER", newCharacterSetupButton:GetParent(), "CENTER", 0, 0)
@@ -86,13 +86,13 @@ function LSU.ConfigureNewCharacter()
                 end
 
                 local nccCompleteDialog = "LSU_NewCharacterConfigurationCompleted"
-                LSU.NewStaticPopup(
+                addonTable.NewStaticPopup(
                     nccCompleteDialog,
-                    string.format(LSU.Locales.NEW_CHARACTER_TEXT, LSU.Character.ClassColor:GenerateHexColor(), LSU.Character.Name),
+                    string.format(addonTable.Locales.NEW_CHARACTER_TEXT, addonTable.Character.ClassColor:GenerateHexColor(), addonTable.Character.Name),
                     {
                         button2Text = NO,
                         onAccept = function()
-                            LSUDB.Characters[guid] = LSU.Character.Name
+                            LSUDB.Characters[guid] = addonTable.Character.Name
                             C_UI.Reload()
                         end
                     }
@@ -100,7 +100,7 @@ function LSU.ConfigureNewCharacter()
                 StaticPopup_Show(nccCompleteDialog)
             end)
         else
-            LSU.PrintError(string.format(LSU.Locales.BUTTON_FAILED_TO_CREATE, button.name))
+            addonTable.PrintError(string.format(addonTable.Locales.BUTTON_FAILED_TO_CREATE, button.name))
         end
     end
 end
@@ -110,7 +110,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "PLAYER_LOGIN" then
         C_Timer.After(3, function()
             if not LSUDB.Settings["NewCharacter.Enabled"] then return end
-            LSU.ConfigureNewCharacter()
+            addonTable.ConfigureNewCharacter()
         end)
         eventFrame:UnregisterEvent(event)
     end

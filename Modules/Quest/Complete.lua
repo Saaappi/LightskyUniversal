@@ -1,4 +1,4 @@
-local LSU = select(2, ...)
+local addonTable = select(2, ...)
 local eventFrame = CreateFrame("Frame")
 
 local inventoryValueToSlotID = {
@@ -204,7 +204,7 @@ local handlers = {
                                 end
                             end
                         elseif invSlotID and (not inventoryValueToSlotID[invSlotID]) then
-                            LSU.PrintWarning("Unsupported item type detected:" .. rewardInventoryTypeValue)
+                            addonTable.PrintWarning("Unsupported item type detected:" .. rewardInventoryTypeValue)
                         end
                     end
                 end

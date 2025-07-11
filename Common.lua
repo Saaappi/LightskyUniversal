@@ -1,4 +1,4 @@
-local addonName, LSU = ...
+local addonName, addonTable = ...
 
 --[[
     Checks if a value is present in a table.
@@ -6,7 +6,7 @@ local addonName, LSU = ...
     @param tbl table: The table to check.
     @param value [number|string]: The value to check for in the table.
 ]]
-LSU.Contains = function(tbl, value)
+addonTable.Contains = function(tbl, value)
     if tbl then
         for _, v in pairs(tbl) do
             if v == value then
@@ -22,7 +22,7 @@ end
 
     @param str [string]: The text to send to the chat frame.
 ]]
-LSU.Print = function(str)
+addonTable.Print = function(str)
     local name = C_AddOns.GetAddOnMetadata(addonName, "Title")
     if str and str ~= "" then
         str = string.format("|cff00CCFF[%s]|r : %s", name, str)
@@ -35,7 +35,7 @@ end
 
     @param str [string]: The text to send to the chat frame.
 ]]
-LSU.PrintWarning = function(str)
+addonTable.PrintWarning = function(str)
     local name = C_AddOns.GetAddOnMetadata(addonName, "Title")
     if str and str ~= "" then
         str = string.format("|cffFF8000[%s]|r : %s", name, str)
@@ -48,7 +48,7 @@ end
 
     @param str [string]: The text to send to the chat frame.
 ]]
-LSU.PrintError = function(str)
+addonTable.PrintError = function(str)
     local name = C_AddOns.GetAddOnMetadata(addonName, "Title")
     if str and str ~= "" then
         str = string.format("|cffFF474C[%s]|r : %s", name, str)
@@ -62,7 +62,7 @@ end
 --
 -- If * is provided for the nth value, then the entire
 -- split string is returned.
-LSU.Split = function(str, delimiter, nth)
+addonTable.Split = function(str, delimiter, nth)
     local strings = {}
     local pattern = ("([^%s]+)"):format(delimiter)
     for string in str:gmatch(pattern) do
@@ -99,7 +99,7 @@ end
     @param min [number]: The minimum number in the range. (i.e. 10)
     @param max [number]: The maximum number in the range. (i.e. 70)
 ]]
-LSU.Between = function(num, min, max)
+addonTable.Between = function(num, min, max)
     if num >= min and num <= max then
         return true
     end
@@ -111,23 +111,23 @@ end
 
     @param questID [number]: The ID of the quest to check.
 ]]
-LSU.IsQuestIgnored = function(questID)
-    local quest = LSU.Enum.Blacklisted.Quests[questID]
+addonTable.IsQuestIgnored = function(questID)
+    local quest = addonTable.Enum.Blacklisted.Quests[questID]
     if quest and quest.isIgnored then
         return quest.isIgnored, quest.response
     end
     return false
 end
 
-LSU.IsPlayerInCombat = function()
+addonTable.IsPlayerInCombat = function()
     if InCombatLockdown() then
-        C_Timer.After(1, LSU.IsPlayerInCombat)
+        C_Timer.After(1, addonTable.IsPlayerInCombat)
     else
         return false
     end
 end
 
-LSU.EvaluateConditions = function(conditions)
+addonTable.EvaluateConditions = function(conditions)
     if not conditions or #conditions == 0 then
         return true
     end
@@ -138,7 +138,7 @@ LSU.EvaluateConditions = function(conditions)
 
         if conditionType == "!CT_EXPANSION" then
             local expansionID = tonumber(parts[2])
-            if LSU.Character.ChromieTimeExpansionID == expansionID or LSU.Character.Level >= (GetMaxLevelForPlayerExpansion() - 10) then
+            if addonTable.Character.ChromieTimeExpansionID == expansionID or addonTable.Character.Level >= (GetMaxLevelForPlayerExpansion() - 10) then
                 return false
             end
         elseif conditionType == "OBJECTIVE_COMPLETE" then

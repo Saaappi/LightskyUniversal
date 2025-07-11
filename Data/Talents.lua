@@ -1,7 +1,7 @@
-local LSU = select(2, ...)
+local addonTable = select(2, ...)
 
-LSU.Enum.PlayerTalents = {}
-LSU.Enum.PlayerTalents.ClassButtons = {
+addonTable.Enum.PlayerTalents = {}
+addonTable.Enum.PlayerTalents.ClassButtons = {
     {
         ["id"] = 1,
         ["atlas"] = "classicon-deathknight",
@@ -95,7 +95,7 @@ LSU.Enum.PlayerTalents.ClassButtons = {
     },
 }
 
-LSU.Enum.PlayerTalents.SpecEditBoxes = {
+addonTable.Enum.PlayerTalents.SpecEditBoxes = {
     { -- Death Knight
         {
             ["id"] = 250,

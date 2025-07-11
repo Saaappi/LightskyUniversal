@@ -1,12 +1,12 @@
-local LSU = select(2, ...)
+local addonTable = select(2, ...)
 
-LSU.Enum.Blacklisted = {}
-LSU.Enum.Blacklisted.Cinematics = {
+addonTable.Enum.Blacklisted = {}
+addonTable.Enum.Blacklisted.Cinematics = {
     [1] = { -- Durotar
         "QUEST_ACTIVE;25187" -- Lost in the Floods
     }
 }
-LSU.Enum.Blacklisted.Quests = {
+addonTable.Enum.Blacklisted.Quests = {
     [9217] = { -- More Rotting Hearts
         isIgnored = true,
         response = ""

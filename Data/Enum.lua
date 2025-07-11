@@ -1,7 +1,7 @@
-local LSU = select(2, ...)
+local addonTable = select(2, ...)
 
-LSU.Enum = {}
-LSU.Enum.Expansions = {
+addonTable.Enum = {}
+addonTable.Enum.Expansions = {
     [5] = EXPANSION_NAME3,
     [6] = EXPANSION_NAME1,
     [7] = EXPANSION_NAME2,

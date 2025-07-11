@@ -1,6 +1,6 @@
-local LSU = select(2, ...)
+local addonTable = select(2, ...)
 
-function LSU.NewRadioDropdown(dropdownData)
+function addonTable.NewRadioDropdown(dropdownData)
     local dropdown = CreateFrame("DropdownButton", nil, dropdownData.parent or UIParent, "WowStyle1DropdownTemplate")
     dropdown:SetWidth(180)
     dropdown:SetDefaultText(DISABLE)
@@ -12,7 +12,7 @@ function LSU.NewRadioDropdown(dropdownData)
 
     dropdown:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:SetText(LSU.Locales.ADDON_TITLE)
+        GameTooltip:SetText(addonTable.Locales.ADDON_TITLE)
         GameTooltip:AddLine(dropdownData.tooltipText, 1, 1, 1, 1, true)
         GameTooltip:Show()
     end)

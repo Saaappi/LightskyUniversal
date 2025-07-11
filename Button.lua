@@ -1,9 +1,9 @@
-local addonName, LSU = ...
+local addonName, addonTable = ...
 
 local function ValidateButtonConfig(button, required)
     for _, key in ipairs(required) do
         if button[key] == nil then
-            LSU.PrintError("Missing required button attribute: " .. key)
+            addonTable.PrintError("Missing required button attribute: " .. key)
             return false
         end
     end
@@ -34,7 +34,7 @@ local function SetButtonTexture(frame, texture)
     elseif type(texture) == "number" then
         frame.icon:SetTexture(texture)
     else
-        LSU.PrintError("The texture should be a string or number.")
+        addonTable.PrintError("The texture should be a string or number.")
         return false
     end
     return true
@@ -45,9 +45,9 @@ end
 
     @param button table: The attributes for the table.
 ]]
-LSU.CreateButton = function(button)
+addonTable.CreateButton = function(button)
     if not button or type(button) ~= "table" then
-        LSU.PrintError("Button config is missing or not a table.")
+        addonTable.PrintError("Button config is missing or not a table.")
         return nil
     end
 
@@ -71,7 +71,7 @@ LSU.CreateButton = function(button)
         if not SetButtonTexture(newButton, button.texture) then return nil end
         SetTooltipScripts(newButton, button.tooltipText)
     else
-        LSU.PrintError("Unknown button type: " .. tostring(button.type))
+        addonTable.PrintError("Unknown button type: " .. tostring(button.type))
         return nil
     end
     return newButton or nil

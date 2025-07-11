@@ -1,4 +1,4 @@
-local LSU = select(2, ...)
+local addonTable = select(2, ...)
 local openGossipFrameButton
 local button = {
     type        = "ActionButton",
@@ -6,7 +6,7 @@ local button = {
     parent      = UIParent,
     scale       = 1.05,
     texture     = 2056011,
-    tooltipText = LSU.Locales.GOSSIP_BUTTON_TOOLTIP
+    tooltipText = addonTable.Locales.GOSSIP_BUTTON_TOOLTIP
 }
 local formatters = {
     [3] = function(info) return string.format("[|cffBA45A0%s|r] %s", info.gossipOptionID, info.name) end,
@@ -16,12 +16,12 @@ local formatters = {
 GossipFrame:HookScript("OnShow", function()
     if not LSUDB.Settings["Gossip.Enabled"] then return end
     if not openGossipFrameButton then
-        openGossipFrameButton = LSU.CreateButton(button)
+        openGossipFrameButton = addonTable.CreateButton(button)
     end
 
     openGossipFrameButton:ClearAllPoints()
     openGossipFrameButton:SetPoint("TOPLEFT", GossipFrame, "TOPRIGHT", 5, 0)
-    openGossipFrameButton:SetScript("OnClick", LSU.OpenGossipFrame)
+    openGossipFrameButton:SetScript("OnClick", addonTable.OpenGossipFrame)
 
     openGossipFrameButton:Show()
 end)
@@ -35,7 +35,7 @@ hooksecurefunc(GossipFrame, "Update", function(self)
     if not LSUDB.Settings["Gossip.Enabled"] then return end
     local guid = UnitGUID("npc")
     if guid then
-        local id = LSU.Split(guid, "-", 6)
+        local id = addonTable.Split(guid, "-", 6)
         local text = self.TitleContainer.TitleText:GetText()
         if text and tonumber(id) then
             text = string.format("[|cffFFFFFF%d|r] ", id) .. text

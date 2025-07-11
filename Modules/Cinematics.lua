@@ -1,9 +1,9 @@
-local LSU = select(2, ...)
+local addonTable = select(2, ...)
 
 local function IsCutsceneProtected()
     local currentMapID = C_Map.GetBestMapForUnit("player")
-    if LSU.Enum.Blacklisted.Cinematics[currentMapID] then
-        if LSU.EvaluateConditions(LSU.Enum.Blacklisted.Cinematics[currentMapID]) then
+    if addonTable.Enum.Blacklisted.Cinematics[currentMapID] then
+        if addonTable.EvaluateConditions(addonTable.Enum.Blacklisted.Cinematics[currentMapID]) then
             return true
         end
         return false

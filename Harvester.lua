@@ -1,6 +1,6 @@
 local addonTable = select(2, ...)
 local eventFrame = CreateFrame("Frame")
-local character
+local player
 
 local function GetPlayerSpecializationID()
     if PlayerUtil and PlayerUtil.GetCurrentSpecID then
@@ -10,42 +10,41 @@ local function GetPlayerSpecializationID()
 end
 
 local function OnPlayerEnteringWorld()
-    if not addonTable.Character then addonTable.Character = {} end
-    character = addonTable.Character
+    if not addonTable.Player then addonTable.Player = {} end
+    player = addonTable.Player
 
-    character.Name = UnitName("player")
-    character.Realm = GetRealmName(); character.Realm = character.Realm:gsub(" ", "")
+    player.Name = UnitName("player")
+    player.RealmName, player.NormalizedRealmName = GetRealmName()
     local className, classID = select(2, UnitClass("player"))
-    character.ClassName = className
-    character.ClassID = classID
-    character.GUID = UnitGUID("player")
+    player.ClassName = className
+    player.ClassID = classID
+    player.GUID = UnitGUID("player")
 
     local specID = GetPlayerSpecializationID()
-    character.SpecID = specID
+    player.SpecID = specID
 
-    character.Level = UnitLevel("player")
+    player.Level = UnitLevel("player")
 
     local color = C_ClassColor.GetClassColor(className)
-    character.ClassColor = color or { r=1, g=1, b=1, colorStr="ffffffff" }
+    player.ClassColor = color or { r=1, g=1, b=1, colorStr="ffffffff" }
 
     local chromieTimeExpansionID = UnitChromieTimeID("player")
-    character.chromieTimeExpansionID = chromieTimeExpansionID
+    player.ChromieTimeExpansionID = chromieTimeExpansionID
 
-    local characterFullName = character.Name .. "-" .. character.Realm
-    character.FullName = characterFullName
+    player.FullName = player.Name .. "-" .. player.NormalizedRealmName
 
     eventFrame:UnregisterEvent("PLAYER_ENTERING_WORLD")
 end
 
 local function OnPlayerLevelUp(newLevel)
-    if addonTable.Character then
-        addonTable.Character.Level = newLevel
+    if addonTable.Player then
+        player.Level = newLevel
     end
 end
 
 local function OnSpecializationChanged()
     local specID = GetPlayerSpecializationID()
-    character.SpecID = specID
+    player.SpecID = specID
 end
 
 eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")

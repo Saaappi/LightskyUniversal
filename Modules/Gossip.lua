@@ -1,6 +1,6 @@
-local addonName, LSU = ...
+local addonName, addonTable = ...
 local eventFrame = CreateFrame("Frame")
-local gossipFrame = LSU.CreateFrame("Portrait", {
+local gossipFrame = addonTable.CreateFrame("Portrait", {
     name = "LSUGossipFrame",
     parent = UIParent,
     width = 650,
@@ -12,7 +12,7 @@ local fontPadding = 7.5
 local history = {}
 local historyPos = 0
 
-LSU.IsValidGossipNPC = function(id)
+addonTable.IsValidGossipNPC = function(id)
     if LSUDB.Gossips[id] then
         return true, LSUDB.Gossips[id]
     end
@@ -70,13 +70,13 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         C_Timer.After(0.1, function() StaticPopup1Button1:Click() end)
     elseif event == "GOSSIP_SHOW" then
         C_Timer.After(0.1, function()
-            LSU.ProcessQuestsAndGossipsSequentially(LSU.QuestGossipShowAPI())
+            addonTable.ProcessQuestsAndGossipsSequentially(addonTable.QuestGossipShowAPI())
         end)
     end
 end)
 
 local allGossipTextCache = "" -- Holds the full, unfiltered text for merge logic
-LSU.OpenGossipFrame = function()
+addonTable.OpenGossipFrame = function()
     local function ValidateGossipEntries(text)
         local isValid = true
         local errors = {}
@@ -130,14 +130,14 @@ LSU.OpenGossipFrame = function()
         -- Quality of life: The GossipFrame is likely open, so process the new options immediately
         if GossipFrame and GossipFrame:IsShown() then
             local guid = UnitGUID("npc")
-            local id = LSU.Split(guid, "-", 6)
+            local id = addonTable.Split(guid, "-", 6)
             if id and LSUDB.Gossips[id] then
                 local gossips = LSUDB.Gossips[id]
                 local options = C_GossipInfo.GetOptions()
                 for _, entry in ipairs(gossips) do
                     for _, option in ipairs(options) do
                         if option.gossipOptionID == entry.gossipOptionID then
-                            local isAllowed = LSU.EvaluateConditions(entry.conditions)
+                            local isAllowed = addonTable.EvaluateConditions(entry.conditions)
                             if isAllowed then
                                 C_GossipInfo.SelectOption(option.gossipOptionID)
                             end
@@ -191,7 +191,7 @@ LSU.OpenGossipFrame = function()
         return table.concat(filteredLines, "\n")
     end
 
-    gossipFrame:SetTitle(LSU.Locales.GOSSIP .. " " .. LSU.Locales.SETTINGS)
+    gossipFrame:SetTitle(addonTable.Locales.GOSSIP .. " " .. addonTable.Locales.SETTINGS)
     gossipFrame:SetPortraitToAsset(2056011)
 
     if not gossipFrame.childrenCreated then
@@ -209,7 +209,7 @@ LSU.OpenGossipFrame = function()
 
         local gossipCountText = scrollFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         gossipCountText:SetPoint("BOTTOMRIGHT", scrollFrame, "TOPRIGHT", 0, 5)
-        gossipCountText:SetText(string.format("%s %s", "0", LSU.Locales.LINES))
+        gossipCountText:SetText(string.format("%s %s", "0", addonTable.Locales.LINES))
 
         local function UpdateGossipCount()
             local editBox = gossipFrame.editBox
@@ -219,7 +219,7 @@ LSU.OpenGossipFrame = function()
             for line in text:gmatch("[^\r\n]+") do
                 if strtrim(line) ~= "" then count = count + 1 end
             end
-            gossipCountText:SetText(string.format("%d %s", count, LSU.Locales.LINES))
+            gossipCountText:SetText(string.format("%d %s", count, addonTable.Locales.LINES))
         end
         gossipFrame.UpdateGossipCount = UpdateGossipCount
 
@@ -243,7 +243,7 @@ LSU.OpenGossipFrame = function()
         local paddingFrame = CreateFrame("Frame", nil, scrollFrame)
         paddingFrame:SetWidth(scrollFrame:GetWidth())
 
-        local editBox = LSU.CreateFrame("EditBox", {
+        local editBox = addonTable.CreateFrame("EditBox", {
             parent = paddingFrame,
             width = scrollFrame:GetWidth() - 30,
             isMultiLine = true,
@@ -382,12 +382,12 @@ LSU.OpenGossipFrame = function()
         scrollFrame:SetScrollChild(paddingFrame)
 
         -- Search/filter box
-        local searchBox = LSU.CreateFrame("EditBox", {
+        local searchBox = addonTable.CreateFrame("EditBox", {
             parent = scrollFrame,
             width = 200,
             height = 25,
             maxLetters = 30,
-            tooltipText = LSU.Locales.GOSSIP_SEARCH_BOX_TOOLTIP
+            tooltipText = addonTable.Locales.GOSSIP_SEARCH_BOX_TOOLTIP
         })
         searchBox:SetPoint("TOPLEFT", scrollFrame, "BOTTOMLEFT", 5, -5)
         searchBox:SetScript("OnTextChanged", function(self)
@@ -397,14 +397,14 @@ LSU.OpenGossipFrame = function()
             UpdateEditBoxHeight()
         end)
 
-        local submitButton = LSU.CreateButton({
+        local submitButton = addonTable.CreateButton({
             type = "BasicButton",
             name = "LSUGossipSubmitButton",
             parent = gossipFrame,
             width = 80,
             height = 25,
             text = SUBMIT,
-            tooltipText = LSU.Locales.GOSSIP_SUBMIT_BUTTON_TOOLTIP
+            tooltipText = addonTable.Locales.GOSSIP_SUBMIT_BUTTON_TOOLTIP
         })
         submitButton:SetPoint("TOPRIGHT", scrollFrame, "BOTTOMRIGHT", 0, -5)
         submitButton:SetScript("OnClick", function()
@@ -453,14 +453,14 @@ LSU.OpenGossipFrame = function()
             end
         end)
 
-        local importFromHMPButton = LSU.CreateButton({
+        local importFromHMPButton = addonTable.CreateButton({
             type = "BasicButton",
             name = "LSUImportFromHMPButton",
             parent = gossipFrame,
             width = 80,
             height = 25,
-            text = LSU.Locales.IMPORT,
-            tooltipText = LSU.Locales.GOSSIP_IMPORT_BUTTON_TOOLTIP
+            text = addonTable.Locales.IMPORT,
+            tooltipText = addonTable.Locales.GOSSIP_IMPORT_BUTTON_TOOLTIP
         })
         importFromHMPButton:SetPoint("RIGHT", submitButton, "LEFT", -5, 0)
         importFromHMPButton:SetScript("OnClick", function()
@@ -478,7 +478,7 @@ LSU.OpenGossipFrame = function()
                     HelpMePlayDB.PlayerGossips = nil
                 end
             else
-                LSU.PrintError(string.format(LSU.Locales.ADDON_NOT_FOUND, "HelpMePlay"))
+                addonTable.PrintError(string.format(addonTable.Locales.ADDON_NOT_FOUND, "HelpMePlay"))
             end
         end)
 
@@ -500,9 +500,9 @@ LSU.OpenGossipFrame = function()
 
         helpButton:EnableMouse(true)
         helpButton:SetScript("OnClick", function()
-            LSU.NewStaticPopup(
+            addonTable.NewStaticPopup(
                 "GossipFrameHelpButtonPopup",
-                LSU.Locales.USE_CTRLC_TO_COPY_THE_LINK_BELOW,
+                addonTable.Locales.USE_CTRLC_TO_COPY_THE_LINK_BELOW,
                 {
                     button1Text = DONE,
                     hasEditBox = 1,
@@ -521,7 +521,7 @@ LSU.OpenGossipFrame = function()
         helpButton:SetScript("OnEnter", function(self)
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
             GameTooltip:SetText(C_AddOns.GetAddOnMetadata(addonName, "Title"), nil, nil, nil, 1, true)
-            GameTooltip:AddLine(LSU.Locales.GOSSIP_HELP_BUTTON_TOOLTIP, 1,1,1, true)
+            GameTooltip:AddLine(addonTable.Locales.GOSSIP_HELP_BUTTON_TOOLTIP, 1,1,1, true)
             GameTooltip:Show()
         end)
         helpButton:SetScript("OnLeave", function() GameTooltip:Hide() end)

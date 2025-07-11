@@ -1,4 +1,4 @@
-local LSU = select(2, ...)
+local addonTable = select(2, ...)
 local eventFrame = CreateFrame("Frame")
 
 eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")

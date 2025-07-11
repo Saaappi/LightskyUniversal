@@ -1,8 +1,8 @@
-local LSU = select(2, ...)
+local addonTable = select(2, ...)
 local parentFrame
 local talentsFrame
 
-LSU.GetValidationError = function(treeID, importStream, isTryRead)
+addonTable.GetValidationError = function(treeID, importStream, isTryRead)
     local version = C_Traits.GetLoadoutSerializationVersion and C_Traits.GetLoadoutSerializationVersion() or 1
     local headerValid, serializationVersion, specID, treeHash = talentsFrame:ReadLoadoutHeader(importStream)
     if not headerValid then
@@ -28,7 +28,7 @@ LSU.GetValidationError = function(treeID, importStream, isTryRead)
 end
 
 local nodesList = {}
-LSU.GetNodes = function(specID, configID, treeID)
+addonTable.GetNodes = function(specID, configID, treeID)
     if nodesList[specID] then
         return nodesList[specID]
     end
@@ -62,13 +62,13 @@ LSU.GetNodes = function(specID, configID, treeID)
 end
 
 local nodeOrderList = {}
-LSU.GetNodeOrder = function(specID, configID, treeID)
+addonTable.GetNodeOrder = function(specID, configID, treeID)
     if nodeOrderList[specID] then
         return nodeOrderList[specID]
     end
 
     local order = {}
-    for i, nodeID in ipairs(LSU.GetNodes(specID, configID, treeID)) do
+    for i, nodeID in ipairs(addonTable.GetNodes(specID, configID, treeID)) do
         order[nodeID] = i
     end
 
@@ -76,9 +76,9 @@ LSU.GetNodeOrder = function(specID, configID, treeID)
     return order
 end
 
-LSU.ConvertToImportLoadoutEntryInfo = function(specID, configID, treeID, loadoutContent)
+addonTable.ConvertToImportLoadoutEntryInfo = function(specID, configID, treeID, loadoutContent)
     local loadoutEntryInfo = talentsFrame:ConvertToImportLoadoutEntryInfo(configID, treeID, loadoutContent)
-    local nodeOrder = LSU.GetNodeOrder(specID, configID, treeID)
+    local nodeOrder = addonTable.GetNodeOrder(specID, configID, treeID)
 
     for _, node in pairs(loadoutEntryInfo) do
         if not nodeOrder[node.nodeID] then
@@ -97,7 +97,7 @@ LSU.ConvertToImportLoadoutEntryInfo = function(specID, configID, treeID, loadout
 end
 
 local loadoutEntryInfoCache = {}
-LSU.GetLoadoutEntryInfo = function(importText, configID)
+addonTable.GetLoadoutEntryInfo = function(importText, configID)
     local loadoutEntryInfo = loadoutEntryInfoCache[importText]
     if loadoutEntryInfo then
         return loadoutEntryInfo
@@ -106,7 +106,7 @@ LSU.GetLoadoutEntryInfo = function(importText, configID)
     local specID = PlayerUtil.GetCurrentSpecID()
     local treeID = C_ClassTalents.GetTraitTreeForSpec(specID)
     if not treeID then
-        LSU.PrintError(L.TEXT.TREEID_IS_NIL)
+        addonTable.PrintError(L.TEXT.TREEID_IS_NIL)
     end
 
     local importStream = ExportUtil.MakeImportDataStream(importText)
@@ -114,7 +114,7 @@ LSU.GetLoadoutEntryInfo = function(importText, configID)
         return false
     end
 
-    local errorMessage = LSU.GetValidationError(treeID, importStream)
+    local errorMessage = addonTable.GetValidationError(treeID, importStream)
     if errorMessage then
         return false
     end
@@ -124,7 +124,7 @@ LSU.GetLoadoutEntryInfo = function(importText, configID)
         return false
     end
 
-    loadoutEntryInfo = LSU.ConvertToImportLoadoutEntryInfo(specID, configID, treeID, loadoutContent)
+    loadoutEntryInfo = addonTable.ConvertToImportLoadoutEntryInfo(specID, configID, treeID, loadoutContent)
     if not loadoutEntryInfo then
         return false
     end
@@ -133,17 +133,17 @@ LSU.GetLoadoutEntryInfo = function(importText, configID)
     return loadoutEntryInfo
 end
 
-LSU.ResetTree = function()
+addonTable.ResetTree = function()
     local configID = C_ClassTalents.GetActiveConfigID()
     if not configID then
-        LSU.PrintError(LSU.Locales.CONFIG_ID_IS_NIL)
+        addonTable.PrintError(addonTable.Locales.CONFIG_ID_IS_NIL)
         return false
     end
 
     local specID = PlayerUtil.GetCurrentSpecID()
     local treeID = C_ClassTalents.GetTraitTreeForSpec(specID)
     if not treeID then
-        LSU.PrintError(LSU.Locales.TREE_ID_IS_NIL)
+        addonTable.PrintError(addonTable.Locales.TREE_ID_IS_NIL)
         return false
     end
 
@@ -151,24 +151,24 @@ LSU.ResetTree = function()
     return true
 end
 
-LSU.ImportText = function(importText)
+addonTable.ImportText = function(importText)
     parentFrame = PlayerSpellsFrame
     talentsFrame = parentFrame.TalentsTab or PlayerSpellsFrame.TalentsFrame
 
     local configID = C_ClassTalents.GetActiveConfigID()
     if not configID then
-        LSU.PrintError(LSU.Locales.CONFIG_ID_IS_NIL)
+        addonTable.PrintError(addonTable.Locales.CONFIG_ID_IS_NIL)
         return
     end
 
-    local loadoutEntryInfo = LSU.GetLoadoutEntryInfo(importText, configID)
+    local loadoutEntryInfo = addonTable.GetLoadoutEntryInfo(importText, configID)
     if not loadoutEntryInfo then
         return
     end
 
     local hasError = false
 
-    if not LSU.ResetTree() then
+    if not addonTable.ResetTree() then
         return
     end
 
@@ -201,13 +201,13 @@ LSU.ImportText = function(importText)
                 end
 
                 if not name then
-                    LSU.PrintError(LSU.Locales.THIS_IS_A_BAD_LOADOUT)
+                    addonTable.PrintError(addonTable.Locales.THIS_IS_A_BAD_LOADOUT)
                     DevTools_Dump(entry)
                     break
                 elseif errorRank and entry.ranksPurchased > 1 then
-                    --LSU.PrintWarning(string.format("Cannot learn %s (%d)", name, errorRank))
+                    --addonTable.PrintWarning(string.format("Cannot learn %s (%d)", name, errorRank))
                 else
-                    --LSU.PrintWarning(string.format("Cannot learn %s", name))
+                    --addonTable.PrintWarning(string.format("Cannot learn %s", name))
                 end
             end
         end
