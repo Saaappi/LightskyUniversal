@@ -35,7 +35,9 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
             addonTable.Print(string.format("|cffFFD700%s|r %s %s", unitName, addonTable.Locales.HAS_BEEN_SPOTTED, BATTLENET_FONT_COLOR:WrapTextInColorCode(link)))
         end
 
-        PlaySound(LSUDB.Settings["Rares.NotificationSoundID"], "Master")
+        if LSUDB.Settings["Rares.NotificationSoundID"] ~= 0 then
+            PlaySound(LSUDB.Settings["Rares.NotificationSoundID"], "Master")
+        end
         seen[unitGuid] = true
     end
 end)

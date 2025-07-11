@@ -186,6 +186,8 @@ L["RAID_FRAMES_DISPLAY_CLASS_COLOR_TOOLTIP"] = "Displays player class colors on 
 
 L["RARES"] = "Rares"
 L["RARES_DD_OPTION1"] = "Dungeon Ready"
+L["RARES_DD_OPTION2"] = "Map Ping"
+L["RARES_DD_OPTION3"] = "Alarm Clock Warning"
 L["RARES_TOOLTIP"] = "Control rare spawn notifications—toggle announcements for rare NPCs on or off."
 L["RARES_DD_TOOLTIP"] = "Select or disable the sound that plays when a rare is discovered."
 

@@ -233,7 +233,9 @@ local function SlashHandler(msg, editBox)
                 savedVarKey = "Rares.NotificationSoundID",
                 options = {
                     { DISABLE, 0 },
-                    { addonTable.Locales.RARES_DD_OPTION1, 17318 }
+                    { addonTable.Locales.RARES_DD_OPTION1, 17318 },
+                    { addonTable.Locales.RARES_DD_OPTION2, SOUNDKIT.MAP_PING },
+                    { addonTable.Locales.RARES_DD_OPTION3, SOUNDKIT.ALARM_CLOCK_WARNING_3 },
                 },
                 setSelectedFunc = function(value)
                     LSUDB.Settings["Rares.NotificationSoundID"] = value
