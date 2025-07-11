@@ -42,6 +42,7 @@ Buttons\TalentButton.lua
 # Modules
 Modules\ChromieTime.lua
 Modules\Cinematics.lua
+Modules\Gossip.lua
 Modules\Merchants\Trainers.lua
 Modules\Merchants\Vendors.lua
 Modules\NewCharacter.lua

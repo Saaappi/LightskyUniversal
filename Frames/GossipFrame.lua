@@ -1,5 +1,4 @@
 local addonName, addonTable = ...
-local eventFrame = CreateFrame("Frame")
 local gossipFrame = addonTable.CreateFrame("Portrait", {
     name = "LSUGossipFrame",
     parent = UIParent,
@@ -62,18 +61,6 @@ local function HMPGossipsToText(hmpGossips)
     end
     return table.concat(lines, "\n")
 end
-
-eventFrame:RegisterEvent("GOSSIP_CONFIRM")
-eventFrame:RegisterEvent("GOSSIP_SHOW")
-eventFrame:SetScript("OnEvent", function(_, event, ...)
-    if event == "GOSSIP_CONFIRM" then
-        C_Timer.After(0.1, function() StaticPopup1Button1:Click() end)
-    elseif event == "GOSSIP_SHOW" then
-        C_Timer.After(0.1, function()
-            addonTable.ProcessQuestsAndGossipsSequentially(addonTable.QuestGossipShowAPI())
-        end)
-    end
-end)
 
 local allGossipTextCache = "" -- Holds the full, unfiltered text for merge logic
 addonTable.OpenGossipFrame = function()
