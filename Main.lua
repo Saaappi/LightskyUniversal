@@ -1,6 +1,21 @@
 local addonName, addonTable = ...
 local eventFrame = CreateFrame("Frame")
 
+local function MergeDefaults(target, defaultsTable)
+    for key, value in pairs(defaultsTable) do
+        if type(value) == "table" then
+            if type(target[key]) ~= "table" then
+                target[key] = {}
+            end
+            MergeDefaults(target[key], value)
+        else
+            if target[key] == nil then
+                target[key] = value
+            end
+        end
+    end
+end
+
 eventFrame:RegisterEvent("ADDON_LOADED")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "ADDON_LOADED" then
@@ -8,7 +23,9 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         if addon == addonName then
             if LSUDB == nil then
                 LSUDB = {}
-                LSUDB.AdventureMaps = {
+            end
+            local defaults = {
+                AdventureMaps = {
                     [2276] = {
                         [83548] = false,
                         [83550] = false,
@@ -21,12 +38,11 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                         [72268] = false,
                         [72269] = false,
                     }
-                }
-                LSUDB.Characters = {}
-                LSUDB.Gossips = {}
-                LSUDB.Junk = {}
-                LSUDB.PlayerTalents = {}
-                LSUDB.Settings = {
+                },
+                Characters = {},
+                Gossips = {},
+                PlayerTalents = {},
+                Settings = {
                     ["AcceptQuests.Enabled"] = false,
                     ["AutoRepair.Enabled"] = false,
                     ["AutoShareQuests.Enabled"] = false,
@@ -79,51 +95,9 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     ["Rares.NotificationSoundID"] = 0,
                     ["SkipCinematics.Enabled"] = false,
                     ["TalkingHead.Disabled"] = false,
-                }
-            else
-                local oldVariables = {
-                    "Junk"
-                }
-                local oldSettingVariables = {
-                    "ChatIcons.Enabled",
-                    "WarbankDepositInCopper",
-                    "ReadyChecks.Enabled",
-                    "RoleChecks.Enabled"
-                }
-                for _, variable in ipairs(oldVariables) do
-                    LSUDB[variable] = nil
-                end
-                for _, variable in ipairs(oldSettingVariables) do
-                    LSUDB.Settings[variable] = nil
-                end
-
-                local newVariables = {
-                    AdventureMaps = {
-                        [2276] = {
-                            [83548] = false,
-                            [83550] = false,
-                            [83551] = false,
-                            [83552] = false,
-                        },
-                        [2057] = {
-                            [72266] = false,
-                            [72267] = false,
-                            [72268] = false,
-                            [72269] = false,
-                        }
-                    }
-                }
-                for variableName, variableData in pairs(newVariables) do
-                    if not LSUDB[variableName] then
-                        LSUDB[variableName] = {}
-                    end
-                    for k, v in pairs(variableData) do
-                        if not LSUDB[variableName][k] then
-                            LSUDB[variableName][k] = v
-                        end
-                    end
-                end
-            end
+                },
+            }
+            MergeDefaults(LSUDB, defaults)
         end
     end
 end)
