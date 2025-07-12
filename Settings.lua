@@ -179,6 +179,10 @@ local function SlashHandler(msg, editBox)
                     { addonTable.GetQuestIconByID(72267) .. addonTable.Locales.ZONE_OHNAHRAN_PLAINS,    {2057, 72267} },
                     { addonTable.GetQuestIconByID(72268) .. addonTable.Locales.ZONE_THE_AZURE_SPAN,     {2057, 72268} },
                     { addonTable.GetQuestIconByID(72269) .. addonTable.Locales.ZONE_THALDRASZUS,        {2057, 72269} },
+                    { addonTable.GetQuestIconByID(62275) .. addonTable.Locales.ZONE_BASTION,            {1550, 62275} },
+                    { addonTable.GetQuestIconByID(62278) .. addonTable.Locales.ZONE_MALDRAXXUS,         {1550, 62278} },
+                    { addonTable.GetQuestIconByID(62277) .. addonTable.Locales.ZONE_ARDENWEALD,         {1550, 62277} },
+                    { addonTable.GetQuestIconByID(62279) .. addonTable.Locales.ZONE_REVENDRETH,         {1550, 62279} },
                 }
             })
             adventureMapsDropdown:SetPoint("TOPLEFT", questModuleFontString, "BOTTOMLEFT", 20, -10)

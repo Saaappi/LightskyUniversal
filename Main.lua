@@ -37,6 +37,12 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                         [72267] = false,
                         [72268] = false,
                         [72269] = false,
+                    },
+                    [1550] = {
+                        [62275] = false,
+                        [62278] = false,
+                        [62277] = false,
+                        [62279] = false,
                     }
                 },
                 Characters = {},

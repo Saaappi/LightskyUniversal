@@ -22,4 +22,8 @@ addonTable.Enum.QuestIcons = {
     [72267] = 4672498, -- Ohn'ahran Plains
     [72268] = 4672495, -- The Azure Span
     [72269] = 4672499, -- Thaldraszus
+    [62275] = 3551337, -- Bastion
+    [62278] = 3551338, -- Maldraxxus
+    [62277] = 3551336, -- Ardenweald
+    [62279] = 3551339, -- Revendreth
 }
