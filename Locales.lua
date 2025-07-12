@@ -175,6 +175,8 @@ L["PROFANITY_FILTER_TOOLTIP"] = "Enables the in-game profanity filter to block o
 L["PVP_FRAMES_DISPLAY_CLASS_COLOR"] = "PvP Frames Display Class Color"
 L["PVP_FRAMES_DISPLAY_CLASS_COLOR_TOOLTIP"] = "Displays player class colors on PvP frames for easier identification of opponents and teammates."
 
+L["QUESTS"] = "Quests"
+
 L["QUEST_REWARDS"] = "Quest Rewards"
 L["QUEST_REWARDS_TOOLTIP"] = "Automatically selects the best quest reward—prioritizing item level, sell price, or choosing randomly if needed."
 
@@ -236,5 +238,10 @@ L["WAY"] = "way"
 
 L["WIPE_CONFIGURATION"] = "Wipe Configuration"
 L["WIPE_CONFIGURATION_TOOLTIP"] = "Left Button: Removes the current character from the list of known characters.\n\nRight Button: Removes ALL characters from the list of known characters.\n\nDoing either will allow you to rerun the New Character configuration for the current character."
+
+L["ZONE_AZJ_KAHET"] = "Azj-Kahet"
+L["ZONE_HALLOWFALL"] = "Hallowfall"
+L["ZONE_ISLE_OF_DORN"] = "Isle of Dorn"
+L["ZONE_THE_RINGING_DEEPS"] = "The Ringing Deeps"
 
 L["ZZZ_DEBUG"] = "DEBUG"

@@ -157,10 +157,33 @@ local function SlashHandler(msg, editBox)
                 checkboxes[i] = cb
             end
 
+            -- QUESTS --
+            local questModuleFontString = scrollChild:CreateFontString()
+            questModuleFontString:SetFontObject("ChatBubbleFont")
+            questModuleFontString:SetText(addonTable.Locales.QUESTS)
+            questModuleFontString:SetPoint("TOPLEFT", checkboxes[10], "BOTTOMLEFT", -20, -50)
+
+            local adventureMapsDropdown = addonTable.NewCheckboxDropdown({
+                parent = scrollChild,
+                label = "TEST",
+                tooltipText = "TESTS",
+                options = {
+                    { DISABLE, 0 },
+                    { addonTable.GetQuestIconByID(83548) .. addonTable.Locales.ZONE_ISLE_OF_DORN, 83548 },
+                    { addonTable.GetQuestIconByID(83550) .. addonTable.Locales.ZONE_THE_RINGING_DEEPS, 83550 },
+                    { addonTable.GetQuestIconByID(83551) .. addonTable.Locales.ZONE_HALLOWFALL, 83551 },
+                    { addonTable.GetQuestIconByID(83552) .. addonTable.Locales.ZONE_AZJ_KAHET, 83552 },
+                }
+            })
+            adventureMapsDropdown:SetPoint("TOPLEFT", questModuleFontString, "BOTTOMLEFT", 20, -10)
+            adventureMapsDropdown.label:Hide()
+            adventureMapsDropdown:Show()
+            ------------
+
             local gossipModuleFS = scrollChild:CreateFontString()
             gossipModuleFS:SetFontObject("ChatBubbleFont")
             gossipModuleFS:SetText(addonTable.Locales.GOSSIP_MODULE)
-            gossipModuleFS:SetPoint("TOPLEFT", checkboxes[10], "BOTTOMLEFT", -20, -50)
+            gossipModuleFS:SetPoint("TOPLEFT", questModuleFontString, "BOTTOMLEFT", 0, -120)
 
             local openGossipsFrameButton = addonTable.NewBasicButton({
                 name = "LSUOpenGossipsFrameButton",

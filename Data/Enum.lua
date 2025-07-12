@@ -12,3 +12,10 @@ addonTable.Enum.Expansions = {
     [14] = EXPANSION_NAME8,
     [16] = EXPANSION_NAME9
 }
+
+addonTable.Enum.QuestIcons = {
+    [83548] = 5770811, -- Isle of Dorn
+    [83550] = 5770812, -- The Ringing Deeps
+    [83551] = 5770810, -- Hallowfall
+    [83552] = 5770809, -- Azj-Kahet
+}
