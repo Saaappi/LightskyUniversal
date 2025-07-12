@@ -167,6 +167,7 @@ local function SlashHandler(msg, editBox)
                 parent = scrollChild,
                 label = addonTable.Locales.ADVENTURE_MAPS,
                 tooltipText = addonTable.Locales.ADVENTURE_MAPS_TOOLTIP,
+                savedVarTable = "AdventureMaps",
                 options = {
                     { addonTable.GetQuestIconByID(83548) .. addonTable.Locales.ZONE_ISLE_OF_DORN, 83548 },
                     { addonTable.GetQuestIconByID(83550) .. addonTable.Locales.ZONE_THE_RINGING_DEEPS, 83550 },

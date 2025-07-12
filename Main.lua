@@ -8,7 +8,12 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         if addon == addonName then
             if LSUDB == nil then
                 LSUDB = {}
-                LSUDB.AdventureMaps = {}
+                LSUDB.AdventureMaps = {
+                    [83548] = false,
+                    [83550] = false,
+                    [83551] = false,
+                    [83552] = false,
+                }
                 LSUDB.Characters = {}
                 LSUDB.Gossips = {}
                 LSUDB.Junk = {}
@@ -82,6 +87,20 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                 end
                 for _, variable in ipairs(oldSettingVariables) do
                     LSUDB.Settings[variable] = nil
+                end
+
+                local newVariables = {
+                    AdventureMaps = {
+                        [83548] = false,
+                        [83550] = false,
+                        [83551] = false,
+                        [83552] = false,
+                    }
+                }
+                for variableName, variableData in pairs(newVariables) do
+                    if not LSUDB[variableName] then
+                        LSUDB[variableName] = variableData
+                    end
                 end
             end
         end

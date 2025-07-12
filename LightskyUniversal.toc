@@ -41,6 +41,7 @@ Buttons\GossipButton.lua
 Buttons\TalentButton.lua
 
 # Modules
+Modules\AdventureMap.lua
 Modules\ChromieTime.lua
 Modules\Cinematics.lua
 Modules\Gossip.lua
@@ -50,7 +51,6 @@ Modules\NewCharacter.lua
 Modules\PlayerTalents\PlayerTalents.lua
 Modules\PlayerTalents\TalentImporter.lua
 Modules\Quest\Accept.lua
-#Modules\Quest\AdventureMap.lua
 Modules\Quest\Complete.lua
 Modules\Quest\Popup.lua
 Modules\Rare.lua
