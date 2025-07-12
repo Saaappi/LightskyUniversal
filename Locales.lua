@@ -220,6 +220,9 @@ L["SPELLBOOK_HIDE_PASSIVES_TOOLTIP"] = "Hides passive spells in your spellbook f
 L["TALENT_IMPORTER"] = "Talent Importer"
 L["TALENT_IMPORTER_BUTTON_TOOLTIP"] = "Click to open the talent importer utility."
 
+L["TALKING_HEAD"] = "Talking Head"
+L["TALKING_HEAD_TOOLTIP"] = "Automatically hide the talking head popup before it's shown."
+
 L["THIS_IS_A_BAD_LOADOUT"] = "This is a bad loadout! Try importing a new one."
 
 L["TREE_ID_IS_NIL"] = "The tree ID is nil!"

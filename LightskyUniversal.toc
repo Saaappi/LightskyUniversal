@@ -53,6 +53,7 @@ Modules\Quest\Accept.lua
 Modules\Quest\Complete.lua
 Modules\Quest\Popup.lua
 Modules\Rare.lua
+Modules\TalkingHead.lua
 
 Main.lua
 

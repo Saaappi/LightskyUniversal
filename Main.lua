@@ -63,7 +63,8 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     ["QuestRewards.Enabled"] = false,
                     ["Rares.Enabled"] = false,
                     ["Rares.NotificationSoundID"] = 0,
-                    ["SkipCinematics.Enabled"] = false
+                    ["SkipCinematics.Enabled"] = false,
+                    ["TalkingHead.Disabled"] = false,
                 }
             else
                 local oldVariables = {

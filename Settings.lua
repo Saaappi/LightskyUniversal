@@ -127,9 +127,10 @@ local function SlashHandler(msg, editBox)
                     end
                   end
                 },
-                { addonTable.Locales.PLAYER_TALENTS,    "PlayerTalents.Enabled",   addonTable.Locales.PLAYER_TALENTS_TOOLTIP     },
-                { addonTable.Locales.QUEST_REWARDS,     "QuestRewards.Enabled",    addonTable.Locales.QUEST_REWARDS_TOOLTIP      },
-                { addonTable.Locales.SKIP_CINEMATICS,   "SkipCinematics.Enabled",  addonTable.Locales.SKIP_CINEMATICS_TOOLTIP    },
+                { addonTable.Locales.PLAYER_TALENTS,    "PlayerTalents.Enabled",   addonTable.Locales.PLAYER_TALENTS_TOOLTIP  },
+                { addonTable.Locales.QUEST_REWARDS,     "QuestRewards.Enabled",    addonTable.Locales.QUEST_REWARDS_TOOLTIP   },
+                { addonTable.Locales.SKIP_CINEMATICS,   "SkipCinematics.Enabled",  addonTable.Locales.SKIP_CINEMATICS_TOOLTIP },
+                { addonTable.Locales.TALKING_HEAD,      "TalkingHead.Disabled",    addonTable.Locales.TALKING_HEAD_TOOLTIP    },
             }
 
             local columnWidth = 180
