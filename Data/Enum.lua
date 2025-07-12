@@ -18,4 +18,8 @@ addonTable.Enum.QuestIcons = {
     [83550] = 5770812, -- The Ringing Deeps
     [83551] = 5770810, -- Hallowfall
     [83552] = 5770809, -- Azj-Kahet
+    [72266] = 4672500, -- The Waking Shores
+    [72267] = 4672498, -- Ohn'ahran Plains
+    [72268] = 4672495, -- The Azure Span
+    [72269] = 4672499, -- Thaldraszus
 }

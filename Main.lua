@@ -13,6 +13,10 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     [83550] = false,
                     [83551] = false,
                     [83552] = false,
+                    [72266] = false,
+                    [72267] = false,
+                    [72268] = false,
+                    [72269] = false,
                 }
                 LSUDB.Characters = {}
                 LSUDB.Gossips = {}
@@ -95,11 +99,20 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                         [83550] = false,
                         [83551] = false,
                         [83552] = false,
+                        [72266] = false,
+                        [72267] = false,
+                        [72268] = false,
+                        [72269] = false,
                     }
                 }
                 for variableName, variableData in pairs(newVariables) do
                     if not LSUDB[variableName] then
-                        LSUDB[variableName] = variableData
+                        LSUDB[variableName] = {}
+                    end
+                    for k, v in pairs(variableData) do
+                        if not LSUDB[variableName][k] then
+                            LSUDB[variableName][k] = v
+                        end
                     end
                 end
             end

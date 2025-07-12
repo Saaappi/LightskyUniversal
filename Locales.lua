@@ -245,6 +245,10 @@ L["WIPE_CONFIGURATION_TOOLTIP"] = "Left Button: Removes the current character fr
 L["ZONE_AZJ_KAHET"] = "Azj-Kahet"
 L["ZONE_HALLOWFALL"] = "Hallowfall"
 L["ZONE_ISLE_OF_DORN"] = "Isle of Dorn"
+L["ZONE_OHNAHRAN_PLAINS"] = "Ohn'ahran Plains"
+L["ZONE_THALDRASZUS"] = "Thaldraszus"
+L["ZONE_THE_AZURE_SPAN"] = "The Azure Span"
 L["ZONE_THE_RINGING_DEEPS"] = "The Ringing Deeps"
+L["ZONE_THE_WAKING_SHORES"] = "The Waking Shores"
 
 L["ZZZ_DEBUG"] = "DEBUG"
