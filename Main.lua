@@ -8,6 +8,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         if addon == addonName then
             if LSUDB == nil then
                 LSUDB = {}
+                LSUDB.AdventureMaps = {}
                 LSUDB.Characters = {}
                 LSUDB.Gossips = {}
                 LSUDB.Junk = {}

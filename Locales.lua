@@ -36,6 +36,9 @@ L["ACTION_BAR_TOOLTIP"] = "Toggle to allow the New Character Configuration to en
 
 L["ADDON_TITLE"] = C_AddOns.GetAddOnMetadata(addonName, "Title")
 
+L["ADVENTURE_MAPS"] = "Adventure Maps"
+L["ADVENTURE_MAPS_TOOLTIP"] = "Toggle the quests you would like to automatically accept from adventure maps."
+
 L["ALWAYS_COMPARE_ITEMS"] = "Always Compare Items"
 L["ALWAYS_COMPARE_ITEMS_TOOLTIP"] = "Force displays the comparison tooltip when you hover over other items, allowing you to easily compare attributes and stats."
 
