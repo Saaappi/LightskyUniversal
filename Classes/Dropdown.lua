@@ -22,10 +22,10 @@ function addonTable.NewCheckboxDropdown(dropdownData)
     end)
 
     local function IsSelected(value)
-        return LSUDB[dropdownData.savedVarTable][value] ~= false
+        return LSUDB[dropdownData.savedVarTable][value[1]][value[2]] ~= false
     end
     local function SetSelected(value)
-        LSUDB[dropdownData.savedVarTable][value] = not LSUDB[dropdownData.savedVarTable][value]
+        LSUDB[dropdownData.savedVarTable][value[1]][value[2]] = not LSUDB[dropdownData.savedVarTable][value[1]][value[2]]
     end
 
     MenuUtil.CreateCheckboxMenu(dropdown, IsSelected, dropdownData.setSelectedFunc or SetSelected, unpack(dropdownData.options))

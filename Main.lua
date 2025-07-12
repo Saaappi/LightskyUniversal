@@ -9,14 +9,18 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
             if LSUDB == nil then
                 LSUDB = {}
                 LSUDB.AdventureMaps = {
-                    [83548] = false,
-                    [83550] = false,
-                    [83551] = false,
-                    [83552] = false,
-                    [72266] = false,
-                    [72267] = false,
-                    [72268] = false,
-                    [72269] = false,
+                    [2276] = {
+                        [83548] = false,
+                        [83550] = false,
+                        [83551] = false,
+                        [83552] = false,
+                    },
+                    [2057] = {
+                        [72266] = false,
+                        [72267] = false,
+                        [72268] = false,
+                        [72269] = false,
+                    }
                 }
                 LSUDB.Characters = {}
                 LSUDB.Gossips = {}
@@ -95,14 +99,18 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
 
                 local newVariables = {
                     AdventureMaps = {
-                        [83548] = false,
-                        [83550] = false,
-                        [83551] = false,
-                        [83552] = false,
-                        [72266] = false,
-                        [72267] = false,
-                        [72268] = false,
-                        [72269] = false,
+                        [2276] = {
+                            [83548] = false,
+                            [83550] = false,
+                            [83551] = false,
+                            [83552] = false,
+                        },
+                        [2057] = {
+                            [72266] = false,
+                            [72267] = false,
+                            [72268] = false,
+                            [72269] = false,
+                        }
                     }
                 }
                 for variableName, variableData in pairs(newVariables) do

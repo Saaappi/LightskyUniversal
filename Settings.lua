@@ -169,14 +169,16 @@ local function SlashHandler(msg, editBox)
                 tooltipText = addonTable.Locales.ADVENTURE_MAPS_TOOLTIP,
                 savedVarTable = "AdventureMaps",
                 options = {
-                    { addonTable.GetQuestIconByID(83548) .. addonTable.Locales.ZONE_ISLE_OF_DORN,       83548 },
-                    { addonTable.GetQuestIconByID(83550) .. addonTable.Locales.ZONE_THE_RINGING_DEEPS,  83550 },
-                    { addonTable.GetQuestIconByID(83551) .. addonTable.Locales.ZONE_HALLOWFALL,         83551 },
-                    { addonTable.GetQuestIconByID(83552) .. addonTable.Locales.ZONE_AZJ_KAHET,          83552 },
-                    { addonTable.GetQuestIconByID(72266) .. addonTable.Locales.ZONE_THE_WAKING_SHORES,  72266 },
-                    { addonTable.GetQuestIconByID(72267) .. addonTable.Locales.ZONE_OHNAHRAN_PLAINS,    72267 },
-                    { addonTable.GetQuestIconByID(72268) .. addonTable.Locales.ZONE_THE_AZURE_SPAN,     72268 },
-                    { addonTable.GetQuestIconByID(72269) .. addonTable.Locales.ZONE_THALDRASZUS,        72269 },
+                    -- The first entry in the value table is the continent map ID used in the Adventure Map.
+                    -- The second is the quest ID.
+                    { addonTable.GetQuestIconByID(83548) .. addonTable.Locales.ZONE_ISLE_OF_DORN,       {2276, 83548} },
+                    { addonTable.GetQuestIconByID(83550) .. addonTable.Locales.ZONE_THE_RINGING_DEEPS,  {2276, 83550} },
+                    { addonTable.GetQuestIconByID(83551) .. addonTable.Locales.ZONE_HALLOWFALL,         {2276, 83551} },
+                    { addonTable.GetQuestIconByID(83552) .. addonTable.Locales.ZONE_AZJ_KAHET,          {2276, 83552} },
+                    { addonTable.GetQuestIconByID(72266) .. addonTable.Locales.ZONE_THE_WAKING_SHORES,  {2057, 72266} },
+                    { addonTable.GetQuestIconByID(72267) .. addonTable.Locales.ZONE_OHNAHRAN_PLAINS,    {2057, 72267} },
+                    { addonTable.GetQuestIconByID(72268) .. addonTable.Locales.ZONE_THE_AZURE_SPAN,     {2057, 72268} },
+                    { addonTable.GetQuestIconByID(72269) .. addonTable.Locales.ZONE_THALDRASZUS,        {2057, 72269} },
                 }
             })
             adventureMapsDropdown:SetPoint("TOPLEFT", questModuleFontString, "BOTTOMLEFT", 20, -10)
