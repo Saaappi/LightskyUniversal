@@ -35,6 +35,13 @@ local function OnPlayerEnteringWorld()
     player.FullName = player.Name .. "-" .. (player.NormalizedRealmName or player.RealmName)
     ------------------------
 
+    -- MAP --
+    local currentMapID = C_Map.GetBestMapForUnit("player")
+    if currentMapID then
+        player.CurrentMapID = currentMapID
+    end
+    ---------
+
     -- EDIT MODE --
     if not LSUDB.EditModeLayouts then
         LSUDB.EditModeLayouts = {}
@@ -80,6 +87,9 @@ end
 eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 eventFrame:RegisterEvent("PLAYER_LEVEL_UP")
 eventFrame:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+eventFrame:RegisterEvent("ZONE_CHANGED")
+eventFrame:RegisterEvent("ZONE_CHANGED_INDOORS")
+eventFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 eventFrame:SetScript("OnEvent", function(_, event, ...)
     if event == "PLAYER_ENTERING_WORLD" then
         OnPlayerEnteringWorld()
@@ -88,5 +98,12 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         OnPlayerLevelUp(newLevel)
     elseif event == "PLAYER_SPECIALIZATION_CHANGED" then
         OnSpecializationChanged()
+    elseif event == "ZONE_CHANGED" or event == "ZONE_CHANGED_INDOORS" or event == "ZONE_CHANGED_NEW_AREA" then
+        C_Timer.After(0.25, function()
+            local currentMapID = C_Map.GetBestMapForUnit("player")
+            if currentMapID then
+                player.CurrentMapID = currentMapID
+            end
+        end)
     end
 end)

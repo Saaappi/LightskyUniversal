@@ -28,10 +28,10 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         local targetIndex = math.random(1, 7)
         SetRaidTarget(unitToken, targetIndex)
 
-        local position = C_Map.GetPlayerMapPosition(addonTable.Map.CurrentMapID, "player")
+        local position = C_Map.GetPlayerMapPosition(addonTable.Player.CurrentMapID, "player")
         if position then
             local x, y = position:GetXY()
-            local link = LinkUtil.FormatLink("addonLSU", "[/" .. addonTable.Locales.WAY .."]", addonTable.Map.CurrentMapID, x, y, unitName, unitID)
+            local link = LinkUtil.FormatLink("addonLSU", "[/" .. addonTable.Locales.WAY .."]", addonTable.Player.CurrentMapID, x, y, unitName, unitID)
             addonTable.Print(string.format("|cffFFD700%s|r %s %s", unitName, addonTable.Locales.HAS_BEEN_SPOTTED, BATTLENET_FONT_COLOR:WrapTextInColorCode(link)))
         end
 
