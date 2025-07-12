@@ -42,9 +42,9 @@ EventRegistry:RegisterCallback("PlayerSpellsFrame.TalentTab.Show", function()
     applyTalentsButton:SetPoint("LEFT", applyTalentsButton:GetParent(), "RIGHT", 27.5, 0)
     applyTalentsButton:Show()
     applyTalentsButton:SetScript("OnClick", function()
-        local class = LSUDB.PlayerTalents[addonTable.Character.ClassID]
+        local class = LSUDB.PlayerTalents[addonTable.Player.ClassID]
         if class then
-            local talents = class and class[addonTable.Character.SpecID]
+            local talents = class and class[addonTable.Player.SpecID]
             if talents then
                 addonTable.ImportText(talents.importString)
             end
