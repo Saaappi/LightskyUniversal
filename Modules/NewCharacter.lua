@@ -48,7 +48,7 @@ function addonTable.ConfigureNewCharacter()
     local guid = UnitGUID("player")
     if not LSUDB.Characters[guid] then
         -- This must be added after the Player Collector has a chance to harvest its data.
-        button.tooltipText = string.format(addonTable.Locales.NEW_CHARACTER_BUTTON_TOOLTIP, addonTable.Character.ClassColor:GenerateHexColor(), addonTable.Character.Name)
+        button.tooltipText = string.format(addonTable.Locales.NEW_CHARACTER_BUTTON_TOOLTIP, addonTable.Player.ClassColor:GenerateHexColor(), addonTable.Player.Name)
         newCharacterSetupButton = addonTable.CreateButton(button)
         if newCharacterSetupButton then
             newCharacterSetupButton:ClearAllPoints()
@@ -88,11 +88,11 @@ function addonTable.ConfigureNewCharacter()
                 local nccCompleteDialog = "LSU_NewCharacterConfigurationCompleted"
                 addonTable.NewStaticPopup(
                     nccCompleteDialog,
-                    string.format(addonTable.Locales.NEW_CHARACTER_TEXT, addonTable.Character.ClassColor:GenerateHexColor(), addonTable.Character.Name),
+                    string.format(addonTable.Locales.NEW_CHARACTER_TEXT, addonTable.Player.ClassColor:GenerateHexColor(), addonTable.Player.Name),
                     {
                         button2Text = NO,
                         onAccept = function()
-                            LSUDB.Characters[guid] = addonTable.Character.Name
+                            LSUDB.Characters[guid] = addonTable.Player.Name
                             C_UI.Reload()
                         end
                     }

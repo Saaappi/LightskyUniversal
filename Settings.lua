@@ -324,7 +324,7 @@ local function SlashHandler(msg, editBox)
                 local found = false
                 if button == "LeftButton" then
                     for guid, _ in pairs(LSUDB.Characters) do
-                        if guid == addonTable.Character["GUID"] then
+                        if guid == addonTable.Player["GUID"] then
                             LSUDB.Characters[guid] = nil
                             found = true
                             break

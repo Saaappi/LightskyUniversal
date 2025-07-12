@@ -138,7 +138,7 @@ addonTable.EvaluateConditions = function(conditions)
 
         if conditionType == "!CT_EXPANSION" then
             local expansionID = tonumber(parts[2])
-            if addonTable.Character.ChromieTimeExpansionID == expansionID or addonTable.Character.Level >= (GetMaxLevelForPlayerExpansion() - 10) then
+            if addonTable.Player.ChromieTimeExpansionID == expansionID or addonTable.Player.Level >= (GetMaxLevelForPlayerExpansion() - 10) then
                 return false
             end
         elseif conditionType == "OBJECTIVE_COMPLETE" then
