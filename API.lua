@@ -106,20 +106,16 @@ addonTable.ProcessQuestsAndGossipsSequentially = function(API)
         if not LSUDB.Settings["Gossip.Enabled"] then return end
         local options = C_GossipInfo.GetOptions()
         if options then
-            if #options == 1 and options[1].icon == 132060 then -- The only option is "Show me your wares" or some other variant, so just pick it automatically
-                C_GossipInfo.SelectOption(options[1].gossipOptionID)
-            else
-                local guid = UnitGUID("npc")
-                if guid then
-                    local id = addonTable.Split(guid, "-", 6)
-                    if id then
-                        local isValid, gossips = addonTable.IsValidGossipNPC(id)
-                        if isValid and gossips then
-                            for _, gossip in ipairs(gossips) do
-                                local isAllowed = addonTable.EvaluateConditions(gossip.conditions)
-                                if isAllowed then
-                                    C_GossipInfo.SelectOption(gossip.gossipOptionID)
-                                end
+            local guid = UnitGUID("npc")
+            if guid then
+                local id = addonTable.Split(guid, "-", 6)
+                if id then
+                    local isValid, gossips = addonTable.IsValidGossipNPC(id)
+                    if isValid and gossips then
+                        for _, gossip in ipairs(gossips) do
+                            local isAllowed = addonTable.EvaluateConditions(gossip.conditions)
+                            if isAllowed then
+                                C_GossipInfo.SelectOption(gossip.gossipOptionID)
                             end
                         end
                     end
