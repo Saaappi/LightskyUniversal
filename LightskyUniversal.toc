@@ -28,7 +28,6 @@ Utilities\GetQuestIconByID.lua
 Classes\Button.lua
 Classes\Checkbox.lua
 Classes\Dropdown.lua
-Classes\EditBox.lua
 Classes\StaticPopup.lua
 
 # Frames
