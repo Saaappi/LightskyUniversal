@@ -157,10 +157,10 @@ local function SlashHandler(msg, editBox)
                 checkboxes[i] = cb
             end
 
-            -- QUESTS --
+            -- QUESTS MODULE --
             local questModuleFontString = scrollChild:CreateFontString()
             questModuleFontString:SetFontObject("ChatBubbleFont")
-            questModuleFontString:SetText(addonTable.Locales.QUESTS)
+            questModuleFontString:SetText(addonTable.Locales.QUESTS_MODULE)
             questModuleFontString:SetPoint("TOPLEFT", checkboxes[10], "BOTTOMLEFT", -20, -50)
 
             local adventureMapsDropdown = addonTable.NewCheckboxDropdown({
@@ -188,7 +188,7 @@ local function SlashHandler(msg, editBox)
             adventureMapsDropdown:SetPoint("TOPLEFT", questModuleFontString, "BOTTOMLEFT", 20, -10)
             adventureMapsDropdown.label:Hide()
             adventureMapsDropdown:Show()
-            ------------
+            -------------------
 
             local gossipModuleFS = scrollChild:CreateFontString()
             gossipModuleFS:SetFontObject("ChatBubbleFont")
@@ -245,10 +245,10 @@ local function SlashHandler(msg, editBox)
             chromieTimeDropdown.label:Hide()
             chromieTimeDropdown:Show()
 
-            -- RARES --
+            -- RARES MODULE --
             local raresFontString = scrollChild:CreateFontString()
             raresFontString:SetFontObject("ChatBubbleFont")
-            raresFontString:SetText(addonTable.Locales.RARES)
+            raresFontString:SetText(addonTable.Locales.RARES_MODULE)
             raresFontString:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", -20, -50)
 
             local raresCheckbox = addonTable.NewCheckbox({
@@ -279,7 +279,7 @@ local function SlashHandler(msg, editBox)
             rareNotificationDropdown:SetPoint("TOPLEFT", raresCheckbox, "BOTTOMLEFT", 0, -10)
             rareNotificationDropdown.label:Hide()
             rareNotificationDropdown:Show()
-            -----------
+            ------------------
 
             -- NEW CHARACTER --
             local newCharacterModuleFS = scrollChild:CreateFontString()

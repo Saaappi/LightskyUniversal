@@ -179,7 +179,7 @@ L["PROFANITY_FILTER_TOOLTIP"] = "Enables the in-game profanity filter to block o
 L["PVP_FRAMES_DISPLAY_CLASS_COLOR"] = "PvP Frames Display Class Color"
 L["PVP_FRAMES_DISPLAY_CLASS_COLOR_TOOLTIP"] = "Displays player class colors on PvP frames for easier identification of opponents and teammates."
 
-L["QUESTS"] = "Quests"
+L["QUESTS_MODULE"] = "Quests Module"
 
 L["QUEST_REWARDS"] = "Quest Rewards"
 L["QUEST_REWARDS_TOOLTIP"] = "Automatically selects the best quest reward—prioritizing item level, sell price, or choosing randomly if needed."
@@ -194,6 +194,7 @@ L["RARES"] = "Rares"
 L["RARES_DD_OPTION1"] = "Dungeon Ready"
 L["RARES_DD_OPTION2"] = "Map Ping"
 L["RARES_DD_OPTION3"] = "Alarm Clock Warning"
+L["RARES_MODULE"] = "Rares Module"
 L["RARES_TOOLTIP"] = "Control rare spawn notifications—toggle announcements for rare NPCs on or off."
 L["RARES_DD_TOOLTIP"] = "Select or disable the sound that plays when a rare is discovered."
 
