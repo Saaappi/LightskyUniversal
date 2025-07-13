@@ -156,6 +156,9 @@ L["LOOT_UNDER_MOUSE_TOOLTIP"] = "Displays the loot window beneath your mouse cur
 L["MOUNT_JOURNAL_SHOW_PLAYER"] = "Mount Journal Show Player"
 L["MOUNT_JOURNAL_SHOW_PLAYER_TOOLTIP"] = "Automatically displays your character model riding mounts in the Mount Journal preview."
 
+L["MUTE_TALKING_HEAD"] = "Mute Talking Head"
+L["MUTE_TALKING_HEAD_TOOLTIP"] = "Automatically hide the talking head popup before it's shown."
+
 L["NEW_CHARACTER"] = "New Character"
 L["NEW_CHARACTER_BUTTON_TOOLTIP"] = "Click to configure new character settings for |c%s%s|r."
 L["NEW_CHARACTER_MODULE"] = "New Character Module"
@@ -226,9 +229,6 @@ L["SPELLBOOK_HIDE_PASSIVES_TOOLTIP"] = "Hides passive spells in your spellbook f
 
 L["TALENT_IMPORTER"] = "Talent Importer"
 L["TALENT_IMPORTER_BUTTON_TOOLTIP"] = "Click to open the talent importer utility."
-
-L["TALKING_HEAD"] = "Talking Head"
-L["TALKING_HEAD_TOOLTIP"] = "Automatically hide the talking head popup before it's shown."
 
 L["THIS_IS_A_BAD_LOADOUT"] = "This is a bad loadout! Try importing a new one."
 

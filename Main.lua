@@ -58,6 +58,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     ["CompleteQuests.Enabled"] = false,
                     ["EditModeLayoutID"] = 1,
                     ["Gossip.Enabled"] = false,
+                    ["MuteTalkingHead.Enabled"] = false,
                     ["NewCharacter.ActionBar2.Enabled"] = false,
                     ["NewCharacter.ActionBar3.Enabled"] = false,
                     ["NewCharacter.ActionBar4.Enabled"] = false,
@@ -100,7 +101,6 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     ["Rares.Enabled"] = false,
                     ["Rares.NotificationSoundID"] = 0,
                     ["SkipCinematics.Enabled"] = false,
-                    ["TalkingHead.Disabled"] = false,
                 },
             }
             MergeDefaults(LSUDB, defaults)
