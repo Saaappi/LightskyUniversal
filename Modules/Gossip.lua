@@ -36,8 +36,16 @@ hooksecurefunc(GossipFrame, "Update", function(self)
     -- Prefix each gossip button with its ID number.
     local dataProvider = self.GreetingPanel.ScrollBox:GetDataProvider()
     if dataProvider and next(dataProvider.collection) then
+        -- Make a shallow copy of the original collection BEFORE flushing!
+        local originalData = {}
+        for i, v in ipairs(dataProvider.collection) do
+            originalData[i] = v
+        end
+
+        dataProvider:Flush() -- Clear before inserting our modified data
+
         local modifiedData = {}
-        for k, v in ipairs(dataProvider.collection) do
+        for k, v in ipairs(originalData) do
             local entry = v
             if entry then
                 if entry.info then
@@ -50,11 +58,10 @@ hooksecurefunc(GossipFrame, "Update", function(self)
                     end
                     table.insert(modifiedData, newEntry)
                 else
-                    table.insert(modifiedData, entry) -- preserves the entries like the gossip text at the top of the frame
+                    table.insert(modifiedData, entry)
                 end
             end
         end
-        dataProvider:Flush()
         dataProvider:InsertTable(modifiedData)
     end
 
