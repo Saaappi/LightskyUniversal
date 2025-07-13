@@ -128,7 +128,8 @@ L["GOSSIP_HELP_BUTTON_TOOLTIP"] = "|cffFF474CThere is a rough cap on the number 
 "Entering data requires the ID of the NPC/GameObject, the ID of the desired gossip option, and optionally a list of conditions.\n\n" ..
 "The |cff00CCFF<ID>|r for the NPC or GameObject can be found at the top of the GossipFrame when interacting with the target. It prefixes the name within [].\n\n" ..
 "The |cff00CCFF<GossipOptionID>|r can be found before the text of the option within []. It's the number in the |cffBA45A0mulberry|r color.\n\n" ..
-"Conditions are slightly more complicated and can be daisy chained together. Condition types are case sensitive and should always be CAPITALIZED! Condition types and their values should always be separated by a semicolon. Supported conditions and how to format them can be seen on the GitHub wiki page."
+"Conditions are slightly more complicated and can be daisy chained together. Condition types are |cff00CCFFcase insensitive|r! Condition types and their values should always be separated by a semicolon.\n\n" ..
+"|cffD4AF37Supported conditions and how to format them can be seen on the GitHub wiki page. Click this help button to get the link!|r"
 L["GOSSIP_IMPORT_BUTTON_TOOLTIP"] = "Quickly import gossips in the Player Gossips table from the HelpMePlay addon.\n\n" ..
 "|cffFF474CNOTE:|r This will WIPE the gossips from HelpMePlay. This action is irreversible!"
 L["GOSSIP_MODULE"] = "Gossip Module"
