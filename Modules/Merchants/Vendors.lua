@@ -1,4 +1,33 @@
-local addonName, addonTable = ...
+local function IsObjectiveMatch(itemName, objectiveText)
+    -- Case-insensitive comparison
+    local itemNameLower = itemName:lower()
+    local objectiveTextLower = objectiveText:lower()
+
+    -- Full name match
+    if string.find(objectiveTextLower, itemNameLower) then
+        return true
+    end
+
+    -- Split itemName into words
+    local words = {}
+    for word in itemNameLower:gmatch("%w+") do
+        table.insert(words, word)
+    end
+
+    -- Require at least one significant word to match
+    local significantWordCount = 0
+    for _, word in ipairs(words) do
+        -- Skip very short/common words
+        if #word > 2 and not (word == "the" or word == "of" or word == "and") then
+            if string.find(objectiveTextLower, word) then
+                significantWordCount = significantWordCount + 1
+            end
+        end
+    end
+
+    -- You can adjust threshold if needed (e.g., at least 1 or 2 words must match)
+    return significantWordCount > 0
+end
 
 local function GetRequiredQuestItemCountByName(itemName)
     local requiredCount = 0
@@ -9,7 +38,7 @@ local function GetRequiredQuestItemCountByName(itemName)
             local objectives = C_QuestLog.GetQuestObjectives(questID)
             if objectives then
                 for _, objective in ipairs(objectives) do
-                    if objective.type == "item" and objective.text and string.find(objective.text, itemName, 1, true) then
+                    if objective.type == "item" and (objective.text and IsObjectiveMatch(itemName, objective.text)) then
                         requiredCount = requiredCount + (objective.numRequired or 0)
                     end
                 end
@@ -35,7 +64,7 @@ MerchantFrame:HookScript("OnShow", function()
         local itemLink = GetMerchantItemLink(index)
         if itemLink then
             local itemName, _, _, _, _, itemType, itemSubType = C_Item.GetItemInfo(itemLink)
-            if itemType == "Quest" and itemSubType == "Quest" then
+            if itemType == "Quest" or itemType == "Miscellaneous" then
                 local itemID = GetMerchantItemID(index)
                 local requiredCount = GetRequiredQuestItemCountByName(itemName)
                 local ownedCount = C_Item.GetItemCount(itemID, false, false)
