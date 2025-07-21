@@ -1,8 +1,8 @@
 local addonTable = select(2, ...)
 local eventFrame = CreateFrame("Frame")
 local formatters = {
-    [3] = function(info) return string.format("[|cffBA45A0%s|r] %s", info.gossipOptionID, info.name) end,
-    [4] = function(info) return string.format("[|cffBA45A0%s|r] %s", info.questID, info.title) end,
+    [GOSSIP_BUTTON_TYPE_OPTION] = function(info) return string.format("[|cffBA45A0%s|r] %s", info.gossipOptionID, info.name) end,
+    [GOSSIP_BUTTON_TYPE_ACTIVE_QUEST] = function(info) return string.format("[|cffBA45A0%s|r] %s", info.questID, info.title) end,
 }
 local gossipRawNames = {}
 
@@ -45,7 +45,7 @@ hooksecurefunc(GossipFrame, "Update", function(self)
         dataProvider:Flush()
 
         local modifiedData = {}
-        for k, v in ipairs(originalData) do
+        for _, v in ipairs(originalData) do
             local entry = v
             if entry and entry.info then
                 local newEntry = {}
@@ -66,7 +66,7 @@ hooksecurefunc(GossipFrame, "Update", function(self)
                     -- Always use the cached raw name (never a previously formatted one)
                     local rawName = gossipOptionID and gossipRawNames[gossipOptionID] or entry.info.name or ""
                     local newEntryInfo = {}
-                    for kk, vv in pairs(entry.info) do newEntryInfo[kk] = vv end
+                    for k, vv in pairs(entry.info) do newEntryInfo[k] = vv end
                     newEntryInfo.name = rawName
 
                     local newName = formatter(newEntryInfo)
