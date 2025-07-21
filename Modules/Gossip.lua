@@ -13,6 +13,22 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
     end
 end)
 
+hooksecurefunc(GossipOptionButtonMixin, "OnClick", function(self)
+    if IsControlKeyDown() then
+        local guid = UnitGUID("npc")
+        local id = addonTable.Split(guid, "-", 6)
+        local data = self:GetData()
+        local gossipOptionID = data.info.gossipOptionID
+        if id and gossipOptionID then
+            if not LSUDB.Gossips[id] then
+                LSUDB.Gossips[id] = {}
+            end
+
+            table.insert(LSUDB.Gossips[id], { gossipOptionID = gossipOptionID })
+        end
+    end
+end)
+
 -- This is how the gossip entry IDs are placed in the gossip buttons
 -- within Blizzard's GossipFrame.
 hooksecurefunc(GossipFrame, "Update", function(self)
