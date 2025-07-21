@@ -48,6 +48,8 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                 Characters = {},
                 Gossips = {},
                 PlayerTalents = {},
+                Cinematics = {},
+                Movies = {},
                 Settings = {
                     ["AcceptQuests.Enabled"] = false,
                     ["AutoRepair.Enabled"] = false,
