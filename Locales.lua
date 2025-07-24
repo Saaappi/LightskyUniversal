@@ -134,7 +134,7 @@ L["GOSSIP_IMPORT_BUTTON_TOOLTIP"] = "Quickly import gossips in the Player Gossip
 "|cffFF474CNOTE:|r This will WIPE the gossips from HelpMePlay. This action is irreversible!"
 L["GOSSIP_MODULE"] = "Gossip Module"
 L["GOSSIP_SEARCH_BOX_TOOLTIP"] = "Enter a search query here to filter the above edit box, making it significantly easier to locate what you're looking for.\n\n" ..
-"|cffFF474CNOTE|r: Your search query can be no more than 30 characters."
+"|cffFF474CNOTE|r: Your search query can be no more than 30 characters and changes made to search results are only saved after clicking the Submit button."
 L["GOSSIP_SUBMIT_BUTTON_TOOLTIP"] = "Submit the contents of the edit box for processing. If valid, the addon will add them to your Gossips table and automate their selection going forward.\n\n" ..
 "If you submit gossips that are available in the active Gossip Frame, then they will be selected without the need to close and reopen the frame."
 L["GOSSIP_TOOLTIP"] = "Interact with supported NPCs efficiently by instantly selecting gossip options."
