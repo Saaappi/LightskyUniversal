@@ -57,6 +57,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     ["AutoTrain.Enabled"] = false,
                     ["BuyQuestItems.Enabled"] = false,
                     ["ChromieTimeExpansionID"] = 0,
+                    ["CinematicsBehavior"] = 0,
                     ["CompleteQuests.Enabled"] = false,
                     ["EditModeLayoutID"] = 1,
                     ["Gossip.Enabled"] = false,
@@ -102,7 +103,6 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
                     ["QuestRewards.Enabled"] = false,
                     ["Rares.Enabled"] = false,
                     ["Rares.NotificationSoundID"] = 0,
-                    ["SkipCinematics.Enabled"] = false,
                 },
             }
             MergeDefaults(LSUDB, defaults)

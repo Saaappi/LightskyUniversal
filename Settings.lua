@@ -130,7 +130,6 @@ local function SlashHandler(msg, editBox)
                 },
                 { addonTable.Locales.PLAYER_TALENTS,    "PlayerTalents.Enabled",   addonTable.Locales.PLAYER_TALENTS_TOOLTIP  },
                 { addonTable.Locales.QUEST_REWARDS,     "QuestRewards.Enabled",    addonTable.Locales.QUEST_REWARDS_TOOLTIP   },
-                { addonTable.Locales.SKIP_CINEMATICS,   "SkipCinematics.Enabled",  addonTable.Locales.SKIP_CINEMATICS_TOOLTIP },
             }
 
             local columnWidth = 180
@@ -193,7 +192,7 @@ local function SlashHandler(msg, editBox)
             local gossipModuleFS = scrollChild:CreateFontString()
             gossipModuleFS:SetFontObject("ChatBubbleFont")
             gossipModuleFS:SetText(addonTable.Locales.GOSSIP_MODULE)
-            gossipModuleFS:SetPoint("TOPLEFT", questModuleFontString, "BOTTOMLEFT", 0, -120)
+            gossipModuleFS:SetPoint("TOPLEFT", adventureMapsDropdown, "BOTTOMLEFT", -20, -50)
 
             local openGossipsFrameButton = addonTable.NewBasicButton({
                 name = "LSUOpenGossipsFrameButton",
@@ -217,10 +216,33 @@ local function SlashHandler(msg, editBox)
             })
             gossipCheckbox:SetPoint("TOPLEFT", openGossipsFrameButton, "BOTTOMLEFT", 0, -10)
 
+            -- CINEMATICS MODULE --
+            local cinematicsFontString = scrollChild:CreateFontString()
+            cinematicsFontString:SetFontObject("ChatBubbleFont")
+            cinematicsFontString:SetText(addonTable.Locales.CINEMATICS_MODULE)
+            cinematicsFontString:SetPoint("TOPLEFT", gossipModuleFS, "BOTTOMLEFT", 0, -125)
+
+            local cinematicsDropdown = addonTable.NewRadioDropdown({
+                parent = scrollChild,
+                label = addonTable.Locales.CINEMATICS,
+                tooltipText = addonTable.Locales.CINEMATICS_DROPDOWN_TOOLTIP,
+                savedVarKey = "CinematicsBehavior",
+                options = {
+                    { addonTable.Locales.CINEMATICS_DROPDOWN_OPTION1, 0 },
+                    { addonTable.Locales.CINEMATICS_DROPDOWN_OPTION2, 1 },
+                    { addonTable.Locales.CINEMATICS_DROPDOWN_OPTION3, 2 },
+                }
+            })
+            cinematicsDropdown:SetPoint("TOPLEFT", cinematicsFontString, "BOTTOMLEFT", 20, -10)
+            cinematicsDropdown.label:Hide()
+            cinematicsDropdown:Show()
+            -----------------------
+
+            -- CHROMIE TIME MODULE --
             local chromieTimeModuleFS = scrollChild:CreateFontString()
             chromieTimeModuleFS:SetFontObject("ChatBubbleFont")
             chromieTimeModuleFS:SetText(addonTable.Locales.CHROMIE_TIME_MODULE)
-            chromieTimeModuleFS:SetPoint("TOPLEFT", gossipModuleFS, "BOTTOMLEFT", 0, -125)
+            chromieTimeModuleFS:SetPoint("TOPLEFT", cinematicsDropdown, "BOTTOMLEFT", -20, -50)
 
             local chromieTimeDropdown = addonTable.NewRadioDropdown({
                 parent = scrollChild,
@@ -244,12 +266,13 @@ local function SlashHandler(msg, editBox)
             chromieTimeDropdown:SetText(addonTable.Enum.Expansions[LSUDB.Settings["ChromieTimeExpansionID"]] or DISABLE)
             chromieTimeDropdown.label:Hide()
             chromieTimeDropdown:Show()
+            -------------------------
 
             -- RARES MODULE --
             local raresFontString = scrollChild:CreateFontString()
             raresFontString:SetFontObject("ChatBubbleFont")
             raresFontString:SetText(addonTable.Locales.RARES_MODULE)
-            raresFontString:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", -20, -50)
+            raresFontString:SetPoint("TOPLEFT", cinematicsDropdown, "BOTTOMLEFT", -20, -50)
 
             local raresCheckbox = addonTable.NewCheckbox({
                 id = 20,

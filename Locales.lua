@@ -84,6 +84,13 @@ L["CHROMIE_TIME"] = "Chromie Time"
 L["CHROMIE_TIME_MODULE"] = "Chromie Time Module"
 L["CHROMIE_TIME_TOOLTIP"] = "Automatically choose and activate your preferred Chromie Time expansion when interacting with them."
 
+L["CINEMATICS"] = "Cinematics"
+L["CINEMATICS_DROPDOWN_OPTION1"] = DISABLE
+L["CINEMATICS_DROPDOWN_OPTION2"] = "Let me watch once"
+L["CINEMATICS_DROPDOWN_OPTION3"] = "Skip everything"
+L["CINEMATICS_DROPDOWN_TOOLTIP"] = "Select how the addon should handle cinematics. You can choose to do nothing (default), and watch all cinematics, skip cinematics you've already seen, or skip everything."
+L["CINEMATICS_MODULE"] = "Cinematics Module"
+
 L["CLEAR_ALL_TRACKING"] = "Clear All Tracking"
 L["CLEAR_ALL_TRACKING_TOOLTIP"] = "Automatically removes all active tracking options from the minimap."
 
@@ -218,8 +225,8 @@ L["SHOW_TARGET_OF_TARGET_TOOLTIP"] = "Shows the target of your current target fo
 L["SHOW_TUTORIALS"] = "Show Tutorials"
 L["SHOW_TUTORIALS_TOOLTIP"] = "Displays tutorial popups to guide you through gameplay and features."
 
-L["SKIP_CINEMATICS"] = "Skip Cinematics"
-L["SKIP_CINEMATICS_TOOLTIP"] = "Enjoy uninterrupted gameplay by skipping in-game cinematics and movies automatically."
+--L["SKIP_CINEMATICS"] = "Skip Cinematics"
+--L["SKIP_CINEMATICS_TOOLTIP"] = "Enjoy uninterrupted gameplay by skipping in-game cinematics and movies automatically."
 
 L["SOFT_TARGET_ENEMY"] = "Soft Target Enemy"
 L["SOFT_TARGET_ENEMY_TOOLTIP"] = "Highlights or selects enemies you're looking at without requiring a hard target, enabling quick interaction or awareness."

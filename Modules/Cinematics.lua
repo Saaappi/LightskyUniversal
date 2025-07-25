@@ -47,23 +47,37 @@ end
 end]]
 
 CinematicFrame:HookScript("OnShow", function(self, ...)
-    local cinematicName = GetReadableCinematicName()
-    local cinematicUniqueID = HashCinematicContext(cinematicName)
-    if not LSUDB.Cinematics[cinematicUniqueID] then
-        LSUDB.Cinematics[cinematicUniqueID] = {
-            name = cinematicName,
-            skip = true
-        }
-    else
+    if LSUDB.Settings["CinematicsBehavior"] == 0 then return end
+    if LSUDB.Settings["CinematicsBehavior"] == 1 then -- Let me watch once
+        local cinematicName = GetReadableCinematicName()
+        local cinematicUniqueID = HashCinematicContext(cinematicName)
+        if not LSUDB.Cinematics[cinematicUniqueID] then
+            LSUDB.Cinematics[cinematicUniqueID] = {
+                name = cinematicName,
+                skip = true
+            }
+            return
+        else
+            CinematicFrame_CancelCinematic()
+        end
+    end
+    if LSUDB.Settings["CinematicsBehavior"] == 2 then -- Skip everything
         CinematicFrame_CancelCinematic()
     end
+    
 end)
 
 hooksecurefunc("MovieFrame_PlayMovie", function(self, movieID)
-    --if not LSUDB.Settings["SkipCinematics.Enabled"] then return end
-    if LSUDB.Movies[movieID] then return end
-	if not IsCutsceneProtected() then
-        if not LSUDB.Movies[movieID] then LSUDB.Movies[movieID] = true end
-		MovieFrame:Hide()
-	end
+    if LSUDB.Settings["CinematicsBehavior"] == 0 then return end -- Disabled, so watch everything
+    if LSUDB.Settings["CinematicsBehavior"] == 1 then -- Let me watch once
+        if not LSUDB.Movies[movieID] then
+            LSUDB.Movies[movieID] = true
+            return
+        else
+            MovieFrame:Hide()
+        end
+    end
+    if LSUDB.Settings["CinematicsBehavior"] == 2 then -- Skip everything
+        MovieFrame:Hide()
+    end
 end)
