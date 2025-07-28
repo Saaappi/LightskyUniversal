@@ -51,7 +51,7 @@ CinematicFrame:HookScript("OnShow", function(self, ...)
     if LSUDB.Settings["CinematicsBehavior"] == 1 then -- Let me watch once
         local cinematicName = GetReadableCinematicName()
         local cinematicUniqueID = HashCinematicContext(cinematicName)
-        if not LSUDB.Cinematics[cinematicUniqueID] then
+        if LSUDB.Cinematics[cinematicUniqueID] == nil then
             LSUDB.Cinematics[cinematicUniqueID] = {
                 name = cinematicName,
                 skip = true
@@ -70,7 +70,7 @@ end)
 hooksecurefunc("MovieFrame_PlayMovie", function(self, movieID)
     if LSUDB.Settings["CinematicsBehavior"] == 0 then return end -- Disabled, so watch everything
     if LSUDB.Settings["CinematicsBehavior"] == 1 then -- Let me watch once
-        if not LSUDB.Movies[movieID] then
+        if LSUDB.Movies[movieID] == nil then
             LSUDB.Movies[movieID] = true
             return
         else
