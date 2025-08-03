@@ -272,7 +272,7 @@ local function SlashHandler(msg, editBox)
             local raresFontString = scrollChild:CreateFontString()
             raresFontString:SetFontObject("ChatBubbleFont")
             raresFontString:SetText(addonTable.Locales.RARES_MODULE)
-            raresFontString:SetPoint("TOPLEFT", cinematicsDropdown, "BOTTOMLEFT", -20, -50)
+            raresFontString:SetPoint("TOPLEFT", chromieTimeDropdown, "BOTTOMLEFT", -20, -50)
 
             local raresCheckbox = addonTable.NewCheckbox({
                 id = 20,
