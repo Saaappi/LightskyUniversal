@@ -1,6 +1,6 @@
 ## Interface: 110200
 ## Title: Lightsky Universal
-## Version: 1.6.0
+## Version: 1.6.1
 ## X-Curse-Project-ID: 1289001
 ## Author: LightskyGG
 ## SavedVariables: LSUDB

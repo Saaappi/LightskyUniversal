@@ -51,71 +51,74 @@ end
 addonTable.ProcessQuestsAndGossipsSequentially = function(API)
     -- Turn in completed quests first, then accept new ones
     local function ProcessActiveQuests(i, callback)
-        if not LSUDB.Settings["CompleteQuests.Enabled"] then return end
-        local numActive = API.getNumActive()
-        if i > numActive then
-            if callback then
-                callback()
+        if LSUDB.Settings["CompleteQuests.Enabled"] then
+            local numActive = API.getNumActive()
+            if i > numActive then
+                if callback then
+                    callback()
+                end
+                return
             end
-            return
-        end
-        local activeQuests = API.getActive()
-        local quest = activeQuests[i]
-        if quest and API.isComplete(quest) then
-            API.selectActive(quest)
-            C_Timer.After(0.15, function()
+            local activeQuests = API.getActive()
+            local quest = activeQuests[i]
+            if quest and API.isComplete(quest) then
+                API.selectActive(quest)
+                C_Timer.After(0.15, function()
+                    ProcessActiveQuests(i+1, callback)
+                end)
+            else
                 ProcessActiveQuests(i+1, callback)
-            end)
-        else
-            ProcessActiveQuests(i+1, callback)
+            end
         end
     end
 
     local function ProcessAvailableQuests(i, callback)
-        if not LSUDB.Settings["AcceptQuests.Enabled"] then return end
-        local numAvailable = API.getNumAvailable()
-        if i > numAvailable then
-            if callback then
-                callback()
-            end
-            return
-        end
-        local availableQuests = API.getAvailable()
-        local quest = availableQuests[i]
-        if quest then
-            local questID = API.getQuestID(quest)
-            local isIgnored, response = addonTable.IsQuestIgnored(questID)
-            if not isIgnored and not C_QuestLog.IsOnQuest(questID) then
-                API.selectAvailable(quest)
-                C_Timer.After(0.15, function()
-                    ProcessAvailableQuests(i+1, callback)
-                end)
-            else
-                if response then
-                    local func = loadstring(response)
-                    if func then func() end
+        if LSUDB.Settings["AcceptQuests.Enabled"] then
+            local numAvailable = API.getNumAvailable()
+            if i > numAvailable then
+                if callback then
+                    callback()
                 end
+                return
+            end
+            local availableQuests = API.getAvailable()
+            local quest = availableQuests[i]
+            if quest then
+                local questID = API.getQuestID(quest)
+                local isIgnored, response = addonTable.IsQuestIgnored(questID)
+                if not isIgnored and not C_QuestLog.IsOnQuest(questID) then
+                    API.selectAvailable(quest)
+                    C_Timer.After(0.15, function()
+                        ProcessAvailableQuests(i+1, callback)
+                    end)
+                else
+                    if response then
+                        local func = loadstring(response)
+                        if func then func() end
+                    end
+                    ProcessAvailableQuests(i+1, callback)
+                end
+            else
                 ProcessAvailableQuests(i+1, callback)
             end
-        else
-            ProcessAvailableQuests(i+1, callback)
         end
     end
 
     local function ProcessAvailableGossips()
-        if not LSUDB.Settings["Gossip.Enabled"] then return end
-        local options = C_GossipInfo.GetOptions()
-        if options then
-            local guid = UnitGUID("npc")
-            if guid then
-                local id = addonTable.Split(guid, "-", 6)
-                if id then
-                    local isValid, gossips = addonTable.IsValidGossipNPC(id)
-                    if isValid and gossips then
-                        for _, gossip in ipairs(gossips) do
-                            local isAllowed = addonTable.EvaluateConditions(gossip.conditions)
-                            if isAllowed then
-                                C_GossipInfo.SelectOption(gossip.gossipOptionID)
+        if LSUDB.Settings["Gossip.Enabled"] then
+            local options = C_GossipInfo.GetOptions()
+            if options then
+                local guid = UnitGUID("npc")
+                if guid then
+                    local id = addonTable.Split(guid, "-", 6)
+                    if id then
+                        local isValid, gossips = addonTable.IsValidGossipNPC(id)
+                        if isValid and gossips then
+                            for _, gossip in ipairs(gossips) do
+                                local isAllowed = addonTable.EvaluateConditions(gossip.conditions)
+                                if isAllowed then
+                                    C_GossipInfo.SelectOption(gossip.gossipOptionID)
+                                end
                             end
                         end
                     end
